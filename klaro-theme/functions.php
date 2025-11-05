@@ -118,50 +118,50 @@ function klaro_setup() {
             'home',
             'about' => array(
                 'post_title'   => esc_html__( 'About Klaro', 'klaro' ),
-                'post_content' => esc_html__(
-                    'Klaro is an accessibility-first WordPress theme that prioritizes users with disabilities. Built with WCAG AAA compliance from the ground up, Klaro ensures your website is usable by everyone, regardless of their abilities.' . "\n\n" .
-                    'Key features include high-contrast modes, adjustable text sizes, comprehensive keyboard navigation, and screen reader optimization. Every element has been carefully designed with accessibility in mind.' . "\n\n" .
-                    'The name "Klaro" comes from Spanish and Portuguese, meaning "clear" or "bright" - reflecting our commitment to clarity and accessibility in web design.',
-                    'klaro'
-                ),
+                'post_content' => 'Klaro is an accessibility-first WordPress theme that prioritizes users with disabilities. Built with WCAG AAA compliance from the ground up, Klaro ensures your website is usable by everyone, regardless of their abilities.
+
+Key features include high-contrast modes, adjustable text sizes, comprehensive keyboard navigation, and screen reader optimization. Every element has been carefully designed with accessibility in mind.
+
+The name "Klaro" comes from Spanish and Portuguese, meaning "clear" or "bright" - reflecting our commitment to clarity and accessibility in web design.',
             ),
             'accessibility' => array(
                 'post_title'   => esc_html__( 'Accessibility Statement', 'klaro' ),
-                'post_content' => esc_html__(
-                    'This website is designed to be accessible to all users, including those with disabilities. We are committed to providing an inclusive digital experience.' . "\n\n" .
-                    '<h2>Accessibility Features</h2>' . "\n" .
-                    '<ul>' . "\n" .
-                    '<li>WCAG AAA compliance (Level 7:1 contrast ratios)</li>' . "\n" .
-                    '<li>Full keyboard navigation support</li>' . "\n" .
-                    '<li>Screen reader optimization with ARIA landmarks</li>' . "\n" .
-                    '<li>Adjustable text sizes (use the A-/A/A+ buttons in the header)</li>' . "\n" .
-                    '<li>High contrast and monochrome display modes</li>' . "\n" .
-                    '<li>Reduced motion option for users with vestibular disorders</li>' . "\n" .
-                    '<li>Skip links for easier navigation</li>' . "\n" .
-                    '<li>All images include descriptive alt text</li>' . "\n" .
-                    '<li>Clear, descriptive link text</li>' . "\n" .
-                    '<li>No autoplay on videos or audio</li>' . "\n" .
-                    '</ul>' . "\n\n" .
-                    '<h2>Keyboard Shortcuts</h2>' . "\n" .
-                    '<ul>' . "\n" .
-                    '<li>Tab - Navigate forward through interactive elements</li>' . "\n" .
-                    '<li>Shift + Tab - Navigate backward</li>' . "\n" .
-                    '<li>Enter/Space - Activate buttons and links</li>' . "\n" .
-                    '<li>Arrow keys - Navigate through menus</li>' . "\n" .
-                    '</ul>' . "\n\n" .
-                    '<h2>Testing</h2>' . "\n" .
-                    'This website has been tested with:' . "\n" .
-                    '<ul>' . "\n" .
-                    '<li>NVDA (NonVisual Desktop Access) screen reader</li>' . "\n" .
-                    '<li>JAWS screen reader</li>' . "\n" .
-                    '<li>VoiceOver on macOS and iOS</li>' . "\n" .
-                    '<li>WAVE accessibility evaluation tool</li>' . "\n" .
-                    '<li>axe DevTools</li>' . "\n" .
-                    '</ul>' . "\n\n" .
-                    '<h2>Feedback</h2>' . "\n" .
-                    'We are continually working to improve accessibility. If you encounter any accessibility barriers, please contact us and we will work to resolve the issue.',
-                    'klaro'
-                ),
+                'post_content' => 'This website is designed to be accessible to all users, including those with disabilities. We are committed to providing an inclusive digital experience.
+
+<h2>Accessibility Features</h2>
+<ul>
+<li>WCAG AAA compliance (Level 7:1 contrast ratios)</li>
+<li>Full keyboard navigation support</li>
+<li>Screen reader optimization with ARIA landmarks</li>
+<li>Adjustable text sizes (use the A-/A/A+ buttons in the header)</li>
+<li>High contrast and monochrome display modes</li>
+<li>Reduced motion option for users with vestibular disorders</li>
+<li>Skip links for easier navigation</li>
+<li>All images include descriptive alt text</li>
+<li>Clear, descriptive link text</li>
+<li>No autoplay on videos or audio</li>
+</ul>
+
+<h2>Keyboard Shortcuts</h2>
+<ul>
+<li>Tab - Navigate forward through interactive elements</li>
+<li>Shift + Tab - Navigate backward</li>
+<li>Enter/Space - Activate buttons and links</li>
+<li>Arrow keys - Navigate through menus</li>
+</ul>
+
+<h2>Testing</h2>
+This website has been tested with:
+<ul>
+<li>NVDA (NonVisual Desktop Access) screen reader</li>
+<li>JAWS screen reader</li>
+<li>VoiceOver on macOS and iOS</li>
+<li>WAVE accessibility evaluation tool</li>
+<li>axe DevTools</li>
+</ul>
+
+<h2>Feedback</h2>
+We are continually working to improve accessibility. If you encounter any accessibility barriers, please contact us and we will work to resolve the issue.',
             ),
         ),
 
@@ -614,25 +614,6 @@ function klaro_disable_autoplay( $html, $url ) {
     return $html;
 }
 add_filter( 'oembed_result', 'klaro_disable_autoplay', 10, 2 );
-
-/**
- * Require captions for video uploads
- */
-function klaro_video_caption_requirement( $file ) {
-    $filetype = wp_check_filetype( $file['name'] );
-    
-    if ( strpos( $filetype['type'], 'video' ) === 0 ) {
-        // Add notice that captions are required
-        add_filter( 'upload_mimes', function( $mimes ) {
-            // Store notice for later display
-            set_transient( 'klaro_video_upload_notice', true, 30 );
-            return $mimes;
-        } );
-    }
-    
-    return $file;
-}
-add_filter( 'wp_handle_upload_prefilter', 'klaro_video_caption_requirement' );
 
 /**
  * Custom comment form for better accessibility
