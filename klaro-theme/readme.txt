@@ -133,7 +133,7 @@ Initial release of Klaro accessibility-first theme.
 
 == Resources ==
 
-* Theme documentation: https://github.com/yourusername/klaro
-* Report issues: https://github.com/yourusername/klaro/issues
+* Theme documentation: https://github.com/rafael-minuesa/klaro
+* Report issues: https://github.com/rafael-minuesa/klaro/issues
 * WebAIM: https://webaim.org
 * WCAG Guidelines: https://www.w3.org/WAI/WCAG21/quickref/
