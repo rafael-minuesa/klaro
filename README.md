@@ -8,6 +8,7 @@
 ![WCAG](https://img.shields.io/badge/WCAG-AAA-success.svg)
 
 ---
+![Klaro WordPress Theme screenshot](banners/banner-1544x500.png)
 
 ## 🌟 Overview
 
