@@ -7,7 +7,7 @@ Tags: accessibility-ready, one-column, two-columns, custom-colors, custom-menu, 
 Requires at least: 6.0
 Tested up to: 6.8
 Requires PHP: 7.4
-Stable tag: 1.3.5
+Stable tag: 1.3.6
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -92,6 +92,9 @@ Autoplay creates accessibility and usability issues. Users should control when m
 It works with block-based builders, but visual drag-and-drop builders may conflict with accessibility features.
 
 == Changelog ==
+
+= 1.3.6 =
+* Improved high contrast mode visited link color (changed from bright pink to pleasant light blue for better user experience)
 
 = 1.3.5 =
 * Added block styles support (register_block_style)
