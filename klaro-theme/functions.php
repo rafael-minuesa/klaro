@@ -99,6 +99,33 @@ function klaro_setup() {
     // Add support for custom units
     add_theme_support( 'custom-units' );
 
+    // Add support for custom logo
+    add_theme_support( 'custom-logo', array(
+        'height'      => 100,
+        'width'       => 400,
+        'flex-height' => true,
+        'flex-width'  => true,
+    ) );
+
+    // Add support for custom header
+    add_theme_support( 'custom-header', array(
+        'default-image'      => '',
+        'width'              => 1200,
+        'height'             => 400,
+        'flex-height'        => true,
+        'flex-width'         => true,
+        'header-text'        => true,
+        'default-text-color' => '1a1a1a',
+    ) );
+
+    // Add support for custom background
+    add_theme_support( 'custom-background', array(
+        'default-color' => 'ffffff',
+    ) );
+
+    // Add editor styles
+    add_editor_style( 'editor-style.css' );
+
     // Add theme starter content
     add_theme_support( 'starter-content', array(
         // Create navigation menu
@@ -205,6 +232,65 @@ function klaro_content_width() {
     $GLOBALS['content_width'] = apply_filters( 'klaro_content_width', 1400 );
 }
 add_action( 'after_setup_theme', 'klaro_content_width', 0 );
+
+/**
+ * Register block styles
+ */
+function klaro_register_block_styles() {
+    // Accessible button style
+    register_block_style(
+        'core/button',
+        array(
+            'name'  => 'klaro-accessible',
+            'label' => esc_html__( 'Accessible High Contrast', 'klaro' ),
+        )
+    );
+
+    // High contrast quote
+    register_block_style(
+        'core/quote',
+        array(
+            'name'  => 'klaro-accessible',
+            'label' => esc_html__( 'Accessible High Contrast', 'klaro' ),
+        )
+    );
+}
+add_action( 'init', 'klaro_register_block_styles' );
+
+/**
+ * Register block patterns
+ */
+function klaro_register_block_patterns() {
+    // Accessible call-to-action pattern
+    register_block_pattern(
+        'klaro/accessible-cta',
+        array(
+            'title'       => esc_html__( 'Accessible Call to Action', 'klaro' ),
+            'description' => esc_html_x( 'A call-to-action section with high contrast and large text', 'Block pattern description', 'klaro' ),
+            'content'     => '<!-- wp:group {"style":{"spacing":{"padding":{"top":"3rem","right":"2rem","bottom":"3rem","left":"2rem"}}},"backgroundColor":"contrast","textColor":"base","layout":{"type":"constrained"}} -->
+<div class="wp-block-group has-base-color has-contrast-background-color has-text-color has-background" style="padding-top:3rem;padding-right:2rem;padding-bottom:3rem;padding-left:2rem">
+<!-- wp:heading {"textAlign":"center","level":2,"fontSize":"large"} -->
+<h2 class="has-text-align-center has-large-font-size">' . esc_html__( 'Get Started Today', 'klaro' ) . '</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph {"align":"center","fontSize":"medium"} -->
+<p class="has-text-align-center has-medium-font-size">' . esc_html__( 'Join thousands of users who trust our accessible platform.', 'klaro' ) . '</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:buttons {"layout":{"type":"flex","justifyContent":"center"}} -->
+<div class="wp-block-buttons">
+<!-- wp:button {"fontSize":"medium"} -->
+<div class="wp-block-button has-custom-font-size has-medium-font-size"><a class="wp-block-button__link wp-element-button">' . esc_html__( 'Learn More', 'klaro' ) . '</a></div>
+<!-- /wp:button -->
+</div>
+<!-- /wp:buttons -->
+</div>
+<!-- /wp:group -->',
+            'categories'  => array( 'featured', 'call-to-action' ),
+        )
+    );
+}
+add_action( 'init', 'klaro_register_block_patterns' );
 
 /**
  * Register Widget Areas

@@ -7,6 +7,64 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.3.5] - 2025-11-05
+
+### Added
+- **Block Styles Support** (functions.php)
+  - Registered accessible button style with high contrast
+  - Registered accessible quote style
+  - Uses WordPress register_block_style() API
+- **Block Patterns** (functions.php)
+  - Accessible call-to-action pattern with high contrast
+  - Featured in block pattern library
+  - Uses large text and proper spacing
+- **Custom Logo Support** (functions.php)
+  - Added via add_theme_support('custom-logo')
+  - Flexible dimensions (400x100 default, flexible height/width)
+  - Available in Customizer under Site Identity
+- **Custom Header Support** (functions.php)
+  - Added via add_theme_support('custom-header')
+  - Supports images and video headers
+  - 1200x400 default size, flexible dimensions
+  - Header text toggle option
+- **Custom Background Support** (functions.php)
+  - Added via add_theme_support('custom-background')
+  - Supports both colors and images
+  - Available in Customizer
+- **Editor Styles** (editor-style.css)
+  - Complete editor stylesheet matching front-end styles
+  - Typography, colors, spacing consistent with theme
+  - Includes all WordPress required classes
+  - WYSIWYG editing experience
+- **WordPress Required CSS Classes** (style.css)
+  - .alignleft, .alignright, .aligncenter for image alignment
+  - .wp-caption and .wp-caption-text for image captions
+  - .gallery-caption for gallery images
+  - .sticky for sticky posts with visual indicator
+  - .bypostauthor for highlighting post author comments
+  - All classes styled for accessibility
+
+### Fixed
+- **Translation Function Misuse** (functions.php lines 121-164)
+  - Removed string concatenation from esc_html__() calls
+  - Starter content now uses plain strings (not translated)
+  - Fixes "multiple text domains" scanner warning
+  - Fixes "incorrect number of arguments" errors
+- **Plugin Territory Functionality** (functions.php)
+  - Removed upload_mimes filter (lines 618-635)
+  - Removed video caption requirement function
+  - Themes should not modify file upload permissions
+
+### Changed
+- **Screenshot Optimization** (screenshot.png)
+  - Compressed from 649KB to 82KB (87% reduction)
+  - Reduced to 256 colors while maintaining quality
+  - Still 1200x900 resolution as required
+  - Faster download and better performance
+- **Version Number**
+  - Updated from 1.1.0 to 1.3.5
+  - Major version bump for WordPress.org compliance features
+
 ### Added
 - **CHILD-THEME-GUIDELINES.md** - Complete documentation on child theme handling
   - WordPress.org child theme submission rules

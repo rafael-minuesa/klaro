@@ -7,7 +7,7 @@ Tags: accessibility-ready, one-column, two-columns, custom-colors, custom-menu, 
 Requires at least: 6.0
 Tested up to: 6.8
 Requires PHP: 7.4
-Stable tag: 1.1.0
+Stable tag: 1.3.5
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -93,6 +93,19 @@ It works with block-based builders, but visual drag-and-drop builders may confli
 
 == Changelog ==
 
+= 1.3.5 =
+* Added block styles support (register_block_style)
+* Added block patterns support (accessible call-to-action pattern)
+* Added custom logo support (Customizer option)
+* Added custom header support (image or video headers)
+* Added custom background support (colors and images)
+* Added editor styles (editor-style.css) for WYSIWYG experience
+* Added all WordPress required CSS classes (.wp-caption, .wp-caption-text, .sticky, .gallery-caption, .bypostauthor, .alignright, .alignleft, .aligncenter)
+* Fixed translation function misuse (removed string concatenation)
+* Removed plugin-territory functionality (upload_mimes filter)
+* Optimized screenshot.png from 649KB to 82KB
+* All WordPress.org recommended features now implemented
+
 = 1.1.0 =
 * Added WordPress Starter Content (optional pre-created pages and menu)
 * Added plugin recommendations system (Classic Editor, WP Accessibility, Accessibility Checker)
@@ -118,6 +131,9 @@ It works with block-based builders, but visual drag-and-drop builders may confli
 * Reduce motion support
 
 == Upgrade Notice ==
+
+= 1.3.5 =
+Major update with WordPress.org recommended features. Adds block styles, block patterns, custom logo/header/background, editor styles, and all required CSS classes. Fully backwards compatible.
 
 = 1.1.0 =
 Adds optional starter content and plugin recommendations. All changes are backwards-compatible.
