@@ -3,7 +3,7 @@
 **An uncompromisingly accessible WordPress Theme that prioritizes Accessibility First.**
 
 ![WordPress Theme](https://img.shields.io/badge/WordPress-Theme-blue.svg)
-![Version](https://img.shields.io/badge/version-1.1.0-green.svg)
+![Version](https://img.shields.io/badge/version-1.3.5-green.svg)
 ![License](https://img.shields.io/badge/license-GPL--2.0%2B-blue.svg)
 ![WCAG](https://img.shields.io/badge/WCAG-AAA-success.svg)
 
