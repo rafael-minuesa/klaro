@@ -18,7 +18,7 @@ Perfect for:
 - Government and educational institutions
 - Non-profit organizations
 - Healthcare providers
-- WordPress developers and Content creators wit disabilities
+- WordPress developers and Content creators with disabilities
 - Any site committed to digital accessibility
 
 ---
