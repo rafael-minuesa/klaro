@@ -3,16 +3,27 @@
 Contributors: rafaelminuesa
 Author: Rafael Minuesa
 Author URI: https://github.com/rafael-minuesa
-Tags: accessibility-ready, one-column, two-columns, custom-colors, custom-menu, featured-images, threaded-comments, translation-ready, block-styles, wide-blocks
+Tags: accessibility-ready, one-column, two-columns, custom-colors, custom-menu, featured-images, threaded-comments, translation-ready, block-styles, wide-blocks, e-commerce
 Requires at least: 6.0
 Tested up to: 6.8
 Requires PHP: 7.4
-Stable tag: 1.3.7
+Stable tag: 1.4.0
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Klaro WordPress Theme, Copyright 2025 Rafael Minuesa
-Klaro is distributed under the terms of the GNU GPL
+Klaro WordPress Theme, Copyright 2025 Rafael Minuesa.
+Klaro is free software: you can redistribute it and/or modify it
+under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 2 of the License, or
+any later version.
+
+Klaro is distributed in the hope that it will be useful, but WITHOUT
+ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License
+for more details.
+
+You should have received a copy of the GNU General Public License
+along with Klaro. If not, see http://www.gnu.org/licenses/gpl-2.0.html.
 
 Klaro is an uncompromisingly accessible WordPress theme that prioritizes users with disabilities above all else.
 
@@ -32,6 +43,7 @@ Klaro (Spanish/Portuguese for "clear/bright") is a WordPress theme built from th
 * Breadcrumb navigation on all pages
 * No autoplay on any media
 * Respects prefers-reduced-motion
+* WooCommerce accessibility support
 
 = Visual Accessibility =
 
@@ -84,7 +96,24 @@ Autoplay creates accessibility and usability issues. Users should control when m
 
 It works with block-based builders, but visual drag-and-drop builders may conflict with accessibility features.
 
+= Does this theme work with WooCommerce? =
+
+Yes! Klaro includes full WooCommerce accessibility support with WCAG AAA compliant shop pages, accessible cart and checkout, screen reader announcements for cart updates, keyboard-navigable product galleries, and 44px minimum touch targets on all interactive elements.
+
 == Changelog ==
+
+= 1.4.0 =
+* Added WooCommerce accessibility support
+* Added accessible product archive and single product templates
+* Added accessible cart template with proper table structure
+* Added ARIA live regions for cart and checkout updates
+* Added quantity +/- buttons with screen reader announcements
+* Added keyboard navigation for product tabs and gallery
+* Added accessible notice templates (error, success, info)
+* Added WooCommerce skip links for shop, cart, and checkout pages
+* Added high contrast and monochrome mode support for WooCommerce
+* Added 44px minimum touch targets on all WooCommerce buttons
+* Added Shop Sidebar widget area
 
 = 1.3.7 =
 * Fixed site description escaping with esc_html() for security
