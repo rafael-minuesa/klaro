@@ -7,6 +7,48 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.0.0] - 2025-12-25
+
+### Added - WooCommerce Accessibility Support
+- **Complete WooCommerce integration** with WCAG AAA compliance
+- **Accessible shop pages** with ARIA landmarks and proper heading hierarchy
+- **Accessible product templates** (archive-product.php, content-product.php)
+- **Accessible cart template** with proper table structure, th scope, and captions
+- **ARIA live regions** for cart updates, checkout errors, and notices
+- **Quantity +/- buttons** with screen reader announcements
+- **Keyboard navigation** for product tabs and gallery thumbnails
+- **Accessible notice templates** (error.php, success.php, notice.php)
+- **WooCommerce skip links** for shop, products, cart, and checkout pages
+- **Shop Sidebar widget area** for WooCommerce pages
+- **woocommerce.css** - Complete accessible styling for all WooCommerce elements
+- **js/woocommerce-accessibility.js** - JavaScript accessibility enhancements
+
+### Changed
+- **44px minimum touch targets** on all WooCommerce buttons and controls
+- **High contrast mode support** for all WooCommerce elements
+- **Monochrome mode support** for WooCommerce styling
+- **Responsive mobile cart** with stacked card layout
+- Added `e-commerce` tag to theme
+
+## [1.3.7] - 2025-12-25
+
+### Fixed
+- **Site description escaping** - Added esc_html() wrapper for security
+
+### Changed
+- **License format in readme.txt** - Updated to WordPress.org required format
+
+### Removed
+- **Custom admin settings page** - Not allowed in themes per WordPress.org guidelines
+- **Plugin recommendation functionality** - Not allowed in themes per WordPress.org guidelines
+- **inc/admin-accessibility.php** - Removed (plugin territory)
+- **inc/recommended-plugins.php** - Removed (plugin territory)
+
+## [1.3.6] - 2025-12-24
+
+### Changed
+- **High contrast mode visited link color** - Changed from bright pink to pleasant light blue for better user experience
+
 ## [1.3.5] - 2025-11-05
 
 ### Added

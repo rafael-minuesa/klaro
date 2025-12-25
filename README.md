@@ -3,9 +3,10 @@
 **An uncompromisingly accessible WordPress Theme that prioritizes Accessibility First.**
 
 ![WordPress Theme](https://img.shields.io/badge/WordPress-Theme-blue.svg)
-![Version](https://img.shields.io/badge/version-1.4.0-green.svg)
+![Version](https://img.shields.io/badge/version-2.0.0-green.svg)
 ![License](https://img.shields.io/badge/license-GPL--2.0%2B-blue.svg)
 ![WCAG](https://img.shields.io/badge/WCAG-AAA-success.svg)
+![WooCommerce](https://img.shields.io/badge/WooCommerce-Accessible-purple.svg)
 
 ---
 ![Klaro WordPress Theme screenshot](banners/banner-1544x500.png)
@@ -14,12 +15,15 @@
 
 Klaro is a WordPress theme built from the ground up with accessibility as the primary focus, not an afterthought. While most themes add accessibility features after design, Klaro starts with **WCAG AAA compliance** and builds everything around that foundation.
 
+**Now with full WooCommerce accessibility support** - build accessible online stores with WCAG AAA compliant shop pages, accessible cart and checkout, screen reader announcements, and 44px minimum touch targets.
+
 Perfect for:
 - Government and educational institutions
 - Non-profit organizations
 - Healthcare providers
 - WordPress developers and Content creators with disabilities
 - Any site committed to digital accessibility
+- **Accessible e-commerce stores** with WooCommerce
 
 ---
 
@@ -51,12 +55,15 @@ Perfect for:
 - ✅ **No Autoplay**: All media requires user interaction
 - ✅ **Clear Visual Hierarchy**: Consistent, logical layout
 
-### Admin Accessibility
-- ✅ **Classic Editor Option**: Better screen reader support than Gutenberg
-- ✅ **High Contrast Admin Mode**: For low vision users
-- ✅ **Large Admin Text Option**: Increased font sizes
-- ✅ **Enhanced Focus Indicators**: Throughout WordPress admin
-- ✅ **Disable Admin Animations**: For vestibular disorder support
+### WooCommerce Accessibility
+- ✅ **Accessible Shop Pages**: ARIA landmarks, proper heading hierarchy
+- ✅ **Accessible Cart & Checkout**: Table accessibility, form labels, error handling
+- ✅ **Screen Reader Announcements**: ARIA live regions for cart updates
+- ✅ **Keyboard Navigation**: Product tabs, gallery thumbnails, quantity controls
+- ✅ **44px Touch Targets**: All buttons and interactive elements
+- ✅ **Quantity +/- Buttons**: Accessible increment/decrement controls
+- ✅ **High Contrast Support**: Full WooCommerce styling in all color modes
+- ✅ **Skip Links**: Shop, products, cart, and checkout navigation
 
 ---
 
