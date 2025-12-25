@@ -13,15 +13,6 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
-/**
- * Load Admin Accessibility Enhancements
- */
-require get_template_directory() . '/inc/admin-accessibility.php';
-
-/**
- * Load Recommended Plugins (optional suggestions)
- */
-require get_template_directory() . '/inc/recommended-plugins.php';
 
 /**
  * Set default site title if not set

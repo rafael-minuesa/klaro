@@ -55,7 +55,7 @@
                     $klaro_description = get_bloginfo( 'description', 'display' );
                     if ( $klaro_description || is_customize_preview() ) :
                         ?>
-                        <p class="site-description"><?php echo $klaro_description; ?></p>
+                        <p class="site-description"><?php echo esc_html( $klaro_description ); ?></p>
                         <?php
                     endif;
                     ?>

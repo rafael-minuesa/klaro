@@ -7,9 +7,12 @@ Tags: accessibility-ready, one-column, two-columns, custom-colors, custom-menu, 
 Requires at least: 6.0
 Tested up to: 6.8
 Requires PHP: 7.4
-Stable tag: 1.3.6
+Stable tag: 1.3.7
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
+
+Klaro WordPress Theme, Copyright 2025 Rafael Minuesa
+Klaro is distributed under the terms of the GNU GPL
 
 Klaro is an uncompromisingly accessible WordPress theme that prioritizes users with disabilities above all else.
 
@@ -29,8 +32,6 @@ Klaro (Spanish/Portuguese for "clear/bright") is a WordPress theme built from th
 * Breadcrumb navigation on all pages
 * No autoplay on any media
 * Respects prefers-reduced-motion
-* Admin accessibility enhancements
-* Classic Editor option for screen reader users
 
 = Visual Accessibility =
 
@@ -55,14 +56,6 @@ Klaro (Spanish/Portuguese for "clear/bright") is a WordPress theme built from th
 * Comprehensive form labels
 * Live regions for dynamic content
 
-= Admin Accessibility =
-
-* Option to disable Gutenberg (enables Classic Editor)
-* High contrast admin mode
-* Large admin text (18px)
-* Disable admin animations
-* Enhanced focus indicators
-
 == Installation ==
 
 1. In your admin panel, go to Appearance > Themes and click the Add New button.
@@ -77,7 +70,7 @@ Klaro (Spanish/Portuguese for "clear/bright") is a WordPress theme built from th
 
 = Does this theme work with Gutenberg? =
 
-Yes, but for blind users and screen reader users, we recommend enabling the Classic Editor option in Appearance > Admin Accessibility.
+Yes. For blind users and screen reader users who prefer the Classic Editor, the Classic Editor plugin can be installed separately from the WordPress plugin repository.
 
 = Can I use custom fonts? =
 
@@ -92,6 +85,13 @@ Autoplay creates accessibility and usability issues. Users should control when m
 It works with block-based builders, but visual drag-and-drop builders may conflict with accessibility features.
 
 == Changelog ==
+
+= 1.3.7 =
+* Fixed site description escaping with esc_html() for security
+* Added proper license format to readme.txt
+* Removed custom admin settings page (not allowed in themes per WordPress.org guidelines)
+* Removed plugin recommendation functionality (not allowed in themes per WordPress.org guidelines)
+* Updated documentation to reflect changes
 
 = 1.3.6 =
 * Improved high contrast mode visited link color (changed from bright pink to pleasant light blue for better user experience)
@@ -111,7 +111,6 @@ It works with block-based builders, but visual drag-and-drop builders may confli
 
 = 1.1.0 =
 * Added WordPress Starter Content (optional pre-created pages and menu)
-* Added plugin recommendations system (Classic Editor, WP Accessibility, Accessibility Checker)
 * Added archive.php template for category/tag/author archives
 * Added search.php template with accessible search results
 * Fixed skip links displaying bullet points in header
@@ -129,7 +128,6 @@ It works with block-based builders, but visual drag-and-drop builders may confli
 * Breadcrumb navigation with Schema.org markup
 * Comprehensive skip links system
 * Alt text enforcement (prevents publishing without alt text)
-* Admin accessibility features (Disable Gutenberg, High Contrast Admin, Large Text, Enhanced Focus)
 * Accessibility toolbar in header
 * Reduce motion support
 
@@ -139,7 +137,7 @@ It works with block-based builders, but visual drag-and-drop builders may confli
 Major update with WordPress.org recommended features. Adds block styles, block patterns, custom logo/header/background, editor styles, and all required CSS classes. Fully backwards compatible.
 
 = 1.1.0 =
-Adds optional starter content and plugin recommendations. All changes are backwards-compatible.
+Adds optional starter content and additional templates. All changes are backwards-compatible.
 
 = 1.0.0 =
 Initial release of Klaro accessibility-first theme.
