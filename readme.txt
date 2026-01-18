@@ -7,7 +7,7 @@ Tags: accessibility-ready, one-column, two-columns, custom-colors, custom-menu, 
 Requires at least: 6.0
 Tested up to: 6.8
 Requires PHP: 7.4
-Stable tag: 2.0.0
+Stable tag: 2.0.2
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -102,6 +102,12 @@ Yes! Klaro includes full WooCommerce accessibility support with WCAG AAA complia
 
 == Changelog ==
 
+= 2.0.2 =
+* Fixed sidebar widget area IDs to use prefixed names (klaro-sidebar-1, klaro-footer-1) per WordPress.org requirements
+* Fixed skip-link:focus to use proper outline instead of outline:none for accessibility compliance
+* Added two-column grid layout for content and sidebar to match screenshot
+* Added Copyright & License declarations for bundled resources in readme.txt
+
 = 2.0.0 =
 * Added WooCommerce accessibility support
 * Added accessible product archive and single product templates
@@ -179,6 +185,17 @@ Initial release of Klaro accessibility-first theme.
 
 == Resources ==
 
+= Screenshot =
+The screenshot.png is created by the theme author and licensed under GPL-2.0-or-later.
+
+= JavaScript =
+skip-link-focus-fix.js is based on code from Underscores (_s) theme by Automattic, licensed under GPL-2.0-or-later.
+https://github.com/Automattic/_s
+
+= Icons =
+The accessibility icon uses the Unicode universal access symbol.
+
+= External Links =
 * Theme documentation: https://github.com/rafael-minuesa/klaro
 * Report issues: https://github.com/rafael-minuesa/klaro/issues
 * WebAIM: https://webaim.org

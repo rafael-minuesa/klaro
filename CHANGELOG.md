@@ -7,6 +7,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.0.2] - 2026-01-18
+
+### Fixed
+- **Sidebar widget area IDs** - Prefixed IDs with `klaro-` (klaro-sidebar-1, klaro-footer-1) per WordPress.org requirements to avoid global namespace conflicts
+- **Skip link focus style** - Replaced `outline: none` with proper outline using CSS variables for accessibility compliance
+- **Two-column layout** - Added CSS grid layout for content area and sidebar to match screenshot design
+- **Resource declarations** - Added Copyright & License section to readme.txt documenting bundled resources (screenshot, skip-link-focus-fix.js)
+
+## [2.0.1] - 2026-01-05
+
+### Fixed
+- **WooCommerce compatibility check** - Added `class_exists('WooCommerce')` check to `klaro_woocommerce_product_thumbnail_alt()` function to prevent fatal error when WooCommerce is not installed
+
 ## [2.0.0] - 2025-12-25
 
 ### Added - WooCommerce Accessibility Support

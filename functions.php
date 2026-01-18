@@ -205,7 +205,7 @@ We are continually working to improve accessibility. If you encounter any access
 
         // Add widgets to sidebar
         'widgets' => array(
-            'sidebar-1' => array(
+            'klaro-sidebar-1' => array(
                 'search',
                 'recent-posts',
                 'recent-comments',
@@ -289,7 +289,7 @@ add_action( 'init', 'klaro_register_block_patterns' );
 function klaro_widgets_init() {
     register_sidebar( array(
         'name'          => esc_html__( 'Primary Sidebar', 'klaro' ),
-        'id'            => 'sidebar-1',
+        'id'            => 'klaro-sidebar-1',
         'description'   => esc_html__( 'Add widgets here to appear in your sidebar.', 'klaro' ),
         'before_widget' => '<section id="%1$s" class="widget %2$s" role="region" aria-labelledby="%1$s-title">',
         'after_widget'  => '</section>',
@@ -299,7 +299,7 @@ function klaro_widgets_init() {
 
     register_sidebar( array(
         'name'          => esc_html__( 'Footer Widgets', 'klaro' ),
-        'id'            => 'footer-1',
+        'id'            => 'klaro-footer-1',
         'description'   => esc_html__( 'Add widgets here to appear in your footer.', 'klaro' ),
         'before_widget' => '<section id="%1$s" class="footer-widget widget %2$s" role="region" aria-labelledby="%1$s-title">',
         'after_widget'  => '</section>',
@@ -855,6 +855,10 @@ add_filter( 'body_class', 'klaro_woocommerce_body_classes' );
  * Enhance product thumbnails with descriptive alt text
  */
 function klaro_woocommerce_product_thumbnail_alt( $html, $post_thumbnail_id ) {
+	if ( ! class_exists( 'WooCommerce' ) ) {
+		return $html;
+	}
+
 	if ( ! is_product() && ! is_shop() && ! is_product_category() ) {
 		return $html;
 	}

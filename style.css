@@ -4,7 +4,7 @@ Theme URI: https://github.com/rafael-minuesa/klaro
 Author: Rafael Minuesa
 Author URI: https://github.com/rafael-minuesa
 Description: An uncompromisingly accessible WordPress theme. Klaro (Spanish/Portuguese for "clear/bright") prioritizes users with disabilities above all else, featuring WCAG AAA compliance, optimized screen reader support, and extensive customization options for visual, motor, and cognitive accessibility.
-Version: 2.0.0
+Version: 2.0.2
 Requires at least: 6.0
 Tested up to: 6.8
 Requires PHP: 7.4
@@ -181,7 +181,8 @@ body {
 
 .skip-link:focus {
   top: 0;
-  outline: none;
+  outline: var(--focus-outline-width) solid var(--color-focus);
+  outline-offset: var(--focus-outline-offset);
 }
 
 /* ==========================================================================
@@ -312,10 +313,30 @@ a:not([href]) {
   max-width: 1400px;
   margin: 0 auto;
   width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  gap: var(--spacing-xl);
+  align-items: start;
 }
 
 .content-area {
   margin-bottom: var(--spacing-xl);
+}
+
+/* Sidebar Layout */
+.sidebar {
+  position: sticky;
+  top: var(--spacing-lg);
+}
+
+@media (max-width: 900px) {
+  .site-main {
+    grid-template-columns: 1fr;
+  }
+
+  .sidebar {
+    position: static;
+  }
 }
 
 /* ==========================================================================

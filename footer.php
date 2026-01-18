@@ -9,9 +9,9 @@
 
     <footer id="site-footer" class="site-footer" role="contentinfo">
         
-        <?php if ( is_active_sidebar( 'footer-1' ) ) : ?>
+        <?php if ( is_active_sidebar( 'klaro-footer-1' ) ) : ?>
             <aside class="footer-widgets" role="complementary" aria-label="<?php esc_attr_e( 'Footer widgets', 'klaro' ); ?>">
-                <?php dynamic_sidebar( 'footer-1' ); ?>
+                <?php dynamic_sidebar( 'klaro-footer-1' ); ?>
             </aside>
         <?php endif; ?>
 

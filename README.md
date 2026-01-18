@@ -3,7 +3,7 @@
 **An uncompromisingly accessible WordPress Theme that prioritizes Accessibility First.**
 
 ![WordPress Theme](https://img.shields.io/badge/WordPress-Theme-blue.svg)
-![Version](https://img.shields.io/badge/version-2.0.0-green.svg)
+![Version](https://img.shields.io/badge/version-2.0.1-green.svg)
 ![License](https://img.shields.io/badge/license-GPL--2.0%2B-blue.svg)
 ![WCAG](https://img.shields.io/badge/WCAG-AAA-success.svg)
 ![WooCommerce](https://img.shields.io/badge/WooCommerce-Accessible-purple.svg)
@@ -80,7 +80,7 @@ Perfect for:
 ### Manual Installation
 
 1. Download and unzip the theme
-2. Upload the `klaro-theme` folder to `/wp-content/themes/`
+2. Upload the `klaro` folder to `/wp-content/themes/`
 3. Go to **Appearance > Themes**
 4. Activate **Klaro**
 
@@ -146,10 +146,10 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 git clone https://github.com/rafael-minuesa/klaro.git
 
 # Navigate to theme directory
-cd klaro/klaro-theme
+cd klaro/klaro
 
 # Symlink to WordPress themes directory (adjust path as needed)
-ln -s $(pwd) /path/to/wordpress/wp-content/themes/klaro-theme
+ln -s $(pwd) /path/to/wordpress/wp-content/themes/klaro
 ```
 
 ### Reporting Issues:
