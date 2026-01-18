@@ -43,7 +43,8 @@ if %ERRORLEVEL% EQU 0 (
             $_.Name -ne 'CLAUDE.md' -and ^
             $_.Name -ne 'README.md' -and ^
             $_.Name -ne 'CHANGELOG.md' -and ^
-            $_.FullName -notmatch '\\banners\\' -and ^
+            $_.FullName -notmatch '\\\.wordpress-org\\' -and ^
+            $_.FullName -notmatch '\\assets\\' -and ^
             $_.FullName -notmatch '\\woocommerce\\single-product\\' -and ^
             $_.Name -ne 'build-wp-org-zip.bat' -and ^
             $_.Name -ne 'build-wp-org-zip.sh' -and ^

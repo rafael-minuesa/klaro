@@ -46,7 +46,8 @@ echo "  - CLAUDE.md"
 echo "  - README.md"
 echo "  - CHANGELOG.md"
 echo "  - WP-ORG-SUBMISSION.md"
-echo "  - banners/ folder"
+echo "  - .wordpress-org/ folder"
+echo "  - assets/ folder (empty)"
 echo "  - build scripts"
 echo ""
 
@@ -58,7 +59,8 @@ zip -r "$ZIP_PATH" . \
     -x "README.md" \
     -x "CHANGELOG.md" \
     -x "WP-ORG-SUBMISSION.md" \
-    -x "banners/*" \
+    -x ".wordpress-org/*" \
+    -x "assets/*" \
     -x "woocommerce/single-product/*" \
     -x "*.DS_Store" \
     -x "*__MACOSX*" \
