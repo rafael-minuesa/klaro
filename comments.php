@@ -11,7 +11,7 @@ if ( post_password_required() ) {
 }
 ?>
 
-<section id="comments" class="comments-area" role="region" aria-labelledby="comments-title">
+<section id="comments" class="comments-area" aria-labelledby="comments-title">
 
     <?php
     if ( have_comments() ) :
@@ -74,64 +74,3 @@ if ( post_password_required() ) {
     ?>
 
 </section><!-- #comments -->
-
-<?php
-/**
- * Custom comment callback for better accessibility
- */
-function klaro_comment_callback( $comment, $args, $depth ) {
-    ?>
-    <li id="comment-<?php comment_ID(); ?>" <?php comment_class( empty( $args['has_children'] ) ? '' : 'parent' ); ?> role="article" aria-labelledby="comment-<?php comment_ID(); ?>-meta">
-        <article id="div-comment-<?php comment_ID(); ?>" class="comment-body">
-            <footer class="comment-meta" id="comment-<?php comment_ID(); ?>-meta">
-                <div class="comment-author vcard">
-                    <?php
-                    if ( 0 != $args['avatar_size'] ) {
-                        echo get_avatar( $comment, $args['avatar_size'], '', get_comment_author(), array( 'role' => 'img' ) );
-                    }
-                    ?>
-                    <span class="fn" itemprop="author" itemscope itemtype="https://schema.org/Person">
-                        <span itemprop="name"><?php comment_author_link(); ?></span>
-                    </span>
-                </div><!-- .comment-author -->
-
-                <div class="comment-metadata">
-                    <a href="<?php echo esc_url( get_comment_link( $comment, $args ) ); ?>">
-                        <time datetime="<?php comment_time( 'c' ); ?>" itemprop="datePublished">
-                            <?php
-                            /* translators: 1: Comment date, 2: Comment time */
-                            printf( esc_html__( '%1$s at %2$s', 'klaro' ), get_comment_date( '', $comment ), get_comment_time() );
-                            ?>
-                        </time>
-                    </a>
-                    <?php
-                    edit_comment_link( esc_html__( 'Edit', 'klaro' ), '<span class="edit-link">', '</span>' );
-                    ?>
-                </div><!-- .comment-metadata -->
-
-                <?php if ( '0' == $comment->comment_approved ) : ?>
-                    <p class="comment-awaiting-moderation" role="status"><?php esc_html_e( 'Your comment is awaiting moderation.', 'klaro' ); ?></p>
-                <?php endif; ?>
-            </footer><!-- .comment-meta -->
-
-            <div class="comment-content" itemprop="text">
-                <?php comment_text(); ?>
-            </div><!-- .comment-content -->
-
-            <?php
-            comment_reply_link(
-                array_merge(
-                    $args,
-                    array(
-                        'add_below' => 'div-comment',
-                        'depth'     => $depth,
-                        'max_depth' => $args['max_depth'],
-                        'before'    => '<div class="reply">',
-                        'after'     => '</div>',
-                    )
-                )
-            );
-            ?>
-        </article><!-- .comment-body -->
-    <?php
-}

@@ -383,7 +383,8 @@ add_filter( 'wp_insert_post_data', 'klaro_require_image_alt', 10, 2 );
  * Admin notice for missing alt text
  */
 function klaro_alt_text_admin_notice() {
-    if ( isset( $_GET['klaro_alt_missing'] ) && $_GET['klaro_alt_missing'] == '1' ) {
+    // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Display-only notice, no action taken
+    if ( isset( $_GET['klaro_alt_missing'] ) && sanitize_text_field( wp_unslash( $_GET['klaro_alt_missing'] ) ) === '1' ) {
         ?>
         <div class="notice notice-error is-dismissible">
             <p><strong><?php esc_html_e( 'Publication prevented: All images must have alt text for accessibility.', 'klaro' ); ?></strong></p>
@@ -696,14 +697,16 @@ add_filter( 'oembed_result', 'klaro_disable_autoplay', 10, 2 );
  * Custom comment form for better accessibility
  */
 function klaro_comment_form_defaults( $defaults ) {
+    $commenter = wp_get_current_commenter();
+
     $defaults['comment_field'] = '<p class="comment-form-comment"><label for="comment">' . esc_html__( 'Comment', 'klaro' ) . ' <span class="required" aria-label="' . esc_attr__( 'required', 'klaro' ) . '">*</span></label><textarea id="comment" name="comment" cols="45" rows="8" maxlength="65525" required aria-required="true" aria-describedby="comment-description"></textarea><span id="comment-description" class="screen-reader-text">' . esc_html__( 'Your comment will be posted publicly on this page.', 'klaro' ) . '</span></p>';
-    
+
     $defaults['fields']['author'] = '<p class="comment-form-author"><label for="author">' . esc_html__( 'Name', 'klaro' ) . ' <span class="required" aria-label="' . esc_attr__( 'required', 'klaro' ) . '">*</span></label><input id="author" name="author" type="text" value="' . esc_attr( $commenter['comment_author'] ) . '" size="30" maxlength="245" required aria-required="true" /></p>';
-    
+
     $defaults['fields']['email'] = '<p class="comment-form-email"><label for="email">' . esc_html__( 'Email', 'klaro' ) . ' <span class="required" aria-label="' . esc_attr__( 'required', 'klaro' ) . '">*</span></label><input id="email" name="email" type="email" value="' . esc_attr( $commenter['comment_author_email'] ) . '" size="30" maxlength="100" aria-describedby="email-notes" required aria-required="true" /><span id="email-notes" class="screen-reader-text">' . esc_html__( 'Your email address will not be published.', 'klaro' ) . '</span></p>';
-    
+
     $defaults['fields']['url'] = '<p class="comment-form-url"><label for="url">' . esc_html__( 'Website', 'klaro' ) . '</label><input id="url" name="url" type="url" value="' . esc_attr( $commenter['comment_author_url'] ) . '" size="30" maxlength="200" /></p>';
-    
+
     return $defaults;
 }
 add_filter( 'comment_form_defaults', 'klaro_comment_form_defaults' );
@@ -794,8 +797,6 @@ function klaro_woocommerce_wrapper_before() {
 	<main id="main-content" class="site-main woocommerce-page" role="main">
 	<?php
 }
-remove_action( 'woocommerce_before_main_content', 'woocommerce_output_content_wrapper', 10 );
-add_action( 'woocommerce_before_main_content', 'klaro_woocommerce_wrapper_before', 10 );
 
 /**
  * WooCommerce wrapper end
@@ -805,8 +806,6 @@ function klaro_woocommerce_wrapper_after() {
 	</main><!-- #main-content -->
 	<?php
 }
-remove_action( 'woocommerce_after_main_content', 'woocommerce_output_content_wrapper_end', 10 );
-add_action( 'woocommerce_after_main_content', 'klaro_woocommerce_wrapper_after', 10 );
 
 /**
  * WooCommerce sidebar
@@ -814,20 +813,34 @@ add_action( 'woocommerce_after_main_content', 'klaro_woocommerce_wrapper_after',
 function klaro_woocommerce_sidebar() {
 	if ( is_active_sidebar( 'sidebar-shop' ) ) {
 		?>
-		<aside id="sidebar" class="widget-area shop-sidebar" role="complementary" aria-label="<?php esc_attr_e( 'Shop sidebar', 'klaro' ); ?>">
+		<aside id="sidebar" class="widget-area shop-sidebar" aria-label="<?php esc_attr_e( 'Shop sidebar', 'klaro' ); ?>">
 			<?php dynamic_sidebar( 'sidebar-shop' ); ?>
 		</aside>
 		<?php
 	}
 }
-remove_action( 'woocommerce_sidebar', 'woocommerce_get_sidebar', 10 );
-add_action( 'woocommerce_sidebar', 'klaro_woocommerce_sidebar', 10 );
+
+/**
+ * Register WooCommerce hook modifications
+ * Only runs when WooCommerce is fully loaded
+ */
+function klaro_woocommerce_hooks() {
+	remove_action( 'woocommerce_before_main_content', 'woocommerce_output_content_wrapper', 10 );
+	add_action( 'woocommerce_before_main_content', 'klaro_woocommerce_wrapper_before', 10 );
+
+	remove_action( 'woocommerce_after_main_content', 'woocommerce_output_content_wrapper_end', 10 );
+	add_action( 'woocommerce_after_main_content', 'klaro_woocommerce_wrapper_after', 10 );
+
+	remove_action( 'woocommerce_sidebar', 'woocommerce_get_sidebar', 10 );
+	add_action( 'woocommerce_sidebar', 'klaro_woocommerce_sidebar', 10 );
+}
+add_action( 'woocommerce_loaded', 'klaro_woocommerce_hooks' );
 
 /**
  * Add WooCommerce body classes
  */
 function klaro_woocommerce_body_classes( $classes ) {
-	if ( class_exists( 'WooCommerce' ) ) {
+	if ( class_exists( 'WooCommerce' ) && function_exists( 'is_shop' ) ) {
 		$classes[] = 'klaro-woocommerce';
 
 		if ( is_shop() || is_product_category() || is_product_tag() ) {
@@ -855,7 +868,7 @@ add_filter( 'body_class', 'klaro_woocommerce_body_classes' );
  * Enhance product thumbnails with descriptive alt text
  */
 function klaro_woocommerce_product_thumbnail_alt( $html, $post_thumbnail_id ) {
-	if ( ! class_exists( 'WooCommerce' ) ) {
+	if ( ! class_exists( 'WooCommerce' ) || ! function_exists( 'is_product' ) ) {
 		return $html;
 	}
 
@@ -923,7 +936,7 @@ add_filter( 'woocommerce_cart_item_remove_link', 'klaro_woocommerce_cart_item_re
  * Add skip links for WooCommerce pages
  */
 function klaro_woocommerce_skip_links() {
-	if ( ! class_exists( 'WooCommerce' ) ) {
+	if ( ! class_exists( 'WooCommerce' ) || ! function_exists( 'is_shop' ) ) {
 		return;
 	}
 
@@ -980,3 +993,75 @@ function klaro_woocommerce_cart_live_region() {
 	}
 }
 add_action( 'wp_footer', 'klaro_woocommerce_cart_live_region' );
+
+/**
+ * ==========================================================================
+ * COMMENTS
+ * ==========================================================================
+ */
+
+/**
+ * Custom comment callback for better accessibility
+ *
+ * @param WP_Comment $comment The comment object.
+ * @param array      $args    An array of arguments.
+ * @param int        $depth   Depth of the current comment.
+ */
+if ( ! function_exists( 'klaro_comment_callback' ) ) {
+	function klaro_comment_callback( $comment, $args, $depth ) {
+		?>
+		<li id="comment-<?php comment_ID(); ?>" <?php comment_class( empty( $args['has_children'] ) ? '' : 'parent' ); ?> aria-labelledby="comment-<?php comment_ID(); ?>-meta">
+			<article id="div-comment-<?php comment_ID(); ?>" class="comment-body">
+				<footer class="comment-meta" id="comment-<?php comment_ID(); ?>-meta">
+					<div class="comment-author vcard">
+						<?php
+						if ( 0 !== $args['avatar_size'] ) {
+							echo get_avatar( $comment, $args['avatar_size'], '', get_comment_author(), array( 'role' => 'img' ) );
+						}
+						?>
+						<span class="fn" itemprop="author" itemscope itemtype="https://schema.org/Person">
+							<span itemprop="name"><?php comment_author_link(); ?></span>
+						</span>
+					</div><!-- .comment-author -->
+
+					<div class="comment-metadata">
+						<a href="<?php echo esc_url( get_comment_link( $comment, $args ) ); ?>">
+							<time datetime="<?php comment_time( 'c' ); ?>" itemprop="datePublished">
+								<?php
+								/* translators: 1: Comment date, 2: Comment time */
+								printf( esc_html__( '%1$s at %2$s', 'klaro' ), get_comment_date( '', $comment ), get_comment_time() );
+								?>
+							</time>
+						</a>
+						<?php
+						edit_comment_link( esc_html__( 'Edit', 'klaro' ), '<span class="edit-link">', '</span>' );
+						?>
+					</div><!-- .comment-metadata -->
+
+					<?php if ( '0' === $comment->comment_approved ) : ?>
+						<p class="comment-awaiting-moderation" role="status"><?php esc_html_e( 'Your comment is awaiting moderation.', 'klaro' ); ?></p>
+					<?php endif; ?>
+				</footer><!-- .comment-meta -->
+
+				<div class="comment-content" itemprop="text">
+					<?php comment_text(); ?>
+				</div><!-- .comment-content -->
+
+				<?php
+				comment_reply_link(
+					array_merge(
+						$args,
+						array(
+							'add_below' => 'div-comment',
+							'depth'     => $depth,
+							'max_depth' => $args['max_depth'],
+							'before'    => '<div class="reply">',
+							'after'     => '</div>',
+						)
+					)
+				);
+				?>
+			</article><!-- .comment-body -->
+		<?php
+	}
+}

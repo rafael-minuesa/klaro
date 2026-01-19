@@ -9,7 +9,7 @@
 get_header();
 ?>
 
-<main id="main-content" class="site-main" role="main" aria-label="<?php esc_attr_e( 'Main content', 'klaro' ); ?>">
+<main id="main-content" class="site-main" aria-label="<?php esc_attr_e( 'Main content', 'klaro' ); ?>">
 
     <?php klaro_breadcrumbs(); ?>
 
@@ -20,7 +20,7 @@ get_header();
             the_post();
 
             ?>
-            <article id="post-<?php the_ID(); ?>" <?php post_class(); ?> role="article" aria-labelledby="page-title-<?php the_ID(); ?>">
+            <article id="post-<?php the_ID(); ?>" <?php post_class(); ?> aria-labelledby="page-title-<?php the_ID(); ?>">
                 
                 <header class="entry-header">
                     <?php the_title( '<h1 id="page-title-' . get_the_ID() . '" class="entry-title">', '</h1>' ); ?>

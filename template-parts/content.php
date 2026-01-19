@@ -7,7 +7,7 @@
  */
 ?>
 
-<article id="post-<?php the_ID(); ?>" <?php post_class(); ?> role="article" aria-labelledby="post-title-<?php the_ID(); ?>">
+<article id="post-<?php the_ID(); ?>" <?php post_class(); ?> aria-labelledby="post-title-<?php the_ID(); ?>">
     
     <header class="entry-header">
         <?php
@@ -115,7 +115,7 @@
                 ?>
                 <div class="tags-links">
                     <span class="screen-reader-text"><?php esc_html_e( 'Tags:', 'klaro' ); ?> </span>
-                    <?php echo $tags_list; ?>
+                    <?php echo wp_kses_post( $tags_list ); ?>
                 </div>
                 <?php
             endif;

@@ -7,6 +7,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.0.3] - 2026-01-19
+
+### Fixed
+- **PHP 8.x compatibility** - Added missing `$commenter = wp_get_current_commenter()` in comment form defaults function
+- **Search form accessibility** - Fixed mismatched IDs where `for`, `id`, and `aria-describedby` used different `uniqid()` calls
+- **Security** - Sanitized `$_GET` parameter access with `sanitize_text_field()` and `wp_unslash()`
+- **Comment callback placement** - Moved `klaro_comment_callback()` from comments.php to functions.php with `function_exists()` guard to prevent redeclaration errors
+- **Output escaping** - Added `wp_kses_post()` to tags list output in content template
+- **Strict comparisons** - Changed loose comparisons to strict (`===`) in comment template
+
+### Changed
+- **Removed redundant ARIA roles** - Removed explicit roles from semantic HTML5 elements (`role="main"` on `<main>`, `role="navigation"` on `<nav>`, etc.) as they're implicit
+- **WooCommerce hooks** - Moved hook modifications to `woocommerce_loaded` action for safer timing
+- **WooCommerce conditionals** - Added `function_exists()` checks alongside `class_exists('WooCommerce')` for robustness
+
 ## [2.0.2] - 2026-01-18
 
 ### Fixed

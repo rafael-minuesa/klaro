@@ -9,7 +9,7 @@
 get_header();
 ?>
 
-<main id="main-content" class="site-main" role="main" aria-label="<?php esc_attr_e( 'Main content', 'klaro' ); ?>">
+<main id="main-content" class="site-main" aria-label="<?php esc_attr_e( 'Main content', 'klaro' ); ?>">
 
     <?php klaro_breadcrumbs(); ?>
 
@@ -40,7 +40,7 @@ get_header();
 
             // Pagination for accessibility
             ?>
-            <nav class="pagination" role="navigation" aria-label="<?php esc_attr_e( 'Archive pagination', 'klaro' ); ?>">
+            <nav class="pagination" aria-label="<?php esc_attr_e( 'Archive pagination', 'klaro' ); ?>">
                 <?php
                 the_posts_pagination(
                     array(

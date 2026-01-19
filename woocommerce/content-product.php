@@ -20,7 +20,7 @@ $product_name  = $product->get_name();
 $product_price = $product->get_price_html();
 ?>
 
-<li <?php wc_product_class( '', $product ); ?> role="article" aria-labelledby="product-title-<?php echo esc_attr( $product_id ); ?>">
+<li <?php wc_product_class( '', $product ); ?> aria-labelledby="product-title-<?php echo esc_attr( $product_id ); ?>">
 
 	<?php do_action( 'woocommerce_before_shop_loop_item' ); ?>
 

@@ -22,7 +22,7 @@
 
 <div id="page" class="site-container">
 
-    <header id="masthead" class="site-header" role="banner">
+    <header id="masthead" class="site-header">
 
         <div class="header-top">
             <div class="site-branding">
@@ -115,7 +115,7 @@
             </div><!-- .accessibility-toolbar -->
         </div><!-- .header-top -->
 
-        <nav id="primary-navigation" class="main-navigation" role="navigation" aria-label="<?php esc_attr_e( 'Primary Navigation', 'klaro' ); ?>">
+        <nav id="primary-navigation" class="main-navigation" aria-label="<?php esc_attr_e( 'Primary Navigation', 'klaro' ); ?>">
             <?php
             if ( has_nav_menu( 'primary' ) ) {
                 wp_nav_menu(

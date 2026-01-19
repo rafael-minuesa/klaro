@@ -7,16 +7,16 @@
  */
 ?>
 
-    <footer id="site-footer" class="site-footer" role="contentinfo">
+    <footer id="site-footer" class="site-footer">
         
         <?php if ( is_active_sidebar( 'klaro-footer-1' ) ) : ?>
-            <aside class="footer-widgets" role="complementary" aria-label="<?php esc_attr_e( 'Footer widgets', 'klaro' ); ?>">
+            <aside class="footer-widgets" aria-label="<?php esc_attr_e( 'Footer widgets', 'klaro' ); ?>">
                 <?php dynamic_sidebar( 'klaro-footer-1' ); ?>
             </aside>
         <?php endif; ?>
 
         <?php if ( has_nav_menu( 'footer' ) ) : ?>
-            <nav class="footer-navigation" role="navigation" aria-label="<?php esc_attr_e( 'Footer Navigation', 'klaro' ); ?>">
+            <nav class="footer-navigation" aria-label="<?php esc_attr_e( 'Footer Navigation', 'klaro' ); ?>">
                 <?php
                 wp_nav_menu(
                     array(

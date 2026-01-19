@@ -9,7 +9,7 @@
 get_header();
 ?>
 
-<main id="main-content" class="site-main" role="main" aria-label="<?php esc_attr_e( 'Main content', 'klaro' ); ?>">
+<main id="main-content" class="site-main" aria-label="<?php esc_attr_e( 'Main content', 'klaro' ); ?>">
 
     <?php klaro_breadcrumbs(); ?>
 
