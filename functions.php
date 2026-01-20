@@ -190,18 +190,8 @@ We are continually working to improve accessibility. If you encounter any access
             'blogdescription' => 'Accessibility First',
         ),
 
-        // Attachments (for site icon)
-        'attachments' => array(
-            'klaro-icon' => array(
-                'post_title' => esc_html_x( 'Klaro Site Icon', 'Theme starter content', 'klaro' ),
-                'file'       => 'assets/icon-512x512.png',
-            ),
-        ),
-
-        // Set site icon using the attachment
-        'theme_mods' => array(
-            'site_icon' => '{{klaro-icon}}',
-        ),
+        // Note: no bundled site icon is set via starter content.
+        // WordPress.org themes should not depend on missing/bundled assets for core site identity.
 
         // Add widgets to sidebar
         'widgets' => array(
@@ -751,6 +741,22 @@ function klaro_woocommerce_setup() {
 	add_theme_support( 'wc-product-gallery-slider' );
 }
 add_action( 'after_setup_theme', 'klaro_woocommerce_setup' );
+
+/**
+ * Remove default WooCommerce product link wrappers.
+ * The theme provides its own accessible link structure in content-product.php
+ * to avoid duplicate anchor tags.
+ */
+function klaro_remove_woocommerce_product_link_wrappers() {
+	if ( function_exists( 'woocommerce_template_loop_product_link_open' ) ) {
+		remove_action( 'woocommerce_before_shop_loop_item', 'woocommerce_template_loop_product_link_open', 10 );
+	}
+
+	if ( function_exists( 'woocommerce_template_loop_product_link_close' ) ) {
+		remove_action( 'woocommerce_after_shop_loop_item', 'woocommerce_template_loop_product_link_close', 5 );
+	}
+}
+add_action( 'init', 'klaro_remove_woocommerce_product_link_wrappers' );
 
 /**
  * Register WooCommerce-specific widget areas

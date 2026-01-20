@@ -7,7 +7,7 @@ Tags: accessibility-ready, one-column, two-columns, custom-colors, custom-menu, 
 Requires at least: 6.0
 Tested up to: 6.8
 Requires PHP: 7.4
-Stable tag: 2.0.5
+Stable tag: 2.0.6
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -101,6 +101,11 @@ It works with block-based builders, but visual drag-and-drop builders may confli
 Yes! Klaro includes full WooCommerce accessibility support with WCAG AAA compliant shop pages, accessible cart and checkout, screen reader announcements for cart updates, keyboard-navigable product galleries, and 44px minimum touch targets on all interactive elements.
 
 == Changelog ==
+
+= 2.0.6 =
+* Fixed shop product grid widths by removing legacy floats/width constraints
+* Moved WooCommerce product tab padding to list items for consistent hit areas
+* Removed duplicate product link wrappers to prevent malformed markup
 
 = 2.0.3 =
 * Fixed PHP 8.x compatibility issue in comment form (missing $commenter variable)

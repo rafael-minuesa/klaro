@@ -44,11 +44,13 @@ if %ERRORLEVEL% EQU 0 (
             $_.Name -ne 'README.md' -and ^
             $_.Name -ne 'CHANGELOG.md' -and ^
             $_.FullName -notmatch '\\\.wordpress-org\\' -and ^
-            $_.FullName -notmatch '\\assets\\' -and ^
+            $_.FullName -notmatch '\\\\.claude\\\\' -and ^
+            $_.FullName -notmatch '\\\\banners\\\\' -and ^
             $_.FullName -notmatch '\\woocommerce\\single-product\\' -and ^
             $_.Name -ne 'build-wp-org-zip.bat' -and ^
             $_.Name -ne 'build-wp-org-zip.sh' -and ^
             $_.Name -ne 'WP-ORG-SUBMISSION.md' -and ^
+            $_.Name -ne 'klaro.code-workspace' -and ^
             $_.Name -ne '.DS_Store' -and ^
             $_.FullName -notmatch 'node_modules' -and ^
             $_.FullName -notmatch '\.vscode' -and ^

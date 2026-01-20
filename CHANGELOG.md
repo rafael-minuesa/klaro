@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.0.6] - 2026-01-20
+
+### Fixed
+- **Shop grid width** - Removed legacy floats/width constraints on product cards to prevent narrow product boxes
+- **WooCommerce tabs padding** - Moved padding to `li` elements for consistent touch targets and spacing
+- **Duplicate product links** - Removed default WooCommerce link wrappers to avoid malformed markup and duplicated anchors
+
 ## [2.0.5] - 2026-01-20
 
 ### Fixed

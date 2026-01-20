@@ -33,8 +33,8 @@ if [ -f "$ZIP_PATH" ]; then
     rm "$ZIP_PATH"
 fi
 
-# Change to theme directory
-cd "$THEME_DIR"
+# Change to parent directory so the ZIP contains a single top-level `klaro/` folder
+cd "$PARENT_DIR"
 
 echo -e "${GREEN}Creating ZIP file...${NC}"
 echo ""
@@ -42,40 +42,42 @@ echo ""
 # Create zip excluding development files
 echo "Excluding development files:"
 echo "  - .gitignore"
+  echo "  - .git/ folder"
+  echo "  - .claude/ folder"
 echo "  - CLAUDE.md"
 echo "  - README.md"
 echo "  - CHANGELOG.md"
 echo "  - WP-ORG-SUBMISSION.md"
-echo "  - .wordpress-org/ folder"
-echo "  - assets/ folder (empty)"
+  echo "  - .wordpress-org/ folder"
+  echo "  - banners/ folder"
+  echo "  - editor/workspace files"
 echo "  - build scripts"
 echo ""
 
-zip -r "$ZIP_PATH" . \
-    -x ".git/*" \
-    -x ".gitignore" \
-    -x ".claude/*" \
-    -x "CLAUDE.md" \
-    -x "README.md" \
-    -x "CHANGELOG.md" \
-    -x "WP-ORG-SUBMISSION.md" \
-    -x ".wordpress-org/*" \
-    -x "assets/*" \
-    -x "woocommerce/single-product/*" \
-    -x "klaro" \
-    -x "klaro/*" \
-    -x "*.DS_Store" \
-    -x "*__MACOSX*" \
-    -x "*.zip" \
-    -x "*.log" \
-    -x "build-wp-org-zip.sh" \
-    -x "build-wp-org-zip.bat" \
-    -x "node_modules/*" \
-    -x ".vscode/*" \
-    -x ".idea/*" \
-    -x "*.swp" \
-    -x "*.swo" \
-    -x "*~"
+zip -r "$ZIP_PATH" klaro/ \
+    -x "klaro/.git/*" \
+    -x "klaro/.gitignore" \
+    -x "klaro/.claude/*" \
+    -x "klaro/CLAUDE.md" \
+    -x "klaro/README.md" \
+    -x "klaro/CHANGELOG.md" \
+    -x "klaro/WP-ORG-SUBMISSION.md" \
+    -x "klaro/.wordpress-org/*" \
+    -x "klaro/banners/*" \
+    -x "klaro/woocommerce/single-product/*" \
+    -x "klaro/build-wp-org-zip.sh" \
+    -x "klaro/build-wp-org-zip.bat" \
+    -x "klaro/klaro.code-workspace" \
+    -x "klaro/*.DS_Store" \
+    -x "klaro/*__MACOSX*" \
+    -x "klaro/*.zip" \
+    -x "klaro/*.log" \
+    -x "klaro/node_modules/*" \
+    -x "klaro/.vscode/*" \
+    -x "klaro/.idea/*" \
+    -x "klaro/*.swp" \
+    -x "klaro/*.swo" \
+    -x "klaro/*~"
 
 # Verify zip was created
 if [ -f "$ZIP_PATH" ]; then

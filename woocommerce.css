@@ -29,6 +29,8 @@
   background: var(--color-background);
   display: flex;
   flex-direction: column;
+  float: none;
+  width: auto;
 }
 
 .woocommerce ul.products li.product .woocommerce-loop-product__title {
@@ -381,12 +383,13 @@
 
 .woocommerce-tabs ul.tabs li {
   margin: 0;
+  padding: 0.1em 1em;
 }
 
 .woocommerce-tabs ul.tabs li a {
   display: block;
   min-height: var(--touch-target-min);
-  padding: 0.1em 1em;
+  padding: 0;
   font-weight: 600;
   color: var(--color-text) !important;
   background: var(--color-background) !important;
