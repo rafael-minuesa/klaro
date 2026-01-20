@@ -41,8 +41,8 @@ $product_price = $product->get_price_html();
 	</a>
 
 	<?php
-	// Rating (with accessibility enhancements via filter)
-	do_action( 'woocommerce_after_shop_loop_item_title' );
+	// Rating only (price handled separately below)
+	woocommerce_template_loop_rating();
 	?>
 
 	<div class="product-price-wrapper">

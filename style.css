@@ -4,7 +4,7 @@ Theme URI: https://github.com/rafael-minuesa/klaro
 Author: Rafael Minuesa
 Author URI: https://github.com/rafael-minuesa
 Description: An uncompromisingly accessible WordPress theme. Klaro (Spanish/Portuguese for "clear/bright") prioritizes users with disabilities above all else, featuring WCAG AAA compliance, optimized screen reader support, and extensive customization options for visual, motor, and cognitive accessibility.
-Version: 2.0.3
+Version: 2.0.4
 Requires at least: 6.0
 Tested up to: 6.8
 Requires PHP: 7.4
@@ -310,31 +310,41 @@ a:not([href]) {
 .site-main {
   flex: 1;
   padding: var(--spacing-lg);
-  max-width: 1400px;
+  max-width: 1200px;
   margin: 0 auto;
   width: 100%;
-  display: grid;
-  grid-template-columns: 1fr 300px;
-  gap: var(--spacing-xl);
-  align-items: start;
 }
 
 .content-area {
   margin-bottom: var(--spacing-xl);
 }
 
-/* Sidebar Layout */
+/* Sidebar Layout - Hidden by default, only shown if explicitly enabled */
 .sidebar {
+  display: none;
+}
+
+/* Enable sidebar layout when sidebar has content */
+.has-sidebar .site-main {
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  gap: var(--spacing-xl);
+  align-items: start;
+  max-width: 1400px;
+}
+
+.has-sidebar .sidebar {
+  display: block;
   position: sticky;
   top: var(--spacing-lg);
 }
 
 @media (max-width: 900px) {
-  .site-main {
+  .has-sidebar .site-main {
     grid-template-columns: 1fr;
   }
 
-  .sidebar {
+  .has-sidebar .sidebar {
     position: static;
   }
 }
@@ -344,7 +354,7 @@ a:not([href]) {
    ========================================================================== */
 
 .main-navigation {
-  margin-bottom: var(--spacing-lg);
+  margin-bottom: var(--spacing-sm);
 }
 
 .main-navigation ul {
@@ -353,20 +363,24 @@ a:not([href]) {
   padding: 0;
   display: flex;
   flex-wrap: wrap;
-  gap: var(--spacing-sm);
+  gap: 0.25rem;
+}
+
+.main-navigation li {
+  position: relative;
 }
 
 .main-navigation a {
-  display: block;
-  padding: var(--spacing-sm) var(--spacing-md);
-  min-width: var(--touch-target-min);
+  display: flex;
+  align-items: center;
+  padding: 0.1em 1em;
   min-height: var(--touch-target-min);
   background: var(--color-background);
   border: 1px solid var(--color-border);
-  border-radius: 8px;
-  border-radius: 8px;
+  border-radius: 4px;
   text-align: center;
   font-weight: 600;
+  text-decoration: none;
 }
 
 .main-navigation a:hover,
@@ -380,6 +394,76 @@ a:not([href]) {
   background: var(--color-text);
   color: var(--color-background);
   font-weight: 700;
+}
+
+/* Submenu - Accessible Dropdown */
+.main-navigation .sub-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 1000;
+  min-width: 200px;
+  padding: 0.5rem 0;
+  margin: 0;
+  background: var(--color-background);
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  flex-direction: column;
+  gap: 0;
+}
+
+.main-navigation .sub-menu li {
+  width: 100%;
+}
+
+.main-navigation .sub-menu a {
+  border: none;
+  border-radius: 0;
+  padding: 0.5em 1em;
+  text-align: left;
+  width: 100%;
+}
+
+.main-navigation .sub-menu a:hover,
+.main-navigation .sub-menu a:focus {
+  background: var(--color-text);
+  color: var(--color-background);
+}
+
+/* Show submenu on parent focus/hover */
+.main-navigation li:hover > .sub-menu,
+.main-navigation li:focus-within > .sub-menu,
+.main-navigation li.menu-item-has-children > a:focus + .sub-menu,
+.main-navigation li.menu-item-has-children > a[aria-expanded="true"] + .sub-menu {
+  display: flex;
+}
+
+/* Submenu indicator arrow */
+.main-navigation .menu-item-has-children > a::after {
+  content: "";
+  display: inline-block;
+  width: 0;
+  height: 0;
+  margin-left: 0.5em;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-top: 5px solid currentColor;
+}
+
+/* Nested submenus */
+.main-navigation .sub-menu .sub-menu {
+  top: 0;
+  left: 100%;
+}
+
+.main-navigation .sub-menu .menu-item-has-children > a::after {
+  border-top: 4px solid transparent;
+  border-bottom: 4px solid transparent;
+  border-left: 5px solid currentColor;
+  margin-left: auto;
+  padding-left: 0.5em;
 }
 
 /* ==========================================================================

@@ -52,7 +52,7 @@ echo "  - build scripts"
 echo ""
 
 zip -r "$ZIP_PATH" . \
-    -x "*.git*" \
+    -x ".git/*" \
     -x ".gitignore" \
     -x ".claude/*" \
     -x "CLAUDE.md" \
@@ -62,6 +62,8 @@ zip -r "$ZIP_PATH" . \
     -x ".wordpress-org/*" \
     -x "assets/*" \
     -x "woocommerce/single-product/*" \
+    -x "klaro" \
+    -x "klaro/*" \
     -x "*.DS_Store" \
     -x "*__MACOSX*" \
     -x "*.zip" \

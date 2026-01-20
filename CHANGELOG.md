@@ -7,6 +7,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.0.4] - 2026-01-20
+
+### Fixed
+- **WooCommerce layout** - Shop and product pages now use full-width single-column layout
+- **Shop page title** - Fixed breadcrumbs showing HTML tags (`Archives: <span>Shop</span>`) by using `woocommerce_page_title()` and `wp_strip_all_tags()`
+- **Duplicate prices** - Removed duplicate price display in product loops by separating rating from price hook
+- **Tab visibility** - Fixed WooCommerce tab text barely visible with proper color declarations
+- **Tab padding** - Reduced tab padding to `0.1em 1em` for better appearance
+
+### Changed
+- **Navigation padding** - Reduced menu item padding to `0.1em 1em` for cleaner appearance
+- **Accessible submenus** - Submenus now hidden by default, shown on hover and `:focus-within` for keyboard accessibility
+- **Single-column layout** - Changed default layout from two-column grid to single-column, sidebars hidden by default
+- **WooCommerce wrappers** - Simplified wrapper markup to use same layout as regular pages
+
 ## [2.0.3] - 2026-01-19
 
 ### Fixed

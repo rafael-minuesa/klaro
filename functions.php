@@ -527,8 +527,19 @@ function klaro_breadcrumbs() {
         echo '<meta property="position" content="' . $position . '">';
         echo '</li>';
     } elseif ( is_archive() ) {
+        // Handle WooCommerce shop pages
+        if ( class_exists( 'WooCommerce' ) && function_exists( 'is_shop' ) && is_shop() ) {
+            $archive_title = woocommerce_page_title( false );
+        } elseif ( class_exists( 'WooCommerce' ) && function_exists( 'is_product_category' ) && is_product_category() ) {
+            $archive_title = single_term_title( '', false );
+        } elseif ( class_exists( 'WooCommerce' ) && function_exists( 'is_product_tag' ) && is_product_tag() ) {
+            $archive_title = single_term_title( '', false );
+        } else {
+            // Strip HTML from archive title (WordPress wraps it in <span>)
+            $archive_title = wp_strip_all_tags( get_the_archive_title() );
+        }
         echo '<li property="itemListElement" typeof="ListItem">';
-        echo '<span property="name" aria-current="page">' . esc_html( get_the_archive_title() ) . '</span>';
+        echo '<span property="name" aria-current="page">' . esc_html( $archive_title ) . '</span>';
         echo '<meta property="position" content="' . $position . '">';
         echo '</li>';
     } elseif ( is_search() ) {
@@ -794,7 +805,8 @@ add_action( 'wp_enqueue_scripts', 'klaro_woocommerce_scripts' );
  */
 function klaro_woocommerce_wrapper_before() {
 	?>
-	<main id="main-content" class="site-main woocommerce-page" role="main">
+	<main id="main-content" class="site-main" aria-label="<?php esc_attr_e( 'Main content', 'klaro' ); ?>">
+		<div class="content-area">
 	<?php
 }
 
@@ -803,14 +815,19 @@ function klaro_woocommerce_wrapper_before() {
  */
 function klaro_woocommerce_wrapper_after() {
 	?>
+		</div><!-- .content-area -->
 	</main><!-- #main-content -->
 	<?php
 }
 
 /**
- * WooCommerce sidebar
+ * WooCommerce sidebar - disabled by default for cleaner layout
+ * Uncomment the code below to enable shop sidebar
  */
 function klaro_woocommerce_sidebar() {
+	// Sidebar disabled by default - single column layout
+	// To enable, uncomment the following:
+	/*
 	if ( is_active_sidebar( 'sidebar-shop' ) ) {
 		?>
 		<aside id="sidebar" class="widget-area shop-sidebar" aria-label="<?php esc_attr_e( 'Shop sidebar', 'klaro' ); ?>">
@@ -818,6 +835,7 @@ function klaro_woocommerce_sidebar() {
 		</aside>
 		<?php
 	}
+	*/
 }
 
 /**
@@ -863,6 +881,23 @@ function klaro_woocommerce_body_classes( $classes ) {
 	return $classes;
 }
 add_filter( 'body_class', 'klaro_woocommerce_body_classes' );
+
+/**
+ * Fix WooCommerce archive title (remove "Archives:" prefix and HTML)
+ */
+function klaro_woocommerce_archive_title( $title ) {
+	if ( class_exists( 'WooCommerce' ) && function_exists( 'is_shop' ) && is_shop() ) {
+		return woocommerce_page_title( false );
+	}
+	if ( class_exists( 'WooCommerce' ) && function_exists( 'is_product_category' ) && is_product_category() ) {
+		return single_term_title( '', false );
+	}
+	if ( class_exists( 'WooCommerce' ) && function_exists( 'is_product_tag' ) && is_product_tag() ) {
+		return single_term_title( '', false );
+	}
+	return $title;
+}
+add_filter( 'get_the_archive_title', 'klaro_woocommerce_archive_title', 20 );
 
 /**
  * Enhance product thumbnails with descriptive alt text

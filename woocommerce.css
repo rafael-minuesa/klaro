@@ -9,6 +9,8 @@
    WOOCOMMERCE ACCESSIBILITY STYLES
    ========================================================================== */
 
+/* WooCommerce uses same layout as regular pages - single column by default */
+
 /* Shop Page Layout */
 .woocommerce ul.products {
   display: grid;
@@ -350,20 +352,27 @@
 .woocommerce-tabs ul.tabs li a {
   display: block;
   min-height: var(--touch-target-min);
-  padding: var(--spacing-sm) var(--spacing-md);
+  padding: 0.1em 1em;
   font-weight: 600;
-  color: var(--color-text);
-  background: var(--color-background);
+  color: var(--color-text) !important;
+  background: var(--color-background) !important;
   border: 1px solid var(--color-border);
   border-bottom: none;
-  border-radius: 8px 8px 0 0;
+  border-radius: 4px 4px 0 0;
   text-decoration: none;
+  text-shadow: none !important;
 }
 
 .woocommerce-tabs ul.tabs li.active a,
 .woocommerce-tabs ul.tabs li a[aria-selected="true"] {
-  background: var(--color-text);
-  color: var(--color-background);
+  background: var(--color-text) !important;
+  color: var(--color-background) !important;
+  text-shadow: none !important;
+}
+
+.woocommerce-tabs ul.tabs li a:hover {
+  background: var(--color-text) !important;
+  color: var(--color-background) !important;
 }
 
 .woocommerce-tabs ul.tabs li a:focus {
@@ -377,6 +386,17 @@
   padding: var(--spacing-lg);
   border: 1px solid var(--color-border);
   border-top: none;
+  display: block !important;
+}
+
+.woocommerce-tabs .panel h2 {
+  margin-top: 0;
+}
+
+/* Ensure tab panel content is visible */
+.woocommerce div.product .woocommerce-tabs .panel {
+  background: var(--color-background);
+  color: var(--color-text);
 }
 
 /* Pagination */
