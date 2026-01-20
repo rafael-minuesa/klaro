@@ -42,16 +42,17 @@
     // Apply saved settings on page load
     function applySavedSettings() {
         const settings = getSettings();
+        const html = document.documentElement;
         const body = document.body;
 
-        // Apply font size
+        // Apply font size to html element (root for rem units)
         if (settings.fontSize === 'large') {
-            body.classList.add('large-text');
+            html.classList.add('large-text');
         } else if (settings.fontSize === 'extra-large') {
-            body.classList.add('extra-large-text');
+            html.classList.add('extra-large-text');
         }
 
-        // Apply contrast
+        // Apply contrast to body
         if (settings.contrast === 'high') {
             body.classList.add('high-contrast');
             updateButtonState('toggle-contrast', true);
@@ -60,9 +61,9 @@
             updateButtonState('toggle-monochrome', true);
         }
 
-        // Apply animation preference
+        // Apply animation preference to html (affects all descendants)
         if (settings.animations === 'disabled') {
-            body.classList.add('reduce-motion');
+            html.classList.add('reduce-motion');
             updateButtonState('toggle-animations', true);
         }
     }
@@ -80,38 +81,38 @@
         const increaseBtn = document.getElementById('increase-font');
         const decreaseBtn = document.getElementById('decrease-font');
         const resetBtn = document.getElementById('reset-font');
-        const body = document.body;
+        const html = document.documentElement;
 
         if (!increaseBtn || !decreaseBtn || !resetBtn) return;
 
         increaseBtn.addEventListener('click', () => {
             const settings = getSettings();
-            
-            body.classList.remove('large-text', 'extra-large-text');
-            
+
+            html.classList.remove('large-text', 'extra-large-text');
+
             if (settings.fontSize === 'normal') {
-                body.classList.add('large-text');
+                html.classList.add('large-text');
                 settings.fontSize = 'large';
                 announceChange('Text size increased to large');
             } else if (settings.fontSize === 'large') {
-                body.classList.add('extra-large-text');
+                html.classList.add('extra-large-text');
                 settings.fontSize = 'extra-large';
                 announceChange('Text size increased to extra large');
             } else {
                 announceChange('Text size is already at maximum');
                 return;
             }
-            
+
             saveSettings(settings);
         });
 
         decreaseBtn.addEventListener('click', () => {
             const settings = getSettings();
-            
-            body.classList.remove('large-text', 'extra-large-text');
-            
+
+            html.classList.remove('large-text', 'extra-large-text');
+
             if (settings.fontSize === 'extra-large') {
-                body.classList.add('large-text');
+                html.classList.add('large-text');
                 settings.fontSize = 'large';
                 announceChange('Text size decreased to large');
             } else if (settings.fontSize === 'large') {
@@ -121,13 +122,13 @@
                 announceChange('Text size is already at minimum');
                 return;
             }
-            
+
             saveSettings(settings);
         });
 
         resetBtn.addEventListener('click', () => {
             const settings = getSettings();
-            body.classList.remove('large-text', 'extra-large-text');
+            html.classList.remove('large-text', 'extra-large-text');
             settings.fontSize = 'normal';
             saveSettings(settings);
             announceChange('Text size reset to normal');
@@ -190,25 +191,25 @@
     // Animation controls
     function initAnimationControls() {
         const animationBtn = document.getElementById('toggle-animations');
-        const body = document.body;
+        const html = document.documentElement;
 
         if (!animationBtn) return;
 
         animationBtn.addEventListener('click', () => {
             const settings = getSettings();
-            
+
             if (settings.animations === 'disabled') {
-                body.classList.remove('reduce-motion');
+                html.classList.remove('reduce-motion');
                 settings.animations = 'enabled';
                 updateButtonState('toggle-animations', false);
                 announceChange('Animations enabled');
             } else {
-                body.classList.add('reduce-motion');
+                html.classList.add('reduce-motion');
                 settings.animations = 'disabled';
                 updateButtonState('toggle-animations', true);
                 announceChange('Animations disabled');
             }
-            
+
             saveSettings(settings);
         });
     }
@@ -216,17 +217,18 @@
     // Add reduce-motion class based on system preference
     function initReducedMotion() {
         const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-        
+        const html = document.documentElement;
+
         if (prefersReducedMotion.matches) {
-            document.body.classList.add('reduce-motion');
+            html.classList.add('reduce-motion');
         }
 
         // Listen for changes
         prefersReducedMotion.addEventListener('change', (e) => {
             if (e.matches) {
-                document.body.classList.add('reduce-motion');
+                html.classList.add('reduce-motion');
             } else {
-                document.body.classList.remove('reduce-motion');
+                html.classList.remove('reduce-motion');
             }
         });
     }

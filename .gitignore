@@ -61,3 +61,4 @@ logs/
 
 # Don't ignore the theme ZIP in releases
 !klaro.zip
+klaro

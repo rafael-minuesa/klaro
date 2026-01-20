@@ -7,6 +7,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.0.5] - 2026-01-20
+
+### Fixed
+- **Text Size accessibility control** - Now properly scales all text by applying classes to `html` element instead of `body`, making `rem` units work correctly
+- **Motion accessibility control** - Added CSS rules for `.reduce-motion` class (was missing), applied to `html` element
+- **Single Product button heights** - Made quantity `-`/`+` buttons, quantity input, and Add to Cart button all the same height (44px)
+- **Tab panel border** - Removed border from WooCommerce tab panels (Description/Reviews)
+
+### Changed
+- **Accessibility JavaScript** - Font size and motion classes now applied to `html` element (documentElement) for proper CSS variable inheritance
+
 ## [2.0.4] - 2026-01-20
 
 ### Fixed
