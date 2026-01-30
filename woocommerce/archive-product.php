@@ -12,9 +12,9 @@ defined( 'ABSPATH' ) || exit;
 get_header( 'shop' );
 ?>
 
-<?php klaro_breadcrumbs(); ?>
-
 <?php do_action( 'woocommerce_before_main_content' ); ?>
+
+<?php klaro_breadcrumbs(); ?>
 
 <header class="woocommerce-products-header">
 	<?php if ( apply_filters( 'woocommerce_show_page_title', true ) ) : ?>

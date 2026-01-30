@@ -13,29 +13,6 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
-
-/**
- * Set default site title if not set
- */
-function klaro_default_site_title( $option ) {
-    if ( empty( $option ) || $option === 'WordPress' ) {
-        return 'Klaro';
-    }
-    return $option;
-}
-add_filter( 'pre_option_blogname', 'klaro_default_site_title' );
-
-/**
- * Set default site tagline if not set
- */
-function klaro_default_site_tagline( $option ) {
-    if ( empty( $option ) || $option === 'Just another WordPress site' ) {
-        return 'Accessibility First';
-    }
-    return $option;
-}
-add_filter( 'pre_option_blogdescription', 'klaro_default_site_tagline' );
-
 /**
  * Theme Setup
  */
@@ -126,72 +103,9 @@ function klaro_setup() {
                 'items' => array(
                     'link_home',
                     'page_about',
-                    'page_accessibility',
                 ),
             ),
         ),
-
-        // Create sample pages
-        'posts' => array(
-            'home',
-            'about' => array(
-                'post_title'   => esc_html__( 'About Klaro', 'klaro' ),
-                'post_content' => 'Klaro is an accessibility-first WordPress theme that prioritizes users with disabilities. Built with WCAG AAA compliance from the ground up, Klaro ensures your website is usable by everyone, regardless of their abilities.
-
-Key features include high-contrast modes, adjustable text sizes, comprehensive keyboard navigation, and screen reader optimization. Every element has been carefully designed with accessibility in mind.
-
-The name "Klaro" comes from Spanish and Portuguese, meaning "clear" or "bright" - reflecting our commitment to clarity and accessibility in web design.',
-            ),
-            'accessibility' => array(
-                'post_title'   => esc_html__( 'Accessibility Statement', 'klaro' ),
-                'post_content' => 'This website is designed to be accessible to all users, including those with disabilities. We are committed to providing an inclusive digital experience.
-
-<h2>Accessibility Features</h2>
-<ul>
-<li>WCAG AAA compliance (Level 7:1 contrast ratios)</li>
-<li>Full keyboard navigation support</li>
-<li>Screen reader optimization with ARIA landmarks</li>
-<li>Adjustable text sizes (use the A-/A/A+ buttons in the header)</li>
-<li>High contrast and monochrome display modes</li>
-<li>Reduced motion option for users with vestibular disorders</li>
-<li>Skip links for easier navigation</li>
-<li>All images include descriptive alt text</li>
-<li>Clear, descriptive link text</li>
-<li>No autoplay on videos or audio</li>
-</ul>
-
-<h2>Keyboard Shortcuts</h2>
-<ul>
-<li>Tab - Navigate forward through interactive elements</li>
-<li>Shift + Tab - Navigate backward</li>
-<li>Enter/Space - Activate buttons and links</li>
-<li>Arrow keys - Navigate through menus</li>
-</ul>
-
-<h2>Testing</h2>
-This website has been tested with:
-<ul>
-<li>NVDA (NonVisual Desktop Access) screen reader</li>
-<li>JAWS screen reader</li>
-<li>VoiceOver on macOS and iOS</li>
-<li>WAVE accessibility evaluation tool</li>
-<li>axe DevTools</li>
-</ul>
-
-<h2>Feedback</h2>
-We are continually working to improve accessibility. If you encounter any accessibility barriers, please contact us and we will work to resolve the issue.',
-            ),
-        ),
-
-        // Set the homepage and site identity
-        'options' => array(
-            'show_on_front'  => 'posts',
-            'blogname'       => 'Klaro',
-            'blogdescription' => 'Accessibility First',
-        ),
-
-        // Note: no bundled site icon is set via starter content.
-        // WordPress.org themes should not depend on missing/bundled assets for core site identity.
 
         // Add widgets to sidebar
         'widgets' => array(
@@ -344,46 +258,6 @@ function klaro_skip_links() {
     </nav>
     <?php
 }
-
-/**
- * Require alt text for images in posts
- */
-function klaro_require_image_alt( $data, $postarr ) {
-    // Only check when publishing
-    if ( $data['post_status'] !== 'publish' ) {
-        return $data;
-    }
-
-    // Check for images without alt text
-    if ( preg_match( '/<img(?![^>]*alt=)[^>]*>/i', $data['post_content'] ) ) {
-        // Prevent publishing
-        $data['post_status'] = 'draft';
-        
-        // Set admin notice
-        add_filter( 'redirect_post_location', function( $location ) {
-            return add_query_arg( 'klaro_alt_missing', '1', $location );
-        } );
-    }
-
-    return $data;
-}
-add_filter( 'wp_insert_post_data', 'klaro_require_image_alt', 10, 2 );
-
-/**
- * Admin notice for missing alt text
- */
-function klaro_alt_text_admin_notice() {
-    // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Display-only notice, no action taken
-    if ( isset( $_GET['klaro_alt_missing'] ) && sanitize_text_field( wp_unslash( $_GET['klaro_alt_missing'] ) ) === '1' ) {
-        ?>
-        <div class="notice notice-error is-dismissible">
-            <p><strong><?php esc_html_e( 'Publication prevented: All images must have alt text for accessibility.', 'klaro' ); ?></strong></p>
-            <p><?php esc_html_e( 'Please add descriptive alt text to all images before publishing.', 'klaro' ); ?></p>
-        </div>
-        <?php
-    }
-}
-add_action( 'admin_notices', 'klaro_alt_text_admin_notice' );
 
 /**
  * Enhanced excerpt with proper length
@@ -634,6 +508,25 @@ function klaro_customize_register( $wp_customize ) {
             'monochrome'    => esc_html__( 'Monochrome', 'klaro' ),
         ),
     ) );
+
+    // Footer Section
+    $wp_customize->add_section( 'klaro_footer', array(
+        'title'    => esc_html__( 'Footer Options', 'klaro' ),
+        'priority' => 90,
+    ) );
+
+    // Accessibility Statement Link
+    $wp_customize->add_setting( 'klaro_show_accessibility_link', array(
+        'default'           => false,
+        'sanitize_callback' => 'rest_sanitize_boolean',
+    ) );
+
+    $wp_customize->add_control( 'klaro_show_accessibility_link', array(
+        'label'       => esc_html__( 'Show Accessibility Statement Link', 'klaro' ),
+        'description' => esc_html__( 'Display a link to /accessibility-statement/ in the footer.', 'klaro' ),
+        'section'     => 'klaro_footer',
+        'type'        => 'checkbox',
+    ) );
 }
 add_action( 'customize_register', 'klaro_customize_register' );
 
@@ -828,20 +721,9 @@ function klaro_woocommerce_wrapper_after() {
 
 /**
  * WooCommerce sidebar - disabled by default for cleaner layout
- * Uncomment the code below to enable shop sidebar
  */
 function klaro_woocommerce_sidebar() {
 	// Sidebar disabled by default - single column layout
-	// To enable, uncomment the following:
-	/*
-	if ( is_active_sidebar( 'sidebar-shop' ) ) {
-		?>
-		<aside id="sidebar" class="widget-area shop-sidebar" aria-label="<?php esc_attr_e( 'Shop sidebar', 'klaro' ); ?>">
-			<?php dynamic_sidebar( 'sidebar-shop' ); ?>
-		</aside>
-		<?php
-	}
-	*/
 }
 
 /**

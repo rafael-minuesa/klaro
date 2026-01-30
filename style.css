@@ -4,9 +4,9 @@ Theme URI: https://github.com/rafael-minuesa/klaro
 Author: Rafael Minuesa
 Author URI: https://github.com/rafael-minuesa
 Description: An uncompromisingly accessible WordPress theme. Klaro (Spanish/Portuguese for "clear/bright") prioritizes users with disabilities above all else, featuring WCAG AAA compliance, optimized screen reader support, and extensive customization options for visual, motor, and cognitive accessibility.
-Version: 2.0.6
+Version: 2.0.7
 Requires at least: 6.0
-Tested up to: 6.8
+Tested up to: 6.9
 Requires PHP: 7.4
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -304,6 +304,7 @@ a:not([href]) {
 
 .site-header {
   padding: var(--spacing-lg);
+  padding-bottom: var(--spacing-sm);
 }
 
 .site-footer {
@@ -320,9 +321,34 @@ a:not([href]) {
   flex-wrap: wrap;
 }
 
+/* Site Branding - consistent styling for h1 and p */
+.site-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  line-height: 1.2;
+  margin: 0;
+}
+
+.site-title a {
+  color: var(--color-heading);
+  text-decoration: none;
+}
+
+.site-title a:hover,
+.site-title a:focus {
+  text-decoration: underline;
+}
+
+.site-description {
+  margin: 0;
+  font-size: 1rem;
+  color: var(--color-text);
+}
+
 .site-main {
   flex: 1;
   padding: var(--spacing-lg);
+  padding-top: var(--spacing-md);
   max-width: 1200px;
   margin: 0 auto;
   width: 100%;
@@ -417,7 +443,7 @@ a:not([href]) {
   left: 0;
   z-index: 1000;
   min-width: 200px;
-  padding: 0.5rem 0;
+  padding: 0;
   margin: 0;
   background: var(--color-background);
   border: 1px solid var(--color-border);
@@ -429,14 +455,17 @@ a:not([href]) {
 
 .main-navigation .sub-menu li {
   width: 100%;
+  margin: 0;
+  padding: 0;
 }
 
 .main-navigation .sub-menu a {
   border: none;
   border-radius: 0;
-  padding: 0.5em 1em;
+  padding: 0.4em 1em;
   text-align: left;
   width: 100%;
+  font-size: 0.9rem;
 }
 
 .main-navigation .sub-menu a:hover,

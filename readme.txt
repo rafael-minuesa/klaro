@@ -5,9 +5,9 @@ Author: Rafael Minuesa
 Author URI: https://github.com/rafael-minuesa
 Tags: accessibility-ready, one-column, two-columns, custom-colors, custom-menu, featured-images, threaded-comments, translation-ready, block-styles, wide-blocks, e-commerce
 Requires at least: 6.0
-Tested up to: 6.8
+Tested up to: 6.9
 Requires PHP: 7.4
-Stable tag: 2.0.6
+Stable tag: 2.0.7
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -39,7 +39,7 @@ Klaro (Spanish/Portuguese for "clear/bright") is a WordPress theme built from th
 * User-adjustable text sizes (18px base, up to 32px)
 * Multiple color modes (standard, high contrast, monochrome)
 * Skip links to all major page sections
-* Alt text enforcement (prevents publishing without alt text)
+* Alt text visual indicator for images missing alt text
 * Breadcrumb navigation on all pages
 * No autoplay on any media
 * Respects prefers-reduced-motion
@@ -101,6 +101,17 @@ It works with block-based builders, but visual drag-and-drop builders may confli
 Yes! Klaro includes full WooCommerce accessibility support with WCAG AAA compliant shop pages, accessible cart and checkout, screen reader announcements for cart updates, keyboard-navigable product galleries, and 44px minimum touch targets on all interactive elements.
 
 == Changelog ==
+
+= 2.0.7 =
+* Removed site title/tagline override (now managed via WordPress Settings)
+* Removed sample pages from starter content
+* Removed alt text publishing enforcement (plugin territory)
+* Made accessibility statement footer link user-configurable via Customizer
+* Removed unnecessary files and commented code
+* Updated Tested up to WordPress 6.9
+* Fixed header/main spacing and submenu padding
+* Added consistent site title styling across all pages
+* Fixed WooCommerce breadcrumbs placement
 
 = 2.0.6 =
 * Fixed shop product grid widths by removing legacy floats/width constraints
@@ -176,7 +187,7 @@ Yes! Klaro includes full WooCommerce accessibility support with WCAG AAA complia
 * Multiple contrast modes (Standard, High Contrast, Monochrome)
 * Breadcrumb navigation with Schema.org markup
 * Comprehensive skip links system
-* Alt text enforcement (prevents publishing without alt text)
+* Alt text visual indicator for images missing alt text
 * Accessibility toolbar in header
 * Reduce motion support
 

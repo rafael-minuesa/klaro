@@ -7,6 +7,35 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.0.7] - 2026-01-30
+
+### Fixed
+- **WordPress.org review compliance** - Addressed all feedback from theme review
+- **Header/main spacing** - Reduced gap between header and main content
+- **Submenu padding** - Removed extra padding at bottom of dropdown menus
+- **Site title consistency** - Added `.site-title` CSS so h1 and p versions look identical across all pages
+- **WooCommerce breadcrumbs** - Moved breadcrumbs inside `<main>` wrapper for consistent layout
+
+### Removed
+- **Site title/tagline override** - Removed hard-coded defaults; site title and tagline now managed via WordPress Settings
+- **Sample pages in starter content** - Removed auto-created About and Accessibility Statement pages
+- **Alt text publishing enforcement** - Removed functionality that prevented publishing posts without alt text (plugin territory); visual indicator for missing alt text still present in CSS
+- **Commented code** - Removed all commented code blocks per review requirements
+- **Untitled file** - Removed unnecessary file from theme package
+- **Empty assets folder** - Removed unused directory
+
+### Changed
+- **Accessibility Statement link** - Now user-configurable via Customizer (Appearance > Customize > Footer Options) instead of hard-coded; disabled by default
+- **Tested up to** - Updated to WordPress 6.9
+- **Submenu font size** - Reduced to 0.9rem for better visual hierarchy
+- **Screenshot** - Needs update to remove promotional content (see notes below)
+
+### Notes
+- Screenshot must be manually updated to:
+  - Remove "Accessibility First" tagline text
+  - Close the accessibility options panel (show only the "Accessibility" button)
+  - Remove or change post content to not include the word "WordPress"
+
 ## [2.0.6] - 2026-01-20
 
 ### Fixed

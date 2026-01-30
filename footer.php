@@ -42,11 +42,13 @@
                 );
                 ?>
             </p>
+            <?php if ( get_theme_mod( 'klaro_show_accessibility_link', false ) ) : ?>
             <p>
                 <a href="<?php echo esc_url( home_url( '/accessibility-statement/' ) ); ?>">
                     <?php esc_html_e( 'Accessibility Statement', 'klaro' ); ?>
                 </a>
             </p>
+            <?php endif; ?>
         </div><!-- .site-info -->
 
     </footer><!-- #site-footer -->
