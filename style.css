@@ -854,6 +854,22 @@ li {
   border-radius: 8px;
 }
 
+/* High contrast mode breadcrumbs */
+.high-contrast .breadcrumbs {
+  background: #000000;
+  border-color: #FFFFFF;
+}
+
+.high-contrast .breadcrumbs a,
+.high-contrast .breadcrumbs span {
+  color: #FFFFFF;
+}
+
+.high-contrast .breadcrumbs a:hover,
+.high-contrast .breadcrumbs a:focus {
+  color: #00D4FF;
+}
+
 .breadcrumbs ol {
   list-style: none;
   margin: 0;

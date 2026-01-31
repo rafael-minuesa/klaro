@@ -55,6 +55,14 @@
   outline-offset: var(--focus-outline-offset);
 }
 
+/* Product Loop Prices */
+.woocommerce ul.products li.product .price {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--color-text);
+  margin: var(--spacing-xs) 0;
+}
+
 /* Product Images */
 .woocommerce ul.products li.product img {
   border-radius: 8px;
@@ -669,6 +677,22 @@
 .monochrome .woocommerce span.onsale {
   background: var(--color-text);
   color: var(--color-background);
+}
+
+/* High contrast mode - ensure prices are visible */
+.high-contrast .woocommerce .price,
+.high-contrast .woocommerce .price .woocommerce-Price-amount,
+.high-contrast .woocommerce .price bdi,
+.high-contrast .woocommerce .price .woocommerce-Price-currencySymbol {
+  color: #FFFFFF !important;
+  font-size: 1.25rem;
+}
+
+.high-contrast .woocommerce ul.products li.product .price,
+.high-contrast .woocommerce ul.products li.product .price .woocommerce-Price-amount,
+.high-contrast .woocommerce ul.products li.product .price bdi {
+  color: #00D4FF !important;
+  font-size: 1.1rem;
 }
 
 /* ==========================================================================
