@@ -7,6 +7,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.0.8] - 2026-01-31
+
+### Added
+- **5-level text size adjustment** - More granular control: normal (18px), medium (20px), large (22px), extra-large (26px), maximum (32px)
+
+### Changed
+- **Accessibility toolbar UI** - Refined padding and font sizes for better visual balance
+- **Theme description** - Enhanced to highlight WooCommerce accessibility features for browsing, shopping, and store management
+
 ## [2.0.7] - 2026-01-30
 
 ### Fixed

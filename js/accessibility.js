@@ -46,10 +46,14 @@
         const body = document.body;
 
         // Apply font size to html element (root for rem units)
-        if (settings.fontSize === 'large') {
+        if (settings.fontSize === 'medium') {
+            html.classList.add('medium-text');
+        } else if (settings.fontSize === 'large') {
             html.classList.add('large-text');
         } else if (settings.fontSize === 'extra-large') {
             html.classList.add('extra-large-text');
+        } else if (settings.fontSize === 'maximum') {
+            html.classList.add('maximum-text');
         }
 
         // Apply contrast to body
@@ -83,22 +87,37 @@
         const resetBtn = document.getElementById('reset-font');
         const html = document.documentElement;
 
+        // Font size levels: normal (18px) → medium (20px) → large (22px) → extra-large (26px) → maximum (32px)
+        const fontSizeClasses = ['medium-text', 'large-text', 'extra-large-text', 'maximum-text'];
+
+        function clearFontClasses() {
+            fontSizeClasses.forEach(cls => html.classList.remove(cls));
+        }
+
         if (!increaseBtn || !decreaseBtn || !resetBtn) return;
 
         increaseBtn.addEventListener('click', () => {
             const settings = getSettings();
-
-            html.classList.remove('large-text', 'extra-large-text');
+            clearFontClasses();
 
             if (settings.fontSize === 'normal') {
+                html.classList.add('medium-text');
+                settings.fontSize = 'medium';
+                announceChange('Text size: medium (20px)');
+            } else if (settings.fontSize === 'medium') {
                 html.classList.add('large-text');
                 settings.fontSize = 'large';
-                announceChange('Text size increased to large');
+                announceChange('Text size: large (22px)');
             } else if (settings.fontSize === 'large') {
                 html.classList.add('extra-large-text');
                 settings.fontSize = 'extra-large';
-                announceChange('Text size increased to extra large');
+                announceChange('Text size: extra large (26px)');
+            } else if (settings.fontSize === 'extra-large') {
+                html.classList.add('maximum-text');
+                settings.fontSize = 'maximum';
+                announceChange('Text size: maximum (32px)');
             } else {
+                html.classList.add('maximum-text');
                 announceChange('Text size is already at maximum');
                 return;
             }
@@ -108,19 +127,30 @@
 
         decreaseBtn.addEventListener('click', () => {
             const settings = getSettings();
+            clearFontClasses();
 
-            html.classList.remove('large-text', 'extra-large-text');
-
-            if (settings.fontSize === 'extra-large') {
+            if (settings.fontSize === 'maximum') {
+                html.classList.add('extra-large-text');
+                settings.fontSize = 'extra-large';
+                announceChange('Text size: extra large (26px)');
+            } else if (settings.fontSize === 'extra-large') {
                 html.classList.add('large-text');
                 settings.fontSize = 'large';
-                announceChange('Text size decreased to large');
+                announceChange('Text size: large (22px)');
             } else if (settings.fontSize === 'large') {
+                html.classList.add('medium-text');
+                settings.fontSize = 'medium';
+                announceChange('Text size: medium (20px)');
+            } else if (settings.fontSize === 'medium') {
                 settings.fontSize = 'normal';
-                announceChange('Text size decreased to normal');
-            } else {
+                announceChange('Text size: normal (18px)');
+            } else if (settings.fontSize === 'normal' || !settings.fontSize) {
                 announceChange('Text size is already at minimum');
                 return;
+            } else {
+                // Handle any unknown/legacy values - reset to normal
+                settings.fontSize = 'normal';
+                announceChange('Text size: normal (18px)');
             }
 
             saveSettings(settings);
@@ -128,10 +158,10 @@
 
         resetBtn.addEventListener('click', () => {
             const settings = getSettings();
-            html.classList.remove('large-text', 'extra-large-text');
+            clearFontClasses();
             settings.fontSize = 'normal';
             saveSettings(settings);
-            announceChange('Text size reset to normal');
+            announceChange('Text size reset to normal (18px)');
         });
     }
 

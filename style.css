@@ -3,8 +3,8 @@ Theme Name: Klaro
 Theme URI: https://github.com/rafael-minuesa/klaro
 Author: Rafael Minuesa
 Author URI: https://github.com/rafael-minuesa
-Description: An uncompromisingly accessible WordPress theme. Klaro (Spanish/Portuguese for "clear/bright") prioritizes users with disabilities above all else, featuring WCAG AAA compliance, optimized screen reader support, and extensive customization options for visual, motor, and cognitive accessibility.
-Version: 2.0.7
+Description: An uncompromisingly accessible WordPress theme designed for everyone. Klaro (Spanish/Portuguese for "clear/bright") features WCAG AAA compliance, enabling users with disabilities to browse content, shop with WooCommerce, and manage their stores from the backend. Includes adjustable text sizes, high contrast modes, keyboard navigation, and screen reader optimization.
+Version: 2.0.8
 Requires at least: 6.0
 Tested up to: 6.9
 Requires PHP: 7.4
@@ -101,15 +101,29 @@ along with Klaro. If not, see http://www.gnu.org/licenses/gpl-2.0.html.
   --color-heading: #000000;
 }
 
+/* Medium Text Mode - Applied to html element */
+html.medium-text {
+  --font-size-base: 20px;
+  --line-height-base: 1.9;
+  font-size: 20px;
+}
+
 /* Large Text Mode - Applied to html element */
 html.large-text {
-  --font-size-base: 24px;
+  --font-size-base: 22px;
   --line-height-base: 2.0;
-  font-size: 24px;
+  font-size: 22px;
 }
 
 /* Extra Large Text Mode - Applied to html element */
 html.extra-large-text {
+  --font-size-base: 26px;
+  --line-height-base: 2.1;
+  font-size: 26px;
+}
+
+/* Maximum Text Mode - Applied to html element */
+html.maximum-text {
   --font-size-base: 32px;
   --line-height-base: 2.2;
   font-size: 32px;
@@ -524,14 +538,14 @@ a:not([href]) {
   display: flex;
   align-items: center;
   gap: var(--spacing-xs);
-  padding: var(--spacing-sm) var(--spacing-md);
+  padding: 0.4rem 0.85rem;
   background: var(--color-text);
   color: var(--color-background);
   border: 1px solid var(--color-text);
   border-radius: 8px;
   cursor: pointer;
   font-weight: 600;
-  font-size: 1rem;
+  font-size: 0.9rem;
   min-height: var(--touch-target-min);
   list-style: none;
 }
@@ -606,8 +620,8 @@ a:not([href]) {
 .accessibility-button {
   min-width: var(--touch-target-min);
   min-height: var(--touch-target-min);
-  padding: var(--spacing-xs) var(--spacing-sm);
-  font-size: 0.95rem;
+  padding: 0.25rem 0.6rem;
+  font-size: 0.85rem;
   font-weight: 600;
   color: var(--color-text);
   background-color: var(--color-background);

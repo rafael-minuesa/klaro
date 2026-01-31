@@ -7,7 +7,7 @@ Tags: accessibility-ready, one-column, two-columns, custom-colors, custom-menu, 
 Requires at least: 6.0
 Tested up to: 6.9
 Requires PHP: 7.4
-Stable tag: 2.0.7
+Stable tag: 2.0.8
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -25,11 +25,19 @@ for more details.
 You should have received a copy of the GNU General Public License
 along with Klaro. If not, see http://www.gnu.org/licenses/gpl-2.0.html.
 
-Klaro is an uncompromisingly accessible WordPress theme that prioritizes users with disabilities above all else.
+Klaro is an uncompromisingly accessible WordPress theme designed to empower users with disabilities to browse, shop, and manage online stores independently.
 
 == Description ==
 
 Klaro (Spanish/Portuguese for "clear/bright") is a WordPress theme built from the ground up with accessibility as the primary focus, not an afterthought. While most themes add accessibility features after design, Klaro starts with WCAG AAA compliance and builds everything around that foundation.
+
+= Accessibility for Everyone =
+
+**Browse Content** - Users with visual, motor, or cognitive disabilities can easily navigate your website with high contrast modes, adjustable text sizes (5 levels from 18px to 32px), keyboard navigation, and screen reader optimization.
+
+**Shop Independently** - Full WooCommerce accessibility support enables users with disabilities to browse products, add items to cart, complete checkout, and track orders without barriers. All shop elements meet WCAG AAA standards with proper ARIA labels and keyboard navigation.
+
+**Manage Your Store** - Store owners with disabilities can manage their WooCommerce shop from the WordPress backend with enhanced admin accessibility features, high contrast admin mode, and screen reader compatible interfaces.
 
 = Key Features =
 
@@ -101,6 +109,11 @@ It works with block-based builders, but visual drag-and-drop builders may confli
 Yes! Klaro includes full WooCommerce accessibility support with WCAG AAA compliant shop pages, accessible cart and checkout, screen reader announcements for cart updates, keyboard-navigable product galleries, and 44px minimum touch targets on all interactive elements.
 
 == Changelog ==
+
+= 2.0.8 =
+* Added 5-level text size adjustment (18px, 20px, 22px, 26px, 32px) for finer control
+* Improved accessibility toolbar UI with refined padding and font sizes
+* Enhanced theme description highlighting WooCommerce accessibility for shopping and store management
 
 = 2.0.7 =
 * Removed site title/tagline override (now managed via WordPress Settings)
