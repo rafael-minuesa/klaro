@@ -25,8 +25,8 @@ $product_price = $product->get_price_html();
 	<?php do_action( 'woocommerce_before_shop_loop_item' ); ?>
 
 	<a href="<?php echo esc_url( $product->get_permalink() ); ?>"
-	   class="woocommerce-LoopProduct-link woocommerce-loop-product__link"
-	   aria-labelledby="product-title-<?php echo esc_attr( $product_id ); ?>">
+		class="woocommerce-LoopProduct-link woocommerce-loop-product__link"
+		aria-labelledby="product-title-<?php echo esc_attr( $product_id ); ?>">
 
 		<?php
 		// Product thumbnail with accessible alt text
@@ -34,7 +34,7 @@ $product_price = $product->get_price_html();
 		?>
 
 		<h2 id="product-title-<?php echo esc_attr( $product_id ); ?>"
-		    class="woocommerce-loop-product__title">
+			class="woocommerce-loop-product__title">
 			<?php echo esc_html( $product_name ); ?>
 		</h2>
 

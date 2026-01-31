@@ -16,6 +16,7 @@ if ( ! $notices ) {
 ?>
 <div role="status" aria-live="polite" aria-atomic="true">
 	<?php foreach ( $notices as $notice ) : ?>
+		<?php // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- WooCommerce escaping functions ?>
 		<div class="woocommerce-message"<?php echo wc_get_notice_data_attr( $notice ); ?>>
 			<?php echo wc_kses_notice( $notice['notice'] ); ?>
 		</div>

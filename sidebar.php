@@ -7,10 +7,10 @@
  */
 
 if ( ! is_active_sidebar( 'klaro-sidebar-1' ) ) {
-    return;
+	return;
 }
 ?>
 
 <aside id="sidebar" class="sidebar" aria-label="<?php esc_attr_e( 'Primary sidebar', 'klaro' ); ?>">
-    <?php dynamic_sidebar( 'klaro-sidebar-1' ); ?>
+	<?php dynamic_sidebar( 'klaro-sidebar-1' ); ?>
 </aside><!-- #sidebar -->

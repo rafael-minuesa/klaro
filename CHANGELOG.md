@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.0.9] - 2026-01-31
+
+### Fixed
+- **WordPress Coding Standards compliance** - All PHP files now pass PHPCS with WordPress-Core standard
+- **Escaping fixes** - Proper use of esc_html(), esc_attr(), wp_kses_post() throughout templates
+- **Translators comments** - Added comments for all i18n strings with placeholders
+- **Indentation** - Consistent tab-based indentation per WordPress standards
+
 ## [2.0.8] - 2026-01-31
 
 ### Added

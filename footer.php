@@ -7,51 +7,51 @@
  */
 ?>
 
-    <footer id="site-footer" class="site-footer">
-        
-        <?php if ( is_active_sidebar( 'klaro-footer-1' ) ) : ?>
-            <aside class="footer-widgets" aria-label="<?php esc_attr_e( 'Footer widgets', 'klaro' ); ?>">
-                <?php dynamic_sidebar( 'klaro-footer-1' ); ?>
-            </aside>
-        <?php endif; ?>
+	<footer id="site-footer" class="site-footer">
+		
+		<?php if ( is_active_sidebar( 'klaro-footer-1' ) ) : ?>
+			<aside class="footer-widgets" aria-label="<?php esc_attr_e( 'Footer widgets', 'klaro' ); ?>">
+				<?php dynamic_sidebar( 'klaro-footer-1' ); ?>
+			</aside>
+		<?php endif; ?>
 
-        <?php if ( has_nav_menu( 'footer' ) ) : ?>
-            <nav class="footer-navigation" aria-label="<?php esc_attr_e( 'Footer Navigation', 'klaro' ); ?>">
-                <?php
-                wp_nav_menu(
-                    array(
-                        'theme_location' => 'footer',
-                        'menu_id'        => 'footer-menu',
-                        'menu_class'     => 'footer-menu',
-                        'depth'          => 1,
-                        'container'      => false,
-                    )
-                );
-                ?>
-            </nav><!-- .footer-navigation -->
-        <?php endif; ?>
+		<?php if ( has_nav_menu( 'footer' ) ) : ?>
+			<nav class="footer-navigation" aria-label="<?php esc_attr_e( 'Footer Navigation', 'klaro' ); ?>">
+				<?php
+				wp_nav_menu(
+					array(
+						'theme_location' => 'footer',
+						'menu_id'        => 'footer-menu',
+						'menu_class'     => 'footer-menu',
+						'depth'          => 1,
+						'container'      => false,
+					)
+				);
+				?>
+			</nav><!-- .footer-navigation -->
+		<?php endif; ?>
 
-        <div class="site-info">
-            <p>
-                <?php
-                printf(
-                    /* translators: 1: Theme name, 2: WordPress */
-                    esc_html__( 'Powered by %1$s and %2$s', 'klaro' ),
-                    '<a href="' . esc_url( __( 'https://github.com/rafael-minuesa/klaro', 'klaro' ) ) . '">Klaro</a>',
-                    '<a href="' . esc_url( __( 'https://wordpress.org/', 'klaro' ) ) . '">WordPress</a>'
-                );
-                ?>
-            </p>
-            <?php if ( get_theme_mod( 'klaro_show_accessibility_link', false ) ) : ?>
-            <p>
-                <a href="<?php echo esc_url( home_url( '/accessibility-statement/' ) ); ?>">
-                    <?php esc_html_e( 'Accessibility Statement', 'klaro' ); ?>
-                </a>
-            </p>
-            <?php endif; ?>
-        </div><!-- .site-info -->
+		<div class="site-info">
+			<p>
+				<?php
+				printf(
+					/* translators: 1: Theme name, 2: WordPress */
+					esc_html__( 'Powered by %1$s and %2$s', 'klaro' ),
+					'<a href="' . esc_url( __( 'https://github.com/rafael-minuesa/klaro', 'klaro' ) ) . '">Klaro</a>',
+					'<a href="' . esc_url( __( 'https://wordpress.org/', 'klaro' ) ) . '">WordPress</a>'
+				);
+				?>
+			</p>
+			<?php if ( get_theme_mod( 'klaro_show_accessibility_link', false ) ) : ?>
+			<p>
+				<a href="<?php echo esc_url( home_url( '/accessibility-statement/' ) ); ?>">
+					<?php esc_html_e( 'Accessibility Statement', 'klaro' ); ?>
+				</a>
+			</p>
+			<?php endif; ?>
+		</div><!-- .site-info -->
 
-    </footer><!-- #site-footer -->
+	</footer><!-- #site-footer -->
 
 </div><!-- #page -->
 

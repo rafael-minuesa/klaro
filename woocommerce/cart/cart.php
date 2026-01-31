@@ -47,6 +47,7 @@ do_action( 'woocommerce_before_cart' );
 
 						<td class="product-remove" data-title="<?php esc_attr_e( 'Remove', 'klaro' ); ?>">
 							<?php
+							// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- WooCommerce filter handles escaping.
 							echo apply_filters(
 								'woocommerce_cart_item_remove_link',
 								sprintf(
@@ -67,8 +68,10 @@ do_action( 'woocommerce_before_cart' );
 							$thumbnail = apply_filters( 'woocommerce_cart_item_thumbnail', $_product->get_image(), $cart_item, $cart_item_key );
 
 							if ( ! $product_permalink ) {
+								// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- WooCommerce filter handles escaping.
 								echo $thumbnail;
 							} else {
+								// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- WooCommerce filter handles escaping.
 								printf( '<a href="%s" aria-hidden="true" tabindex="-1">%s</a>', esc_url( $product_permalink ), $thumbnail );
 							}
 							?>
@@ -85,6 +88,7 @@ do_action( 'woocommerce_before_cart' );
 							do_action( 'woocommerce_after_cart_item_name', $cart_item, $cart_item_key );
 
 							// Meta data.
+							// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- WooCommerce function handles escaping.
 							echo wc_get_formatted_cart_item_data( $cart_item );
 
 							// Backorder notification.
@@ -96,6 +100,7 @@ do_action( 'woocommerce_before_cart' );
 
 						<td class="product-price" data-title="<?php esc_attr_e( 'Price', 'klaro' ); ?>">
 							<?php
+							// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- WooCommerce filter handles escaping.
 							echo apply_filters( 'woocommerce_cart_item_price', WC()->cart->get_product_price( $_product ), $cart_item, $cart_item_key );
 							?>
 						</td>
@@ -112,29 +117,31 @@ do_action( 'woocommerce_before_cart' );
 
 							$product_quantity = woocommerce_quantity_input(
 								array(
-									'input_name'   => "cart[{$cart_item_key}][qty]",
-									'input_value'  => $cart_item['quantity'],
-									'max_value'    => $max_quantity,
-									'min_value'    => $min_quantity,
-									'product_name' => $product_name,
+									'input_name'       => "cart[{$cart_item_key}][qty]",
+									'input_value'      => $cart_item['quantity'],
+									'max_value'        => $max_quantity,
+									'min_value'        => $min_quantity,
+									'product_name'     => $product_name,
 									'aria_describedby' => 'qty-label-' . esc_attr( $cart_item_key ),
 								),
 								$_product,
 								false
 							);
 
+							// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- WooCommerce filter handles escaping.
 							echo apply_filters( 'woocommerce_cart_item_quantity', $product_quantity, $cart_item_key, $cart_item );
 							?>
 							<span id="qty-label-<?php echo esc_attr( $cart_item_key ); ?>" class="screen-reader-text">
 								<?php
 								/* translators: %s: Product name */
-								printf( esc_html__( 'Quantity for %s', 'klaro' ), $product_name );
+								printf( esc_html__( 'Quantity for %s', 'klaro' ), esc_html( $product_name ) );
 								?>
 							</span>
 						</td>
 
 						<td class="product-subtotal" data-title="<?php esc_attr_e( 'Subtotal', 'klaro' ); ?>">
 							<?php
+							// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- WooCommerce filter handles escaping.
 							echo apply_filters( 'woocommerce_cart_item_subtotal', WC()->cart->get_product_subtotal( $_product, $cart_item['quantity'] ), $cart_item, $cart_item_key );
 							?>
 						</td>
