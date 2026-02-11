@@ -7,6 +7,30 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.1.0] - 2026-02-11
+
+### Security
+- Escape `get_search_query()` with `esc_attr`/`esc_html` in searchform.php and search.php
+- Replace `bloginfo()` with `echo esc_html/esc_attr(get_bloginfo())` in header.php
+- Replace `the_permalink()` with `echo esc_url(get_permalink())` in content templates
+
+### Fixed
+- Horizontal scrollbar on mobile screens (overflow-x, pre/code/table/embed handling)
+- WooCommerce breadcrumbs now use theme breadcrumbs consistently across all pages
+- WooCommerce hook registration moved from `woocommerce_loaded` to `init` for reliable execution
+- Breadcrumb separator encoding issue (CSS unicode escape)
+- Reduced spacing between navigation and breadcrumbs
+
+### Added
+- WooCommerce Blocks cart/checkout accessibility styles (font sizes, touch targets, contrast)
+- Accessible quantity selector with proper flex layout and 44px touch targets
+- My Account navigation restyled to match primary navigation
+- My Account buttons restyled for consistency
+- Cart/checkout high contrast and monochrome mode support
+- Responsive heading sizes and block alignment constraints for mobile
+- Code/preformatted text styles with overflow handling
+- Responsive embed constraints for iframe/video/object
+
 ## [2.0.10] - 2026-01-31
 
 ### Changed

@@ -4,7 +4,7 @@ Theme URI: https://github.com/rafael-minuesa/klaro
 Author: Rafael Minuesa
 Author URI: https://github.com/rafael-minuesa
 Description: An uncompromisingly accessible WordPress theme designed for everyone. Klaro (Spanish/Portuguese for "clear/bright") features WCAG AAA compliance, enabling users with disabilities to browse content, shop with WooCommerce, and manage their stores from the backend. Includes adjustable text sizes, high contrast modes, keyboard navigation, and screen reader optimization.
-Version: 2.0.10
+Version: 2.1.0
 Requires at least: 6.0
 Tested up to: 6.9
 Requires PHP: 7.4
@@ -170,6 +170,7 @@ body {
   background-color: var(--color-background);
   word-wrap: break-word;
   overflow-wrap: break-word;
+  overflow-x: hidden;
 }
 
 /* ==========================================================================
@@ -362,7 +363,7 @@ a:not([href]) {
 .site-main {
   flex: 1;
   padding: var(--spacing-lg);
-  padding-top: var(--spacing-md);
+  padding-top: var(--spacing-xs);
   max-width: 1200px;
   margin: 0 auto;
   width: 100%;
@@ -769,6 +770,34 @@ button:focus,
 }
 
 /* ==========================================================================
+   CODE & PREFORMATTED TEXT
+   ========================================================================== */
+
+pre {
+  max-width: 100%;
+  overflow-x: auto;
+  padding: var(--spacing-md);
+  background: #F5F5F5;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+code {
+  font-size: 0.9em;
+  padding: 0.15em 0.3em;
+  background: #F5F5F5;
+  border-radius: 4px;
+}
+
+pre code {
+  padding: 0;
+  background: none;
+  border-radius: 0;
+}
+
+/* ==========================================================================
    IMAGES & MEDIA
    ========================================================================== */
 
@@ -793,6 +822,14 @@ figcaption {
 /* Ensure images have alt text - handled in PHP */
 img:not([alt]) {
   border: 5px solid red;
+}
+
+/* Responsive embeds */
+iframe,
+embed,
+object,
+video {
+  max-width: 100%;
 }
 
 /* ==========================================================================
@@ -884,7 +921,7 @@ li {
 }
 
 .breadcrumbs li:not(:last-child)::after {
-  content: "›";
+  content: "\203A";
   margin-left: var(--spacing-xs);
   font-weight: 700;
 }
@@ -919,6 +956,12 @@ li {
 
 .entry-content {
   margin-bottom: var(--spacing-lg);
+  overflow-wrap: break-word;
+}
+
+.entry-content table {
+  display: block;
+  overflow-x: auto;
 }
 
 .entry-footer {
@@ -1248,13 +1291,32 @@ li {
     --spacing-lg: 1.5rem;
     --spacing-xl: 2rem;
   }
-  
+
+  h1 {
+    font-size: 1.75rem;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+  }
+
+  .site-title {
+    font-size: 1.75rem;
+  }
+
   .main-navigation ul {
     flex-direction: column;
   }
-  
+
   .main-navigation a {
     width: 100%;
+  }
+
+  .alignwide,
+  .alignfull {
+    max-width: 100%;
+    margin-left: 0;
+    margin-right: 0;
   }
 }
 
@@ -1266,4 +1328,7 @@ li {
 }
    .woocommerce ul.products li.product { 
     width: 100% !important; 
+}
+.woocommerce div.product .woocommerce-tabs ul.tabs li a {
+    padding: .5em 1em;
 }

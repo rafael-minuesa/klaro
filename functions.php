@@ -778,6 +778,7 @@ add_action( 'wp_enqueue_scripts', 'klaro_woocommerce_scripts' );
 function klaro_woocommerce_wrapper_before() {
 	?>
 	<main id="main-content" class="site-main" aria-label="<?php esc_attr_e( 'Main content', 'klaro' ); ?>">
+		<?php klaro_breadcrumbs(); ?>
 		<div class="content-area">
 	<?php
 }
@@ -800,8 +801,8 @@ function klaro_woocommerce_sidebar() {
 }
 
 /**
- * Register WooCommerce hook modifications
- * Only runs when WooCommerce is fully loaded
+ * Register WooCommerce hook modifications.
+ * Runs on init to ensure WooCommerce hooks are already registered.
  */
 function klaro_woocommerce_hooks() {
 	remove_action( 'woocommerce_before_main_content', 'woocommerce_output_content_wrapper', 10 );
@@ -812,8 +813,11 @@ function klaro_woocommerce_hooks() {
 
 	remove_action( 'woocommerce_sidebar', 'woocommerce_get_sidebar', 10 );
 	add_action( 'woocommerce_sidebar', 'klaro_woocommerce_sidebar', 10 );
+
+	// Remove WooCommerce breadcrumbs in favor of theme breadcrumbs.
+	remove_action( 'woocommerce_before_main_content', 'woocommerce_breadcrumb', 20 );
 }
-add_action( 'woocommerce_loaded', 'klaro_woocommerce_hooks' );
+add_action( 'init', 'klaro_woocommerce_hooks' );
 
 /**
  * Add WooCommerce body classes

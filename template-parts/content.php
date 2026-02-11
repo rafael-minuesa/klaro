@@ -67,7 +67,7 @@
 
 	<?php if ( has_post_thumbnail() && ! is_singular() ) : ?>
 		<div class="post-thumbnail">
-			<a href="<?php the_permalink(); ?>" aria-hidden="true" tabindex="-1">
+			<a href="<?php echo esc_url( get_permalink() ); ?>" aria-hidden="true" tabindex="-1">
 				<?php
 				the_post_thumbnail(
 					'medium',

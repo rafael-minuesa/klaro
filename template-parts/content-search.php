@@ -46,7 +46,7 @@
 
 	<footer class="entry-footer">
 		<?php /* translators: %s: post title */ ?>
-		<a href="<?php the_permalink(); ?>" class="read-more" aria-label="<?php echo esc_attr( sprintf( __( 'Continue reading %s', 'klaro' ), get_the_title() ) ); ?>">
+		<a href="<?php echo esc_url( get_permalink() ); ?>" class="read-more" aria-label="<?php echo esc_attr( sprintf( __( 'Continue reading %s', 'klaro' ), get_the_title() ) ); ?>">
 			<?php esc_html_e( 'Read More', 'klaro' ); ?>
 			<span aria-hidden="true"> →</span>
 		</a>
