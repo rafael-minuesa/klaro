@@ -59,6 +59,6 @@ logs/
 *.gz
 *.rar
 
-# Don't ignore the theme ZIP in releases
-!klaro.zip
-klaro
+# Build scripts and output
+build-wp-org-zip.*
+klaro.zip
