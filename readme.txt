@@ -110,6 +110,16 @@ Yes! Klaro includes full WooCommerce accessibility support with WCAG AAA complia
 
 == Changelog ==
 
+= 2.1.0 =
+* Escaped output in searchform.php, search.php, header.php, and content templates for security
+* Fixed horizontal scrollbar on mobile screens
+* Unified breadcrumbs across all pages including WooCommerce shop
+* Added WooCommerce Blocks cart/checkout accessibility styles
+* Accessible quantity selector with flex layout and 44px touch targets
+* My Account navigation and buttons restyled to match primary navigation
+* High contrast visited link color changed to light purple for better distinction from unvisited links
+* Fixed quantity input padding causing number cutoff
+
 = 2.0.8 =
 * Added 5-level text size adjustment (18px, 20px, 22px, 26px, 32px) for finer control
 * Improved accessibility toolbar UI with refined padding and font sizes

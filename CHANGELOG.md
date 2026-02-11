@@ -20,6 +20,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - WooCommerce hook registration moved from `woocommerce_loaded` to `init` for reliable execution
 - Breadcrumb separator encoding issue (CSS unicode escape)
 - Reduced spacing between navigation and breadcrumbs
+- High contrast visited link color changed from `#88CCFF` to `#CC99FF` (light purple) for better distinction from unvisited links
+- WooCommerce single product quantity input padding causing number cutoff
 
 ### Added
 - WooCommerce Blocks cart/checkout accessibility styles (font sizes, touch targets, contrast)
