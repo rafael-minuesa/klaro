@@ -7,6 +7,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.1.1] - 2026-02-21
+
+### Fixed
+- Accessibility Statement footer link now fully editable via Customizer (URL and link text)
+- Removed all console.log/console.warn debugging output from JavaScript
+- Prefixed all JavaScript element IDs with `klaro-` to avoid conflicts with plugins
+- Removed empty `woocommerce/single-product` directory
+- Dynamic customizer CSS now uses `wp_add_inline_style()` instead of inline `<style>` tag
+
 ## [2.1.0] - 2026-02-11
 
 ### Security
