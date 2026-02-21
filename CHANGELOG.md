@@ -9,12 +9,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [2.1.1] - 2026-02-21
 
+### Added
+- Footer credit text is now editable via Customizer (defaults to "Powered by Klaro and WordPress")
+- Accessibility Statement footer link fully editable via Customizer (URL and link text)
+- Footer credit and accessibility link display side by side on desktop, stacked on mobile
+
 ### Fixed
-- Accessibility Statement footer link now fully editable via Customizer (URL and link text)
 - Removed all console.log/console.warn debugging output from JavaScript
 - Prefixed all JavaScript element IDs with `klaro-` to avoid conflicts with plugins
 - Removed empty `woocommerce/single-product` directory
 - Dynamic customizer CSS now uses `wp_add_inline_style()` instead of inline `<style>` tag
+- External link processing scoped to main content area only (no longer modifies footer links)
 
 ## [2.1.0] - 2026-02-11
 
