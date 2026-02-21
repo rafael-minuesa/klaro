@@ -12,13 +12,13 @@
 	 * Create ARIA live region for announcements
 	 */
 	function createStatusRegion() {
-		if ($('#wc-accessibility-status').length) {
-			return $('#wc-accessibility-status');
+		if ($('#klaro-wc-accessibility-status').length) {
+			return $('#klaro-wc-accessibility-status');
 		}
 
 		var region = $('<div>')
 			.attr({
-				'id': 'wc-accessibility-status',
+				'id': 'klaro-wc-accessibility-status',
 				'role': 'status',
 				'aria-live': 'polite',
 				'aria-atomic': 'true'

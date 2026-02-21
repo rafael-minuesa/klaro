@@ -29,7 +29,7 @@
 
     // Announce changes to screen readers
     function announceChange(message) {
-        const status = document.getElementById('accessibility-status');
+        const status = document.getElementById('klaro-accessibility-status');
         if (status) {
             status.textContent = message;
             // Clear after 3 seconds
@@ -59,16 +59,16 @@
         // Apply contrast to body
         if (settings.contrast === 'high') {
             body.classList.add('high-contrast');
-            updateButtonState('toggle-contrast', true);
+            updateButtonState('klaro-toggle-contrast', true);
         } else if (settings.contrast === 'monochrome') {
             body.classList.add('monochrome');
-            updateButtonState('toggle-monochrome', true);
+            updateButtonState('klaro-toggle-monochrome', true);
         }
 
         // Apply animation preference to html (affects all descendants)
         if (settings.animations === 'disabled') {
             html.classList.add('reduce-motion');
-            updateButtonState('toggle-animations', true);
+            updateButtonState('klaro-toggle-animations', true);
         }
     }
 
@@ -82,9 +82,9 @@
 
     // Font size controls
     function initFontSizeControls() {
-        const increaseBtn = document.getElementById('increase-font');
-        const decreaseBtn = document.getElementById('decrease-font');
-        const resetBtn = document.getElementById('reset-font');
+        const increaseBtn = document.getElementById('klaro-increase-font');
+        const decreaseBtn = document.getElementById('klaro-decrease-font');
+        const resetBtn = document.getElementById('klaro-reset-font');
         const html = document.documentElement;
 
         // Font size levels: normal (18px) → medium (20px) → large (22px) → extra-large (26px) → maximum (32px)
@@ -167,8 +167,8 @@
 
     // High contrast mode
     function initContrastControls() {
-        const contrastBtn = document.getElementById('toggle-contrast');
-        const monochromeBtn = document.getElementById('toggle-monochrome');
+        const contrastBtn = document.getElementById('klaro-toggle-contrast');
+        const monochromeBtn = document.getElementById('klaro-toggle-monochrome');
         const body = document.body;
 
         if (!contrastBtn || !monochromeBtn) return;
@@ -178,17 +178,17 @@
             
             // Remove other contrast modes
             body.classList.remove('monochrome');
-            updateButtonState('toggle-monochrome', false);
+            updateButtonState('klaro-toggle-monochrome', false);
             
             if (settings.contrast === 'high') {
                 body.classList.remove('high-contrast');
                 settings.contrast = 'normal';
-                updateButtonState('toggle-contrast', false);
+                updateButtonState('klaro-toggle-contrast', false);
                 announceChange('High contrast mode disabled');
             } else {
                 body.classList.add('high-contrast');
                 settings.contrast = 'high';
-                updateButtonState('toggle-contrast', true);
+                updateButtonState('klaro-toggle-contrast', true);
                 announceChange('High contrast mode enabled');
             }
             
@@ -200,17 +200,17 @@
             
             // Remove other contrast modes
             body.classList.remove('high-contrast');
-            updateButtonState('toggle-contrast', false);
+            updateButtonState('klaro-toggle-contrast', false);
             
             if (settings.contrast === 'monochrome') {
                 body.classList.remove('monochrome');
                 settings.contrast = 'normal';
-                updateButtonState('toggle-monochrome', false);
+                updateButtonState('klaro-toggle-monochrome', false);
                 announceChange('Monochrome mode disabled');
             } else {
                 body.classList.add('monochrome');
                 settings.contrast = 'monochrome';
-                updateButtonState('toggle-monochrome', true);
+                updateButtonState('klaro-toggle-monochrome', true);
                 announceChange('Monochrome mode enabled');
             }
             
@@ -220,7 +220,7 @@
 
     // Animation controls
     function initAnimationControls() {
-        const animationBtn = document.getElementById('toggle-animations');
+        const animationBtn = document.getElementById('klaro-toggle-animations');
         const html = document.documentElement;
 
         if (!animationBtn) return;
@@ -231,12 +231,12 @@
             if (settings.animations === 'disabled') {
                 html.classList.remove('reduce-motion');
                 settings.animations = 'enabled';
-                updateButtonState('toggle-animations', false);
+                updateButtonState('klaro-toggle-animations', false);
                 announceChange('Animations enabled');
             } else {
                 html.classList.add('reduce-motion');
                 settings.animations = 'disabled';
-                updateButtonState('toggle-animations', true);
+                updateButtonState('klaro-toggle-animations', true);
                 announceChange('Animations disabled');
             }
 
@@ -342,7 +342,7 @@
         
         images.forEach(img => {
             if (!img.hasAttribute('alt')) {
-                console.warn('Image missing alt text:', img);
+
                 img.style.border = '5px solid red';
                 img.setAttribute('role', 'presentation');
             }
@@ -357,7 +357,7 @@
         politeRegion.setAttribute('aria-live', 'polite');
         politeRegion.setAttribute('aria-atomic', 'true');
         politeRegion.className = 'screen-reader-text';
-        politeRegion.id = 'polite-announcements';
+        politeRegion.id = 'klaro-polite-announcements';
         document.body.appendChild(politeRegion);
 
         // Create an assertive live region for urgent updates
@@ -366,7 +366,7 @@
         assertiveRegion.setAttribute('aria-live', 'assertive');
         assertiveRegion.setAttribute('aria-atomic', 'true');
         assertiveRegion.className = 'screen-reader-text';
-        assertiveRegion.id = 'urgent-announcements';
+        assertiveRegion.id = 'klaro-urgent-announcements';
         document.body.appendChild(assertiveRegion);
     }
 
@@ -389,7 +389,7 @@
             validateImageAltText();
         }
 
-        console.log('Klaro accessibility features initialized');
+
     }
 
     // Initialize when DOM is ready

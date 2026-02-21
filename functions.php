@@ -586,9 +586,49 @@ function klaro_customize_register( $wp_customize ) {
 		'klaro_show_accessibility_link',
 		array(
 			'label'       => esc_html__( 'Show Accessibility Statement Link', 'klaro' ),
-			'description' => esc_html__( 'Display a link to /accessibility-statement/ in the footer.', 'klaro' ),
+			'description' => esc_html__( 'Display a link to your Accessibility Statement page in the footer.', 'klaro' ),
 			'section'     => 'klaro_footer',
 			'type'        => 'checkbox',
+		)
+	);
+
+	// Accessibility Statement URL
+	$wp_customize->add_setting(
+		'klaro_accessibility_link_url',
+		array(
+			'default'           => '',
+			'sanitize_callback' => 'esc_url_raw',
+		)
+	);
+
+	$wp_customize->add_control(
+		'klaro_accessibility_link_url',
+		array(
+			'label'       => esc_html__( 'Accessibility Statement URL', 'klaro' ),
+			'description' => esc_html__( 'Enter the full URL of your Accessibility Statement page.', 'klaro' ),
+			'section'     => 'klaro_footer',
+			'type'        => 'url',
+			'input_attrs' => array(
+				'placeholder' => esc_attr__( 'https://example.com/accessibility-statement/', 'klaro' ),
+			),
+		)
+	);
+
+	// Accessibility Statement Link Text
+	$wp_customize->add_setting(
+		'klaro_accessibility_link_text',
+		array(
+			'default'           => esc_html__( 'Accessibility Statement', 'klaro' ),
+			'sanitize_callback' => 'sanitize_text_field',
+		)
+	);
+
+	$wp_customize->add_control(
+		'klaro_accessibility_link_text',
+		array(
+			'label'   => esc_html__( 'Accessibility Statement Link Text', 'klaro' ),
+			'section' => 'klaro_footer',
+			'type'    => 'text',
 		)
 	);
 }
@@ -602,22 +642,20 @@ function klaro_sanitize_float( $value ) {
 }
 
 /**
- * Output customizer CSS
+ * Output customizer CSS via wp_add_inline_style
  */
 function klaro_customizer_css() {
-	$font_size   = get_theme_mod( 'klaro_font_size', '18' );
-	$line_height = get_theme_mod( 'klaro_line_height', '1.8' );
+	$font_size   = absint( get_theme_mod( 'klaro_font_size', '18' ) );
+	$line_height = floatval( get_theme_mod( 'klaro_line_height', '1.8' ) );
 
-	?>
-	<style type="text/css">
-		:root {
-			--font-size-base: <?php echo absint( $font_size ); ?>px;
-			--line-height-base: <?php echo floatval( $line_height ); ?>;
-		}
-	</style>
-	<?php
+	$css = ':root {
+	--font-size-base: ' . $font_size . 'px;
+	--line-height-base: ' . $line_height . ';
+}';
+
+	wp_add_inline_style( 'klaro-style', $css );
 }
-add_action( 'wp_head', 'klaro_customizer_css' );
+add_action( 'wp_enqueue_scripts', 'klaro_customizer_css', 20 );
 
 /**
  * Add body classes for accessibility modes
@@ -990,7 +1028,7 @@ add_filter( 'woocommerce_get_star_rating_html', 'klaro_woocommerce_star_rating_h
  */
 function klaro_woocommerce_cart_live_region() {
 	if ( class_exists( 'WooCommerce' ) ) {
-		echo '<div id="wc-cart-announcer" class="screen-reader-text" role="status" aria-live="polite" aria-atomic="true"></div>';
+		echo '<div id="klaro-wc-cart-announcer" class="screen-reader-text" role="status" aria-live="polite" aria-atomic="true"></div>';
 	}
 }
 add_action( 'wp_footer', 'klaro_woocommerce_cart_live_region' );

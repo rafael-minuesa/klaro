@@ -8,7 +8,7 @@
 ?>
 
 	<footer id="site-footer" class="site-footer">
-		
+
 		<?php if ( is_active_sidebar( 'klaro-footer-1' ) ) : ?>
 			<aside class="footer-widgets" aria-label="<?php esc_attr_e( 'Footer widgets', 'klaro' ); ?>">
 				<?php dynamic_sidebar( 'klaro-footer-1' ); ?>
@@ -42,10 +42,14 @@
 				);
 				?>
 			</p>
-			<?php if ( get_theme_mod( 'klaro_show_accessibility_link', false ) ) : ?>
+			<?php
+			$klaro_a11y_url = get_theme_mod( 'klaro_accessibility_link_url', '' );
+			if ( get_theme_mod( 'klaro_show_accessibility_link', false ) && $klaro_a11y_url ) :
+				$klaro_a11y_text = get_theme_mod( 'klaro_accessibility_link_text', __( 'Accessibility Statement', 'klaro' ) );
+			?>
 			<p>
-				<a href="<?php echo esc_url( home_url( '/accessibility-statement/' ) ); ?>">
-					<?php esc_html_e( 'Accessibility Statement', 'klaro' ); ?>
+				<a href="<?php echo esc_url( $klaro_a11y_url ); ?>">
+					<?php echo esc_html( $klaro_a11y_text ); ?>
 				</a>
 			</p>
 			<?php endif; ?>
