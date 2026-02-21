@@ -573,6 +573,25 @@ function klaro_customize_register( $wp_customize ) {
 		)
 	);
 
+	// Footer Credit Text
+	$wp_customize->add_setting(
+		'klaro_footer_credit',
+		array(
+			'default'           => '',
+			'sanitize_callback' => 'wp_kses_post',
+		)
+	);
+
+	$wp_customize->add_control(
+		'klaro_footer_credit',
+		array(
+			'label'       => esc_html__( 'Footer Credit Text', 'klaro' ),
+			'description' => esc_html__( 'Customize the footer credit text. HTML links are allowed. Leave empty for the default: "Powered by Klaro and WordPress".', 'klaro' ),
+			'section'     => 'klaro_footer',
+			'type'        => 'textarea',
+		)
+	);
+
 	// Accessibility Statement Link
 	$wp_customize->add_setting(
 		'klaro_show_accessibility_link',

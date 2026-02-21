@@ -326,6 +326,25 @@ a:not([href]) {
   padding: var(--spacing-lg);
 }
 
+.site-info {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: var(--spacing-sm) var(--spacing-lg);
+  flex-wrap: wrap;
+  text-align: center;
+}
+
+.site-info p {
+  margin: 0;
+}
+
+@media (max-width: 600px) {
+  .site-info {
+    flex-direction: column;
+  }
+}
+
 /* Header Top - Logo and Accessibility Toolbar */
 .header-top {
   display: flex;

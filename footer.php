@@ -32,14 +32,19 @@
 		<?php endif; ?>
 
 		<div class="site-info">
-			<p>
+			<p class="site-credit">
 				<?php
-				printf(
-					/* translators: 1: Theme name, 2: WordPress */
-					esc_html__( 'Powered by %1$s and %2$s', 'klaro' ),
-					'<a href="' . esc_url( __( 'https://github.com/rafael-minuesa/klaro', 'klaro' ) ) . '">Klaro</a>',
-					'<a href="' . esc_url( __( 'https://wordpress.org/', 'klaro' ) ) . '">WordPress</a>'
-				);
+				$klaro_footer_credit = get_theme_mod( 'klaro_footer_credit', '' );
+				if ( $klaro_footer_credit ) {
+					echo wp_kses_post( $klaro_footer_credit );
+				} else {
+					printf(
+						/* translators: 1: Theme name, 2: WordPress */
+						esc_html__( 'Powered by %1$s and %2$s', 'klaro' ),
+						'<a href="' . esc_url( __( 'https://github.com/rafael-minuesa/klaro', 'klaro' ) ) . '">Klaro</a>',
+						'<a href="' . esc_url( __( 'https://wordpress.org/', 'klaro' ) ) . '">WordPress</a>'
+					);
+				}
 				?>
 			</p>
 			<?php
@@ -47,11 +52,11 @@
 			if ( get_theme_mod( 'klaro_show_accessibility_link', false ) && $klaro_a11y_url ) :
 				$klaro_a11y_text = get_theme_mod( 'klaro_accessibility_link_text', __( 'Accessibility Statement', 'klaro' ) );
 				?>
-			<p>
-				<a href="<?php echo esc_url( $klaro_a11y_url ); ?>">
-					<?php echo esc_html( $klaro_a11y_text ); ?>
-				</a>
-			</p>
+				<p class="site-accessibility-link">
+					<a href="<?php echo esc_url( $klaro_a11y_url ); ?>">
+						<?php echo esc_html( $klaro_a11y_text ); ?>
+					</a>
+				</p>
 			<?php endif; ?>
 		</div><!-- .site-info -->
 

@@ -312,19 +312,22 @@
         });
     }
 
-    // Ensure external links have proper attributes and warnings
+    // Ensure external links in content have proper attributes and warnings
     function initExternalLinks() {
-        const links = document.querySelectorAll('a[href^="http"]');
+        const contentArea = document.getElementById('main-content');
+        if (!contentArea) return;
+
+        const links = contentArea.querySelectorAll('a[href^="http"]');
         const currentDomain = window.location.hostname;
 
         links.forEach(link => {
             const linkDomain = new URL(link.href).hostname;
-            
+
             if (linkDomain !== currentDomain) {
                 // Add external link indicator if not already present
-                if (!link.querySelector('.external-link-icon')) {
+                if (!link.querySelector('.klaro-external-link-text')) {
                     const span = document.createElement('span');
-                    span.className = 'screen-reader-text';
+                    span.className = 'screen-reader-text klaro-external-link-text';
                     span.textContent = ' (opens in new window)';
                     link.appendChild(span);
                 }
