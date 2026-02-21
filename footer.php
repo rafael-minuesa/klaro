@@ -46,7 +46,7 @@
 			$klaro_a11y_url = get_theme_mod( 'klaro_accessibility_link_url', '' );
 			if ( get_theme_mod( 'klaro_show_accessibility_link', false ) && $klaro_a11y_url ) :
 				$klaro_a11y_text = get_theme_mod( 'klaro_accessibility_link_text', __( 'Accessibility Statement', 'klaro' ) );
-			?>
+				?>
 			<p>
 				<a href="<?php echo esc_url( $klaro_a11y_url ); ?>">
 					<?php echo esc_html( $klaro_a11y_text ); ?>
