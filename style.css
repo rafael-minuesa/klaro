@@ -4,7 +4,7 @@ Theme URI: https://github.com/rafael-minuesa/klaro
 Author: Rafael Minuesa
 Author URI: https://github.com/rafael-minuesa
 Description: An uncompromisingly accessible WordPress theme designed for everyone. Klaro (Spanish/Portuguese for "clear/bright") features WCAG AAA compliance, enabling users with disabilities to browse content, shop with WooCommerce, and manage their stores from the backend. Includes adjustable text sizes, high contrast modes, keyboard navigation, and screen reader optimization.
-Version: 2.1.1
+Version: 2.1.2
 Requires at least: 6.0
 Tested up to: 6.9
 Requires PHP: 7.4
@@ -78,7 +78,7 @@ along with Klaro. If not, see http://www.gnu.org/licenses/gpl-2.0.html.
 }
 
 /* High Contrast Mode */
-.high-contrast {
+.klaro-high-contrast {
   --color-background: #000000;
   --color-text: #FFFFFF;
   --color-link: #00D4FF;
@@ -90,7 +90,7 @@ along with Klaro. If not, see http://www.gnu.org/licenses/gpl-2.0.html.
 }
 
 /* Monochrome Mode */
-.monochrome {
+.klaro-monochrome {
   --color-background: #FFFFFF;
   --color-text: #000000;
   --color-link: #000000;
@@ -102,38 +102,38 @@ along with Klaro. If not, see http://www.gnu.org/licenses/gpl-2.0.html.
 }
 
 /* Medium Text Mode - Applied to html element */
-html.medium-text {
+html.klaro-medium-text {
   --font-size-base: 20px;
   --line-height-base: 1.9;
   font-size: 20px;
 }
 
 /* Large Text Mode - Applied to html element */
-html.large-text {
+html.klaro-large-text {
   --font-size-base: 22px;
   --line-height-base: 2.0;
   font-size: 22px;
 }
 
 /* Extra Large Text Mode - Applied to html element */
-html.extra-large-text {
+html.klaro-extra-large-text {
   --font-size-base: 26px;
   --line-height-base: 2.1;
   font-size: 26px;
 }
 
 /* Maximum Text Mode - Applied to html element */
-html.maximum-text {
+html.klaro-maximum-text {
   --font-size-base: 32px;
   --line-height-base: 2.2;
   font-size: 32px;
 }
 
 /* Reduce Motion Mode - Applied to html element (JavaScript toggle) */
-html.reduce-motion,
-html.reduce-motion *,
-html.reduce-motion *::before,
-html.reduce-motion *::after {
+html.klaro-reduce-motion,
+html.klaro-reduce-motion *,
+html.klaro-reduce-motion *::before,
+html.klaro-reduce-motion *::after {
   animation-duration: 0.01ms !important;
   animation-iteration-count: 1 !important;
   transition-duration: 0.01ms !important;
@@ -911,18 +911,18 @@ li {
 }
 
 /* High contrast mode breadcrumbs */
-.high-contrast .breadcrumbs {
+.klaro-high-contrast .breadcrumbs {
   background: #000000;
   border-color: #FFFFFF;
 }
 
-.high-contrast .breadcrumbs a,
-.high-contrast .breadcrumbs span {
+.klaro-high-contrast .breadcrumbs a,
+.klaro-high-contrast .breadcrumbs span {
   color: #FFFFFF;
 }
 
-.high-contrast .breadcrumbs a:hover,
-.high-contrast .breadcrumbs a:focus {
+.klaro-high-contrast .breadcrumbs a:hover,
+.klaro-high-contrast .breadcrumbs a:focus {
   color: #00D4FF;
 }
 

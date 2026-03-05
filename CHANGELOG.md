@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.1.2] - 2026-03-05
+
+### Fixed
+- Prefixed all JavaScript CSS class names and dynamic IDs with `klaro-` to avoid conflicts with other themes and plugins (e.g., `high-contrast` → `klaro-high-contrast`, `medium-text` → `klaro-medium-text`)
+- Updated corresponding CSS selectors in `style.css` and `woocommerce.css`
+
 ## [2.1.1] - 2026-02-21
 
 ### Added

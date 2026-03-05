@@ -127,8 +127,8 @@
 		$tabs.each(function(index) {
 			var $tab = $(this);
 			var $li = $tab.parent();
-			var tabId = 'product-tab-' + index;
-			var panelId = 'product-panel-' + index;
+			var tabId = 'klaro-product-tab-' + index;
+			var panelId = 'klaro-product-panel-' + index;
 			var $panel = $panels.eq(index);
 			var isActive = $li.hasClass('active');
 

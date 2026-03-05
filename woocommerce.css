@@ -939,75 +939,75 @@ th.wc-block-cart-items__header-total span {
    HIGH CONTRAST MODE
    ========================================================================== */
 
-.high-contrast .woocommerce ul.products li.product {
+.klaro-high-contrast .woocommerce ul.products li.product {
   border-color: var(--color-border);
   background: var(--color-background);
 }
 
-.high-contrast .woocommerce a.button,
-.high-contrast .woocommerce button.button,
-.high-contrast .woocommerce .button {
+.klaro-high-contrast .woocommerce a.button,
+.klaro-high-contrast .woocommerce button.button,
+.klaro-high-contrast .woocommerce .button {
   background-color: var(--color-text);
   color: var(--color-background);
   border-color: var(--color-text);
 }
 
-.high-contrast .woocommerce a.button:hover,
-.high-contrast .woocommerce a.button:focus,
-.high-contrast .woocommerce button.button:hover,
-.high-contrast .woocommerce button.button:focus {
+.klaro-high-contrast .woocommerce a.button:hover,
+.klaro-high-contrast .woocommerce a.button:focus,
+.klaro-high-contrast .woocommerce button.button:hover,
+.klaro-high-contrast .woocommerce button.button:focus {
   background-color: var(--color-background);
   color: var(--color-text);
 }
 
-.high-contrast .woocommerce table.shop_table tbody tr:nth-child(even) {
+.klaro-high-contrast .woocommerce table.shop_table tbody tr:nth-child(even) {
   background: var(--color-background);
 }
 
-.high-contrast .woocommerce-message,
-.high-contrast .woocommerce-error,
-.high-contrast .woocommerce-info {
+.klaro-high-contrast .woocommerce-message,
+.klaro-high-contrast .woocommerce-error,
+.klaro-high-contrast .woocommerce-info {
   background: var(--color-background);
   color: var(--color-text);
   border-color: var(--color-text);
 }
 
-.high-contrast .woocommerce span.onsale {
+.klaro-high-contrast .woocommerce span.onsale {
   background: var(--color-focus);
   color: var(--color-background);
   border: 2px solid var(--color-text);
 }
 
-.high-contrast .woocommerce-checkout #payment {
+.klaro-high-contrast .woocommerce-checkout #payment {
   background: var(--color-background);
   border: 1px solid var(--color-border);
 }
 
-.high-contrast .wc-block-cart-items__header th,
-.high-contrast th.wc-block-cart-items__header-image,
-.high-contrast th.wc-block-cart-items__header-product,
-.high-contrast th.wc-block-cart-items__header-total {
+.klaro-high-contrast .wc-block-cart-items__header th,
+.klaro-high-contrast th.wc-block-cart-items__header-image,
+.klaro-high-contrast th.wc-block-cart-items__header-product,
+.klaro-high-contrast th.wc-block-cart-items__header-total {
   background: #FFFFFF !important;
   color: #000000 !important;
   border-color: #FFFFFF !important;
 }
 
-.high-contrast .wc-block-cart-items__header th span,
-.high-contrast th.wc-block-cart-items__header-image span,
-.high-contrast th.wc-block-cart-items__header-product span,
-.high-contrast th.wc-block-cart-items__header-total span {
+.klaro-high-contrast .wc-block-cart-items__header th span,
+.klaro-high-contrast th.wc-block-cart-items__header-image span,
+.klaro-high-contrast th.wc-block-cart-items__header-product span,
+.klaro-high-contrast th.wc-block-cart-items__header-total span {
   color: #000000 !important;
 }
 
-.high-contrast .woocommerce-MyAccount-navigation ul li a {
+.klaro-high-contrast .woocommerce-MyAccount-navigation ul li a {
   border-color: var(--color-border);
   color: var(--color-text);
   background: var(--color-background);
 }
 
-.high-contrast .woocommerce-MyAccount-navigation ul li a:hover,
-.high-contrast .woocommerce-MyAccount-navigation ul li a:focus,
-.high-contrast .woocommerce-MyAccount-navigation ul li.is-active a {
+.klaro-high-contrast .woocommerce-MyAccount-navigation ul li a:hover,
+.klaro-high-contrast .woocommerce-MyAccount-navigation ul li a:focus,
+.klaro-high-contrast .woocommerce-MyAccount-navigation ul li.is-active a {
   background: var(--color-text);
   color: var(--color-background);
 }
@@ -1016,42 +1016,42 @@ th.wc-block-cart-items__header-total span {
    MONOCHROME MODE
    ========================================================================== */
 
-.monochrome .woocommerce .price {
+.klaro-monochrome .woocommerce .price {
   color: var(--color-text);
 }
 
-.monochrome .woocommerce span.onsale {
+.klaro-monochrome .woocommerce span.onsale {
   background: var(--color-text);
   color: var(--color-background);
 }
 
-.monochrome .wc-block-cart-items__header th,
-.monochrome th.wc-block-cart-items__header-image,
-.monochrome th.wc-block-cart-items__header-product,
-.monochrome th.wc-block-cart-items__header-total {
+.klaro-monochrome .wc-block-cart-items__header th,
+.klaro-monochrome th.wc-block-cart-items__header-image,
+.klaro-monochrome th.wc-block-cart-items__header-product,
+.klaro-monochrome th.wc-block-cart-items__header-total {
   background: var(--color-text) !important;
   color: var(--color-background) !important;
 }
 
-.monochrome .wc-block-cart-items__header th span,
-.monochrome th.wc-block-cart-items__header-image span,
-.monochrome th.wc-block-cart-items__header-product span,
-.monochrome th.wc-block-cart-items__header-total span {
+.klaro-monochrome .wc-block-cart-items__header th span,
+.klaro-monochrome th.wc-block-cart-items__header-image span,
+.klaro-monochrome th.wc-block-cart-items__header-product span,
+.klaro-monochrome th.wc-block-cart-items__header-total span {
   color: var(--color-background) !important;
 }
 
 /* High contrast mode - ensure prices are visible */
-.high-contrast .woocommerce .price,
-.high-contrast .woocommerce .price .woocommerce-Price-amount,
-.high-contrast .woocommerce .price bdi,
-.high-contrast .woocommerce .price .woocommerce-Price-currencySymbol {
+.klaro-high-contrast .woocommerce .price,
+.klaro-high-contrast .woocommerce .price .woocommerce-Price-amount,
+.klaro-high-contrast .woocommerce .price bdi,
+.klaro-high-contrast .woocommerce .price .woocommerce-Price-currencySymbol {
   color: #FFFFFF !important;
   font-size: 1.25rem;
 }
 
-.high-contrast .woocommerce ul.products li.product .price,
-.high-contrast .woocommerce ul.products li.product .price .woocommerce-Price-amount,
-.high-contrast .woocommerce ul.products li.product .price bdi {
+.klaro-high-contrast .woocommerce ul.products li.product .price,
+.klaro-high-contrast .woocommerce ul.products li.product .price .woocommerce-Price-amount,
+.klaro-high-contrast .woocommerce ul.products li.product .price bdi {
   color: #00D4FF !important;
   font-size: 1.1rem;
 }

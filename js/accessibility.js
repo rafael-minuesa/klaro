@@ -47,27 +47,27 @@
 
         // Apply font size to html element (root for rem units)
         if (settings.fontSize === 'medium') {
-            html.classList.add('medium-text');
+            html.classList.add('klaro-medium-text');
         } else if (settings.fontSize === 'large') {
-            html.classList.add('large-text');
+            html.classList.add('klaro-large-text');
         } else if (settings.fontSize === 'extra-large') {
-            html.classList.add('extra-large-text');
+            html.classList.add('klaro-extra-large-text');
         } else if (settings.fontSize === 'maximum') {
-            html.classList.add('maximum-text');
+            html.classList.add('klaro-maximum-text');
         }
 
         // Apply contrast to body
         if (settings.contrast === 'high') {
-            body.classList.add('high-contrast');
+            body.classList.add('klaro-high-contrast');
             updateButtonState('klaro-toggle-contrast', true);
-        } else if (settings.contrast === 'monochrome') {
-            body.classList.add('monochrome');
-            updateButtonState('klaro-toggle-monochrome', true);
+        } else if (settings.contrast === 'klaro-monochrome') {
+            body.classList.add('klaro-monochrome');
+            updateButtonState('klaro-toggle-klaro-monochrome', true);
         }
 
         // Apply animation preference to html (affects all descendants)
         if (settings.animations === 'disabled') {
-            html.classList.add('reduce-motion');
+            html.classList.add('klaro-reduce-motion');
             updateButtonState('klaro-toggle-animations', true);
         }
     }
@@ -88,7 +88,7 @@
         const html = document.documentElement;
 
         // Font size levels: normal (18px) → medium (20px) → large (22px) → extra-large (26px) → maximum (32px)
-        const fontSizeClasses = ['medium-text', 'large-text', 'extra-large-text', 'maximum-text'];
+        const fontSizeClasses = ['klaro-medium-text', 'klaro-large-text', 'klaro-extra-large-text', 'klaro-maximum-text'];
 
         function clearFontClasses() {
             fontSizeClasses.forEach(cls => html.classList.remove(cls));
@@ -101,23 +101,23 @@
             clearFontClasses();
 
             if (settings.fontSize === 'normal') {
-                html.classList.add('medium-text');
+                html.classList.add('klaro-medium-text');
                 settings.fontSize = 'medium';
                 announceChange('Text size: medium (20px)');
             } else if (settings.fontSize === 'medium') {
-                html.classList.add('large-text');
+                html.classList.add('klaro-large-text');
                 settings.fontSize = 'large';
                 announceChange('Text size: large (22px)');
             } else if (settings.fontSize === 'large') {
-                html.classList.add('extra-large-text');
+                html.classList.add('klaro-extra-large-text');
                 settings.fontSize = 'extra-large';
                 announceChange('Text size: extra large (26px)');
             } else if (settings.fontSize === 'extra-large') {
-                html.classList.add('maximum-text');
+                html.classList.add('klaro-maximum-text');
                 settings.fontSize = 'maximum';
                 announceChange('Text size: maximum (32px)');
             } else {
-                html.classList.add('maximum-text');
+                html.classList.add('klaro-maximum-text');
                 announceChange('Text size is already at maximum');
                 return;
             }
@@ -130,15 +130,15 @@
             clearFontClasses();
 
             if (settings.fontSize === 'maximum') {
-                html.classList.add('extra-large-text');
+                html.classList.add('klaro-extra-large-text');
                 settings.fontSize = 'extra-large';
                 announceChange('Text size: extra large (26px)');
             } else if (settings.fontSize === 'extra-large') {
-                html.classList.add('large-text');
+                html.classList.add('klaro-large-text');
                 settings.fontSize = 'large';
                 announceChange('Text size: large (22px)');
             } else if (settings.fontSize === 'large') {
-                html.classList.add('medium-text');
+                html.classList.add('klaro-medium-text');
                 settings.fontSize = 'medium';
                 announceChange('Text size: medium (20px)');
             } else if (settings.fontSize === 'medium') {
@@ -168,25 +168,25 @@
     // High contrast mode
     function initContrastControls() {
         const contrastBtn = document.getElementById('klaro-toggle-contrast');
-        const monochromeBtn = document.getElementById('klaro-toggle-monochrome');
+        const klaro-monochromeBtn = document.getElementById('klaro-toggle-klaro-monochrome');
         const body = document.body;
 
-        if (!contrastBtn || !monochromeBtn) return;
+        if (!contrastBtn || !klaro-monochromeBtn) return;
 
         contrastBtn.addEventListener('click', () => {
             const settings = getSettings();
             
             // Remove other contrast modes
-            body.classList.remove('monochrome');
-            updateButtonState('klaro-toggle-monochrome', false);
+            body.classList.remove('klaro-monochrome');
+            updateButtonState('klaro-toggle-klaro-monochrome', false);
             
             if (settings.contrast === 'high') {
-                body.classList.remove('high-contrast');
+                body.classList.remove('klaro-high-contrast');
                 settings.contrast = 'normal';
                 updateButtonState('klaro-toggle-contrast', false);
                 announceChange('High contrast mode disabled');
             } else {
-                body.classList.add('high-contrast');
+                body.classList.add('klaro-high-contrast');
                 settings.contrast = 'high';
                 updateButtonState('klaro-toggle-contrast', true);
                 announceChange('High contrast mode enabled');
@@ -195,22 +195,22 @@
             saveSettings(settings);
         });
 
-        monochromeBtn.addEventListener('click', () => {
+        klaro-monochromeBtn.addEventListener('click', () => {
             const settings = getSettings();
             
             // Remove other contrast modes
-            body.classList.remove('high-contrast');
+            body.classList.remove('klaro-high-contrast');
             updateButtonState('klaro-toggle-contrast', false);
             
-            if (settings.contrast === 'monochrome') {
-                body.classList.remove('monochrome');
+            if (settings.contrast === 'klaro-monochrome') {
+                body.classList.remove('klaro-monochrome');
                 settings.contrast = 'normal';
-                updateButtonState('klaro-toggle-monochrome', false);
+                updateButtonState('klaro-toggle-klaro-monochrome', false);
                 announceChange('Monochrome mode disabled');
             } else {
-                body.classList.add('monochrome');
-                settings.contrast = 'monochrome';
-                updateButtonState('klaro-toggle-monochrome', true);
+                body.classList.add('klaro-monochrome');
+                settings.contrast = 'klaro-monochrome';
+                updateButtonState('klaro-toggle-klaro-monochrome', true);
                 announceChange('Monochrome mode enabled');
             }
             
@@ -229,12 +229,12 @@
             const settings = getSettings();
 
             if (settings.animations === 'disabled') {
-                html.classList.remove('reduce-motion');
+                html.classList.remove('klaro-reduce-motion');
                 settings.animations = 'enabled';
                 updateButtonState('klaro-toggle-animations', false);
                 announceChange('Animations enabled');
             } else {
-                html.classList.add('reduce-motion');
+                html.classList.add('klaro-reduce-motion');
                 settings.animations = 'disabled';
                 updateButtonState('klaro-toggle-animations', true);
                 announceChange('Animations disabled');
@@ -244,21 +244,21 @@
         });
     }
 
-    // Add reduce-motion class based on system preference
+    // Add klaro-reduce-motion class based on system preference
     function initReducedMotion() {
         const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
         const html = document.documentElement;
 
         if (prefersReducedMotion.matches) {
-            html.classList.add('reduce-motion');
+            html.classList.add('klaro-reduce-motion');
         }
 
         // Listen for changes
         prefersReducedMotion.addEventListener('change', (e) => {
             if (e.matches) {
-                html.classList.add('reduce-motion');
+                html.classList.add('klaro-reduce-motion');
             } else {
-                html.classList.remove('reduce-motion');
+                html.classList.remove('klaro-reduce-motion');
             }
         });
     }
@@ -271,14 +271,14 @@
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Tab') {
                 isUsingKeyboard = true;
-                document.body.classList.add('keyboard-nav');
+                document.body.classList.add('klaro-keyboard-nav');
             }
         });
 
         // Detect mouse usage
         document.addEventListener('mousedown', () => {
             isUsingKeyboard = false;
-            document.body.classList.remove('keyboard-nav');
+            document.body.classList.remove('klaro-keyboard-nav');
         });
     }
 
