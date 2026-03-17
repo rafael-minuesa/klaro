@@ -437,8 +437,7 @@
 }
 
 /* Product attributes table (Additional Information tab) */
-.woocommerce-product-attributes th,
-.woocommerce-product-attributes td {
+.woocommerce table.shop_attributes td {
   padding: var(--spacing-xs) var(--spacing-sm);
 }
 
