@@ -275,8 +275,8 @@ function klaro_skip_links() {
 	?>
 	<nav class="skip-links" aria-label="<?php esc_attr_e( 'Skip links', 'klaro' ); ?>">
 		<ul>
-			<li><a href="#primary-navigation" class="skip-link"><?php esc_html_e( 'Skip to navigation', 'klaro' ); ?></a></li>
 			<li><a href="#main-content" class="skip-link"><?php esc_html_e( 'Skip to main content', 'klaro' ); ?></a></li>
+			<li><a href="#primary-navigation" class="skip-link"><?php esc_html_e( 'Skip to navigation', 'klaro' ); ?></a></li>
 			<li><a href="#sidebar" class="skip-link"><?php esc_html_e( 'Skip to sidebar', 'klaro' ); ?></a></li>
 			<li><a href="#site-footer" class="skip-link"><?php esc_html_e( 'Skip to footer', 'klaro' ); ?></a></li>
 		</ul>
