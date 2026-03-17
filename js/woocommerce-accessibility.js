@@ -116,7 +116,6 @@
 
 		var $tabList = $tabsContainer.find('.tabs');
 		var $tabs = $tabList.find('li a');
-		var $panels = $tabsContainer.find('.panel');
 
 		// Set ARIA attributes on tab list
 		$tabList.attr({
@@ -128,9 +127,12 @@
 			var $tab = $(this);
 			var $li = $tab.parent();
 			var tabId = 'klaro-product-tab-' + index;
-			var panelId = 'klaro-product-panel-' + index;
-			var $panel = $panels.eq(index);
 			var isActive = $li.hasClass('active');
+
+			// Find the panel using the tab's href (WooCommerce convention)
+			var panelSelector = $tab.attr('href');
+			var $panel = panelSelector ? $(panelSelector) : $();
+			var panelId = $panel.length ? $panel.attr('id') : '';
 
 			// Tab attributes
 			$tab.attr({
@@ -141,11 +143,10 @@
 				'aria-selected': isActive ? 'true' : 'false'
 			});
 
-			// Panel attributes
+			// Panel attributes — preserve existing ID
 			if ($panel.length) {
 				$panel.attr({
 					'role': 'tabpanel',
-					'id': panelId,
 					'aria-labelledby': tabId,
 					'tabindex': '0'
 				});

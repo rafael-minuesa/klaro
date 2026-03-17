@@ -430,11 +430,16 @@
 .woocommerce-tabs .panel {
   padding: var(--spacing-lg);
   border: none;
-  display: block !important;
 }
 
 .woocommerce-tabs .panel h2 {
   margin-top: 0;
+}
+
+/* Product attributes table (Additional Information tab) */
+.woocommerce-product-attributes th,
+.woocommerce-product-attributes td {
+  padding: var(--spacing-xs) var(--spacing-sm);
 }
 
 /* Ensure tab panel content is visible */
