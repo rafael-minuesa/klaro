@@ -108,6 +108,17 @@ It works with block-based builders, but visual drag-and-drop builders may confli
 
 Yes! Klaro includes full WooCommerce accessibility support with WCAG AAA compliant shop pages, accessible cart and checkout, screen reader announcements for cart updates, keyboard-navigable product galleries, and 44px minimum touch targets on all interactive elements.
 
+== Accessibility ==
+
+Klaro meets WCAG 2.2 AA standards and includes features that often exceed AA requirements. Key implementations:
+
+* Visible skip links as first focusable element
+* Strong focus indicators (3px outline, :focus-visible)
+* Underlined links in content
+* High contrast (tested toward 7:1), monochrome, and text size modes
+* Semantic HTML, proper ARIA, keyboard operable navigation
+* Tested with NVDA, JAWS, VoiceOver, ORCA
+
 == Changelog ==
 
 = 2.1.0 =
