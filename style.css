@@ -733,6 +733,12 @@ select {
   min-height: var(--touch-target-min);
 }
 
+/* Let WooCommerce Blocks handle their own select styling */
+.wc-blocks-components-select__select {
+  max-width: none;
+  border-radius: 4px;
+}
+
 textarea {
   min-height: 150px;
   resize: vertical;

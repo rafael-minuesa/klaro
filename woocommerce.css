@@ -838,29 +838,6 @@ table.wc-block-cart-items .wc-block-cart-items__row .wc-block-components-product
   font-size: 1rem;
 }
 
-/* Select dropdowns (Country/Region, State) */
-.wc-blocks-components-select__container {
-  position: relative;
-  overflow: hidden;
-}
-
-.wc-blocks-components-select__select {
-  width: 100% !important;
-  padding-right: 2.5em !important;
-  min-height: var(--touch-target-min);
-  font-size: 1rem !important;
-  appearance: none;
-  -webkit-appearance: none;
-}
-
-.wc-blocks-components-select__expand {
-  position: absolute;
-  right: 0.5em;
-  top: 50%;
-  transform: translateY(-50%);
-  pointer-events: none;
-}
-
 /* Checkbox labels (e.g. "Add a note to your order") */
 .wc-block-checkout .wc-block-components-checkbox label,
 .wc-block-components-checkbox label {
