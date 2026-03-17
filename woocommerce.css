@@ -346,10 +346,27 @@
 .woocommerce-info,
 .woocommerce-error {
   padding: var(--spacing-md);
+  padding-left: calc(var(--spacing-md) + 2.5em);
   margin-bottom: var(--spacing-lg);
   font-weight: 600;
   border-radius: 8px;
   list-style: none;
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--spacing-xs);
+}
+
+.woocommerce-message::before,
+.woocommerce-info::before,
+.woocommerce-error::before {
+  font-size: 2em;
+  position: absolute;
+  left: var(--spacing-md);
+  top: 50%;
+  transform: translateY(-50%);
+  line-height: 1;
 }
 
 .woocommerce-message {
