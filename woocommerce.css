@@ -821,6 +821,24 @@ table.wc-block-cart-items .wc-block-cart-items__row .wc-block-components-product
    WOOCOMMERCE BLOCKS - CHECKOUT
    ========================================================================== */
 
+/* Checkout fields - ensure logical field order */
+.wc-block-checkout__billing-fields .wc-block-components-address-form,
+.wc-block-checkout__shipping-fields .wc-block-components-address-form {
+  display: flex !important;
+  flex-wrap: wrap !important;
+}
+
+.wc-block-components-address-form > .wc-block-components-address-form__first_name { order: 1; }
+.wc-block-components-address-form > .wc-block-components-address-form__last_name { order: 2; }
+.wc-block-components-address-form > .wc-block-components-address-form__company { order: 3; }
+.wc-block-components-address-form > .wc-block-components-address-form__address_1 { order: 4; }
+.wc-block-components-address-form > .wc-block-components-address-form__address_2 { order: 5; }
+.wc-block-components-address-form > .wc-block-components-country-input { order: 6; }
+.wc-block-components-address-form > .wc-block-components-address-form__city { order: 7; }
+.wc-block-components-address-form > .wc-block-components-state-input { order: 8; }
+.wc-block-components-address-form > .wc-block-components-address-form__postcode { order: 9; }
+.wc-block-components-address-form > .wc-block-components-address-form__phone { order: 10; }
+
 /* Checkout fields - all fields full width for accessibility */
 .wc-block-checkout__billing-fields .wc-block-components-address-form .wc-block-components-text-input,
 .wc-block-checkout__billing-fields .wc-block-components-address-form .wc-block-components-select-input,
