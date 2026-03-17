@@ -38,9 +38,14 @@
 				if ( $klaro_footer_credit ) {
 					echo wp_kses_post( $klaro_footer_credit );
 				} else {
+					$klaro_allowed_html = array(
+						'a' => array(
+							'href' => array(),
+						),
+					);
 					printf(
-						/* translators: 1: Theme name, 2: WordPress */
-						esc_html__( 'Powered by %1$s and %2$s', 'klaro' ),
+						/* translators: 1: Theme name with link, 2: WordPress with link */
+						wp_kses( __( 'Powered by %1$s and %2$s', 'klaro' ), $klaro_allowed_html ),
 						'<a href="' . esc_url( __( 'https://github.com/rafael-minuesa/klaro', 'klaro' ) ) . '">Klaro</a>',
 						'<a href="' . esc_url( __( 'https://wordpress.org/', 'klaro' ) ) . '">WordPress</a>'
 					);

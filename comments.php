@@ -19,16 +19,19 @@ if ( post_password_required() ) {
 		<h2 id="comments-title" class="comments-title">
 			<?php
 			$klaro_comment_count = get_comments_number();
+			$klaro_allowed_html  = array(
+				'span' => array(),
+			);
 			if ( '1' === $klaro_comment_count ) {
 				printf(
-					/* translators: %s: Post title */
-					esc_html__( 'One comment on &ldquo;%s&rdquo;', 'klaro' ),
+					/* translators: %s: Post title wrapped in span */
+					wp_kses( __( 'One comment on &ldquo;%s&rdquo;', 'klaro' ), $klaro_allowed_html ),
 					'<span>' . wp_kses_post( get_the_title() ) . '</span>'
 				);
 			} else {
 				printf(
-					/* translators: 1: Number of comments, 2: Post title */
-					esc_html( _n( '%1$s comment on &ldquo;%2$s&rdquo;', '%1$s comments on &ldquo;%2$s&rdquo;', $klaro_comment_count, 'klaro' ) ),
+					/* translators: 1: Number of comments, 2: Post title wrapped in span */
+					wp_kses( _n( '%1$s comment on &ldquo;%2$s&rdquo;', '%1$s comments on &ldquo;%2$s&rdquo;', $klaro_comment_count, 'klaro' ), $klaro_allowed_html ),
 					esc_html( number_format_i18n( $klaro_comment_count ) ),
 					'<span>' . wp_kses_post( get_the_title() ) . '</span>'
 				);

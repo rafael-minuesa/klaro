@@ -7,6 +7,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.1.3] - 2026-03-17
+
+### Fixed
+- Prefixed all JS function names with `klaro` (e.g., `init()` → `klaroInit()`, `applySavedSettings()` → `klaroApplySavedSettings()`)
+- Prefixed all accessibility toolbar CSS classes with `klaro-` (e.g., `accessibility-button` → `klaro-accessibility-button`)
+- Fixed monochrome toggle button not working due to double-prefixed ID (`klaro-toggle-klaro-monochrome` → `klaro-toggle-monochrome`)
+- Fixed invalid JS variable name `klaro-monochromeBtn` (hyphen not allowed in identifiers)
+- Added missing CSS variables (`--color-primary`, `--color-text-secondary`, `--color-bg-secondary`) to `:root` and contrast modes
+- Fixed `esc_html__()` escaping HTML in `printf()` calls in footer.php and comments.php (now uses `wp_kses()`)
+- Removed duplicate `border-radius` declarations in accessibility control styles
+
 ## [2.1.2] - 2026-03-05
 
 ### Fixed
