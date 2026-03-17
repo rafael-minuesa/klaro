@@ -821,9 +821,24 @@ table.wc-block-cart-items .wc-block-cart-items__row .wc-block-components-product
    WOOCOMMERCE BLOCKS - CHECKOUT
    ========================================================================== */
 
+/* Checkout fields - full width single fields */
+.wc-block-checkout .wc-block-components-address-form__address_1,
+.wc-block-checkout .wc-block-components-address-form__address_2,
+.wc-block-checkout .wc-block-components-address-form__company,
+.wc-block-checkout .wc-block-components-address-form__email,
+.wc-block-checkout .wc-block-components-address-form__phone {
+  flex-basis: 100% !important;
+}
+
 .wc-block-checkout .wc-block-components-text-input label,
 .wc-block-checkout .wc-block-components-combobox label {
   font-size: 1rem;
+}
+
+/* Checkbox labels (e.g. "Add a note to your order") */
+.wc-block-checkout .wc-block-components-checkbox label {
+  font-size: 1rem !important;
+  line-height: var(--line-height-base) !important;
 }
 
 .wc-block-checkout .wc-block-components-text-input input,
