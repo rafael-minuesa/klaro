@@ -733,10 +733,12 @@ select {
   min-height: var(--touch-target-min);
 }
 
-/* Let WooCommerce Blocks handle their own select styling */
-.wc-blocks-components-select__select {
+/* Let WooCommerce Blocks handle their own form styling */
+.wc-blocks-components-select__select,
+.wc-block-components-text-input input,
+.wc-block-components-text-input textarea,
+.wc-block-components-combobox input {
   max-width: none;
-  border-radius: 4px;
 }
 
 textarea {
