@@ -7,6 +7,22 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.1.5] - 2026-03-17
+
+### Fixed
+- Fixed WooCommerce product tabs showing duplicate content (was overwriting panel IDs and forcing all panels visible)
+- Fixed product attributes table cell padding with correct selector specificity
+- Fixed WooCommerce notice icon too small and overlapping text
+- Fixed cart page: table not using full width, product name and cart totals heading too small (14px fallback)
+- Fixed checkout form fields constrained to 600px by theme's generic select/input `max-width`
+- Fixed checkout select dropdown SVG arrow appearing outside the field
+- Fixed checkout field order so name fields always appear before country regardless of locale
+- Fixed checkout country field missing top spacing when first-child in DOM
+- Fixed all WooCommerce Blocks form elements inheriting theme's `max-width: 600px`
+
+### Added
+- Checkout checkbox labels and order notes textarea properly sized for accessibility
+
 ## [2.1.4] - 2026-03-17
 
 ### Fixed
