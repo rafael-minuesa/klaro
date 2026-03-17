@@ -833,7 +833,12 @@ table.wc-block-cart-items .wc-block-cart-items__row .wc-block-components-product
 .wc-block-components-address-form > .wc-block-components-address-form__company { order: 3; }
 .wc-block-components-address-form > .wc-block-components-address-form__address_1 { order: 4; }
 .wc-block-components-address-form > .wc-block-components-address-form__address_2 { order: 5; }
-.wc-block-components-address-form > .wc-block-components-country-input { order: 6; margin-top: 12px; }
+.wc-block-components-address-form > .wc-block-components-country-input { order: 6; }
+
+.wc-block-checkout__billing-fields .wc-block-components-address-form .wc-block-components-country-input:first-child,
+.wc-block-checkout__shipping-fields .wc-block-components-address-form .wc-block-components-country-input:first-child {
+  margin-top: 12px !important;
+}
 .wc-block-components-address-form > .wc-block-components-address-form__city { order: 7; }
 .wc-block-components-address-form > .wc-block-components-state-input { order: 8; }
 .wc-block-components-address-form > .wc-block-components-address-form__postcode { order: 9; }
