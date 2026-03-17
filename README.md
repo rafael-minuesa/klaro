@@ -9,7 +9,7 @@
 ![WooCommerce](https://img.shields.io/badge/WooCommerce-Accessible-purple.svg)
 
 ---
-![Klaro WordPress Theme screenshot](banners/banner-1544x500.png)
+![Klaro WordPress Theme screenshot](.wordpress-org/banner-1544x500.png)
 
 ## 🌟 Overview
 
