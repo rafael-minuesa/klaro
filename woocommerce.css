@@ -821,13 +821,16 @@ table.wc-block-cart-items .wc-block-cart-items__row .wc-block-components-product
    WOOCOMMERCE BLOCKS - CHECKOUT
    ========================================================================== */
 
-/* Checkout fields - full width single fields */
-.wc-block-checkout .wc-block-components-address-form__address_1,
-.wc-block-checkout .wc-block-components-address-form__address_2,
-.wc-block-checkout .wc-block-components-address-form__company,
-.wc-block-checkout .wc-block-components-address-form__email,
-.wc-block-checkout .wc-block-components-address-form__phone {
-  flex-basis: 100% !important;
+/* Checkout fields - all fields full width for accessibility */
+.wc-block-checkout__billing-fields .wc-block-components-address-form .wc-block-components-text-input,
+.wc-block-checkout__billing-fields .wc-block-components-address-form .wc-block-components-select-input,
+.wc-block-checkout__billing-fields .wc-block-components-address-form .wc-block-components-state-input,
+.wc-block-checkout__billing-fields .wc-block-components-address-form .wc-block-components-country-input,
+.wc-block-checkout__shipping-fields .wc-block-components-address-form .wc-block-components-text-input,
+.wc-block-checkout__shipping-fields .wc-block-components-address-form .wc-block-components-select-input,
+.wc-block-checkout__shipping-fields .wc-block-components-address-form .wc-block-components-state-input,
+.wc-block-checkout__shipping-fields .wc-block-components-address-form .wc-block-components-country-input {
+  flex: 0 0 100% !important;
 }
 
 .wc-block-checkout .wc-block-components-text-input label,
@@ -836,9 +839,16 @@ table.wc-block-cart-items .wc-block-cart-items__row .wc-block-components-product
 }
 
 /* Checkbox labels (e.g. "Add a note to your order") */
-.wc-block-checkout .wc-block-components-checkbox label {
+.wc-block-checkout .wc-block-components-checkbox label,
+.wc-block-components-checkbox label {
   font-size: 1rem !important;
   line-height: var(--line-height-base) !important;
+}
+
+/* Order notes textarea */
+.wc-block-checkout .wc-block-components-textarea {
+  font-size: 1rem !important;
+  min-height: 100px;
 }
 
 .wc-block-checkout .wc-block-components-text-input input,
