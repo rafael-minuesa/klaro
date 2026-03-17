@@ -68,11 +68,9 @@ do_action( 'woocommerce_before_cart' );
 							$thumbnail = apply_filters( 'woocommerce_cart_item_thumbnail', $_product->get_image(), $cart_item, $cart_item_key );
 
 							if ( ! $product_permalink ) {
-								// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- WooCommerce filter handles escaping.
-								echo $thumbnail;
+								echo wp_kses_post( $thumbnail );
 							} else {
-								// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- WooCommerce filter handles escaping.
-								printf( '<a href="%s" aria-hidden="true" tabindex="-1">%s</a>', esc_url( $product_permalink ), $thumbnail );
+								printf( '<a href="%s" aria-hidden="true" tabindex="-1">%s</a>', esc_url( $product_permalink ), wp_kses_post( $thumbnail ) );
 							}
 							?>
 						</td>

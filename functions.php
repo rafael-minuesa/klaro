@@ -1074,7 +1074,7 @@ if ( ! function_exists( 'klaro_comment_callback' ) ) {
 					<div class="comment-author vcard">
 						<?php
 						if ( 0 !== $args['avatar_size'] ) {
-							echo get_avatar( $comment, $args['avatar_size'], '', get_comment_author(), array( 'role' => 'img' ) );
+							echo wp_kses_post( get_avatar( $comment, $args['avatar_size'], '', get_comment_author(), array( 'role' => 'img' ) ) );
 						}
 						?>
 						<span class="fn" itemprop="author" itemscope itemtype="https://schema.org/Person">
