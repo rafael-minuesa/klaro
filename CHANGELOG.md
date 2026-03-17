@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [2.1.3] - 2026-03-17
+## [2.1.4] - 2026-03-17
 
 ### Fixed
 - Prefixed all JS function names with `klaro` (e.g., `init()` → `klaroInit()`, `applySavedSettings()` → `klaroApplySavedSettings()`)
@@ -17,6 +17,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Added missing CSS variables (`--color-primary`, `--color-text-secondary`, `--color-bg-secondary`) to `:root` and contrast modes
 - Fixed `esc_html__()` escaping HTML in `printf()` calls in footer.php and comments.php (now uses `wp_kses()`)
 - Removed duplicate `border-radius` declarations in accessibility control styles
+- Escaped filterable HTML output in WooCommerce cart thumbnail and comment avatar with `wp_kses_post()`
+- Reordered skip links so "Skip to main content" is first focusable element per WordPress.org requirements
+- Darkened `--color-text-secondary` from `#555555` (4.6:1) to `#333333` (12.6:1) for WCAG AAA compliance
+
+### Added
+- Accessibility section in readme.txt for `accessibility-ready` tag
 
 ## [2.1.2] - 2026-03-05
 
