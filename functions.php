@@ -48,6 +48,7 @@ function klaro_setup() {
 			'caption',
 			'style',
 			'script',
+			'navigation-widgets',
 		)
 	);
 

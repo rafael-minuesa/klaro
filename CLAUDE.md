@@ -93,6 +93,6 @@ When releasing a new version:
 
 ## Current Version
 
-**v2.1.6** - Fix navigation ARIA accessibility for WordPress.org submission (Mar 2026)
+**v2.1.7** - Add missing navigation-widgets HTML5 theme support (Mar 2026)
 - Prefixed all JS function names and accessibility toolbar CSS classes with `klaro`/`klaro-`
 - Fixed broken monochrome toggle, missing CSS variables, HTML escaping in printf calls
