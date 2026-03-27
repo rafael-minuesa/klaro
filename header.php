@@ -124,7 +124,7 @@
 						'menu_id'        => 'primary-menu',
 						'menu_class'     => 'primary-menu',
 						'container'      => false,
-						'items_wrap'     => '<ul id="%1$s" class="%2$s" role="menubar">%3$s</ul>',
+						'items_wrap'     => '<ul id="%1$s" class="%2$s">%3$s</ul>',
 					)
 				);
 			} else {

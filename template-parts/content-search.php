@@ -7,7 +7,7 @@
  */
 ?>
 
-<article id="post-<?php the_ID(); ?>" <?php post_class(); ?> role="article" aria-labelledby="post-title-<?php the_ID(); ?>">
+<article id="post-<?php the_ID(); ?>" <?php post_class(); ?> aria-labelledby="post-title-<?php the_ID(); ?>">
 
 	<header class="entry-header">
 		<?php the_title( sprintf( '<h2 id="post-title-%s" class="entry-title"><a href="%s" rel="bookmark">', get_the_ID(), esc_url( get_permalink() ) ), '</a></h2>' ); ?>

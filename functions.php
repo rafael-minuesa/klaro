@@ -247,6 +247,9 @@ function klaro_scripts() {
 	// Accessibility enhancements script
 	wp_enqueue_script( 'klaro-accessibility', get_template_directory_uri() . '/js/accessibility.js', array(), '1.0.0', true );
 
+	// Navigation accessibility (submenu keyboard support, aria-expanded)
+	wp_enqueue_script( 'klaro-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '1.0.0', true );
+
 	// Skip link focus fix for IE11
 	wp_enqueue_script( 'klaro-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), '1.0.0', true );
 
@@ -311,15 +314,6 @@ function klaro_excerpt_more( $more ) {
 	return ' &hellip; ' . $link;
 }
 add_filter( 'excerpt_more', 'klaro_excerpt_more' );
-
-/**
- * Add ARIA labels to navigation
- */
-function klaro_nav_menu_args( $args ) {
-	$args['container_aria_label'] = $args['theme_location'];
-	return $args;
-}
-add_filter( 'wp_nav_menu_args', 'klaro_nav_menu_args' );
 
 /**
  * Add accessibility toolbar to admin bar

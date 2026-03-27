@@ -7,6 +7,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.1.6] - 2026-03-27
+
+### Fixed
+- Removed incorrect `role="menubar"` from primary navigation menu that caused ARIA parent-child violations (WordPress.org accessibility review)
+- Removed redundant `role="article"` from `<article>` elements in search results template
+- Removed dead `klaro_nav_menu_args` filter that set non-existent `container_aria_label` parameter
+
+### Added
+- Navigation accessibility script (`navigation.js`) with `aria-expanded` support for submenus, Escape key to close, and click-outside handling
+
 ## [2.1.5] - 2026-03-17
 
 ### Fixed
