@@ -192,8 +192,8 @@ function klaro_register_block_patterns() {
 
 <!-- wp:buttons {"layout":{"type":"flex","justifyContent":"center"}} -->
 <div class="wp-block-buttons">
-<!-- wp:button {"fontSize":"medium"} -->
-<div class="wp-block-button has-custom-font-size has-medium-font-size"><a class="wp-block-button__link wp-element-button">' . esc_html__( 'Learn More', 'klaro' ) . '</a></div>
+<!-- wp:button {"backgroundColor":"base","textColor":"contrast","fontSize":"medium"} -->
+<div class="wp-block-button has-custom-font-size has-medium-font-size"><a class="wp-block-button__link has-contrast-color has-base-background-color has-text-color has-background wp-element-button">' . esc_html__( 'Learn More', 'klaro' ) . '</a></div>
 <!-- /wp:button -->
 </div>
 <!-- /wp:buttons -->

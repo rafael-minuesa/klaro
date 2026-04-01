@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.1.8] - 2026-04-01
+
+### Fixed
+- Fix CTA block pattern button contrast — set explicit light background and dark text for visibility on dark section
+
 ## [2.1.7] - 2026-03-27
 
 ### Fixed

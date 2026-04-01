@@ -62,6 +62,23 @@ All WooCommerce conditional functions (`is_product()`, `is_shop()`, `is_cart()`,
 ### WooCommerce Hooks
 All WooCommerce hook replacements (wrappers, sidebar, breadcrumbs) are registered on `init`, not `woocommerce_loaded`, because `woocommerce_loaded` fires during `plugins_loaded` before the theme loads.
 
+### Accessibility-Ready Requirements
+The theme declares `accessibility-ready` and must comply with all WordPress.org requirements:
+- **No `role="menubar"`** on navigation menus — use native `<nav>` + `<ul>` + `<li>` semantics
+- **`navigation-widgets`** must be in the `html5` theme support array
+- All ARIA roles must follow proper parent-child relationships
+- No redundant ARIA roles on semantic elements (e.g., no `role="article"` on `<article>`)
+- All interactive elements must be `<button>`, `<input>`, or `<a>` — never clickable `<div>`/`<span>`
+- Content links must be underlined (only accepted method)
+- "Read more" links must include post title via screen-reader-text
+- Full requirements: https://make.wordpress.org/themes/handbook/review/accessibility/required/
+
+### Navigation Menu ARIA
+- Navigation uses native HTML semantics only — no ARIA menu roles
+- `js/navigation.js` adds `aria-expanded` for submenus via JavaScript
+- CSS handles submenu display via `:hover`, `:focus-within`, and `a[aria-expanded="true"]`
+- No custom Walker_Nav_Menu — uses WordPress default walker
+
 ## Local Development
 
 - WordPress installation: `/srv/http/wordpress/`
@@ -90,9 +107,8 @@ When releasing a new version:
 2. Update `Stable tag:` in `readme.txt`
 3. Add entry to `CHANGELOG.md`
 4. Update version badge in `README.md`
+5. Update `Current Version` in `CLAUDE.md`
 
 ## Current Version
 
-**v2.1.7** - Add missing navigation-widgets HTML5 theme support (Mar 2026)
-- Prefixed all JS function names and accessibility toolbar CSS classes with `klaro`/`klaro-`
-- Fixed broken monochrome toggle, missing CSS variables, HTML escaping in printf calls
+**v2.1.8** - Fix CTA block pattern button contrast (Apr 2026)
