@@ -4,7 +4,7 @@ Theme URI: https://github.com/rafael-minuesa/klaro
 Author: Rafael Minuesa
 Author URI: https://github.com/rafael-minuesa
 Description: An uncompromisingly accessible WordPress theme designed for everyone. Klaro (Spanish/Portuguese for "clear/bright") features WCAG AAA compliance, enabling users with disabilities to browse content, shop with WooCommerce, and manage their stores from the backend. Includes adjustable text sizes, high contrast modes, keyboard navigation, and screen reader optimization.
-Version: 2.1.8
+Version: 2.1.9
 Requires at least: 6.0
 Tested up to: 6.9
 Requires PHP: 7.4
@@ -811,7 +811,7 @@ pre {
   max-width: 100%;
   overflow-x: auto;
   padding: var(--spacing-md);
-  background: #F5F5F5;
+  background: var(--color-bg-secondary, #F5F5F5);
   border: 1px solid var(--color-border);
   border-radius: 8px;
   font-size: 0.9rem;
@@ -821,7 +821,7 @@ pre {
 code {
   font-size: 0.9em;
   padding: 0.15em 0.3em;
-  background: #F5F5F5;
+  background: var(--color-bg-secondary, #F5F5F5);
   border-radius: 4px;
 }
 
@@ -849,7 +849,7 @@ figcaption {
   margin-top: var(--spacing-sm);
   font-style: italic;
   padding: var(--spacing-sm);
-  background: #F5F5F5;
+  background: var(--color-bg-secondary, #F5F5F5);
   border-left: 4px solid var(--color-border);
 }
 
@@ -896,7 +896,7 @@ th {
 }
 
 tbody tr:nth-child(even) {
-  background: #F5F5F5;
+  background: var(--color-bg-secondary, #F5F5F5);
 }
 
 /* ==========================================================================
@@ -920,7 +920,7 @@ li {
 .breadcrumbs {
   margin-bottom: var(--spacing-lg);
   padding: var(--spacing-sm);
-  background: #F5F5F5;
+  background: var(--color-bg-secondary, #F5F5F5);
   border: 1px solid var(--color-border);
   border-radius: 8px;
 }
@@ -984,7 +984,7 @@ li {
   color: var(--color-text);
   margin-bottom: var(--spacing-md);
   padding: var(--spacing-sm);
-  background: #F5F5F5;
+  background: var(--color-bg-secondary, #F5F5F5);
   border-left: 4px solid var(--color-border);
 }
 
@@ -1025,7 +1025,7 @@ li {
   padding: var(--spacing-md);
   border: 1px solid var(--color-border);
   border-radius: 8px;
-  background: #F5F5F5;
+  background: var(--color-bg-secondary, #F5F5F5);
 }
 
 .comment-author {
@@ -1056,7 +1056,7 @@ li {
   padding: var(--spacing-md);
   border: 1px solid var(--color-border);
   border-radius: 8px;
-  background: #F5F5F5;
+  background: var(--color-bg-secondary, #F5F5F5);
 }
 
 .widget-title {

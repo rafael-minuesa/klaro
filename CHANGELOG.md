@@ -7,10 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [2.1.8] - 2026-04-01
+## [2.1.9] - 2026-04-01
+
+### Added
+- Add minimal theme.json with color palette so block editor color slugs resolve correctly
 
 ### Fixed
-- Fix CTA block pattern button contrast — set explicit light background and dark text for visibility on dark section
+- Fix CTA block pattern rendering on WordPress.org preview (colors now defined via theme.json)
+- Fix high contrast mode for entry-meta, pre, code, figcaption, table rows, breadcrumbs, comments, and widgets — replace hardcoded #F5F5F5 backgrounds with CSS variable
 
 ## [2.1.7] - 2026-03-27
 
