@@ -239,20 +239,22 @@ add_action( 'widgets_init', 'klaro_widgets_init' );
  * Enqueue Scripts and Styles
  */
 function klaro_scripts() {
+	$theme_version = wp_get_theme()->get( 'Version' );
+
 	// Dashicons for accessibility icon
 	wp_enqueue_style( 'dashicons' );
 
 	// Main stylesheet
-	wp_enqueue_style( 'klaro-style', get_stylesheet_uri(), array(), '1.0.0' );
+	wp_enqueue_style( 'klaro-style', get_stylesheet_uri(), array(), $theme_version );
 
 	// Accessibility enhancements script
-	wp_enqueue_script( 'klaro-accessibility', get_template_directory_uri() . '/js/accessibility.js', array(), '1.0.0', true );
+	wp_enqueue_script( 'klaro-accessibility', get_template_directory_uri() . '/js/accessibility.js', array(), $theme_version, true );
 
 	// Navigation accessibility (submenu keyboard support, aria-expanded)
-	wp_enqueue_script( 'klaro-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '1.0.0', true );
+	wp_enqueue_script( 'klaro-navigation', get_template_directory_uri() . '/js/navigation.js', array(), $theme_version, true );
 
 	// Skip link focus fix for IE11
-	wp_enqueue_script( 'klaro-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), '1.0.0', true );
+	wp_enqueue_script( 'klaro-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), $theme_version, true );
 
 	// Comments reply script
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
@@ -793,12 +795,14 @@ add_action( 'widgets_init', 'klaro_woocommerce_widgets_init' );
  */
 function klaro_woocommerce_scripts() {
 	if ( class_exists( 'WooCommerce' ) ) {
+		$theme_version = wp_get_theme()->get( 'Version' );
+
 		// WooCommerce accessibility styles
 		wp_enqueue_style(
 			'klaro-woocommerce',
 			get_template_directory_uri() . '/woocommerce.css',
 			array( 'klaro-style' ),
-			'1.0.0'
+			$theme_version
 		);
 
 		// WooCommerce accessibility scripts
@@ -806,7 +810,7 @@ function klaro_woocommerce_scripts() {
 			'klaro-woocommerce-accessibility',
 			get_template_directory_uri() . '/js/woocommerce-accessibility.js',
 			array( 'jquery' ),
-			'1.0.0',
+			$theme_version,
 			true
 		);
 

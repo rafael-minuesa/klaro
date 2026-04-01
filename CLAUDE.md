@@ -111,4 +111,4 @@ When releasing a new version:
 
 ## Current Version
 
-**v2.1.9** - Add theme.json color palette, fix high contrast backgrounds (Apr 2026)
+**v2.2.0** - Add theme.json, fix high contrast backgrounds, dynamic asset versioning (Apr 2026)

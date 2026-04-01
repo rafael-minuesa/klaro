@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [2.1.9] - 2026-04-01
+## [2.2.0] - 2026-04-01
 
 ### Added
 - Add minimal theme.json with color palette so block editor color slugs resolve correctly
@@ -15,6 +15,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 - Fix CTA block pattern rendering on WordPress.org preview (colors now defined via theme.json)
 - Fix high contrast mode for entry-meta, pre, code, figcaption, table rows, breadcrumbs, comments, and widgets — replace hardcoded #F5F5F5 backgrounds with CSS variable
+- Use dynamic theme version for enqueued styles and scripts to prevent browser caching across updates
 
 ## [2.1.7] - 2026-03-27
 
