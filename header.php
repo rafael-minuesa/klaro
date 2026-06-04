@@ -65,7 +65,7 @@
 			<!-- Accessibility Toolbar -->
 			<div class="klaro-accessibility-toolbar" role="region" aria-label="<?php esc_attr_e( 'Accessibility settings', 'klaro' ); ?>">
 				<details class="klaro-accessibility-menu">
-					<summary class="klaro-accessibility-toggle" aria-label="<?php esc_attr_e( 'Open accessibility options', 'klaro' ); ?>">
+					<summary class="klaro-accessibility-toggle" aria-expanded="false" aria-label="<?php esc_attr_e( 'Open accessibility options', 'klaro' ); ?>">
 						<span class="dashicons dashicons-universal-access-alt klaro-accessibility-icon" aria-hidden="true"></span>
 						<span class="klaro-accessibility-label"><?php esc_html_e( 'Accessibility', 'klaro' ); ?></span>
 					</summary>
@@ -115,7 +115,7 @@
 			</div><!-- .klaro-accessibility-toolbar -->
 		</div><!-- .header-top -->
 
-		<nav id="primary-navigation" class="main-navigation" aria-label="<?php esc_attr_e( 'Primary Navigation', 'klaro' ); ?>">
+		<nav id="primary-navigation" class="main-navigation" aria-label="<?php esc_attr_e( 'Primary', 'klaro' ); ?>">
 			<?php
 			if ( has_nav_menu( 'primary' ) ) {
 				wp_nav_menu(

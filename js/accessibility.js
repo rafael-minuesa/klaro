@@ -282,6 +282,47 @@
         });
     }
 
+    // Accessibility toolbar popup: close with Escape and on outside click
+    function klaroInitAccessibilityMenu() {
+        const details = document.querySelector('.klaro-accessibility-menu');
+        if (!details) return;
+
+        const summary = details.querySelector('summary');
+
+        // Keep aria-expanded on the toggle in sync so the open/closed state is
+        // announced dynamically by assistive technology.
+        function klaroSyncExpanded() {
+            if (summary) {
+                summary.setAttribute('aria-expanded', details.open ? 'true' : 'false');
+            }
+        }
+        klaroSyncExpanded();
+        details.addEventListener('toggle', klaroSyncExpanded);
+
+        function klaroCloseMenu(restoreFocus) {
+            if (!details.open) return;
+            details.open = false;
+            if (restoreFocus && summary) {
+                summary.focus();
+            }
+        }
+
+        // Escape closes the popup and returns focus to the toggle.
+        details.addEventListener('keydown', (e) => {
+            if ((e.key === 'Escape' || e.key === 'Esc') && details.open) {
+                klaroCloseMenu(true);
+                e.preventDefault();
+            }
+        });
+
+        // Clicking outside the popup closes it.
+        document.addEventListener('click', (e) => {
+            if (details.open && !details.contains(e.target)) {
+                klaroCloseMenu(false);
+            }
+        });
+    }
+
     // Add proper focus management for modals/dialogs
     function klaroTrapFocus(element) {
         const focusableElements = element.querySelectorAll(
@@ -386,6 +427,7 @@
         klaroInitFocusManagement();
         klaroInitExternalLinks();
         klaroInitLiveRegions();
+        klaroInitAccessibilityMenu();
 
         // Validate images in development
         if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {

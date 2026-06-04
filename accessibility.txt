@@ -1,0 +1,55 @@
+=== Accessibility Statement ===
+Klaro is built accessibility-first. Accessibility is treated as a core requirement
+throughout development, not an afterthought: every template, control, and color
+choice is checked against the WordPress.org accessibility-ready requirements and
+the Web Content Accessibility Guidelines (WCAG) before release.
+
+== Quick Information ==
+Accessibility audit completed: Yes
+Most recent audit date: 2026-06-04
+Tested to standard and conformance level: WCAG 2.2 AA (supports)
+Audited by: Rafael Minuesa (theme author), against the [WordPress.org accessibility-ready requirements](https://make.wordpress.org/themes/handbook/review/accessibility/required/)
+
+== Testing Tools and Methodology ==
+
+Accessibility is verified manually and with tooling on each release:
+
+- Keyboard-only testing of all interactive controls, including forward (Tab) and
+  backward (Shift + Tab) order, submenu disclosure buttons, and Escape-to-close.
+- Screen reader testing for landmark names, control roles, and state changes
+  (aria-expanded, aria-pressed, live regions).
+- Color contrast checks of text, UI controls, and focus indicators against the
+  WCAG 2.2 thresholds (4.5:1 text, 3:1 large text and non-text/UI).
+- Verification of rendered HTML output rather than source only.
+- Browser developer tools and automated checkers (e.g. axe) used as a first pass.
+
+Accessibility regressions are treated as release blockers. Each update is
+re-checked against the requirements above before it ships.
+
+== Screen Reader Text Class ==
+
+screen-reader-text
+
+== Accessibility Features ==
+
+- Skip links to main content, navigation, sidebar, and footer.
+- Native HTML landmarks with concise, non-redundant accessible names.
+- Keyboard-operable navigation submenus using real button toggles with correct
+  aria-expanded state; Escape closes an open submenu and restores focus.
+- A built-in accessibility toolbar offering: adjustable text size, high-contrast
+  mode, monochrome mode, and reduced motion. Preferences persist across pages and
+  the toolbar popup closes with the Escape key.
+- Respect for the operating system prefers-reduced-motion setting.
+- Highly visible focus indicators that meet non-text contrast requirements in all
+  display modes.
+- Underlined in-content links and descriptive link text.
+
+== Accessibility Help Contact ==
+
+For accessibility questions or help, open an issue at:
+https://github.com/rafael-minuesa/klaro/issues
+
+== Where to Report Issues ==
+
+To report an accessibility issue with the theme, open an issue at:
+https://github.com/rafael-minuesa/klaro/issues

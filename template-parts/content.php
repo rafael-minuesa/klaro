@@ -100,7 +100,7 @@
 
 			wp_link_pages(
 				array(
-					'before' => '<nav class="page-links" aria-label="' . esc_attr__( 'Page navigation', 'klaro' ) . '"><span class="page-links-title">' . esc_html__( 'Pages:', 'klaro' ) . '</span>',
+					'before' => '<nav class="page-links" aria-label="' . esc_attr__( 'Pages', 'klaro' ) . '"><span class="page-links-title">' . esc_html__( 'Pages:', 'klaro' ) . '</span>',
 					'after'  => '</nav>',
 				)
 			);

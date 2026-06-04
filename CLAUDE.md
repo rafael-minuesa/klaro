@@ -73,11 +73,18 @@ The theme declares `accessibility-ready` and must comply with all WordPress.org 
 - "Read more" links must include post title via screen-reader-text
 - Full requirements: https://make.wordpress.org/themes/handbook/review/accessibility/required/
 
-### Navigation Menu ARIA
-- Navigation uses native HTML semantics only — no ARIA menu roles
-- `js/navigation.js` adds `aria-expanded` for submenus via JavaScript
-- CSS handles submenu display via `:hover`, `:focus-within`, and `a[aria-expanded="true"]`
-- No custom Walker_Nav_Menu — uses WordPress default walker
+#### 2026 requirements (added in v2.3.0, Trac #264262 — see memory `reference_accessibility_2026.md`)
+- **Landmark accessible names must NOT contain the landmark type word** ("Primary", not "Primary Navigation")
+- **Focus outlines / UI controls need 3:1 contrast.** The focus/accent color is `#C2410C` (5.18:1 on white) via `--color-focus` — do NOT revert to the old `#FF6B00` (2.86:1, fails)
+- **`accessibility.txt`** in the theme root is REQUIRED (also gates the "Screen Reader Text Supported" check). Keep it current
+- **Core + remote block patterns are disabled ON PURPOSE** in `klaro_setup()` (`remove_theme_support('core-block-patterns')` + `should_load_remote_block_patterns` filter) because they fail contrast and the theme can't fix them. Do NOT re-enable
+
+### Navigation Menu ARIA (v2.3.0+)
+- Native HTML semantics only — no ARIA menu roles, no custom Walker
+- `js/navigation.js` injects a real `<button class="submenu-toggle" aria-expanded>` per submenu (button disclosure). The parent `<a>` stays a plain link
+- Open state is the persistent `.submenu-open` class on the `<li>` (so submenus are Shift+Tab reachable); Esc closes + restores focus to the toggle
+- CSS shows submenus via `li:hover` (mouse) and `li.submenu-open` (keyboard) — NOT `:focus-within`/`a[aria-expanded]` anymore
+- Accessibility toolbar `<details>`: `js/accessibility.js` adds Esc-close and syncs `aria-expanded` on the `<summary>`
 
 ## Local Development
 
@@ -111,4 +118,4 @@ When releasing a new version:
 
 ## Current Version
 
-**v2.2.0** - Add theme.json, fix high contrast backgrounds, dynamic asset versioning (Apr 2026)
+**v2.3.1** - Tested up to WordPress 7.0. (v2.3.0: accessibility-ready 2026 requirements: landmark labels, #C2410C focus/skip contrast, button-controlled submenus (Esc + Shift+Tab), accessibility.txt, dynamic toolbar state, disabled failing core/remote block patterns) (Jun 2026)

@@ -7,6 +7,30 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.3.1] - 2026-06-04
+
+### Changed
+- Update "Tested up to" to WordPress 7.0
+
+## [2.3.0] - 2026-06-04
+
+Updated to meet the 2026 WordPress.org accessibility-ready requirements (Trac #264262).
+
+### Added
+- Add `accessibility.txt` accessibility statement in the theme root, following the WordPress accessibility.txt standard
+
+### Changed
+- Remove the word "navigation" from navigation landmark accessible names (Primary, Footer, Shop, Pages) so labels do not repeat the landmark type
+- Rebuild navigation submenus as a button-controlled disclosure: each submenu now has a real `<button>` toggle with a correct `aria-expanded` state, submenu items are reachable both forwards and backwards (Shift + Tab), and Escape closes the submenu and restores focus to its toggle
+- Accessibility toolbar popup now closes with the Escape key and exposes its open/closed state dynamically via `aria-expanded`
+- Disable WordPress core and remote (pattern directory) block patterns, which are not part of the theme and fail color contrast requirements; the theme keeps its own accessible patterns
+- Canonicalize the `.screen-reader-text` class to the standard clip-path technique
+
+### Fixed
+- Darken the focus indicator and accent color from #FF6B00 to #C2410C so focus outlines meet the 3:1 non-text contrast requirement against white (was 2.86:1, now 5.18:1)
+- Skip link white text now passes contrast on its background, and explicit link/visited/hover/focus colors prevent the generic visited-link color from overriding it
+- Darken the theme.json `accent` palette color to #C2410C
+
 ## [2.2.0] - 2026-04-01
 
 ### Added

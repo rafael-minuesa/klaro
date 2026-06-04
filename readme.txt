@@ -5,9 +5,9 @@ Author: Rafael Minuesa
 Author URI: https://github.com/rafael-minuesa
 Tags: accessibility-ready, one-column, two-columns, custom-colors, custom-menu, featured-images, threaded-comments, translation-ready, block-styles, wide-blocks, e-commerce
 Requires at least: 6.0
-Tested up to: 6.9
+Tested up to: 7.0
 Requires PHP: 7.4
-Stable tag: 2.2.0
+Stable tag: 2.3.1
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -120,6 +120,20 @@ Klaro meets WCAG 2.2 AA standards and includes features that often exceed AA req
 * Tested with NVDA, JAWS, VoiceOver, ORCA
 
 == Changelog ==
+
+= 2.3.1 =
+* Tested up to WordPress 7.0
+
+= 2.3.0 =
+* Updated to meet the 2026 WordPress.org accessibility-ready requirements
+* Removed the word "navigation" from navigation landmark labels (Primary, Footer, Shop, Pages)
+* Darkened the focus indicator and accent color to #C2410C so focus outlines and the skip link meet color contrast requirements
+* Added explicit skip link colors so visited/hover states keep sufficient contrast
+* Rebuilt navigation submenus as button-controlled disclosures with correct aria-expanded state; submenu items are now reachable with Shift + Tab and close with the Escape key
+* Accessibility toolbar popup now closes with the Escape key and announces its open/closed state dynamically
+* Added accessibility.txt accessibility statement following the WordPress standard
+* Canonicalized the screen reader text class
+* Disabled WordPress core and remote block patterns that fail color contrast requirements
 
 = 2.1.0 =
 * Escaped output in searchform.php, search.php, header.php, and content templates for security

@@ -135,6 +135,13 @@ function klaro_setup() {
 			),
 		)
 	);
+
+	// Block patterns: remove WordPress core and remote (pattern directory)
+	// patterns. They are not part of the theme and several fail the
+	// accessibility-ready color contrast requirements, which the theme cannot
+	// fix. Klaro registers its own accessible patterns instead.
+	remove_theme_support( 'core-block-patterns' );
+	add_filter( 'should_load_remote_block_patterns', '__return_false' );
 }
 add_action( 'after_setup_theme', 'klaro_setup' );
 
@@ -252,6 +259,16 @@ function klaro_scripts() {
 
 	// Navigation accessibility (submenu keyboard support, aria-expanded)
 	wp_enqueue_script( 'klaro-navigation', get_template_directory_uri() . '/js/navigation.js', array(), $theme_version, true );
+
+	// Translatable labels for the submenu toggle buttons.
+	wp_localize_script(
+		'klaro-navigation',
+		'klaroNavText',
+		array(
+			'expand'   => esc_html__( 'Show submenu', 'klaro' ),
+			'collapse' => esc_html__( 'Hide submenu', 'klaro' ),
+		)
+	);
 
 	// Skip link focus fix for IE11
 	wp_enqueue_script( 'klaro-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), $theme_version, true );
@@ -1019,7 +1036,7 @@ function klaro_woocommerce_skip_links() {
 	}
 
 	if ( ! empty( $additional_links ) ) {
-		echo '<nav class="skip-links woocommerce-skip-links" aria-label="' . esc_attr__( 'Shop navigation', 'klaro' ) . '">';
+		echo '<nav class="skip-links woocommerce-skip-links" aria-label="' . esc_attr__( 'Shop', 'klaro' ) . '">';
 		echo '<ul>' . wp_kses_post( implode( '', $additional_links ) ) . '</ul>';
 		echo '</nav>';
 	}
