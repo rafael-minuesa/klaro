@@ -353,29 +353,32 @@
         });
     }
 
-    // Ensure external links in content have proper attributes and warnings
+    // Annotate author-set new-window links with a visual indicator and a
+    // screen reader warning. The theme never forces target="_blank" itself,
+    // opening new windows without a user request fails WCAG 3.2.5.
     function klaroInitExternalLinks() {
         const contentArea = document.getElementById('main-content');
         if (!contentArea) return;
 
-        const links = contentArea.querySelectorAll('a[href^="http"]');
-        const currentDomain = window.location.hostname;
+        const links = contentArea.querySelectorAll('a[target="_blank"]');
+        const newWindowText = (typeof klaroSettings !== 'undefined' && klaroSettings.newWindow) ?
+            klaroSettings.newWindow : '(opens in new window)';
 
         links.forEach(link => {
-            const linkDomain = new URL(link.href).hostname;
+            // Security hardening for new-window links
+            link.setAttribute('rel', 'noopener noreferrer');
 
-            if (linkDomain !== currentDomain) {
-                // Add external link indicator if not already present
-                if (!link.querySelector('.klaro-external-link-text')) {
-                    const span = document.createElement('span');
-                    span.className = 'screen-reader-text klaro-external-link-text';
-                    span.textContent = ' (opens in new window)';
-                    link.appendChild(span);
-                }
+            if (!link.querySelector('.klaro-external-link-text')) {
+                const srSpan = document.createElement('span');
+                srSpan.className = 'screen-reader-text klaro-external-link-text';
+                srSpan.textContent = ' ' + newWindowText;
+                link.appendChild(srSpan);
 
-                // Ensure proper attributes
-                link.setAttribute('target', '_blank');
-                link.setAttribute('rel', 'noopener noreferrer');
+                const visualSpan = document.createElement('span');
+                visualSpan.className = 'klaro-new-window-icon';
+                visualSpan.setAttribute('aria-hidden', 'true');
+                visualSpan.textContent = ' ↗';
+                link.appendChild(visualSpan);
             }
         });
     }

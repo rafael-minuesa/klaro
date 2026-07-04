@@ -9,7 +9,7 @@
 get_header();
 ?>
 
-<main id="main-content" class="site-main" aria-label="<?php esc_attr_e( 'Main content', 'klaro' ); ?>">
+<main id="main-content" class="site-main">
 
 	<?php klaro_breadcrumbs(); ?>
 
@@ -60,7 +60,7 @@ get_header();
 						esc_html__( 'Next →', 'klaro' )
 					),
 					'before_page_number' => '<span class="screen-reader-text">' . esc_html__( 'Page', 'klaro' ) . ' </span>',
-					'aria_label'         => esc_html__( 'Posts navigation', 'klaro' ),
+					'aria_label'         => esc_html__( 'Posts', 'klaro' ),
 				)
 			);
 

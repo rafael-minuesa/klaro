@@ -9,7 +9,7 @@
 get_header();
 ?>
 
-<main id="main-content" class="site-main" aria-label="<?php esc_attr_e( 'Main content', 'klaro' ); ?>">
+<main id="main-content" class="site-main">
 
 	<?php klaro_breadcrumbs(); ?>
 
@@ -26,7 +26,7 @@ get_header();
 				array(
 					'prev_text'  => '<span class="nav-subtitle">' . esc_html__( 'Previous:', 'klaro' ) . '</span> <span class="nav-title">%title</span>',
 					'next_text'  => '<span class="nav-subtitle">' . esc_html__( 'Next:', 'klaro' ) . '</span> <span class="nav-title">%title</span>',
-					'aria_label' => esc_html__( 'Post navigation', 'klaro' ),
+					'aria_label' => esc_html__( 'Previous and next posts', 'klaro' ),
 				)
 			);
 

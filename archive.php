@@ -9,7 +9,7 @@
 get_header();
 ?>
 
-<main id="main-content" class="site-main" aria-label="<?php esc_attr_e( 'Main content', 'klaro' ); ?>">
+<main id="main-content" class="site-main">
 
 	<?php klaro_breadcrumbs(); ?>
 
@@ -39,29 +39,23 @@ get_header();
 			endwhile;
 
 			// Pagination for accessibility
-			?>
-			<nav class="pagination" aria-label="<?php esc_attr_e( 'Archive pagination', 'klaro' ); ?>">
-				<?php
-				the_posts_pagination(
-					array(
-						'mid_size'           => 2,
-						'prev_text'          => sprintf(
-							'<span class="screen-reader-text">%s</span><span aria-hidden="true">%s</span>',
-							esc_html__( 'Previous page', 'klaro' ),
-							esc_html__( '← Previous', 'klaro' )
-						),
-						'next_text'          => sprintf(
-							'<span class="screen-reader-text">%s</span><span aria-hidden="true">%s</span>',
-							esc_html__( 'Next page', 'klaro' ),
-							esc_html__( 'Next →', 'klaro' )
-						),
-						'before_page_number' => '<span class="screen-reader-text">' . esc_html__( 'Page ', 'klaro' ) . '</span>',
-					)
-				);
-				?>
-			</nav>
-
-			<?php
+			the_posts_pagination(
+				array(
+					'mid_size'           => 2,
+					'prev_text'          => sprintf(
+						'<span class="screen-reader-text">%s</span><span aria-hidden="true">%s</span>',
+						esc_html__( 'Previous page', 'klaro' ),
+						esc_html__( '← Previous', 'klaro' )
+					),
+					'next_text'          => sprintf(
+						'<span class="screen-reader-text">%s</span><span aria-hidden="true">%s</span>',
+						esc_html__( 'Next page', 'klaro' ),
+						esc_html__( 'Next →', 'klaro' )
+					),
+					'before_page_number' => '<span class="screen-reader-text">' . esc_html__( 'Page ', 'klaro' ) . '</span>',
+					'aria_label'         => esc_html__( 'Posts', 'klaro' ),
+				)
+			);
 		else :
 			// If no content, include the "No posts found" template.
 			get_template_part( 'template-parts/content', 'none' );

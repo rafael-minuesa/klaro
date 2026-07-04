@@ -45,9 +45,21 @@
 	</div><!-- .entry-summary -->
 
 	<footer class="entry-footer">
-		<?php /* translators: %s: post title */ ?>
-		<a href="<?php echo esc_url( get_permalink() ); ?>" class="read-more" aria-label="<?php echo esc_attr( sprintf( __( 'Continue reading %s', 'klaro' ), get_the_title() ) ); ?>">
-			<?php esc_html_e( 'Read More', 'klaro' ); ?>
+		<a href="<?php echo esc_url( get_permalink() ); ?>" class="read-more">
+			<?php
+			echo wp_kses(
+				sprintf(
+					/* translators: %s: Name of current post */
+					__( 'Read More<span class="screen-reader-text"> "%s"</span>', 'klaro' ),
+					wp_kses_post( get_the_title() )
+				),
+				array(
+					'span' => array(
+						'class' => array(),
+					),
+				)
+			);
+			?>
 			<span aria-hidden="true"> →</span>
 		</a>
 	</footer><!-- .entry-footer -->

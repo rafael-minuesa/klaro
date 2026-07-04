@@ -221,7 +221,7 @@ function klaro_widgets_init() {
 			'name'          => esc_html__( 'Primary Sidebar', 'klaro' ),
 			'id'            => 'klaro-sidebar-1',
 			'description'   => esc_html__( 'Add widgets here to appear in your sidebar.', 'klaro' ),
-			'before_widget' => '<section id="%1$s" class="widget %2$s" role="region" aria-labelledby="%1$s-title">',
+			'before_widget' => '<section id="%1$s" class="widget %2$s" aria-labelledby="%1$s-title">',
 			'after_widget'  => '</section>',
 			'before_title'  => '<h2 id="%1$s-title" class="widget-title">',
 			'after_title'   => '</h2>',
@@ -233,7 +233,7 @@ function klaro_widgets_init() {
 			'name'          => esc_html__( 'Footer Widgets', 'klaro' ),
 			'id'            => 'klaro-footer-1',
 			'description'   => esc_html__( 'Add widgets here to appear in your footer.', 'klaro' ),
-			'before_widget' => '<section id="%1$s" class="footer-widget widget %2$s" role="region" aria-labelledby="%1$s-title">',
+			'before_widget' => '<section id="%1$s" class="footer-widget widget %2$s" aria-labelledby="%1$s-title">',
 			'after_widget'  => '</section>',
 			'before_title'  => '<h2 id="%1$s-title" class="widget-title">',
 			'after_title'   => '</h2>',
@@ -286,6 +286,7 @@ function klaro_scripts() {
 			'fontSizeLabel' => esc_html__( 'Text Size', 'klaro' ),
 			'contrastLabel' => esc_html__( 'Contrast Mode', 'klaro' ),
 			'saved'         => esc_html__( 'Settings saved', 'klaro' ),
+			'newWindow'     => esc_html__( '(opens in new window)', 'klaro' ),
 		)
 	);
 }
@@ -798,7 +799,7 @@ function klaro_woocommerce_widgets_init() {
 			'name'          => esc_html__( 'Shop Sidebar', 'klaro' ),
 			'id'            => 'sidebar-shop',
 			'description'   => esc_html__( 'Add widgets here to appear in shop pages sidebar.', 'klaro' ),
-			'before_widget' => '<section id="%1$s" class="widget %2$s" role="region" aria-labelledby="%1$s-title">',
+			'before_widget' => '<section id="%1$s" class="widget %2$s" aria-labelledby="%1$s-title">',
 			'after_widget'  => '</section>',
 			'before_title'  => '<h2 id="%1$s-title" class="widget-title">',
 			'after_title'   => '</h2>',
@@ -850,7 +851,7 @@ add_action( 'wp_enqueue_scripts', 'klaro_woocommerce_scripts' );
  */
 function klaro_woocommerce_wrapper_before() {
 	?>
-	<main id="main-content" class="site-main" aria-label="<?php esc_attr_e( 'Main content', 'klaro' ); ?>">
+	<main id="main-content" class="site-main">
 		<?php klaro_breadcrumbs(); ?>
 		<div class="content-area">
 	<?php

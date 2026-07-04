@@ -39,7 +39,7 @@ if ( post_password_required() ) {
 			?>
 		</h2><!-- .comments-title -->
 
-		<?php the_comments_navigation(); ?>
+		<?php the_comments_navigation( array( 'aria_label' => esc_html__( 'Comments', 'klaro' ) ) ); ?>
 
 		<ol class="comment-list" aria-label="<?php esc_attr_e( 'Comments list', 'klaro' ); ?>">
 			<?php
@@ -55,7 +55,7 @@ if ( post_password_required() ) {
 		</ol><!-- .comment-list -->
 
 		<?php
-		the_comments_navigation();
+		the_comments_navigation( array( 'aria_label' => esc_html__( 'Comments', 'klaro' ) ) );
 
 		// If comments are closed and there are comments, show a notice
 		if ( ! comments_open() ) :

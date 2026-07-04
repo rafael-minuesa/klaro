@@ -65,14 +65,12 @@
 			<!-- Accessibility Toolbar -->
 			<div class="klaro-accessibility-toolbar" role="region" aria-label="<?php esc_attr_e( 'Accessibility settings', 'klaro' ); ?>">
 				<details class="klaro-accessibility-menu">
-					<summary class="klaro-accessibility-toggle" aria-expanded="false" aria-label="<?php esc_attr_e( 'Open accessibility options', 'klaro' ); ?>">
+					<summary class="klaro-accessibility-toggle" aria-expanded="false" aria-label="<?php esc_attr_e( 'Accessibility options', 'klaro' ); ?>">
 						<span class="dashicons dashicons-universal-access-alt klaro-accessibility-icon" aria-hidden="true"></span>
 						<span class="klaro-accessibility-label"><?php esc_html_e( 'Accessibility', 'klaro' ); ?></span>
 					</summary>
 
 					<div class="klaro-accessibility-controls">
-						<h2 class="screen-reader-text"><?php esc_html_e( 'Adjust text and display settings', 'klaro' ); ?></h2>
-
 						<div class="klaro-accessibility-section">
 							<span class="klaro-accessibility-section-label"><?php esc_html_e( 'Text Size', 'klaro' ); ?></span>
 							<div class="klaro-accessibility-buttons">
@@ -91,10 +89,10 @@
 						<div class="klaro-accessibility-section">
 							<span class="klaro-accessibility-section-label"><?php esc_html_e( 'Contrast', 'klaro' ); ?></span>
 							<div class="klaro-accessibility-buttons">
-								<button type="button" id="klaro-toggle-contrast" class="klaro-accessibility-button" aria-label="<?php esc_attr_e( 'Toggle high contrast mode', 'klaro' ); ?>" aria-pressed="false">
+								<button type="button" id="klaro-toggle-contrast" class="klaro-accessibility-button" aria-label="<?php esc_attr_e( 'High contrast mode', 'klaro' ); ?>" aria-pressed="false">
 									<span aria-hidden="true"><?php esc_html_e( 'High', 'klaro' ); ?></span>
 								</button>
-								<button type="button" id="klaro-toggle-monochrome" class="klaro-accessibility-button" aria-label="<?php esc_attr_e( 'Toggle monochrome mode', 'klaro' ); ?>" aria-pressed="false">
+								<button type="button" id="klaro-toggle-monochrome" class="klaro-accessibility-button" aria-label="<?php esc_attr_e( 'Monochrome mode', 'klaro' ); ?>" aria-pressed="false">
 									<span aria-hidden="true"><?php esc_html_e( 'Mono', 'klaro' ); ?></span>
 								</button>
 							</div>
@@ -103,7 +101,7 @@
 						<div class="klaro-accessibility-section">
 							<span class="klaro-accessibility-section-label"><?php esc_html_e( 'Motion', 'klaro' ); ?></span>
 							<div class="klaro-accessibility-buttons">
-								<button type="button" id="klaro-toggle-animations" class="klaro-accessibility-button" aria-label="<?php esc_attr_e( 'Disable animations and transitions', 'klaro' ); ?>" aria-pressed="false">
+								<button type="button" id="klaro-toggle-animations" class="klaro-accessibility-button" aria-label="<?php esc_attr_e( 'Reduce motion and animations', 'klaro' ); ?>" aria-pressed="false">
 									<span aria-hidden="true"><?php esc_html_e( 'Reduce', 'klaro' ); ?></span>
 								</button>
 							</div>
