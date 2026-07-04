@@ -9,7 +9,7 @@
 $unique_id = wp_unique_id( 'search-field-' );
 ?>
 
-<form role="search" method="get" class="search-form" action="<?php echo esc_url( home_url( '/' ) ); ?>" aria-label="<?php esc_attr_e( 'Search this website', 'klaro' ); ?>">
+<form role="search" method="get" class="search-form" action="<?php echo esc_url( home_url( '/' ) ); ?>" aria-label="<?php esc_attr_e( 'Site', 'klaro' ); ?>">
 	<label for="<?php echo esc_attr( $unique_id ); ?>">
 		<span class="screen-reader-text"><?php esc_html_e( 'Search for:', 'klaro' ); ?></span>
 		<input
