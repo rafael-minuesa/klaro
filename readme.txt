@@ -25,19 +25,17 @@ for more details.
 You should have received a copy of the GNU General Public License
 along with Klaro. If not, see http://www.gnu.org/licenses/gpl-2.0.html.
 
-Klaro is an uncompromisingly accessible WordPress theme designed to empower users with disabilities to browse, shop, and manage online stores independently.
+Klaro is an uncompromisingly accessible WordPress theme with WCAG AAA color contrast, designed so users with disabilities can browse and shop independently.
 
 == Description ==
 
-Klaro (Spanish/Portuguese for "clear/bright") is a WordPress theme built from the ground up with accessibility as the primary focus, not an afterthought. While most themes add accessibility features after design, Klaro starts with WCAG AAA compliance and builds everything around that foundation.
+Klaro is a WordPress theme built from the ground up with accessibility as the primary focus, not an afterthought. While most themes add accessibility features after design, Klaro starts with WCAG AAA color contrast and builds everything around that foundation.
 
 = Accessibility for Everyone =
 
 **Browse Content** - Users with visual, motor, or cognitive disabilities can easily navigate your website with high contrast modes, adjustable text sizes (5 levels from 18px to 32px), keyboard navigation, and screen reader optimization.
 
-**Shop Independently** - Full WooCommerce accessibility support enables users with disabilities to browse products, add items to cart, complete checkout, and track orders without barriers. All shop elements meet WCAG AAA standards with proper ARIA labels and keyboard navigation.
-
-**Manage Your Store** - Store owners with disabilities can manage their WooCommerce shop from the WordPress backend with enhanced admin accessibility features, high contrast admin mode, and screen reader compatible interfaces.
+**Shop Independently** - Full WooCommerce accessibility support enables users with disabilities to browse products, add items to cart, complete checkout, and track orders without barriers. All shop elements meet WCAG AAA contrast standards with proper ARIA labels and keyboard navigation.
 
 = Key Features =
 
@@ -106,7 +104,7 @@ It works with block-based builders, but visual drag-and-drop builders may confli
 
 = Does this theme work with WooCommerce? =
 
-Yes! Klaro includes full WooCommerce accessibility support with WCAG AAA compliant shop pages, accessible cart and checkout, screen reader announcements for cart updates, keyboard-navigable product galleries, and 44px minimum touch targets on all interactive elements.
+Yes! Klaro includes full WooCommerce accessibility support with WCAG AAA color contrast on shop pages, accessible cart and checkout, screen reader announcements for cart updates, keyboard-navigable product galleries, and 44px minimum touch targets on all interactive elements.
 
 == Accessibility ==
 

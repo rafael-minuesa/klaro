@@ -2,7 +2,7 @@
 
 ## Overview
 
-Klaro is an accessibility-first WordPress theme with WCAG AAA compliance. The name means "clear/bright" in Spanish/Portuguese.
+Klaro is an accessibility-first WordPress theme with WCAG AAA color contrast (WCAG 2.2 AA conformance overall, per accessibility.txt).
 
 ## Project Structure
 

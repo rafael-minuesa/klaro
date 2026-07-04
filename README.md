@@ -5,7 +5,7 @@
 ![WordPress Theme](https://img.shields.io/badge/WordPress-Theme-blue.svg)
 ![Version](https://img.shields.io/badge/version-2.3.1-green.svg)
 ![License](https://img.shields.io/badge/license-GPL--2.0%2B-blue.svg)
-![WCAG](https://img.shields.io/badge/WCAG-AAA-success.svg)
+![WCAG](https://img.shields.io/badge/WCAG_AAA-contrast-success.svg)
 ![WooCommerce](https://img.shields.io/badge/WooCommerce-Accessible-purple.svg)
 
 ---
@@ -13,9 +13,9 @@
 
 ## 🌟 Overview
 
-Klaro is a WordPress theme built from the ground up with accessibility as the primary focus, not an afterthought. While most themes add accessibility features after design, Klaro starts with **WCAG AAA compliance** and builds everything around that foundation.
+Klaro is a WordPress theme built from the ground up with accessibility as the primary focus, not an afterthought. While most themes add accessibility features after design, Klaro starts with **WCAG AAA color contrast** and builds everything around that foundation.
 
-**Now with full WooCommerce accessibility support** - build accessible online stores with WCAG AAA compliant shop pages, accessible cart and checkout, screen reader announcements, and 44px minimum touch targets.
+**Now with full WooCommerce accessibility support** - build accessible online stores with WCAG AAA color contrast on shop pages, accessible cart and checkout, screen reader announcements, and 44px minimum touch targets.
 
 Perfect for:
 - Government and educational institutions
@@ -127,7 +127,7 @@ See `klaro-theme-child/README.md` for detailed instructions.
 
 ## 🎯 Accessibility Standards Met
 
-- ✅ **WCAG 2.1 Level AAA** compliance
+- ✅ **WCAG 2.2 Level AA** conformance, with **AAA color contrast** (7:1) for all text
 - ✅ **Section 508** compliance
 - ✅ **ARIA 1.2** specifications
 - ✅ **Keyboard navigation** (all features)
