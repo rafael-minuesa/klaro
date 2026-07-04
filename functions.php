@@ -846,6 +846,19 @@ function klaro_woocommerce_scripts() {
 				'addedToCartMessage'     => esc_html__( 'Product added to cart', 'klaro' ),
 				'removedFromCartMessage' => esc_html__( 'Product removed from cart', 'klaro' ),
 				'quantityUpdated'        => esc_html__( 'Quantity updated to', 'klaro' ),
+				'decreaseQuantity'       => esc_html__( 'Decrease quantity', 'klaro' ),
+				'increaseQuantity'       => esc_html__( 'Increase quantity', 'klaro' ),
+				'productTabs'            => esc_html__( 'Product information', 'klaro' ),
+				/* translators: %s: product name */
+				'removeFromCart'         => esc_html__( 'Remove %s from cart', 'klaro' ),
+				/* translators: %s: number of validation errors */
+				'checkoutErrors'         => esc_html__( '%s validation errors. Please review the form.', 'klaro' ),
+				/* translators: %s: image number */
+				'viewImage'              => esc_html__( 'View image %s', 'klaro' ),
+				'imageUpdated'           => esc_html__( 'Product image updated', 'klaro' ),
+				/* translators: used between a variation label and the selected option, e.g. "Color changed to Blue" */
+				'changedTo'              => esc_html__( 'changed to', 'klaro' ),
+				'genericProduct'         => esc_html__( 'Product', 'klaro' ),
 			)
 		);
 	}

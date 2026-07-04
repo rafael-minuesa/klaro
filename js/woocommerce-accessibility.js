@@ -66,7 +66,7 @@
 			var $minus = $('<button>')
 				.attr({
 					'type': 'button',
-					'aria-label': 'Decrease quantity'
+					'aria-label': klaroWcSettings.decreaseQuantity
 				})
 				.addClass('klaro-qty-btn klaro-qty-minus')
 				.text('-');
@@ -74,7 +74,7 @@
 			var $plus = $('<button>')
 				.attr({
 					'type': 'button',
-					'aria-label': 'Increase quantity'
+					'aria-label': klaroWcSettings.increaseQuantity
 				})
 				.addClass('klaro-qty-btn klaro-qty-plus')
 				.text('+');
@@ -120,7 +120,7 @@
 		// Set ARIA attributes on tab list
 		$tabList.attr({
 			'role': 'tablist',
-			'aria-label': 'Product information tabs'
+			'aria-label': klaroWcSettings.productTabs
 		});
 
 		$tabs.each(function(index) {
@@ -212,7 +212,7 @@
 			var productName = $link.closest('tr').find('.product-name a').text();
 
 			if (productName && !$link.attr('aria-label')) {
-				$link.attr('aria-label', 'Remove ' + productName + ' from cart');
+				$link.attr('aria-label', klaroWcSettings.removeFromCart.replace('%s', productName));
 			}
 		});
 	}
@@ -230,7 +230,7 @@
 		$(document.body).on('checkout_error', function() {
 			var $errors = $('.woocommerce-error li');
 			if ($errors.length > 0) {
-				var message = $errors.length + ' validation errors. Please review the form.';
+				var message = klaroWcSettings.checkoutErrors.replace('%s', $errors.length);
 				announce(message, true);
 				$errors.first().focus();
 			}
@@ -246,21 +246,31 @@
 			return;
 		}
 
-		// Add keyboard navigation for thumbnails
+		// Wrap each thumbnail in a real button so it is natively keyboard
+		// operable instead of a clickable image with role="button"
 		$gallery.find('.flex-control-thumbs img').each(function(index) {
 			var $thumb = $(this);
 
-			$thumb.attr({
-				'tabindex': '0',
-				'role': 'button',
-				'aria-label': 'View image ' + (index + 1)
-			});
+			if ($thumb.parent().hasClass('klaro-thumb-btn')) {
+				return;
+			}
 
-			$thumb.on('keydown', function(e) {
-				if (e.key === 'Enter' || e.key === ' ') {
-					e.preventDefault();
-					$thumb.click();
-					announce('Product image updated');
+			$thumb.wrap(
+				$('<button>').attr({
+					'type': 'button',
+					'class': 'klaro-thumb-btn',
+					'aria-label': klaroWcSettings.viewImage.replace('%s', index + 1)
+				})
+			);
+
+			$thumb.parent().on('click', function(e) {
+				if (e.target === $thumb[0]) {
+					// FlexSlider handles the image click; just announce it
+					announce(klaroWcSettings.imageUpdated);
+				} else {
+					// Keyboard activation lands on the button; forward to the
+					// image so FlexSlider switches the slide
+					$thumb.trigger('click');
 				}
 			});
 		});
@@ -282,7 +292,7 @@
 			$select.on('change', function() {
 				var selectedOption = $select.find('option:selected').text();
 				if ($label.length && selectedOption) {
-					announce($label.text() + ' changed to ' + selectedOption);
+					announce($label.text() + ' ' + klaroWcSettings.changedTo + ' ' + selectedOption);
 				}
 			});
 		});
@@ -296,7 +306,7 @@
 		$(document.body).on('added_to_cart', function(e, fragments, cartHash, $button) {
 			var productName = $button.closest('li.product').find('.woocommerce-loop-product__title').text();
 			if (!productName) {
-				productName = 'Product';
+				productName = klaroWcSettings.genericProduct;
 			}
 			announce(productName + ' ' + klaroWcSettings.addedToCartMessage);
 		});

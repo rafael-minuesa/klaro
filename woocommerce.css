@@ -548,6 +548,15 @@
   margin: 0;
 }
 
+.woocommerce div.product .woocommerce-product-gallery .flex-control-thumbs .klaro-thumb-btn {
+  display: block;
+  padding: 0;
+  border: 0;
+  background: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
 .woocommerce div.product .woocommerce-product-gallery .flex-control-thumbs img {
   min-width: var(--touch-target-min);
   min-height: var(--touch-target-min);
@@ -1067,16 +1076,16 @@ table.wc-block-cart-items .wc-block-cart-items__row .wc-block-components-product
 .klaro-high-contrast th.wc-block-cart-items__header-image,
 .klaro-high-contrast th.wc-block-cart-items__header-product,
 .klaro-high-contrast th.wc-block-cart-items__header-total {
-  background: #FFFFFF !important;
-  color: #000000 !important;
-  border-color: #FFFFFF !important;
+  background: var(--color-text) !important;
+  color: var(--color-background) !important;
+  border-color: var(--color-text) !important;
 }
 
 .klaro-high-contrast .wc-block-cart-items__header th span,
 .klaro-high-contrast th.wc-block-cart-items__header-image span,
 .klaro-high-contrast th.wc-block-cart-items__header-product span,
 .klaro-high-contrast th.wc-block-cart-items__header-total span {
-  color: #000000 !important;
+  color: var(--color-background) !important;
 }
 
 .klaro-high-contrast .woocommerce-MyAccount-navigation ul li a {
@@ -1125,14 +1134,14 @@ table.wc-block-cart-items .wc-block-cart-items__row .wc-block-components-product
 .klaro-high-contrast .woocommerce .price .woocommerce-Price-amount,
 .klaro-high-contrast .woocommerce .price bdi,
 .klaro-high-contrast .woocommerce .price .woocommerce-Price-currencySymbol {
-  color: #FFFFFF !important;
+  color: var(--color-text) !important;
   font-size: 1.25rem;
 }
 
 .klaro-high-contrast .woocommerce ul.products li.product .price,
 .klaro-high-contrast .woocommerce ul.products li.product .price .woocommerce-Price-amount,
 .klaro-high-contrast .woocommerce ul.products li.product .price bdi {
-  color: #00D4FF !important;
+  color: var(--color-primary) !important;
   font-size: 1.1rem;
 }
 

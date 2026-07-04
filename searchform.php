@@ -23,11 +23,10 @@ $unique_id = wp_unique_id( 'search-field-' );
 			aria-describedby="<?php echo esc_attr( $unique_id ); ?>-description"
 		/>
 		<span id="<?php echo esc_attr( $unique_id ); ?>-description" class="screen-reader-text">
-			<?php esc_html_e( 'Press enter to search or escape to close', 'klaro' ); ?>
+			<?php esc_html_e( 'Press Enter to search', 'klaro' ); ?>
 		</span>
 	</label>
 	<button type="submit" class="search-submit">
 		<span class="search-text"><?php echo esc_html_x( 'Search', 'submit button', 'klaro' ); ?></span>
-		<span class="screen-reader-text"><?php echo esc_html_x( 'Search', 'submit button', 'klaro' ); ?></span>
 	</button>
 </form>

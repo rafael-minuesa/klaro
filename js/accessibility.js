@@ -323,36 +323,6 @@
         });
     }
 
-    // Add proper focus management for modals/dialogs
-    function klaroTrapFocus(element) {
-        const focusableElements = element.querySelectorAll(
-            'a[href], button:not([disabled]), textarea:not([disabled]), input:not([disabled]), select:not([disabled]), [tabindex]:not([tabindex="-1"])'
-        );
-
-        const firstFocusable = focusableElements[0];
-        const lastFocusable = focusableElements[focusableElements.length - 1];
-
-        element.addEventListener('keydown', (e) => {
-            if (e.key === 'Tab') {
-                if (e.shiftKey) {
-                    if (document.activeElement === firstFocusable) {
-                        lastFocusable.focus();
-                        e.preventDefault();
-                    }
-                } else {
-                    if (document.activeElement === lastFocusable) {
-                        firstFocusable.focus();
-                        e.preventDefault();
-                    }
-                }
-            }
-
-            if (e.key === 'Escape') {
-                element.close();
-            }
-        });
-    }
-
     // Annotate author-set new-window links with a visual indicator and a
     // screen reader warning. The theme never forces target="_blank" itself,
     // opening new windows without a user request fails WCAG 3.2.5.
@@ -383,38 +353,15 @@
         });
     }
 
-    // Ensure all images have alt text
+    // Development aid: highlight images missing an alt attribute
     function klaroValidateImageAltText() {
         const images = document.querySelectorAll('img');
 
         images.forEach(img => {
             if (!img.hasAttribute('alt')) {
-
                 img.style.border = '5px solid red';
-                img.setAttribute('role', 'presentation');
             }
         });
-    }
-
-    // Add ARIA live region updates for dynamic content
-    function klaroInitLiveRegions() {
-        // Create a polite live region for non-urgent updates
-        const politeRegion = document.createElement('div');
-        politeRegion.setAttribute('role', 'status');
-        politeRegion.setAttribute('aria-live', 'polite');
-        politeRegion.setAttribute('aria-atomic', 'true');
-        politeRegion.className = 'screen-reader-text';
-        politeRegion.id = 'klaro-polite-announcements';
-        document.body.appendChild(politeRegion);
-
-        // Create an assertive live region for urgent updates
-        const assertiveRegion = document.createElement('div');
-        assertiveRegion.setAttribute('role', 'alert');
-        assertiveRegion.setAttribute('aria-live', 'assertive');
-        assertiveRegion.setAttribute('aria-atomic', 'true');
-        assertiveRegion.className = 'screen-reader-text';
-        assertiveRegion.id = 'klaro-urgent-announcements';
-        document.body.appendChild(assertiveRegion);
     }
 
     // Initialize all accessibility features
@@ -429,7 +376,6 @@
         klaroInitReducedMotion();
         klaroInitFocusManagement();
         klaroInitExternalLinks();
-        klaroInitLiveRegions();
         klaroInitAccessibilityMenu();
 
         // Validate images in development

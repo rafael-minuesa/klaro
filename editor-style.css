@@ -41,7 +41,7 @@ p {
 
 /* Links */
 a {
-    color: #0073aa;
+    color: #0051A5;
     text-decoration: underline;
     text-underline-offset: 3px;
 }
@@ -158,7 +158,7 @@ img {
     font-style: italic;
     text-align: center;
     margin-top: 0.5em;
-    color: #666;
+    color: #333;
 }
 
 /* Gallery */
@@ -167,7 +167,7 @@ img {
     font-style: italic;
     text-align: center;
     margin-top: 0.5em;
-    color: #666;
+    color: #333;
 }
 
 /* Buttons */
@@ -205,6 +205,6 @@ img {
 
 /* Focus Indicators */
 *:focus {
-    outline: 3px solid #0073aa;
+    outline: 3px solid #C2410C;
     outline-offset: 2px;
 }
