@@ -7,6 +7,32 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.3.2] - 2026-07-04
+
+Accessibility audit round ahead of the accessibility-ready re-review (Trac #264262), plus a clearer theme description.
+
+### Changed
+- Removed the landmark type word from the remaining landmark accessible names: posts pagination ("Posts"), post navigation ("Previous and next posts"), comments navigation ("Comments"), search form ("Site"); dropped the redundant aria-label from the single `<main>` landmark
+- Removed nested `<nav>` wrappers around `the_posts_pagination()` in archive and search templates
+- Accessibility toolbar accessible names now start with their visible text: "Accessibility options", "High contrast mode", "Monochrome mode", "Reduce motion and animations" (WCAG 2.5.3 Label in Name)
+- Search results "Read More" links keep their visible text and append the post title as screen reader text
+- External links are no longer forced to open in a new window (WCAG 3.2.5); author-set `target="_blank"` links get a visible indicator and translatable screen reader text
+- "Skip to sidebar" link only renders when the sidebar will exist on the page
+- All skip link targets carry `tabindex="-1"` so activating a skip link reliably moves keyboard focus
+- Quantity controls and the add-to-cart button use `min-height` instead of a fixed height so the maximum text size never clips them
+- Product gallery thumbnails are wrapped in real `<button>` elements instead of clickable images with `role="button"`
+- All hardcoded English strings in the WooCommerce accessibility script are translatable via `klaroWcSettings`
+- Error and success message colors use CSS variables with high contrast and monochrome overrides
+- Editor styles aligned with the theme color tokens (links #0051A5, captions #333, focus #C2410C)
+- Theme description rewritten: WCAG AAA claim scoped to color contrast, removed the unimplemented backend store-management claim
+- Search submit button no longer announces "Search" twice; search field description no longer promises an unimplemented Escape behavior
+
+### Removed
+- Screen-reader-only `<h2>` that rendered before the page `<h1>` inside the accessibility toolbar
+- Redundant `role="region"` on `<section>` widget wrappers
+- Obsolete IE-only `skip-link-focus-fix.js`
+- Dead `klaroTrapFocus()` function and two JS-injected live regions nothing wrote to
+
 ## [2.3.1] - 2026-06-04
 
 ### Changed

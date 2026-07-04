@@ -118,4 +118,4 @@ When releasing a new version:
 
 ## Current Version
 
-**v2.3.1** - Tested up to WordPress 7.0. (v2.3.0: accessibility-ready 2026 requirements: landmark labels, #C2410C focus/skip contrast, button-controlled submenus (Esc + Shift+Tab), accessibility.txt, dynamic toolbar state, disabled failing core/remote block patterns) (Jun 2026)
+**v2.3.2** - Accessibility audit round for the Trac #264262 re-review (remaining landmark names, Label in Name toolbar labels, no forced target=_blank, skip-link gating + tabindex, localized WC strings, notice-color tokens) plus description rewrite (AAA scoped to color contrast, backend claim removed). (Jul 2026. v2.3.1: Tested up to WordPress 7.0; v2.3.0: accessibility-ready 2026 requirements)

@@ -7,7 +7,7 @@ Tags: accessibility-ready, one-column, two-columns, custom-colors, custom-menu, 
 Requires at least: 6.0
 Tested up to: 7.0
 Requires PHP: 7.4
-Stable tag: 2.3.1
+Stable tag: 2.3.2
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -118,6 +118,22 @@ Klaro meets WCAG 2.2 AA standards and includes features that often exceed AA req
 * Tested with NVDA, JAWS, VoiceOver, ORCA
 
 == Changelog ==
+
+= 2.3.2 =
+* Removed the landmark type word from the remaining landmark accessible names (posts pagination, post navigation, comments navigation, main content, search form)
+* Removed nested navigation landmarks around archive and search pagination
+* Accessibility toolbar control names now start with their visible text (Label in Name)
+* Search results "Read More" links now append the post title as screen reader text instead of overriding the visible text with an aria-label
+* Removed a screen-reader-only heading that rendered before the page H1
+* External links are no longer forced to open in a new window; author-set new-window links get a visible indicator and translatable screen reader text
+* Removed redundant role="region" from widget wrappers
+* The "Skip to sidebar" link only renders when the sidebar exists, and all skip link targets now receive keyboard focus reliably (tabindex="-1")
+* Quantity and add-to-cart controls use min-height so the largest text size never clips them
+* Product gallery thumbnails are real buttons instead of clickable images
+* All WooCommerce screen reader announcements are now translatable
+* Error and success message colors follow the high contrast and monochrome modes
+* Editor styles aligned with the theme color tokens
+* Updated theme description
 
 = 2.3.1 =
 * Tested up to WordPress 7.0
