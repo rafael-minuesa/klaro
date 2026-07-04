@@ -7,7 +7,7 @@
  */
 ?>
 
-	<footer id="site-footer" class="site-footer">
+	<footer id="site-footer" class="site-footer" tabindex="-1">
 
 		<?php if ( is_active_sidebar( 'klaro-footer-1' ) ) : ?>
 			<aside class="footer-widgets" aria-label="<?php esc_attr_e( 'Footer widgets', 'klaro' ); ?>">

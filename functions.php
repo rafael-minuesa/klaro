@@ -270,9 +270,6 @@ function klaro_scripts() {
 		)
 	);
 
-	// Skip link focus fix for IE11
-	wp_enqueue_script( 'klaro-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), $theme_version, true );
-
 	// Comments reply script
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
@@ -296,12 +293,21 @@ add_action( 'wp_enqueue_scripts', 'klaro_scripts' );
  * Add skip links
  */
 function klaro_skip_links() {
+	// Only offer the sidebar skip link when the current page renders #sidebar.
+	// sidebar.php returns early when the widget area is empty, and WooCommerce
+	// templates (shop, product, taxonomy) render without a sidebar.
+	$klaro_has_sidebar = is_active_sidebar( 'klaro-sidebar-1' );
+	if ( $klaro_has_sidebar && class_exists( 'WooCommerce' ) && is_woocommerce() ) {
+		$klaro_has_sidebar = false;
+	}
 	?>
 	<nav class="skip-links" aria-label="<?php esc_attr_e( 'Skip links', 'klaro' ); ?>">
 		<ul>
 			<li><a href="#main-content" class="skip-link"><?php esc_html_e( 'Skip to main content', 'klaro' ); ?></a></li>
 			<li><a href="#primary-navigation" class="skip-link"><?php esc_html_e( 'Skip to navigation', 'klaro' ); ?></a></li>
-			<li><a href="#sidebar" class="skip-link"><?php esc_html_e( 'Skip to sidebar', 'klaro' ); ?></a></li>
+			<?php if ( $klaro_has_sidebar ) : ?>
+				<li><a href="#sidebar" class="skip-link"><?php esc_html_e( 'Skip to sidebar', 'klaro' ); ?></a></li>
+			<?php endif; ?>
 			<li><a href="#site-footer" class="skip-link"><?php esc_html_e( 'Skip to footer', 'klaro' ); ?></a></li>
 		</ul>
 	</nav>
@@ -851,7 +857,7 @@ add_action( 'wp_enqueue_scripts', 'klaro_woocommerce_scripts' );
  */
 function klaro_woocommerce_wrapper_before() {
 	?>
-	<main id="main-content" class="site-main">
+	<main id="main-content" class="site-main" tabindex="-1">
 		<?php klaro_breadcrumbs(); ?>
 		<div class="content-area">
 	<?php

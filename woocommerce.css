@@ -239,8 +239,8 @@
 
 /* Quantity +/- Buttons (JS enhanced) */
 .klaro-qty-btn {
-  width: var(--touch-target-min);
-  height: var(--touch-target-min);
+  min-width: var(--touch-target-min);
+  min-height: var(--touch-target-min);
   padding: 0;
   font-size: 1.5rem;
   font-weight: 700;
@@ -279,7 +279,7 @@
 
 .woocommerce div.product form.cart .quantity .qty {
   width: 70px;
-  height: var(--touch-target-min);
+  min-height: var(--touch-target-min);
   padding: 0;
   font-size: 1rem;
   text-align: center;
@@ -290,7 +290,7 @@
 }
 
 .woocommerce div.product form.cart button.single_add_to_cart_button {
-  height: var(--touch-target-min);
+  min-height: var(--touch-target-min);
   padding: 0 var(--spacing-lg);
   font-size: 1.125rem;
   font-weight: 600;
@@ -731,8 +731,6 @@ table.wc-block-cart-items .wc-block-cart-items__row .wc-block-components-product
 }
 
 .wc-block-components-quantity-selector .wc-block-components-quantity-selector__button {
-  width: var(--touch-target-min) !important;
-  height: var(--touch-target-min) !important;
   min-width: var(--touch-target-min) !important;
   min-height: var(--touch-target-min) !important;
   flex-shrink: 0 !important;

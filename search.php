@@ -9,7 +9,7 @@
 get_header();
 ?>
 
-<main id="main-content" class="site-main">
+<main id="main-content" class="site-main" tabindex="-1">
 
 	<?php klaro_breadcrumbs(); ?>
 

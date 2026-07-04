@@ -113,7 +113,7 @@
 			</div><!-- .klaro-accessibility-toolbar -->
 		</div><!-- .header-top -->
 
-		<nav id="primary-navigation" class="main-navigation" aria-label="<?php esc_attr_e( 'Primary', 'klaro' ); ?>">
+		<nav id="primary-navigation" class="main-navigation" tabindex="-1" aria-label="<?php esc_attr_e( 'Primary', 'klaro' ); ?>">
 			<?php
 			if ( has_nav_menu( 'primary' ) ) {
 				wp_nav_menu(
