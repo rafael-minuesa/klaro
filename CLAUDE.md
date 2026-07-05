@@ -118,4 +118,4 @@ When releasing a new version:
 
 ## Current Version
 
-**v2.3.2** - Accessibility audit round for the Trac #264262 re-review (remaining landmark names, Label in Name toolbar labels, no forced target=_blank, skip-link gating + tabindex, localized WC strings, notice-color tokens) plus description rewrite (AAA scoped to color contrast, backend claim removed). (Jul 2026. v2.3.1: Tested up to WordPress 7.0; v2.3.0: accessibility-ready 2026 requirements)
+**v2.3.3** - Fixed posts pagination layout (flex row on `.nav-links` not `.pagination`; page-number styling scoped to `.page-numbers` to kill a nested "Next" box). (Jul 2026. v2.3.2: accessibility audit for Trac #264262 re-review + description rewrite; v2.3.1: Tested up to WordPress 7.0; v2.3.0: accessibility-ready 2026 requirements)

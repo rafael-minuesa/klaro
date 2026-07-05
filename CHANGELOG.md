@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.3.3] - 2026-07-05
+
+### Fixed
+- Posts pagination laid the page-number links out as full-width stacked blocks because the flex row was on `.pagination` instead of the `.nav-links` wrapper that `the_posts_pagination()` actually emits; the links now flow in a row
+- A spurious nested box was drawn around the "Next" link because the border/sizing targeted every `.pagination span`, including the inner `aria-hidden` span; scoped to `.page-numbers`
+
 ## [2.3.2] - 2026-07-04
 
 Accessibility audit round ahead of the accessibility-ready re-review (Trac #264262), plus a clearer theme description.

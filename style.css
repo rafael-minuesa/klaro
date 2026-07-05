@@ -4,7 +4,7 @@ Theme URI: https://github.com/rafael-minuesa/klaro
 Author: Rafael Minuesa
 Author URI: https://github.com/rafael-minuesa
 Description: An uncompromisingly accessible WordPress theme designed for everyone. Klaro features WCAG AAA color contrast, enabling users with disabilities to browse content and shop with WooCommerce independently. Includes adjustable text sizes, high contrast and monochrome modes, keyboard navigation, and screen reader optimization.
-Version: 2.3.2
+Version: 2.3.3
 Requires at least: 6.0
 Tested up to: 7.0
 Requires PHP: 7.4
@@ -1138,13 +1138,21 @@ li {
 
 .pagination {
   margin: var(--spacing-xl) 0;
+}
+
+/* the_posts_pagination() nests the number links in .nav-links, so the
+   flex row belongs there, not on the outer .pagination element. */
+.pagination .nav-links {
   display: flex;
   gap: var(--spacing-sm);
   flex-wrap: wrap;
+  align-items: center;
 }
 
-.pagination a,
-.pagination span {
+/* Style the page-number links/spans directly. Targeting all spans would
+   also border the inner aria-hidden and screen-reader-text spans, drawing
+   a spurious nested box (e.g. around "Next"). */
+.pagination .page-numbers {
   min-width: var(--touch-target-min);
   min-height: var(--touch-target-min);
   padding: var(--spacing-sm) var(--spacing-md);
