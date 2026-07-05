@@ -1,0 +1,869 @@
+# Copyright (C) 2026 Rafael Minuesa
+# This file is distributed under the GNU General Public License v2 or later.
+msgid ""
+msgstr ""
+"Project-Id-Version: Klaro 2.3.3\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/theme/klaro\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2026-07-05T07:44:24+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.12.0\n"
+"X-Domain: klaro\n"
+
+#. Theme Name of the theme
+#: style.css
+msgid "Klaro"
+msgstr ""
+
+#. Theme URI of the theme
+#: style.css
+#: footer.php:49
+msgid "https://github.com/rafael-minuesa/klaro"
+msgstr ""
+
+#. Description of the theme
+#: style.css
+msgid "An uncompromisingly accessible WordPress theme designed for everyone. Klaro features WCAG AAA color contrast, enabling users with disabilities to browse content and shop with WooCommerce independently. Includes adjustable text sizes, high contrast and monochrome modes, keyboard navigation, and screen reader optimization."
+msgstr ""
+
+#. Author of the theme
+#: style.css
+msgid "Rafael Minuesa"
+msgstr ""
+
+#. Author URI of the theme
+#: style.css
+msgid "https://github.com/rafael-minuesa"
+msgstr ""
+
+#: 404.php:20
+msgid "Oops! That page cannot be found."
+msgstr ""
+
+#: 404.php:24
+msgid "It looks like nothing was found at this location. Maybe try one of the links below or a search?"
+msgstr ""
+
+#: 404.php:30
+msgid "Recent Posts"
+msgstr ""
+
+#: 404.php:46
+msgid "Categories"
+msgstr ""
+
+#: 404.php:64
+msgid "Archives"
+msgstr ""
+
+#: 404.php:81
+msgid "Tag Cloud"
+msgstr ""
+
+#: archive.php:47
+#: index.php:54
+#: search.php:61
+msgid "Previous page"
+msgstr ""
+
+#: archive.php:48
+#: index.php:55
+#: search.php:62
+msgid "← Previous"
+msgstr ""
+
+#: archive.php:52
+#: index.php:59
+#: search.php:66
+msgid "Next page"
+msgstr ""
+
+#: archive.php:53
+#: index.php:60
+#: search.php:67
+msgid "Next →"
+msgstr ""
+
+#: archive.php:55
+#: search.php:69
+msgid "Page "
+msgstr ""
+
+#: archive.php:56
+#: index.php:63
+msgid "Posts"
+msgstr ""
+
+#. translators: %s: Post title wrapped in span
+#: comments.php:28
+#, php-format
+msgid "One comment on &ldquo;%s&rdquo;"
+msgstr ""
+
+#. translators: 1: Number of comments, 2: Post title wrapped in span
+#: comments.php:34
+#, php-format
+msgid "%1$s comment on &ldquo;%2$s&rdquo;"
+msgid_plural "%1$s comments on &ldquo;%2$s&rdquo;"
+msgstr[0] ""
+msgstr[1] ""
+
+#: comments.php:42
+#: comments.php:58
+msgid "Comments"
+msgstr ""
+
+#: comments.php:44
+msgid "Comments list"
+msgstr ""
+
+#: comments.php:63
+msgid "Comments are closed."
+msgstr ""
+
+#: comments.php:73
+msgid "Leave a Comment"
+msgstr ""
+
+#: comments.php:74
+msgid "Comment form"
+msgstr ""
+
+#: footer.php:13
+msgid "Footer widgets"
+msgstr ""
+
+#: footer.php:19
+msgid "Footer"
+msgstr ""
+
+#. translators: 1: Theme name with link, 2: WordPress with link
+#: footer.php:48
+#, php-format
+msgid "Powered by %1$s and %2$s"
+msgstr ""
+
+#: footer.php:50
+msgid "https://wordpress.org/"
+msgstr ""
+
+#: footer.php:58
+#: functions.php:661
+msgid "Accessibility Statement"
+msgstr ""
+
+#: functions.php:35
+#: functions.php:119
+msgid "Primary Navigation"
+msgstr ""
+
+#: functions.php:36
+msgid "Footer Navigation"
+msgstr ""
+
+#: functions.php:165
+#: functions.php:174
+msgid "Accessible High Contrast"
+msgstr ""
+
+#: functions.php:188
+msgid "Accessible Call to Action"
+msgstr ""
+
+#: functions.php:189
+msgctxt "Block pattern description"
+msgid "A call-to-action section with high contrast and large text"
+msgstr ""
+
+#: functions.php:193
+msgid "Get Started Today"
+msgstr ""
+
+#: functions.php:197
+msgid "Join thousands of users who trust our accessible platform."
+msgstr ""
+
+#: functions.php:203
+msgid "Learn More"
+msgstr ""
+
+#: functions.php:221
+msgid "Primary Sidebar"
+msgstr ""
+
+#: functions.php:223
+msgid "Add widgets here to appear in your sidebar."
+msgstr ""
+
+#: functions.php:233
+msgid "Footer Widgets"
+msgstr ""
+
+#: functions.php:235
+msgid "Add widgets here to appear in your footer."
+msgstr ""
+
+#: functions.php:268
+msgid "Show submenu"
+msgstr ""
+
+#: functions.php:269
+msgid "Hide submenu"
+msgstr ""
+
+#: functions.php:283
+#: header.php:75
+msgid "Text Size"
+msgstr ""
+
+#: functions.php:284
+#: functions.php:577
+msgid "Contrast Mode"
+msgstr ""
+
+#: functions.php:285
+msgid "Settings saved"
+msgstr ""
+
+#: functions.php:286
+msgid "(opens in new window)"
+msgstr ""
+
+#: functions.php:304
+msgid "Skip links"
+msgstr ""
+
+#: functions.php:306
+msgid "Skip to main content"
+msgstr ""
+
+#: functions.php:307
+msgid "Skip to navigation"
+msgstr ""
+
+#: functions.php:309
+msgid "Skip to sidebar"
+msgstr ""
+
+#: functions.php:311
+msgid "Skip to footer"
+msgstr ""
+
+#. translators: %s: Post title
+#: functions.php:337
+#, php-format
+msgid "Continue reading %s"
+msgstr ""
+
+#: functions.php:338
+msgid "Continue reading"
+msgstr ""
+
+#: functions.php:353
+#: header.php:70
+msgid "Accessibility"
+msgstr ""
+
+#: functions.php:374
+msgid "Breadcrumb"
+msgstr ""
+
+#: functions.php:380
+msgid "Home"
+msgstr ""
+
+#. translators: %s: search query
+#: functions.php:460
+#: search.php:25
+#, php-format
+msgid "Search Results for: %s"
+msgstr ""
+
+#: functions.php:465
+msgid "Page Not Found"
+msgstr ""
+
+#: functions.php:491
+msgid "Accessibility Options"
+msgstr ""
+
+#: functions.php:492
+msgid "Customize accessibility features for your site."
+msgstr ""
+
+#: functions.php:501
+msgid "Typography"
+msgstr ""
+
+#: functions.php:520
+msgid "Base Font Size (px)"
+msgstr ""
+
+#: functions.php:544
+msgid "Line Height"
+msgstr ""
+
+#: functions.php:559
+msgid "Contrast & Colors"
+msgstr ""
+
+#: functions.php:581
+msgid "Standard (AAA)"
+msgstr ""
+
+#: functions.php:582
+msgid "High Contrast"
+msgstr ""
+
+#: functions.php:583
+msgid "Monochrome"
+msgstr ""
+
+#: functions.php:592
+msgid "Footer Options"
+msgstr ""
+
+#: functions.php:609
+msgid "Footer Credit Text"
+msgstr ""
+
+#: functions.php:610
+msgid "Customize the footer credit text. HTML links are allowed. Leave empty for the default: \"Powered by Klaro and WordPress\"."
+msgstr ""
+
+#: functions.php:628
+msgid "Show Accessibility Statement Link"
+msgstr ""
+
+#: functions.php:629
+msgid "Display a link to your Accessibility Statement page in the footer."
+msgstr ""
+
+#: functions.php:647
+msgid "Accessibility Statement URL"
+msgstr ""
+
+#: functions.php:648
+msgid "Enter the full URL of your Accessibility Statement page."
+msgstr ""
+
+#: functions.php:652
+msgid "https://example.com/accessibility-statement/"
+msgstr ""
+
+#: functions.php:669
+msgid "Accessibility Statement Link Text"
+msgstr ""
+
+#: functions.php:738
+msgid "Comment"
+msgstr ""
+
+#: functions.php:738
+#: functions.php:740
+#: functions.php:742
+msgid "required"
+msgstr ""
+
+#: functions.php:738
+msgid "Your comment will be posted publicly on this page."
+msgstr ""
+
+#: functions.php:740
+msgid "Name"
+msgstr ""
+
+#: functions.php:742
+msgid "Email"
+msgstr ""
+
+#: functions.php:742
+msgid "Your email address will not be published."
+msgstr ""
+
+#: functions.php:744
+msgid "Website"
+msgstr ""
+
+#: functions.php:805
+msgid "Shop Sidebar"
+msgstr ""
+
+#: functions.php:807
+msgid "Add widgets here to appear in shop pages sidebar."
+msgstr ""
+
+#: functions.php:845
+msgid "Cart updated"
+msgstr ""
+
+#: functions.php:846
+msgid "Product added to cart"
+msgstr ""
+
+#: functions.php:847
+msgid "Product removed from cart"
+msgstr ""
+
+#: functions.php:848
+msgid "Quantity updated to"
+msgstr ""
+
+#: functions.php:849
+msgid "Decrease quantity"
+msgstr ""
+
+#: functions.php:850
+msgid "Increase quantity"
+msgstr ""
+
+#: functions.php:851
+msgid "Product information"
+msgstr ""
+
+#. translators: %s: product name
+#. translators: %s: Product name
+#: functions.php:853
+#: functions.php:1021
+#: woocommerce/cart/cart.php:57
+#, php-format
+msgid "Remove %s from cart"
+msgstr ""
+
+#. translators: %s: number of validation errors
+#: functions.php:855
+#, php-format
+msgid "%s validation errors. Please review the form."
+msgstr ""
+
+#. translators: %s: image number
+#: functions.php:857
+#, php-format
+msgid "View image %s"
+msgstr ""
+
+#: functions.php:858
+msgid "Product image updated"
+msgstr ""
+
+#. translators: used between a variation label and the selected option, e.g. "Color changed to Blue"
+#: functions.php:860
+msgid "changed to"
+msgstr ""
+
+#: functions.php:861
+#: woocommerce/cart/cart.php:28
+#: woocommerce/cart/cart.php:78
+msgid "Product"
+msgstr ""
+
+#: functions.php:979
+msgid "On Sale"
+msgstr ""
+
+#: functions.php:993
+msgid "Sale!"
+msgstr ""
+
+#: functions.php:993
+msgid "This product is on sale"
+msgstr ""
+
+#. translators: %s: Product name
+#: functions.php:1003
+#, php-format
+msgid "Add %s to cart"
+msgstr ""
+
+#: functions.php:1040
+msgid "Skip to products"
+msgstr ""
+
+#: functions.php:1044
+msgid "Skip to product details"
+msgstr ""
+
+#: functions.php:1045
+msgid "Skip to add to cart"
+msgstr ""
+
+#: functions.php:1049
+msgid "Skip to cart contents"
+msgstr ""
+
+#: functions.php:1050
+msgid "Skip to cart totals"
+msgstr ""
+
+#: functions.php:1054
+msgid "Skip to billing details"
+msgstr ""
+
+#: functions.php:1055
+msgid "Skip to order review"
+msgstr ""
+
+#: functions.php:1059
+msgid "Shop"
+msgstr ""
+
+#. translators: 1: Rating value, 2: Maximum rating
+#: functions.php:1072
+#, php-format
+msgid "Rated %1$s out of %2$s"
+msgstr ""
+
+#. translators: 1: Comment date, 2: Comment time
+#: functions.php:1126
+#, php-format
+msgid "%1$s at %2$s"
+msgstr ""
+
+#: functions.php:1131
+msgid "Edit"
+msgstr ""
+
+#: functions.php:1136
+msgid "Your comment is awaiting moderation."
+msgstr ""
+
+#: header.php:66
+msgid "Accessibility settings"
+msgstr ""
+
+#: header.php:68
+msgid "Accessibility options"
+msgstr ""
+
+#: header.php:77
+msgid "Decrease text size"
+msgstr ""
+
+#: header.php:80
+msgid "Reset text size to default"
+msgstr ""
+
+#: header.php:83
+msgid "Increase text size"
+msgstr ""
+
+#: header.php:90
+msgid "Contrast"
+msgstr ""
+
+#: header.php:92
+msgid "High contrast mode"
+msgstr ""
+
+#: header.php:93
+msgid "High"
+msgstr ""
+
+#: header.php:95
+msgid "Monochrome mode"
+msgstr ""
+
+#: header.php:96
+msgid "Mono"
+msgstr ""
+
+#: header.php:102
+msgid "Motion"
+msgstr ""
+
+#: header.php:104
+msgid "Reduce motion and animations"
+msgstr ""
+
+#: header.php:105
+msgid "Reduce"
+msgstr ""
+
+#: header.php:116
+msgid "Primary"
+msgstr ""
+
+#: header.php:132
+msgid "Set up your primary navigation menu"
+msgstr ""
+
+#: index.php:62
+msgid "Page"
+msgstr ""
+
+#: page.php:48
+#: template-parts/content.php:103
+msgid "Pages"
+msgstr ""
+
+#: page.php:48
+#: template-parts/content.php:103
+msgid "Pages:"
+msgstr ""
+
+#. translators: %s: Name of current post
+#: page.php:62
+#: template-parts/content.php:132
+#, php-format
+msgid "Edit <span class=\"screen-reader-text\">\"%s\"</span>"
+msgstr ""
+
+#. translators: %s: number of results
+#: search.php:34
+#, php-format
+msgid "Found %s result"
+msgid_plural "Found %s results"
+msgstr[0] ""
+msgstr[1] ""
+
+#: search.php:70
+msgid "Search results pages"
+msgstr ""
+
+#. translators: %s: search query
+#: search.php:80
+#, php-format
+msgid "No Results for: %s"
+msgstr ""
+
+#: search.php:88
+msgid "Sorry, no content matched your search criteria. Please try a different search."
+msgstr ""
+
+#: search.php:90
+msgid "Try another search"
+msgstr ""
+
+#: search.php:91
+msgid "Try Another Search"
+msgstr ""
+
+#: search.php:95
+msgid "Helpful links"
+msgstr ""
+
+#: search.php:96
+msgid "Helpful Links"
+msgstr ""
+
+#: search.php:98
+msgid "Return to Homepage"
+msgstr ""
+
+#: search.php:100
+msgid "Browse our main menu"
+msgstr ""
+
+#: searchform.php:12
+msgid "Site"
+msgstr ""
+
+#: searchform.php:14
+msgid "Search for:"
+msgstr ""
+
+#: searchform.php:19
+msgctxt "placeholder"
+msgid "Search &hellip;"
+msgstr ""
+
+#: searchform.php:26
+msgid "Press Enter to search"
+msgstr ""
+
+#: searchform.php:30
+msgctxt "submit button"
+msgid "Search"
+msgstr ""
+
+#: sidebar.php:14
+msgid "Primary sidebar"
+msgstr ""
+
+#: single.php:27
+msgid "Previous:"
+msgstr ""
+
+#: single.php:28
+msgid "Next:"
+msgstr ""
+
+#: single.php:29
+msgid "Previous and next posts"
+msgstr ""
+
+#: template-parts/content-none.php:12
+msgid "Nothing Found"
+msgstr ""
+
+#. translators: %s: Link to create a new post
+#: template-parts/content-none.php:22
+#, php-format
+msgid "Ready to publish your first post? <a href=\"%s\">Get started here</a>."
+msgstr ""
+
+#: template-parts/content-none.php:35
+msgid "Sorry, but nothing matched your search terms. Please try again with different keywords."
+msgstr ""
+
+#: template-parts/content-none.php:42
+msgid "It seems we cannot find what you are looking for. Perhaps searching can help."
+msgstr ""
+
+#: template-parts/content-search.php:18
+msgid "Posted on "
+msgstr ""
+
+#: template-parts/content-search.php:25
+msgid "By "
+msgstr ""
+
+#: template-parts/content-search.php:35
+msgid "Categories: "
+msgstr ""
+
+#. translators: %s: Name of current post
+#: template-parts/content-search.php:53
+#, php-format
+msgid "Read More<span class=\"screen-reader-text\"> \"%s\"</span>"
+msgstr ""
+
+#: template-parts/content.php:24
+msgid "Posted on"
+msgstr ""
+
+#. translators: %s: Post modified date
+#: template-parts/content.php:32
+#, php-format
+msgid "Updated: %s"
+msgstr ""
+
+#: template-parts/content.php:39
+msgid "By"
+msgstr ""
+
+#: template-parts/content.php:52
+msgid "Categories:"
+msgstr ""
+
+#. translators: %s: Name of current post
+#: template-parts/content.php:90
+#, php-format
+msgid "Continue reading<span class=\"screen-reader-text\"> \"%s\"</span>"
+msgstr ""
+
+#: template-parts/content.php:120
+msgid "Tags:"
+msgstr ""
+
+#: woocommerce/archive-product.php:29
+msgid "Shop controls"
+msgstr ""
+
+#: woocommerce/archive-product.php:33
+msgid "Products"
+msgstr ""
+
+#: woocommerce/archive-product.php:34
+msgid "Products list"
+msgstr ""
+
+#: woocommerce/cart/cart.php:19
+msgid "Shopping cart contents"
+msgstr ""
+
+#: woocommerce/cart/cart.php:23
+msgid "Remove item"
+msgstr ""
+
+#: woocommerce/cart/cart.php:26
+msgid "Product image"
+msgstr ""
+
+#: woocommerce/cart/cart.php:29
+#: woocommerce/cart/cart.php:99
+msgid "Price"
+msgstr ""
+
+#: woocommerce/cart/cart.php:30
+#: woocommerce/cart/cart.php:106
+msgid "Quantity"
+msgstr ""
+
+#: woocommerce/cart/cart.php:31
+#: woocommerce/cart/cart.php:140
+msgid "Subtotal"
+msgstr ""
+
+#: woocommerce/cart/cart.php:48
+msgid "Remove"
+msgstr ""
+
+#: woocommerce/cart/cart.php:66
+msgid "Image"
+msgstr ""
+
+#: woocommerce/cart/cart.php:94
+msgid "Available on backorder"
+msgstr ""
+
+#. translators: %s: Product name
+#: woocommerce/cart/cart.php:135
+#, php-format
+msgid "Quantity for %s"
+msgstr ""
+
+#: woocommerce/cart/cart.php:159
+msgid "Coupon:"
+msgstr ""
+
+#: woocommerce/cart/cart.php:160
+msgid "Coupon code"
+msgstr ""
+
+#: woocommerce/cart/cart.php:160
+msgid "Enter coupon code"
+msgstr ""
+
+#: woocommerce/cart/cart.php:161
+#: woocommerce/cart/cart.php:162
+msgid "Apply coupon"
+msgstr ""
+
+#: woocommerce/cart/cart.php:168
+#: woocommerce/cart/cart.php:169
+msgid "Update cart"
+msgstr ""
+
+#: woocommerce/content-product.php:53
+msgid "On sale"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Base"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Contrast"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Primary"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Secondary"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Accent"
+msgstr ""
