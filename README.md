@@ -2,8 +2,9 @@
 
 **An uncompromisingly accessible WordPress Theme that prioritizes Accessibility First.**
 
-![WordPress Theme](https://img.shields.io/badge/WordPress-Theme-blue.svg)
+[![WordPress.org](https://img.shields.io/badge/WordPress.org-Klaro-21759b.svg)](https://wordpress.org/themes/klaro/)
 ![Version](https://img.shields.io/badge/version-2.3.3-green.svg)
+![Tested up to](https://img.shields.io/badge/Tested%20up%20to-WordPress%207.0-blue.svg)
 ![License](https://img.shields.io/badge/license-GPL--2.0%2B-blue.svg)
 ![WCAG](https://img.shields.io/badge/WCAG_AAA-contrast-success.svg)
 ![WooCommerce](https://img.shields.io/badge/WooCommerce-Accessible-purple.svg)
@@ -24,6 +25,20 @@ Perfect for:
 - WordPress developers and Content creators with disabilities
 - Any site committed to digital accessibility
 - **Accessible e-commerce stores** with WooCommerce
+
+**Available on WordPress.org:** [wordpress.org/themes/klaro](https://wordpress.org/themes/klaro/) · Current version **2.3.3** · Tested up to WordPress 7.0
+
+---
+
+## 🆕 What's New in 2.3.x
+
+- ♿ **Meets the 2026 WordPress.org accessibility-ready requirements** (landmark naming, focus contrast, keyboard controls) — [Trac #264262](https://themes.trac.wordpress.org/ticket/264262)
+- 🎛️ **Front-end accessibility toolbar**: adjustable text size, high-contrast and monochrome modes, and a reduce-motion toggle, remembered per visitor
+- ⌨️ **Button-controlled submenus**: real `<button>` disclosures reachable with Tab and Shift+Tab that close with Escape and restore focus
+- 📄 **`accessibility.txt` statement** in the theme root, documenting the screen-reader-text class and testing methodology
+- 🎯 **Focus and skip-link color `#C2410C`** (5.18:1 on white), meeting the UI-control contrast requirement
+- 🛒 Numerous WooCommerce cart, checkout, and Blocks accessibility fixes
+- 🧭 Pagination and navigation layout fixes (2.3.3)
 
 ---
 
@@ -84,9 +99,9 @@ Perfect for:
 3. Go to **Appearance > Themes**
 4. Activate **Klaro**
 
-### Via WordPress.org
+### Via WordPress.org (Recommended)
 
-Once approved, you will be able to install it directly from WordPress.org:
+Klaro is published on the [WordPress.org theme directory](https://wordpress.org/themes/klaro/). Install and receive automatic updates directly from your dashboard:
 
 ```
 Appearance > Themes > Add New > Search "Klaro"
@@ -186,7 +201,7 @@ This program is distributed in the hope that it will be useful, but WITHOUT ANY 
 
 ## 🔗 Links
 
-- **WordPress.org:** Coming soon
+- **WordPress.org:** https://wordpress.org/themes/klaro/
 - **GitHub:** https://github.com/rafael-minuesa/klaro
 - **Issues:** https://github.com/rafael-minuesa/klaro/issues
 - **Author:** https://github.com/rafael-minuesa
