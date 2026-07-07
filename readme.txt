@@ -37,6 +37,8 @@ Klaro is a WordPress theme built from the ground up with accessibility as the pr
 
 **Shop Independently** - Full WooCommerce accessibility support enables users with disabilities to browse products, add items to cart, complete checkout, and track orders without barriers. All shop elements meet WCAG AAA contrast standards with proper ARIA labels and keyboard navigation.
 
+**Manage Independently** - The free companion plugin, Klaro Admin Accessibility, extends accessibility to the WordPress admin with high contrast mode, large text, enhanced focus indicators, reduced motion, a simplified menu, and a classic editor toggle. Find it in the plugin directory at https://wordpress.org/plugins/klaro-admin-accessibility/
+
 = Key Features =
 
 * WCAG AAA Contrast Ratios (7:1 minimum for all text)
