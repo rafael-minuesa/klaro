@@ -118,4 +118,4 @@ When releasing a new version:
 
 ## Current Version
 
-**v2.4.0** - Dark mode (toolbar toggle + Customizer contrast mode, `.klaro-dark`, WCAG AAA validated palette); fixed Customizer contrast classes never matching the stylesheet (now mapped to `klaro-`-prefixed classes in `klaro_body_classes()`). (Jul 2026. v2.3.3: pagination layout fixes; v2.3.2: accessibility audit for Trac #264262 re-review; v2.3.1: Tested up to WordPress 7.0; v2.3.0: accessibility-ready 2026 requirements)
+**v2.5.0** - Color vision filters in the toolbar (daltonization for protanopia/deuteranopia/tritanopia; one composed feColorMatrix per type in footer.php, applied in linearRGB to `.site-container`, never `body`, to keep the fixed admin bar working). (Jul 2026. v2.4.0: dark mode toolbar toggle + Customizer contrast mode and the Customizer body-class mapping fix; v2.3.3: pagination layout fixes; v2.3.2: accessibility audit for Trac #264262 re-review; v2.3.1: Tested up to WordPress 7.0; v2.3.0: accessibility-ready 2026 requirements)

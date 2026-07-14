@@ -3,7 +3,7 @@
 **An uncompromisingly accessible WordPress Theme that prioritizes Accessibility First.**
 
 [![WordPress.org](https://img.shields.io/badge/WordPress.org-Klaro-21759b.svg)](https://wordpress.org/themes/klaro/)
-![Version](https://img.shields.io/badge/version-2.4.0-green.svg)
+![Version](https://img.shields.io/badge/version-2.5.0-green.svg)
 ![Tested up to](https://img.shields.io/badge/Tested%20up%20to-WordPress%207.0-blue.svg)
 ![License](https://img.shields.io/badge/license-GPL--2.0%2B-blue.svg)
 ![WCAG](https://img.shields.io/badge/WCAG_AAA-contrast-success.svg)
@@ -26,7 +26,7 @@ Perfect for:
 - Any site committed to digital accessibility
 - **Accessible e-commerce stores** with WooCommerce
 
-**Available on WordPress.org:** [wordpress.org/themes/klaro](https://wordpress.org/themes/klaro/) · Current version **2.4.0** · Tested up to WordPress 7.0
+**Available on WordPress.org:** [wordpress.org/themes/klaro](https://wordpress.org/themes/klaro/) · Current version **2.5.0** · Tested up to WordPress 7.0
 
 ---
 

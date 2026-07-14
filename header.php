@@ -102,6 +102,21 @@
 						</div>
 
 						<div class="klaro-accessibility-section">
+							<span class="klaro-accessibility-section-label"><?php esc_html_e( 'Color Vision', 'klaro' ); ?></span>
+							<div class="klaro-accessibility-buttons">
+								<button type="button" id="klaro-filter-protanopia" class="klaro-accessibility-button" aria-label="<?php esc_attr_e( 'Color filter for red-blindness (protanopia)', 'klaro' ); ?>" aria-pressed="false">
+									<span aria-hidden="true"><?php esc_html_e( 'Red-blind', 'klaro' ); ?></span>
+								</button>
+								<button type="button" id="klaro-filter-deuteranopia" class="klaro-accessibility-button" aria-label="<?php esc_attr_e( 'Color filter for green-blindness (deuteranopia)', 'klaro' ); ?>" aria-pressed="false">
+									<span aria-hidden="true"><?php esc_html_e( 'Green-blind', 'klaro' ); ?></span>
+								</button>
+								<button type="button" id="klaro-filter-tritanopia" class="klaro-accessibility-button" aria-label="<?php esc_attr_e( 'Color filter for blue-blindness (tritanopia)', 'klaro' ); ?>" aria-pressed="false">
+									<span aria-hidden="true"><?php esc_html_e( 'Blue-blind', 'klaro' ); ?></span>
+								</button>
+							</div>
+						</div>
+
+						<div class="klaro-accessibility-section">
 							<span class="klaro-accessibility-section-label"><?php esc_html_e( 'Motion', 'klaro' ); ?></span>
 							<div class="klaro-accessibility-buttons">
 								<button type="button" id="klaro-toggle-animations" class="klaro-accessibility-button" aria-label="<?php esc_attr_e( 'Reduce motion and animations', 'klaro' ); ?>" aria-pressed="false">

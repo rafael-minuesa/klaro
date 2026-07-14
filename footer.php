@@ -69,6 +69,29 @@
 
 </div><!-- #page -->
 
+<?php
+/*
+ * Daltonization filters for the accessibility toolbar's color vision modes.
+ * Single matrix per deficiency: the Vienot simulation and the per-type error
+ * redistribution (Simon-Liedtke & Farup) compose into one linear transform,
+ * applied in linearRGB to match the gamma-removed reference pipeline.
+ * White and black are preserved exactly (each matrix row sums to 1).
+ */
+?>
+<svg class="klaro-filter-defs" width="0" height="0" aria-hidden="true" focusable="false" style="position:absolute">
+	<defs>
+		<filter id="klaro-daltonize-protanopia" color-interpolation-filters="linearRGB">
+			<feColorMatrix type="matrix" values="1 0 0 0 0  0.4100531 0.5899469 0 0 0  0.5851272 -0.5851272 1 0 0  0 0 0 1 0" />
+		</filter>
+		<filter id="klaro-daltonize-deuteranopia" color-interpolation-filters="linearRGB">
+			<feColorMatrix type="matrix" values="1.4378779 -0.4378779 0 0 0  0 1 0 0 0  -0.2036067 0.2036067 1 0 0  0 0 0 1 0" />
+		</filter>
+		<filter id="klaro-daltonize-tritanopia" color-interpolation-filters="linearRGB">
+			<feColorMatrix type="matrix" values="1 -0.7391354 0.7391354 0 0  0 0.5143542 0.4856458 0 0  0 0 1 0 0  0 0 0 1 0" />
+		</filter>
+	</defs>
+</svg>
+
 <?php wp_footer(); ?>
 
 </body>

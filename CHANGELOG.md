@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.5.0] - 2026-07-15
+
+### Added
+- Color vision filters in the accessibility toolbar: daltonization for protanopia, deuteranopia, and tritanopia. Instead of simulating the deficiency, each filter shifts the color information a dichromat cannot perceive into a visible range, using one composed feColorMatrix per type (Vienot simulation + the per-type error redistribution of Simon-Liedtke & Farup, applied in linearRGB). Whites and blacks are preserved exactly. The filter targets `.site-container` so the fixed-position admin bar keeps working.
+
 ## [2.4.0] - 2026-07-15
 
 ### Added

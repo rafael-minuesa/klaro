@@ -13,12 +13,13 @@
 
     // Get accessibility settings from localStorage.
     // Defaults are merged in so settings stored by older theme versions
-    // (which may lack newer keys) keep working.
+    // (without newer keys like colorFilter) keep working.
     function klaroGetSettings() {
         const defaults = {
             fontSize: 'normal',
             contrast: 'normal',
-            animations: 'enabled'
+            animations: 'enabled',
+            colorFilter: 'none'
         };
         const stored = localStorage.getItem(STORAGE_KEY);
         return stored ? Object.assign(defaults, JSON.parse(stored)) : defaults;
@@ -43,6 +44,24 @@
         }
     };
 
+    // Color vision filters: setting value -> body class, toolbar button, announcement name
+    const klaroColorFilters = {
+        'protanopia': {
+            className: 'klaro-filter-protanopia',
+            buttonId: 'klaro-filter-protanopia',
+            label: 'Red-blind color filter'
+        },
+        'deuteranopia': {
+            className: 'klaro-filter-deuteranopia',
+            buttonId: 'klaro-filter-deuteranopia',
+            label: 'Green-blind color filter'
+        },
+        'tritanopia': {
+            className: 'klaro-filter-tritanopia',
+            buttonId: 'klaro-filter-tritanopia',
+            label: 'Blue-blind color filter'
+        }
+    };
 
     // Save settings to localStorage
     function klaroSaveSettings(settings) {
@@ -85,6 +104,11 @@
             klaroUpdateButtonState(klaroContrastModes[settings.contrast].buttonId, true);
         }
 
+        // Apply color vision filter to body
+        if (klaroColorFilters[settings.colorFilter]) {
+            body.classList.add(klaroColorFilters[settings.colorFilter].className);
+            klaroUpdateButtonState(klaroColorFilters[settings.colorFilter].buttonId, true);
+        }
 
         // Apply animation preference to html (affects all descendants)
         if (settings.animations === 'disabled') {
@@ -223,6 +247,42 @@
         });
     }
 
+    // Color vision filters (daltonization) - mutually exclusive toggles
+    function klaroInitColorFilterControls() {
+        const body = document.body;
+
+        Object.keys(klaroColorFilters).forEach(filter => {
+            const config = klaroColorFilters[filter];
+            const button = document.getElementById(config.buttonId);
+            if (!button) return;
+
+            button.addEventListener('click', () => {
+                const settings = klaroGetSettings();
+
+                // Remove the other color filters
+                Object.keys(klaroColorFilters).forEach(other => {
+                    if (other !== filter) {
+                        body.classList.remove(klaroColorFilters[other].className);
+                        klaroUpdateButtonState(klaroColorFilters[other].buttonId, false);
+                    }
+                });
+
+                if (settings.colorFilter === filter) {
+                    body.classList.remove(config.className);
+                    settings.colorFilter = 'none';
+                    klaroUpdateButtonState(config.buttonId, false);
+                    klaroAnnounceChange(config.label + ' disabled');
+                } else {
+                    body.classList.add(config.className);
+                    settings.colorFilter = filter;
+                    klaroUpdateButtonState(config.buttonId, true);
+                    klaroAnnounceChange(config.label + ' enabled');
+                }
+
+                klaroSaveSettings(settings);
+            });
+        });
+    }
 
     // Animation controls
     function klaroInitAnimationControls() {
@@ -378,6 +438,7 @@
         // Initialize all controls
         klaroInitFontSizeControls();
         klaroInitContrastControls();
+        klaroInitColorFilterControls();
         klaroInitAnimationControls();
         klaroInitReducedMotion();
         klaroInitFocusManagement();
