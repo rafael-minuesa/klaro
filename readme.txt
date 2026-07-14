@@ -7,7 +7,7 @@ Tags: accessibility-ready, one-column, two-columns, custom-colors, custom-menu, 
 Requires at least: 6.0
 Tested up to: 7.0
 Requires PHP: 7.4
-Stable tag: 2.3.3
+Stable tag: 2.4.0
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -120,6 +120,10 @@ Klaro meets WCAG 2.2 AA standards and includes features that often exceed AA req
 * Tested with NVDA, JAWS, VoiceOver, ORCA
 
 == Changelog ==
+
+= 2.4.0 =
+* Added Dark mode: a softer dark color scheme alongside High Contrast and Monochrome, available in the accessibility toolbar and as a Customizer contrast mode (WCAG AAA verified)
+* Fixed the Customizer contrast mode setting producing body classes that matched no stylesheet selector, so the site-wide setting never applied
 
 = 2.3.3 =
 * Fixed posts pagination layout: page number links now sit in a row instead of stacking as full-width blocks

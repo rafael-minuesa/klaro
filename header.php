@@ -95,6 +95,9 @@
 								<button type="button" id="klaro-toggle-monochrome" class="klaro-accessibility-button" aria-label="<?php esc_attr_e( 'Monochrome mode', 'klaro' ); ?>" aria-pressed="false">
 									<span aria-hidden="true"><?php esc_html_e( 'Mono', 'klaro' ); ?></span>
 								</button>
+								<button type="button" id="klaro-toggle-dark" class="klaro-accessibility-button" aria-label="<?php esc_attr_e( 'Dark mode', 'klaro' ); ?>" aria-pressed="false">
+									<span aria-hidden="true"><?php esc_html_e( 'Dark', 'klaro' ); ?></span>
+								</button>
 							</div>
 						</div>
 

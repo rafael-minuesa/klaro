@@ -37,8 +37,8 @@ screen-reader-text
 - Keyboard-operable navigation submenus using real button toggles with correct
   aria-expanded state; Escape closes an open submenu and restores focus.
 - A built-in accessibility toolbar offering: adjustable text size, high-contrast
-  mode, monochrome mode, and reduced motion. Preferences persist across pages and
-  the toolbar popup closes with the Escape key.
+  mode, monochrome mode, dark mode, and reduced motion. Preferences persist
+  across pages and the toolbar popup closes with the Escape key.
 - Respect for the operating system prefers-reduced-motion setting.
 - Highly visible focus indicators that meet non-text contrast requirements in all
   display modes.

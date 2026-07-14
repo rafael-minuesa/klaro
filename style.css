@@ -4,7 +4,7 @@ Theme URI: https://github.com/rafael-minuesa/klaro
 Author: Rafael Minuesa
 Author URI: https://github.com/rafael-minuesa
 Description: An uncompromisingly accessible WordPress theme designed for everyone. Klaro features WCAG AAA color contrast, enabling users with disabilities to browse content and shop with WooCommerce independently. Includes adjustable text sizes, high contrast and monochrome modes, keyboard navigation, and screen reader optimization. Pairs with the free Klaro Admin Accessibility plugin to bring the same accessibility to the WordPress admin.
-Version: 2.3.3
+Version: 2.4.0
 Requires at least: 6.0
 Tested up to: 7.0
 Requires PHP: 7.4
@@ -123,6 +123,26 @@ along with Klaro. If not, see http://www.gnu.org/licenses/gpl-2.0.html.
   --color-success-bg: #F0F0F0;
   --color-success-border: #000000;
   --color-notice-text: #000000;
+}
+
+/* Dark Mode - softer dark scheme than High Contrast, still WCAG AAA (7:1 text, 3:1 UI) */
+.klaro-dark {
+  --color-background: #121212;
+  --color-text: #E6E6E6;
+  --color-link: #8AB4F8;
+  --color-link-visited: #C9A7F5;
+  --color-link-hover: #AECBFA;
+  --color-focus: #FB923C;
+  --color-border: #9AA0A6;
+  --color-heading: #F5F5F5;
+  --color-primary: #8AB4F8;
+  --color-text-secondary: #C4C7CA;
+  --color-bg-secondary: #1E1E1E;
+  --color-error-bg: #3B1219;
+  --color-error-border: #F28B82;
+  --color-success-bg: #0F2A12;
+  --color-success-border: #81C995;
+  --color-notice-text: #E6E6E6;
 }
 
 /* Medium Text Mode - Applied to html element */

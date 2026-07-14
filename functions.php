@@ -581,6 +581,7 @@ function klaro_customize_register( $wp_customize ) {
 				'standard'      => esc_html__( 'Standard (AAA)', 'klaro' ),
 				'high-contrast' => esc_html__( 'High Contrast', 'klaro' ),
 				'monochrome'    => esc_html__( 'Monochrome', 'klaro' ),
+				'dark'          => esc_html__( 'Dark', 'klaro' ),
 			),
 		)
 	);
@@ -703,8 +704,15 @@ add_action( 'wp_enqueue_scripts', 'klaro_customizer_css', 20 );
 function klaro_body_classes( $classes ) {
 	$contrast_mode = get_theme_mod( 'klaro_contrast_mode', 'standard' );
 
-	if ( 'standard' !== $contrast_mode ) {
-		$classes[] = sanitize_html_class( $contrast_mode );
+	// Map customizer values to the stylesheet's klaro-prefixed mode classes.
+	$klaro_contrast_classes = array(
+		'high-contrast' => 'klaro-high-contrast',
+		'monochrome'    => 'klaro-monochrome',
+		'dark'          => 'klaro-dark',
+	);
+
+	if ( isset( $klaro_contrast_classes[ $contrast_mode ] ) ) {
+		$classes[] = $klaro_contrast_classes[ $contrast_mode ];
 	}
 
 	return $classes;

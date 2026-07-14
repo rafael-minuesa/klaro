@@ -11,15 +11,38 @@
     // Settings storage
     const STORAGE_KEY = 'klaro_accessibility_settings';
 
-    // Get accessibility settings from localStorage
+    // Get accessibility settings from localStorage.
+    // Defaults are merged in so settings stored by older theme versions
+    // (which may lack newer keys) keep working.
     function klaroGetSettings() {
-        const stored = localStorage.getItem(STORAGE_KEY);
-        return stored ? JSON.parse(stored) : {
+        const defaults = {
             fontSize: 'normal',
             contrast: 'normal',
             animations: 'enabled'
         };
+        const stored = localStorage.getItem(STORAGE_KEY);
+        return stored ? Object.assign(defaults, JSON.parse(stored)) : defaults;
     }
+
+    // Contrast modes: setting value -> body class, toolbar button, announcement name
+    const klaroContrastModes = {
+        'high': {
+            className: 'klaro-high-contrast',
+            buttonId: 'klaro-toggle-contrast',
+            label: 'High contrast mode'
+        },
+        'monochrome': {
+            className: 'klaro-monochrome',
+            buttonId: 'klaro-toggle-monochrome',
+            label: 'Monochrome mode'
+        },
+        'dark': {
+            className: 'klaro-dark',
+            buttonId: 'klaro-toggle-dark',
+            label: 'Dark mode'
+        }
+    };
+
 
     // Save settings to localStorage
     function klaroSaveSettings(settings) {
@@ -57,13 +80,11 @@
         }
 
         // Apply contrast to body
-        if (settings.contrast === 'high') {
-            body.classList.add('klaro-high-contrast');
-            klaroUpdateButtonState('klaro-toggle-contrast', true);
-        } else if (settings.contrast === 'monochrome') {
-            body.classList.add('klaro-monochrome');
-            klaroUpdateButtonState('klaro-toggle-monochrome', true);
+        if (klaroContrastModes[settings.contrast]) {
+            body.classList.add(klaroContrastModes[settings.contrast].className);
+            klaroUpdateButtonState(klaroContrastModes[settings.contrast].buttonId, true);
         }
+
 
         // Apply animation preference to html (affects all descendants)
         if (settings.animations === 'disabled') {
@@ -165,58 +186,43 @@
         });
     }
 
-    // High contrast mode
+    // Contrast modes (high contrast, monochrome, dark) - mutually exclusive toggles
     function klaroInitContrastControls() {
-        const contrastBtn = document.getElementById('klaro-toggle-contrast');
-        const klaroMonochromeBtn = document.getElementById('klaro-toggle-monochrome');
         const body = document.body;
 
-        if (!contrastBtn || !klaroMonochromeBtn) return;
+        Object.keys(klaroContrastModes).forEach(mode => {
+            const config = klaroContrastModes[mode];
+            const button = document.getElementById(config.buttonId);
+            if (!button) return;
 
-        contrastBtn.addEventListener('click', () => {
-            const settings = klaroGetSettings();
+            button.addEventListener('click', () => {
+                const settings = klaroGetSettings();
 
-            // Remove other contrast modes
-            body.classList.remove('klaro-monochrome');
-            klaroUpdateButtonState('klaro-toggle-monochrome', false);
+                // Remove the other contrast modes
+                Object.keys(klaroContrastModes).forEach(other => {
+                    if (other !== mode) {
+                        body.classList.remove(klaroContrastModes[other].className);
+                        klaroUpdateButtonState(klaroContrastModes[other].buttonId, false);
+                    }
+                });
 
-            if (settings.contrast === 'high') {
-                body.classList.remove('klaro-high-contrast');
-                settings.contrast = 'normal';
-                klaroUpdateButtonState('klaro-toggle-contrast', false);
-                klaroAnnounceChange('High contrast mode disabled');
-            } else {
-                body.classList.add('klaro-high-contrast');
-                settings.contrast = 'high';
-                klaroUpdateButtonState('klaro-toggle-contrast', true);
-                klaroAnnounceChange('High contrast mode enabled');
-            }
+                if (settings.contrast === mode) {
+                    body.classList.remove(config.className);
+                    settings.contrast = 'normal';
+                    klaroUpdateButtonState(config.buttonId, false);
+                    klaroAnnounceChange(config.label + ' disabled');
+                } else {
+                    body.classList.add(config.className);
+                    settings.contrast = mode;
+                    klaroUpdateButtonState(config.buttonId, true);
+                    klaroAnnounceChange(config.label + ' enabled');
+                }
 
-            klaroSaveSettings(settings);
-        });
-
-        klaroMonochromeBtn.addEventListener('click', () => {
-            const settings = klaroGetSettings();
-
-            // Remove other contrast modes
-            body.classList.remove('klaro-high-contrast');
-            klaroUpdateButtonState('klaro-toggle-contrast', false);
-
-            if (settings.contrast === 'monochrome') {
-                body.classList.remove('klaro-monochrome');
-                settings.contrast = 'normal';
-                klaroUpdateButtonState('klaro-toggle-monochrome', false);
-                klaroAnnounceChange('Monochrome mode disabled');
-            } else {
-                body.classList.add('klaro-monochrome');
-                settings.contrast = 'monochrome';
-                klaroUpdateButtonState('klaro-toggle-monochrome', true);
-                klaroAnnounceChange('Monochrome mode enabled');
-            }
-
-            klaroSaveSettings(settings);
+                klaroSaveSettings(settings);
+            });
         });
     }
+
 
     // Animation controls
     function klaroInitAnimationControls() {

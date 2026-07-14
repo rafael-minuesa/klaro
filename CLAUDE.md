@@ -118,4 +118,4 @@ When releasing a new version:
 
 ## Current Version
 
-**v2.3.3** - Fixed posts pagination layout (flex row on `.nav-links` not `.pagination`; page-number styling scoped to `.page-numbers` to kill a nested "Next" box). (Jul 2026. v2.3.2: accessibility audit for Trac #264262 re-review + description rewrite; v2.3.1: Tested up to WordPress 7.0; v2.3.0: accessibility-ready 2026 requirements)
+**v2.4.0** - Dark mode (toolbar toggle + Customizer contrast mode, `.klaro-dark`, WCAG AAA validated palette); fixed Customizer contrast classes never matching the stylesheet (now mapped to `klaro-`-prefixed classes in `klaro_body_classes()`). (Jul 2026. v2.3.3: pagination layout fixes; v2.3.2: accessibility audit for Trac #264262 re-review; v2.3.1: Tested up to WordPress 7.0; v2.3.0: accessibility-ready 2026 requirements)

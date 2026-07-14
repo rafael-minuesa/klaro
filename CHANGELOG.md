@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.4.0] - 2026-07-15
+
+### Added
+- Dark mode: a softer dark color scheme alongside High Contrast and Monochrome, available as a toolbar toggle and as a Customizer contrast mode. All color pairs meet WCAG AAA (7:1 text, 3:1 UI/focus) on both background surfaces.
+
+### Fixed
+- The Customizer "Contrast Mode" setting emitted unprefixed body classes (`high-contrast`, `monochrome`) that matched no stylesheet selector, so the site-wide contrast setting never applied.
+
 ## [2.3.3] - 2026-07-05
 
 ### Fixed
