@@ -126,6 +126,21 @@
 						</div>
 
 						<div class="klaro-accessibility-section">
+							<span class="klaro-accessibility-section-label"><?php esc_html_e( 'Reading', 'klaro' ); ?></span>
+							<div class="klaro-accessibility-buttons">
+								<button type="button" id="klaro-toggle-spacing" class="klaro-accessibility-button" aria-label="<?php esc_attr_e( 'Increase text spacing', 'klaro' ); ?>" aria-pressed="false">
+									<span aria-hidden="true"><?php esc_html_e( 'Spacing', 'klaro' ); ?></span>
+								</button>
+								<button type="button" id="klaro-toggle-links" class="klaro-accessibility-button" aria-label="<?php esc_attr_e( 'Highlight links', 'klaro' ); ?>" aria-pressed="false">
+									<span aria-hidden="true"><?php esc_html_e( 'Links', 'klaro' ); ?></span>
+								</button>
+								<button type="button" id="klaro-toggle-cursor" class="klaro-accessibility-button" aria-label="<?php esc_attr_e( 'Large mouse cursor', 'klaro' ); ?>" aria-pressed="false">
+									<span aria-hidden="true"><?php esc_html_e( 'Cursor', 'klaro' ); ?></span>
+								</button>
+							</div>
+						</div>
+
+						<div class="klaro-accessibility-section">
 							<span class="klaro-accessibility-section-label"><?php esc_html_e( 'Motion', 'klaro' ); ?></span>
 							<div class="klaro-accessibility-buttons">
 								<button type="button" id="klaro-toggle-animations" class="klaro-accessibility-button" aria-label="<?php esc_attr_e( 'Reduce motion and animations', 'klaro' ); ?>" aria-pressed="false">

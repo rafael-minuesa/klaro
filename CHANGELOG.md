@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.7.0] - 2026-07-15
+
+### Added
+- Reading aids section in the accessibility toolbar with three independent toggles: increased text spacing (the WCAG 1.4.12 Text Spacing values: 2 line height, 0.12em letter spacing, 0.16em word spacing, 2em paragraph spacing), link highlighting (currentColor box that follows every color mode without competing with focus outlines), and a large 44px white-outlined SVG cursor (interactive elements keep their native cursors so the pointer affordance is preserved).
+
 ## [2.6.0] - 2026-07-15
 
 ### Added

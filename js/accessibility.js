@@ -20,11 +20,36 @@
             contrast: 'normal',
             animations: 'enabled',
             colorFilter: 'none',
-            dyslexiaFont: 'disabled'
+            dyslexiaFont: 'disabled',
+            readingSpacing: 'disabled',
+            highlightLinks: 'disabled',
+            bigCursor: 'disabled'
         };
         const stored = localStorage.getItem(STORAGE_KEY);
         return stored ? Object.assign(defaults, JSON.parse(stored)) : defaults;
     }
+
+    // Reading aids: independent on/off toggles
+    const klaroReadingAids = [
+        {
+            key: 'readingSpacing',
+            buttonId: 'klaro-toggle-spacing',
+            className: 'klaro-reading-spacing',
+            label: 'Increased text spacing'
+        },
+        {
+            key: 'highlightLinks',
+            buttonId: 'klaro-toggle-links',
+            className: 'klaro-highlight-links',
+            label: 'Link highlighting'
+        },
+        {
+            key: 'bigCursor',
+            buttonId: 'klaro-toggle-cursor',
+            className: 'klaro-big-cursor',
+            label: 'Large cursor'
+        }
+    ];
 
     // Contrast modes: setting value -> body class, toolbar button, announcement name
     const klaroContrastModes = {
@@ -116,6 +141,14 @@
             body.classList.add('klaro-dyslexia-font');
             klaroUpdateButtonState('klaro-toggle-dyslexia', true);
         }
+
+        // Apply reading aids to body
+        klaroReadingAids.forEach(aid => {
+            if (settings[aid.key] === 'enabled') {
+                body.classList.add(aid.className);
+                klaroUpdateButtonState(aid.buttonId, true);
+            }
+        });
 
         // Apply animation preference to html (affects all descendants)
         if (settings.animations === 'disabled') {
@@ -343,6 +376,34 @@
         });
     }
 
+    // Reading aid toggles (spacing, link highlighting, large cursor)
+    function klaroInitReadingAidControls() {
+        const body = document.body;
+
+        klaroReadingAids.forEach(aid => {
+            const button = document.getElementById(aid.buttonId);
+            if (!button) return;
+
+            button.addEventListener('click', () => {
+                const settings = klaroGetSettings();
+
+                if (settings[aid.key] === 'enabled') {
+                    body.classList.remove(aid.className);
+                    settings[aid.key] = 'disabled';
+                    klaroUpdateButtonState(aid.buttonId, false);
+                    klaroAnnounceChange(aid.label + ' disabled');
+                } else {
+                    body.classList.add(aid.className);
+                    settings[aid.key] = 'enabled';
+                    klaroUpdateButtonState(aid.buttonId, true);
+                    klaroAnnounceChange(aid.label + ' enabled');
+                }
+
+                klaroSaveSettings(settings);
+            });
+        });
+    }
+
     // Add klaro-reduce-motion class based on system preference
     function klaroInitReducedMotion() {
         const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
@@ -473,6 +534,7 @@
         klaroInitContrastControls();
         klaroInitColorFilterControls();
         klaroInitDyslexiaControls();
+        klaroInitReadingAidControls();
         klaroInitAnimationControls();
         klaroInitReducedMotion();
         klaroInitFocusManagement();

@@ -7,7 +7,7 @@ Tags: accessibility-ready, one-column, two-columns, custom-colors, custom-menu, 
 Requires at least: 6.0
 Tested up to: 7.0
 Requires PHP: 7.4
-Stable tag: 2.6.0
+Stable tag: 2.7.0
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -120,6 +120,9 @@ Klaro meets WCAG 2.2 AA standards and includes features that often exceed AA req
 * Tested with NVDA, JAWS, VoiceOver, ORCA
 
 == Changelog ==
+
+= 2.7.0 =
+* Added reading aids to the accessibility toolbar: increased text spacing (WCAG 1.4.12 values), link highlighting that follows every color mode, and a large white-outlined cursor
 
 = 2.6.0 =
 * Added a dyslexia-friendly font toggle to the accessibility toolbar, using the bundled OpenDyslexic typeface (SIL Open Font License 1.1); the font files are only downloaded while the mode is active
