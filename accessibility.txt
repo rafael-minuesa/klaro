@@ -38,8 +38,9 @@ screen-reader-text
   aria-expanded state; Escape closes an open submenu and restores focus.
 - A built-in accessibility toolbar offering: adjustable text size, high-contrast
   mode, monochrome mode, dark mode, color vision filters (daltonization for
-  protanopia, deuteranopia, and tritanopia), and reduced motion. Preferences
-  persist across pages and the toolbar popup closes with the Escape key.
+  protanopia, deuteranopia, and tritanopia), a dyslexia-friendly font
+  (OpenDyslexic), and reduced motion. Preferences persist across pages and the
+  toolbar popup closes with the Escape key.
 - Respect for the operating system prefers-reduced-motion setting.
 - Highly visible focus indicators that meet non-text contrast requirements in all
   display modes.

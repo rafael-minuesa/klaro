@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.6.0] - 2026-07-15
+
+### Added
+- Dyslexia-friendly font toggle in the accessibility toolbar. Switches body text and form controls to the bundled OpenDyslexic typeface (by Abbie Gonzalez, SIL Open Font License 1.1, license text at fonts/OFL.txt). Regular, bold, italic, and bold-italic woff2 faces are bundled; browsers only download them while the mode is active.
+
 ## [2.5.0] - 2026-07-15
 
 ### Added

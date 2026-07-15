@@ -117,6 +117,15 @@
 						</div>
 
 						<div class="klaro-accessibility-section">
+							<span class="klaro-accessibility-section-label"><?php esc_html_e( 'Font', 'klaro' ); ?></span>
+							<div class="klaro-accessibility-buttons">
+								<button type="button" id="klaro-toggle-dyslexia" class="klaro-accessibility-button" aria-label="<?php esc_attr_e( 'Dyslexia-friendly font', 'klaro' ); ?>" aria-pressed="false">
+									<span aria-hidden="true"><?php esc_html_e( 'Dyslexia', 'klaro' ); ?></span>
+								</button>
+							</div>
+						</div>
+
+						<div class="klaro-accessibility-section">
 							<span class="klaro-accessibility-section-label"><?php esc_html_e( 'Motion', 'klaro' ); ?></span>
 							<div class="klaro-accessibility-buttons">
 								<button type="button" id="klaro-toggle-animations" class="klaro-accessibility-button" aria-label="<?php esc_attr_e( 'Reduce motion and animations', 'klaro' ); ?>" aria-pressed="false">

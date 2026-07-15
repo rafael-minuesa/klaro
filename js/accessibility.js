@@ -19,7 +19,8 @@
             fontSize: 'normal',
             contrast: 'normal',
             animations: 'enabled',
-            colorFilter: 'none'
+            colorFilter: 'none',
+            dyslexiaFont: 'disabled'
         };
         const stored = localStorage.getItem(STORAGE_KEY);
         return stored ? Object.assign(defaults, JSON.parse(stored)) : defaults;
@@ -108,6 +109,12 @@
         if (klaroColorFilters[settings.colorFilter]) {
             body.classList.add(klaroColorFilters[settings.colorFilter].className);
             klaroUpdateButtonState(klaroColorFilters[settings.colorFilter].buttonId, true);
+        }
+
+        // Apply dyslexia-friendly font to body
+        if (settings.dyslexiaFont === 'enabled') {
+            body.classList.add('klaro-dyslexia-font');
+            klaroUpdateButtonState('klaro-toggle-dyslexia', true);
         }
 
         // Apply animation preference to html (affects all descendants)
@@ -310,6 +317,32 @@
         });
     }
 
+    // Dyslexia-friendly font toggle
+    function klaroInitDyslexiaControls() {
+        const dyslexiaBtn = document.getElementById('klaro-toggle-dyslexia');
+        const body = document.body;
+
+        if (!dyslexiaBtn) return;
+
+        dyslexiaBtn.addEventListener('click', () => {
+            const settings = klaroGetSettings();
+
+            if (settings.dyslexiaFont === 'enabled') {
+                body.classList.remove('klaro-dyslexia-font');
+                settings.dyslexiaFont = 'disabled';
+                klaroUpdateButtonState('klaro-toggle-dyslexia', false);
+                klaroAnnounceChange('Dyslexia-friendly font disabled');
+            } else {
+                body.classList.add('klaro-dyslexia-font');
+                settings.dyslexiaFont = 'enabled';
+                klaroUpdateButtonState('klaro-toggle-dyslexia', true);
+                klaroAnnounceChange('Dyslexia-friendly font enabled');
+            }
+
+            klaroSaveSettings(settings);
+        });
+    }
+
     // Add klaro-reduce-motion class based on system preference
     function klaroInitReducedMotion() {
         const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
@@ -439,6 +472,7 @@
         klaroInitFontSizeControls();
         klaroInitContrastControls();
         klaroInitColorFilterControls();
+        klaroInitDyslexiaControls();
         klaroInitAnimationControls();
         klaroInitReducedMotion();
         klaroInitFocusManagement();

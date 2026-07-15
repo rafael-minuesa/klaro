@@ -7,7 +7,7 @@ Tags: accessibility-ready, one-column, two-columns, custom-colors, custom-menu, 
 Requires at least: 6.0
 Tested up to: 7.0
 Requires PHP: 7.4
-Stable tag: 2.5.0
+Stable tag: 2.6.0
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -120,6 +120,9 @@ Klaro meets WCAG 2.2 AA standards and includes features that often exceed AA req
 * Tested with NVDA, JAWS, VoiceOver, ORCA
 
 == Changelog ==
+
+= 2.6.0 =
+* Added a dyslexia-friendly font toggle to the accessibility toolbar, using the bundled OpenDyslexic typeface (SIL Open Font License 1.1); the font files are only downloaded while the mode is active
 
 = 2.5.0 =
 * Added color vision filters to the accessibility toolbar: assistive daltonization for protanopia (red-blindness), deuteranopia (green-blindness), and tritanopia (blue-blindness) that shifts imperceptible color information into a visible range rather than simulating the deficiency
@@ -284,6 +287,11 @@ Initial release of Klaro accessibility-first theme.
 * Tested with NVDA, JAWS, and VoiceOver
 
 == Resources ==
+
+= Fonts =
+OpenDyslexic (fonts/OpenDyslexic-*.woff2) by Abbie Gonzalez, licensed under the SIL Open Font License 1.1. The license text is bundled at fonts/OFL.txt.
+https://opendyslexic.org/
+https://github.com/antijingoist/opendyslexic
 
 = Screenshot =
 The screenshot.png is created by the theme author and licensed under GPL-2.0-or-later.
