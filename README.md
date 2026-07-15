@@ -30,23 +30,33 @@ Perfect for:
 
 ---
 
-## 🆕 What's New in 2.3.x
+## 🆕 What's New in 2.4 to 2.7
 
-- ♿ **Meets the 2026 WordPress.org accessibility-ready requirements** (landmark naming, focus contrast, keyboard controls) — [Trac #264262](https://themes.trac.wordpress.org/ticket/264262)
-- 🎛️ **Front-end accessibility toolbar**: adjustable text size, high-contrast and monochrome modes, and a reduce-motion toggle, remembered per visitor
-- ⌨️ **Button-controlled submenus**: real `<button>` disclosures reachable with Tab and Shift+Tab that close with Escape and restore focus
-- 📄 **`accessibility.txt` statement** in the theme root, documenting the screen-reader-text class and testing methodology
-- 🎯 **Focus and skip-link color `#C2410C`** (5.18:1 on white), meeting the UI-control contrast requirement
-- 🛒 Numerous WooCommerce cart, checkout, and Blocks accessibility fixes
-- 🧭 Pagination and navigation layout fixes (2.3.3)
+Four new visitor-facing accessibility features, one per release, all available from the front-end accessibility toolbar and remembered per visitor.
+
+- 🌙 **Dark mode** (2.4.0), a softer dark color scheme alongside High Contrast and Monochrome, available as a toolbar toggle and as a site-wide Customizer contrast mode, with all color pairs meeting WCAG AAA
+- 🎨 **Color vision filters** (2.5.0), assistive daltonization for protanopia (red-blindness), deuteranopia (green-blindness), and tritanopia (blue-blindness) that shifts imperceptible color information into a visible range instead of simulating the deficiency
+- 🔤 **Dyslexia-friendly font** (2.6.0), switches body text and form controls to the bundled [OpenDyslexic](https://opendyslexic.org/) typeface (SIL Open Font License 1.1); the font files are only downloaded while the mode is active
+- 📖 **Reading aids** (2.7.0), three independent toggles for increased text spacing (the WCAG 1.4.12 Text Spacing values), link highlighting that follows every color mode, and a large high-visibility cursor
+
+Earlier, the 2.3.x releases updated Klaro to meet the [2026 WordPress.org accessibility-ready requirements](https://make.wordpress.org/themes/handbook/review/accessibility/required/), including landmark naming, focus contrast, button-controlled submenus, and an `accessibility.txt` statement in the theme root ([Trac #264262](https://themes.trac.wordpress.org/ticket/264262)).
 
 ---
 
 ## ✨ Key Features
 
+### Visitor Accessibility Toolbar
+A front-end toolbar on every page, with each visitor's choices remembered:
+- ✅ **Text Size**: 5 levels, from 18px up to 32px
+- ✅ **Color Modes**: High Contrast, Monochrome, and Dark mode
+- ✅ **Color Vision Filters**: assistive daltonization for protanopia, deuteranopia, and tritanopia
+- ✅ **Dyslexia-Friendly Font**: bundled OpenDyslexic typeface
+- ✅ **Reading Aids**: increased text spacing, link highlighting, large cursor
+- ✅ **Reduce Motion**: turns off animations and transitions
+
 ### Visual Accessibility
 - ✅ **WCAG AAA Contrast Ratios** (7:1 minimum for all text)
-- ✅ **Multiple Color Modes**: Standard AAA, High Contrast, Monochrome
+- ✅ **Multiple Color Modes**: Standard AAA, High Contrast, Monochrome, Dark
 - ✅ **User-Adjustable Text Sizes**: 18px base (up to 32px)
 - ✅ **Generous Line Spacing**: 1.8 line height default
 - ✅ **Optimal Line Length**: Maximum 70 characters for readability
@@ -67,6 +77,8 @@ Perfect for:
 ### Cognitive & Motion Accessibility
 - ✅ **Respects prefers-reduced-motion**: No unwanted animations
 - ✅ **User Toggle for Animations**: Complete control over motion
+- ✅ **Dyslexia-Friendly Font Toggle**: Bundled OpenDyslexic typeface
+- ✅ **Reading Aids**: WCAG 1.4.12 text spacing, link highlighting, large cursor
 - ✅ **No Autoplay**: All media requires user interaction
 - ✅ **Clear Visual Hierarchy**: Consistent, logical layout
 
@@ -84,21 +96,6 @@ Perfect for:
 
 ## 📦 Installation
 
-### WordPress Admin (Recommended)
-
-1. Download `klaro.zip` from [Releases](https://github.com/rafael-minuesa/klaro/releases)
-2. Go to **Appearance > Themes > Add New**
-3. Click **Upload Theme**
-4. Choose the ZIP file and click **Install Now**
-5. Click **Activate**
-
-### Manual Installation
-
-1. Download and unzip the theme
-2. Upload the `klaro` folder to `/wp-content/themes/`
-3. Go to **Appearance > Themes**
-4. Activate **Klaro**
-
 ### Via WordPress.org (Recommended)
 
 Klaro is published on the [WordPress.org theme directory](https://wordpress.org/themes/klaro/). Install and receive automatic updates directly from your dashboard:
@@ -107,19 +104,23 @@ Klaro is published on the [WordPress.org theme directory](https://wordpress.org/
 Appearance > Themes > Add New > Search "Klaro"
 ```
 
+### Manual Installation
+
+1. Download the theme ZIP from the [WordPress.org theme page](https://wordpress.org/themes/klaro/)
+2. Go to **Appearance > Themes > Add New > Upload Theme**, choose the ZIP file, and click **Install Now**, or unzip and upload the `klaro` folder to `/wp-content/themes/`
+3. Click **Activate**
+
+---
+
+## 🔌 Companion Plugin
+
+The free [Klaro Admin Accessibility](https://wordpress.org/plugins/klaro-admin-accessibility/) plugin extends the same accessibility approach to the WordPress admin, with high contrast mode, large text, enhanced focus indicators, reduced motion, a simplified menu, and a classic editor toggle. The theme works fully without it.
+
 ---
 
 ## 🎨 Child Theme
 
-This repository includes an example child theme in `klaro-theme-child/`.
-
-### Creating a Child Theme:
-
-1. Copy the `klaro-theme-child` folder to `/wp-content/themes/`
-2. Activate the child theme in **Appearance > Themes**
-3. Customize the child theme without modifying the parent
-
-See `klaro-theme-child/README.md` for detailed instructions.
+To customize Klaro without losing your changes on updates, use a child theme. Create a folder in `/wp-content/themes/` with a `style.css` whose header sets `Template: klaro`, add a `functions.php` if needed, and activate it in **Appearance > Themes**. See the [WordPress child theme documentation](https://developer.wordpress.org/themes/advanced-topics/child-themes/) for details.
 
 ---
 
@@ -133,10 +134,9 @@ See `klaro-theme-child/README.md` for detailed instructions.
 
 ## 📖 Documentation
 
-- **[Installation Guide](klaro-theme/INSTALL.md)** - Coming soon
-- **[Customization Guide](klaro-theme/CUSTOMIZATION.md)** - Coming soon
-- **[Accessibility Features](klaro-theme/ACCESSIBILITY.md)** - Coming soon
 - **[Changelog](CHANGELOG.md)** - Version history
+- **[Accessibility statement](accessibility.txt)** - Features, testing methodology, and how to report accessibility issues
+- **[readme.txt](readme.txt)** - WordPress.org readme with FAQ and bundled resource licenses
 
 ---
 
@@ -160,8 +160,8 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 # Clone the repository
 git clone https://github.com/rafael-minuesa/klaro.git
 
-# Navigate to theme directory
-cd klaro/klaro
+# Navigate to theme directory (the repository root is the theme)
+cd klaro
 
 # Symlink to WordPress themes directory (adjust path as needed)
 ln -s $(pwd) /path/to/wordpress/wp-content/themes/klaro
