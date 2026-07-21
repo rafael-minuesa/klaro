@@ -7,7 +7,7 @@ Tags: accessibility-ready, one-column, two-columns, custom-colors, custom-menu, 
 Requires at least: 6.0
 Tested up to: 7.0
 Requires PHP: 7.4
-Stable tag: 2.7.0
+Stable tag: 2.7.1
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -120,6 +120,9 @@ Klaro meets WCAG 2.2 AA standards and includes features that often exceed AA req
 * Tested with NVDA, JAWS, VoiceOver, ORCA
 
 == Changelog ==
+
+= 2.7.1 =
+* Maintenance release with no functional changes. Republishes the 2.7.0 feature set, which the WordPress.org directory did not pick up.
 
 = 2.7.0 =
 * Added reading aids to the accessibility toolbar: increased text spacing (WCAG 1.4.12 values), link highlighting that follows every color mode, and a large white-outlined cursor

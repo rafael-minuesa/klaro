@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.7.1] - 2026-07-21
+
+### Changed
+- Maintenance release with no functional changes. The WordPress.org directory never created a review ticket for the 2.7.0 tag, so it kept serving 2.6.0; this version republishes the same code under a new version number.
+
 ## [2.7.0] - 2026-07-15
 
 ### Added
