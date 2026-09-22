@@ -126,7 +126,7 @@ To customize Klaro without losing your changes on updates, use a child theme. Cr
 
 ## 🛠️ Requirements
 
-- **WordPress:** 6.0 or higher
+- **WordPress:** 6.6 or higher
 - **PHP:** 7.4 or higher
 - **Modern Browser**: Chrome, Firefox, Safari, Edge (last 2 versions)
 

@@ -4,7 +4,7 @@ Contributors: rafaelminuesa
 Author: Rafael Minuesa
 Author URI: https://github.com/rafael-minuesa
 Tags: accessibility-ready, one-column, two-columns, custom-colors, custom-menu, featured-images, threaded-comments, translation-ready, block-styles, wide-blocks, e-commerce
-Requires at least: 6.0
+Requires at least: 6.6
 Tested up to: 7.0
 Requires PHP: 7.4
 Stable tag: 2.7.1
