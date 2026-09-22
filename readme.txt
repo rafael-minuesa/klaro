@@ -49,7 +49,7 @@ Klaro is a WordPress theme built from the ground up with accessibility as the pr
 * Skip links to all major page sections
 * Alt text visual indicator for images missing alt text
 * Breadcrumb navigation on all pages
-* No autoplay on any media
+* No autoplay on YouTube and Vimeo embeds
 * Respects prefers-reduced-motion
 * WooCommerce accessibility support
 
