@@ -69,12 +69,7 @@
 		<div class="post-thumbnail">
 			<a href="<?php echo esc_url( get_permalink() ); ?>" aria-hidden="true" tabindex="-1">
 				<?php
-				the_post_thumbnail(
-					'medium',
-					array(
-						'alt' => the_title_attribute( array( 'echo' => false ) ),
-					)
-				);
+				the_post_thumbnail( 'medium' );
 				?>
 			</a>
 		</div><!-- .post-thumbnail -->
