@@ -495,8 +495,9 @@
             klaroSettings.newWindow : '(opens in new window)';
 
         links.forEach(link => {
-            // Security hardening for new-window links
-            link.setAttribute('rel', 'noopener noreferrer');
+            // Security hardening for new-window links. relList.add keeps any
+            // author-set tokens (nofollow, sponsored, ugc) instead of replacing them.
+            link.relList.add('noopener', 'noreferrer');
 
             if (!link.querySelector('.klaro-external-link-text')) {
                 const srSpan = document.createElement('span');
