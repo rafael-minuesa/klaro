@@ -71,7 +71,7 @@ A front-end toolbar on every page, with each visitor's choices remembered:
 - ✅ **Semantic HTML5 Structure**: Proper heading hierarchy throughout
 - ✅ **Comprehensive ARIA Implementation**: Landmarks, labels, live regions
 - ✅ **Meaningful Link Text**: No "click here" or generic links
-- ✅ **Alt Text Enforcement**: Prevents publishing without image descriptions
+- ✅ **Alt Text Indicator**: Highlights images missing alt text during local development (localhost only)
 - ✅ **Breadcrumb Navigation**: Schema.org structured data on all pages
 
 ### Cognitive & Motion Accessibility
@@ -79,7 +79,7 @@ A front-end toolbar on every page, with each visitor's choices remembered:
 - ✅ **User Toggle for Animations**: Complete control over motion
 - ✅ **Dyslexia-Friendly Font Toggle**: Bundled OpenDyslexic typeface
 - ✅ **Reading Aids**: WCAG 1.4.12 text spacing, link highlighting, large cursor
-- ✅ **No Autoplay**: All media requires user interaction
+- ✅ **No Autoplay Embeds**: YouTube and Vimeo embeds load with autoplay off
 - ✅ **Clear Visual Hierarchy**: Consistent, logical layout
 
 ### WooCommerce Accessibility
