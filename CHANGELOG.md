@@ -7,6 +7,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.7.2] - 2026-09-23
+
+### Changed
+- Featured images in page.php and template-parts/content.php keep the alt text set on the attachment instead of being overwritten with the post title.
+- The new-window link enhancement adds `noopener noreferrer` with `relList.add`, keeping author-set rel tokens such as `nofollow`, `sponsored` and `ugc`.
+- The "Settings saved" toolbar announcement uses the localized string the theme already passes to the script.
+- Requires WordPress 6.6, the minimum for theme.json version 3 (previously advertised 6.0).
+- Expanded the theme description to cover the toolbar features, WooCommerce and the companion plugin.
+- README and readme.txt describe the alt-text indicator (localhost only) and autoplay handling (YouTube and Vimeo embeds) as implemented.
+
+### Removed
+- The cart remove-link filter, which inserted a second `aria-label` on a link the theme's cart template already labels.
+- The star-rating filter, which wrapped WooCommerce's rating in a second `.star-rating` element with `role="img"`; WooCommerce already supplies that wrapper and label.
+
 ## [2.7.1] - 2026-07-21
 
 ### Changed

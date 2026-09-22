@@ -3,8 +3,8 @@ Theme Name: Klaro
 Theme URI: https://github.com/rafael-minuesa/klaro
 Author: Rafael Minuesa
 Author URI: https://github.com/rafael-minuesa
-Description: An uncompromisingly accessible WordPress theme designed for everyone. Klaro features WCAG AAA color contrast, enabling users with disabilities to browse content and shop with WooCommerce independently. Includes adjustable text sizes, high contrast and monochrome modes, keyboard navigation, and screen reader optimization. Pairs with the free Klaro Admin Accessibility plugin to bring the same accessibility to the WordPress admin.
-Version: 2.7.1
+Description: An accessibility-first WordPress theme for content sites and WooCommerce stores. Klaro ships WCAG AAA color contrast, keyboard navigation, screen reader support, and a visitor toolbar with text sizing, high contrast, dark and monochrome modes, color vision filters, a dyslexia-friendly font, and reading aids. Its WooCommerce integration covers the shop, product pages, cart, and checkout, so customers with disabilities can browse and buy independently. The free Klaro Admin Accessibility plugin (wordpress.org/plugins/klaro-admin-accessibility/) brings the same accessibility to the WordPress admin.
+Version: 2.7.2
 Requires at least: 6.6
 Tested up to: 7.0
 Requires PHP: 7.4

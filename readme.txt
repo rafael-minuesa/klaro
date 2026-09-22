@@ -7,7 +7,7 @@ Tags: accessibility-ready, one-column, two-columns, custom-colors, custom-menu, 
 Requires at least: 6.6
 Tested up to: 7.0
 Requires PHP: 7.4
-Stable tag: 2.7.1
+Stable tag: 2.7.2
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -120,6 +120,14 @@ Klaro meets WCAG 2.2 AA standards and includes features that often exceed AA req
 * Tested with NVDA, JAWS, VoiceOver, ORCA
 
 == Changelog ==
+
+= 2.7.2 =
+* Featured images keep the alt text set on the attachment instead of the post title
+* New-window links keep their existing rel tokens (nofollow, sponsored, ugc) when noopener noreferrer is added
+* Removed the cart remove-link and star-rating filters that duplicated markup WooCommerce and the theme already output
+* The "Settings saved" toolbar announcement now uses the translatable string
+* Requires WordPress 6.6, the minimum for theme.json version 3
+* Expanded theme description; corrected README claims about alt text enforcement and autoplay
 
 = 2.7.1 =
 * Maintenance release with no functional changes. Republishes the 2.7.0 feature set, which the WordPress.org directory did not pick up.
