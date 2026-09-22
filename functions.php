@@ -1017,24 +1017,6 @@ function klaro_woocommerce_loop_add_to_cart_args( $args, $product ) {
 add_filter( 'woocommerce_loop_add_to_cart_args', 'klaro_woocommerce_loop_add_to_cart_args', 10, 2 );
 
 /**
- * Add accessible labels to cart item remove links
- */
-function klaro_woocommerce_cart_item_remove_link( $link, $cart_item_key ) {
-	$cart = WC()->cart->get_cart();
-	if ( isset( $cart[ $cart_item_key ] ) ) {
-		$product_name = $cart[ $cart_item_key ]['data']->get_name();
-		$link         = str_replace(
-			'class="remove"',
-			/* translators: %s: product name */
-			'class="remove" aria-label="' . esc_attr( sprintf( __( 'Remove %s from cart', 'klaro' ), $product_name ) ) . '"',
-			$link
-		);
-	}
-	return $link;
-}
-add_filter( 'woocommerce_cart_item_remove_link', 'klaro_woocommerce_cart_item_remove_link', 10, 2 );
-
-/**
  * Add skip links for WooCommerce pages
  */
 function klaro_woocommerce_skip_links() {
@@ -1070,21 +1052,6 @@ function klaro_woocommerce_skip_links() {
 	}
 }
 add_action( 'wp_body_open', 'klaro_woocommerce_skip_links', 6 );
-
-/**
- * Enhance star rating accessibility
- */
-function klaro_woocommerce_star_rating_html( $html, $rating, $count ) {
-	$rating_text = sprintf(
-		/* translators: 1: Rating value, 2: Maximum rating */
-		esc_html__( 'Rated %1$s out of %2$s', 'klaro' ),
-		$rating,
-		5
-	);
-
-	return '<div class="star-rating" role="img" aria-label="' . esc_attr( $rating_text ) . '">' . $html . '</div>';
-}
-add_filter( 'woocommerce_get_star_rating_html', 'klaro_woocommerce_star_rating_html', 10, 3 );
 
 /**
  * Add ARIA live region for cart updates
