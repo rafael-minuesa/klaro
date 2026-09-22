@@ -92,7 +92,8 @@
     // Save settings to localStorage
     function klaroSaveSettings(settings) {
         localStorage.setItem(STORAGE_KEY, JSON.stringify(settings));
-        klaroAnnounceChange('Settings saved');
+        klaroAnnounceChange((typeof klaroSettings !== 'undefined' && klaroSettings.saved) ?
+            klaroSettings.saved : 'Settings saved');
     }
 
     // Announce changes to screen readers
