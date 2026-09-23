@@ -218,7 +218,10 @@
 	}
 
 	/**
-	 * Enhance checkout form accessibility
+	 * Enhance checkout form accessibility.
+	 *
+	 * Called again after every updated_checkout, so the handler is bound
+	 * once under a namespace instead of stacking a copy per update.
 	 */
 	function initCheckoutAccessibility() {
 		var $checkoutForm = $('.woocommerce-checkout');
@@ -226,13 +229,21 @@
 			return;
 		}
 
-		// Announce errors
-		$(document.body).on('checkout_error', function() {
-			var $errors = $('.woocommerce-error li');
-			if ($errors.length > 0) {
-				var message = klaroWcSettings.checkoutErrors.replace('%s', $errors.length);
-				announce(message, true);
-				$errors.first().focus();
+		$(document.body).off('checkout_error.klaro').on('checkout_error.klaro', function() {
+			var $errorList = $('.woocommerce-error').first();
+			var $errors = $errorList.find('li');
+			if (!$errors.length) {
+				return;
+			}
+
+			announce(klaroWcSettings.checkoutErrors.replace('%s', $errors.length), true);
+
+			// WooCommerce focuses the error list itself when it carries
+			// tabindex="-1" (the theme's notice template does). Only step in
+			// when focus did not land inside the list, and then move it to
+			// the list rather than to a list item, which is not focusable.
+			if (!$.contains($errorList[0], document.activeElement) && document.activeElement !== $errorList[0]) {
+				$errorList.attr('tabindex', '-1').trigger('focus');
 			}
 		});
 	}
