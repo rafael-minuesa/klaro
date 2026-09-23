@@ -63,7 +63,7 @@
 			</div><!-- .site-branding -->
 
 			<!-- Accessibility Toolbar -->
-			<div class="klaro-accessibility-toolbar" role="region" aria-label="<?php esc_attr_e( 'Accessibility settings', 'klaro' ); ?>">
+			<div id="klaro-accessibility-toolbar" class="klaro-accessibility-toolbar" role="region" aria-label="<?php esc_attr_e( 'Accessibility settings', 'klaro' ); ?>">
 				<details class="klaro-accessibility-menu">
 					<summary class="klaro-accessibility-toggle" aria-expanded="false" aria-label="<?php esc_attr_e( 'Accessibility options', 'klaro' ); ?>">
 						<span class="dashicons dashicons-universal-access-alt klaro-accessibility-icon" aria-hidden="true"></span>

@@ -84,20 +84,6 @@ function klaro_setup() {
 		)
 	);
 
-	// Add support for custom header
-	add_theme_support(
-		'custom-header',
-		array(
-			'default-image'      => '',
-			'width'              => 1200,
-			'height'             => 400,
-			'flex-height'        => true,
-			'flex-width'         => true,
-			'header-text'        => true,
-			'default-text-color' => '1a1a1a',
-		)
-	);
-
 	// Add support for custom background
 	add_theme_support(
 		'custom-background',
@@ -388,30 +374,34 @@ function klaro_scripts() {
 add_action( 'wp_enqueue_scripts', 'klaro_scripts' );
 
 /**
- * Whether the current page shows the primary sidebar.
+ * Whether the current page shows a sidebar.
  *
- * One condition shared by the body class (layout), sidebar.php (markup) and
- * the skip links, so the three can never disagree. The widget area has to
- * hold widgets, and WooCommerce pages (shop, product, taxonomy, cart,
- * checkout, account) keep their single-column layout.
+ * One condition shared by the body class (layout), the sidebar markup and
+ * the skip links, so the three can never disagree. Regular pages use the
+ * Primary Sidebar, shop, product and product taxonomy pages use the Shop
+ * Sidebar, and cart, checkout and account pages stay single column.
  *
  * @return bool
  */
 function klaro_has_sidebar() {
-	if ( ! is_active_sidebar( 'klaro-sidebar-1' ) ) {
-		return false;
-	}
+	$has_sidebar = is_active_sidebar( 'klaro-sidebar-1' );
 
-	if ( class_exists( 'WooCommerce' ) && ( is_woocommerce() || is_cart() || is_checkout() || is_account_page() ) ) {
-		return false;
+	if ( class_exists( 'WooCommerce' ) ) {
+		if ( is_cart() || is_checkout() || is_account_page() ) {
+			$has_sidebar = false;
+		} elseif ( is_woocommerce() ) {
+			// Shop, product and product taxonomy pages show the Shop Sidebar
+			// widget area instead, printed by klaro_woocommerce_wrapper_after().
+			$has_sidebar = is_active_sidebar( 'sidebar-shop' );
+		}
 	}
 
 	/**
-	 * Filters whether the primary sidebar is shown on the current page.
+	 * Filters whether a sidebar is shown on the current page.
 	 *
-	 * @param bool $has_sidebar True when the sidebar is populated and the page is not a WooCommerce page.
+	 * @param bool $has_sidebar True when the widget area for this page holds widgets.
 	 */
-	return (bool) apply_filters( 'klaro_has_sidebar', true );
+	return (bool) apply_filters( 'klaro_has_sidebar', $has_sidebar );
 }
 
 /**
@@ -474,9 +464,9 @@ function klaro_admin_bar_accessibility_menu( $wp_admin_bar ) {
 			array(
 				'id'    => 'klaro-accessibility',
 				'title' => '<span class="ab-icon dashicons-universal-access" aria-hidden="true"></span><span class="ab-label">' . esc_html__( 'Accessibility', 'klaro' ) . '</span>',
-				'href'  => '#',
+				'href'  => '#klaro-accessibility-toolbar',
 				'meta'  => array(
-					'class' => 'klaro-accessibility-menu',
+					'class' => 'klaro-admin-bar-accessibility',
 				),
 			)
 		);
@@ -1058,15 +1048,22 @@ function klaro_woocommerce_wrapper_before() {
 function klaro_woocommerce_wrapper_after() {
 	?>
 		</div><!-- .content-area -->
+		<?php if ( klaro_has_sidebar() ) : ?>
+		<aside id="sidebar" class="sidebar" tabindex="-1" aria-label="<?php esc_attr_e( 'Shop sidebar', 'klaro' ); ?>">
+			<?php dynamic_sidebar( 'sidebar-shop' ); ?>
+		</aside><!-- #sidebar -->
+		<?php endif; ?>
 	</main><!-- #main-content -->
 	<?php
 }
 
 /**
- * WooCommerce sidebar - disabled by default for cleaner layout
+ * WooCommerce's own sidebar hook fires after the main element. The Shop
+ * Sidebar is printed inside the main grid by klaro_woocommerce_wrapper_after()
+ * instead, so this replacement prints nothing.
  */
 function klaro_woocommerce_sidebar() {
-	// Sidebar disabled by default - single column layout
+	// Intentionally empty, see above.
 }
 
 /**
