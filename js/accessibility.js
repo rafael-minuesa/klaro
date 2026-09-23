@@ -21,7 +21,11 @@
     const klaroAllowedValues = {
         fontSize: ['normal', 'medium', 'large', 'extra-large', 'maximum'],
         contrast: ['normal', 'standard', 'high', 'monochrome', 'dark'],
-        animations: ['enabled', 'disabled'],
+        // animations: 'enabled' means no visitor choice, follow the operating
+        // system (also what older stored settings contain); 'disabled' means
+        // the visitor asked for reduced motion; 'allowed' means the visitor
+        // wants animations although the system prefers reduced motion.
+        animations: ['enabled', 'disabled', 'allowed'],
         colorFilter: ['none', 'protanopia', 'deuteranopia', 'tritanopia'],
         dyslexiaFont: ['disabled', 'enabled'],
         readingSpacing: ['disabled', 'enabled'],
@@ -228,6 +232,27 @@
         }, 3000);
     }
 
+    // Reduced motion: the visitor's choice wins, otherwise the operating
+    // system preference decides. Returns true when motion should be reduced.
+    const klaroMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+    function klaroEffectiveReducedMotion(settings) {
+        if (settings.animations === 'disabled') {
+            return true;
+        }
+        if (settings.animations === 'allowed') {
+            return false;
+        }
+        return klaroMotionQuery.matches;
+    }
+
+    function klaroApplyReducedMotion(settings) {
+        const reduced = klaroEffectiveReducedMotion(settings);
+        document.documentElement.classList.toggle('klaro-reduce-motion', reduced);
+        klaroUpdateButtonState('klaro-toggle-animations', reduced);
+        return reduced;
+    }
+
     // Apply saved settings on page load
     function klaroApplySavedSettings() {
         const settings = klaroGetSettings();
@@ -262,11 +287,8 @@
             }
         });
 
-        // Apply animation preference to html (affects all descendants)
-        if (settings.animations === 'disabled') {
-            html.classList.add('klaro-reduce-motion');
-            klaroUpdateButtonState('klaro-toggle-animations', true);
-        }
+        // Apply the motion preference, resolved against the system setting
+        klaroApplyReducedMotion(settings);
     }
 
     // Update button pressed state
@@ -419,22 +441,22 @@
     // Animation controls
     function klaroInitAnimationControls() {
         const animationBtn = document.getElementById('klaro-toggle-animations');
-        const html = document.documentElement;
 
         if (!animationBtn) return;
 
         animationBtn.addEventListener('click', () => {
             const settings = klaroGetSettings();
 
-            if (settings.animations === 'disabled') {
-                html.classList.remove('klaro-reduce-motion');
-                settings.animations = 'enabled';
-                klaroUpdateButtonState('klaro-toggle-animations', false);
+            if (klaroEffectiveReducedMotion(settings)) {
+                // Switching motion back on while the system prefers reduced
+                // motion has to be an explicit choice, otherwise the system
+                // setting would reduce it again on the next page.
+                settings.animations = klaroMotionQuery.matches ? 'allowed' : 'enabled';
+                klaroApplyReducedMotion(settings);
                 klaroAnnounceChange(klaroMsg('enabled', '%s enabled', klaroName('animations', 'Animations')));
             } else {
-                html.classList.add('klaro-reduce-motion');
                 settings.animations = 'disabled';
-                klaroUpdateButtonState('klaro-toggle-animations', true);
+                klaroApplyReducedMotion(settings);
                 klaroAnnounceChange(klaroMsg('disabled', '%s disabled', klaroName('animations', 'Animations')));
             }
 
@@ -496,22 +518,12 @@
         });
     }
 
-    // Add klaro-reduce-motion class based on system preference
+    // Follow operating system changes during the visit, still resolved
+    // against the visitor's own choice, so an explicit preference survives
+    // the system flipping back.
     function klaroInitReducedMotion() {
-        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-        const html = document.documentElement;
-
-        if (prefersReducedMotion.matches) {
-            html.classList.add('klaro-reduce-motion');
-        }
-
-        // Listen for changes
-        prefersReducedMotion.addEventListener('change', (e) => {
-            if (e.matches) {
-                html.classList.add('klaro-reduce-motion');
-            } else {
-                html.classList.remove('klaro-reduce-motion');
-            }
+        klaroMotionQuery.addEventListener('change', () => {
+            klaroApplyReducedMotion(klaroGetSettings());
         });
     }
 
