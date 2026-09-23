@@ -516,6 +516,24 @@
                 klaroCloseMenu(false);
             }
         });
+
+        // The admin bar's Accessibility item opens this toolbar and moves
+        // focus into it. Its href points at the toolbar for the no-script case.
+        const adminBarLink = document.querySelector('#wp-admin-bar-klaro-accessibility > a');
+        if (adminBarLink) {
+            adminBarLink.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                details.open = true;
+                details.scrollIntoView({ block: 'nearest' });
+                const first = details.querySelector('.klaro-accessibility-button');
+                if (first) {
+                    first.focus();
+                } else if (summary) {
+                    summary.focus();
+                }
+            });
+        }
     }
 
     // Annotate author-set new-window links with a visual indicator and a
