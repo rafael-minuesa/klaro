@@ -148,6 +148,15 @@ function klaro_setup() {
 add_action( 'after_setup_theme', 'klaro_setup' );
 
 /**
+ * Drop the no-js class as early as possible. CSS uses html.no-js for the
+ * keyboard fallback of the submenus when the navigation script cannot run.
+ */
+function klaro_remove_no_js_class() {
+	wp_print_inline_script_tag( "document.documentElement.classList.remove( 'no-js' );" );
+}
+add_action( 'wp_head', 'klaro_remove_no_js_class', 0 );
+
+/**
  * Set content width
  */
 function klaro_content_width() {

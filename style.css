@@ -695,9 +695,18 @@ a:not([href]) {
 
 /* Mouse users: reveal submenu on hover. Keyboard users: the toggle button
    below controls an explicit, persistent open state so submenu items stay
-   reachable both forwards and backwards (Shift + Tab). */
-.main-navigation li:hover > .sub-menu,
+   reachable both forwards and backwards (Shift + Tab). After the script
+   closes a submenu (Escape, toggle, outside click) it marks the item
+   submenu-dismissed until the pointer leaves, so the hover rule cannot keep
+   a submenu visible that the button reports as collapsed. */
+.main-navigation li:hover:not(.submenu-dismissed) > .sub-menu,
 .main-navigation li.submenu-open > .sub-menu {
+  display: flex;
+}
+
+/* Without JavaScript there is no toggle button: keep a submenu open while
+   keyboard focus is inside its parent item. */
+.no-js .main-navigation li:focus-within > .sub-menu {
   display: flex;
 }
 
@@ -756,6 +765,24 @@ a:not([href]) {
 .main-navigation .sub-menu .sub-menu {
   top: 0;
   left: 100%;
+}
+
+/* Narrow viewports and high zoom: submenus flow in place under their parent
+   instead of floating, so nested levels never leave the viewport. */
+@media (max-width: 900px) {
+  .main-navigation .sub-menu,
+  .main-navigation .sub-menu .sub-menu {
+    position: static;
+    width: 100%;
+    min-width: 0;
+    box-shadow: none;
+    border-radius: 0;
+  }
+
+  .main-navigation .sub-menu .sub-menu {
+    border-width: 0 0 0 3px;
+    margin-left: 1em;
+  }
 }
 
 /* ==========================================================================
