@@ -649,7 +649,7 @@ function klaro_customize_register( $wp_customize ) {
 		'klaro_font_size',
 		array(
 			'default'           => '18',
-			'sanitize_callback' => 'absint',
+			'sanitize_callback' => 'klaro_sanitize_font_size',
 			'transport'         => 'postMessage',
 		)
 	);
@@ -673,7 +673,7 @@ function klaro_customize_register( $wp_customize ) {
 		'klaro_line_height',
 		array(
 			'default'           => '1.8',
-			'sanitize_callback' => 'klaro_sanitize_float',
+			'sanitize_callback' => 'klaro_sanitize_line_height',
 			'transport'         => 'postMessage',
 		)
 	);
@@ -816,18 +816,55 @@ function klaro_customize_register( $wp_customize ) {
 add_action( 'customize_register', 'klaro_customize_register' );
 
 /**
- * Sanitize float values
+ * Sanitize the base font size: whole pixels within the range the control
+ * shows (14 to 36); an empty or invalid value falls back to the default.
+ *
+ * @param mixed $value Raw setting value.
+ * @return int
  */
-function klaro_sanitize_float( $value ) {
-	return floatval( $value );
+function klaro_sanitize_font_size( $value ) {
+	$value = absint( $value );
+	if ( ! $value ) {
+		return 18;
+	}
+	return min( 36, max( 14, $value ) );
 }
+
+/**
+ * Sanitize the line height: one decimal within the range the control shows
+ * (1.2 to 3.0); an empty or invalid value falls back to the default.
+ *
+ * @param mixed $value Raw setting value.
+ * @return float
+ */
+function klaro_sanitize_line_height( $value ) {
+	$value = floatval( $value );
+	if ( $value <= 0 ) {
+		return 1.8;
+	}
+	return round( min( 3.0, max( 1.2, $value ) ), 1 );
+}
+
+/**
+ * Live preview for the postMessage typography settings.
+ */
+function klaro_customize_preview_js() {
+	wp_enqueue_script(
+		'klaro-customizer-preview',
+		get_template_directory_uri() . '/js/customizer-preview.js',
+		array( 'customize-preview' ),
+		wp_get_theme()->get( 'Version' ),
+		true
+	);
+}
+add_action( 'customize_preview_init', 'klaro_customize_preview_js' );
 
 /**
  * Output customizer CSS via wp_add_inline_style
  */
 function klaro_customizer_css() {
-	$font_size   = absint( get_theme_mod( 'klaro_font_size', '18' ) );
-	$line_height = floatval( get_theme_mod( 'klaro_line_height', '1.8' ) );
+	$font_size   = klaro_sanitize_font_size( get_theme_mod( 'klaro_font_size', '18' ) );
+	$line_height = klaro_sanitize_line_height( get_theme_mod( 'klaro_line_height', '1.8' ) );
 
 	$css = ':root {
 	--font-size-base: ' . $font_size . 'px;

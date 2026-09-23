@@ -167,32 +167,28 @@ body.klaro-filter-tritanopia .site-container {
   filter: url('#klaro-daltonize-tritanopia');
 }
 
-/* Medium Text Mode - Applied to html element */
+/* Toolbar text sizes, applied to the html element. Each step scales the
+   site's base size (--font-size-base, set in the Customizer) instead of
+   forcing a fixed pixel value, so "increase" always enlarges the text. With
+   the default 18px base the steps are 20, 22, 26 and 32px. */
 html.klaro-medium-text {
-  --font-size-base: 20px;
+  --klaro-text-scale: 1.111;
   --line-height-base: 1.9;
-  font-size: 20px;
 }
 
-/* Large Text Mode - Applied to html element */
 html.klaro-large-text {
-  --font-size-base: 22px;
+  --klaro-text-scale: 1.222;
   --line-height-base: 2.0;
-  font-size: 22px;
 }
 
-/* Extra Large Text Mode - Applied to html element */
 html.klaro-extra-large-text {
-  --font-size-base: 26px;
+  --klaro-text-scale: 1.444;
   --line-height-base: 2.1;
-  font-size: 26px;
 }
 
-/* Maximum Text Mode - Applied to html element */
 html.klaro-maximum-text {
-  --font-size-base: 32px;
+  --klaro-text-scale: 1.778;
   --line-height-base: 2.2;
-  font-size: 32px;
 }
 
 /*
@@ -296,7 +292,7 @@ html.klaro-reduce-motion *::after {
 }
 
 html {
-  font-size: var(--font-size-base);
+  font-size: calc(var(--font-size-base) * var(--klaro-text-scale, 1));
   scroll-behavior: smooth;
 }
 
