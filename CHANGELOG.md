@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.8.2] - 2026-09-24
+
+### Fixed
+- The Search block (`.wp-block-search`) squeezed its field to about 126px in the 300px sidebar. For the button-outside layout the wrapper wraps, the field keeps a 10em minimum and the button uses 1rem type with lighter padding at 44px minimum height. The button-inside layout is unchanged.
+
 ## [2.8.1] - 2026-09-24
 
 ### Fixed
