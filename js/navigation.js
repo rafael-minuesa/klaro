@@ -82,6 +82,12 @@
 		// Place the toggle right after the parent link, before the submenu.
 		link.parentNode.insertBefore( button, submenu );
 
+		// A submenu closed by script stays closed while the pointer is still
+		// over the item (see the submenu-dismissed rule in style.css).
+		item.addEventListener( 'mouseleave', function() {
+			item.classList.remove( 'submenu-dismissed' );
+		} );
+
 		button.addEventListener( 'click', function() {
 			var expanded = item.classList.contains( 'submenu-open' );
 			// Close sibling submenus at the same level first.
@@ -108,6 +114,7 @@
 		var button = item.querySelector( ':scope > .submenu-toggle' );
 		var link = item.querySelector( ':scope > a' );
 		item.classList.remove( 'submenu-open' );
+		item.classList.add( 'submenu-dismissed' );
 		if ( button ) {
 			button.setAttribute( 'aria-expanded', 'false' );
 			klaroSetLabel( button, EXPAND_LABEL, link );
