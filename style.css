@@ -1200,8 +1200,11 @@ li {
    POSTS & CONTENT
    ========================================================================== */
 
-.post,
-.page {
+/* Scoped to the article: body_class() also puts "page" on <body> on every
+   page, and the bare selector gave the whole document this bottom padding,
+   margin and border below the footer. */
+article.post,
+article.page {
   margin-bottom: var(--spacing-xl);
   padding-bottom: var(--spacing-xl);
   border-bottom: 2px solid var(--color-border);
