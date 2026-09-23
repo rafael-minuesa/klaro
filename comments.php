@@ -11,7 +11,12 @@ if ( post_password_required() ) {
 }
 ?>
 
-<section id="comments" class="comments-area" aria-labelledby="comments-title">
+<?php
+// The section is named by the comments heading when there are comments,
+// otherwise by the reply form heading, which comment_form() always prints.
+$klaro_comments_label = have_comments() ? 'comments-title' : 'reply-title';
+?>
+<section id="comments" class="comments-area" aria-labelledby="<?php echo esc_attr( $klaro_comments_label ); ?>">
 
 	<?php
 	if ( have_comments() ) :
