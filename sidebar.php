@@ -6,7 +6,7 @@
  * @since 1.0.0
  */
 
-if ( ! is_active_sidebar( 'klaro-sidebar-1' ) ) {
+if ( ! klaro_has_sidebar() ) {
 	return;
 }
 ?>
