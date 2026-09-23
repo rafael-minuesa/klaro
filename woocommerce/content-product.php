@@ -56,7 +56,8 @@ $product_price = $product->get_price_html();
 	</div>
 
 	<?php
-	// Add to cart button (accessibility enhanced via filter)
+	// Add to cart button. WooCommerce supplies the per-type accessible name
+	// (Add to cart, Select options, View products, Buy, Read more).
 	do_action( 'woocommerce_after_shop_loop_item' );
 	?>
 
