@@ -385,9 +385,15 @@ body {
   outline: none;
 }
 
+/* Keyboard focus: the outline in the focus color sits inside a halo in the
+   page background color (the box-shadow reaches 2px past the outline). Seen
+   from the element outward that gives background, focus color, background,
+   so the ring stays visible whatever the element or its surroundings are,
+   including the monochrome mode's black outline on a black block. */
 *:focus-visible {
   outline: var(--focus-outline-width) solid var(--color-focus);
   outline-offset: var(--focus-outline-offset);
+  box-shadow: 0 0 0 calc(var(--focus-outline-offset) + var(--focus-outline-width) + 2px) var(--color-background);
 }
 
 /* ==========================================================================
