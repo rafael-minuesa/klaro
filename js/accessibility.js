@@ -174,6 +174,7 @@
 
     // Remember the settings for the next visit. Persistence is optional:
     // a failed write leaves the in-memory settings, and the page, as they are.
+    // Saving is silent; the control that changed announces its own result.
     function klaroSaveSettings(settings) {
         klaroSettingsCache = settings;
         try {
@@ -181,20 +182,50 @@
         } catch (error) {
             // Storage unavailable or full; the choice still applies to this page.
         }
-        klaroAnnounceChange((typeof klaroSettings !== 'undefined' && klaroSettings.saved) ?
-            klaroSettings.saved : 'Settings saved');
     }
 
-    // Announce changes to screen readers
+    // Translated announcement strings come from PHP (klaroSettings.messages);
+    // the English fallbacks keep the toolbar talking if they are missing.
+    function klaroMessages() {
+        return (typeof klaroSettings !== 'undefined' && klaroSettings.messages) ? klaroSettings.messages : {};
+    }
+
+    // Fill a message template: %1$s, %2$s or plain %s placeholders in order.
+    function klaroMsg(key, fallback) {
+        const args = Array.prototype.slice.call(arguments, 2);
+        let template = klaroMessages()[key] || fallback;
+        args.forEach((value, index) => {
+            template = template.replace(new RegExp('%' + (index + 1) + '\\$s', 'g'), value);
+        });
+        args.forEach(value => {
+            template = template.replace('%s', value);
+        });
+        return template;
+    }
+
+    // Translated name of a toolbar option (mode, filter, aid).
+    function klaroName(key, fallback) {
+        const names = klaroMessages().names || {};
+        return names[key] || fallback;
+    }
+
+    // Announce changes to screen readers. A new message cancels the timer of
+    // the previous one, so a quick second action cannot wipe the latest text.
+    let klaroAnnounceTimer = null;
+
     function klaroAnnounceChange(message) {
         const status = document.getElementById('klaro-accessibility-status');
-        if (status) {
-            status.textContent = message;
-            // Clear after 3 seconds
-            setTimeout(() => {
-                status.textContent = '';
-            }, 3000);
+        if (!status) {
+            return;
         }
+        if (klaroAnnounceTimer) {
+            clearTimeout(klaroAnnounceTimer);
+        }
+        status.textContent = message;
+        klaroAnnounceTimer = setTimeout(() => {
+            status.textContent = '';
+            klaroAnnounceTimer = null;
+        }, 3000);
     }
 
     // Apply saved settings on page load
@@ -204,15 +235,7 @@
         const body = document.body;
 
         // Apply font size to html element (root for rem units)
-        if (settings.fontSize === 'medium') {
-            html.classList.add('klaro-medium-text');
-        } else if (settings.fontSize === 'large') {
-            html.classList.add('klaro-large-text');
-        } else if (settings.fontSize === 'extra-large') {
-            html.classList.add('klaro-extra-large-text');
-        } else if (settings.fontSize === 'maximum') {
-            html.classList.add('klaro-maximum-text');
-        }
+        klaroApplyFontSize(settings.fontSize);
 
         // Apply contrast to body: resolve the visitor preference against the
         // Customizer default instead of stacking a second mode class on it.
@@ -254,88 +277,76 @@
         }
     }
 
+    // Text size levels in order; each level's class sets the root font size.
+    const klaroFontSizeLevels = ['normal', 'medium', 'large', 'extra-large', 'maximum'];
+    const klaroFontSizeClasses = {
+        medium: 'klaro-medium-text',
+        large: 'klaro-large-text',
+        'extra-large': 'klaro-extra-large-text',
+        maximum: 'klaro-maximum-text'
+    };
+
+    function klaroApplyFontSize(level) {
+        const html = document.documentElement;
+        Object.keys(klaroFontSizeClasses).forEach(key => {
+            html.classList.toggle(klaroFontSizeClasses[key], key === level);
+        });
+    }
+
+    // The size actually in effect, from the rendered root font size, so the
+    // announcement reflects the Customizer base and any zoom rather than a
+    // fixed table.
+    function klaroCurrentFontSizePx() {
+        return Math.round(parseFloat(window.getComputedStyle(document.documentElement).fontSize));
+    }
+
+    function klaroFontSizeName(level) {
+        const sizes = klaroMessages().sizes || {};
+        return sizes[level] || level.replace('-', ' ');
+    }
+
     // Font size controls
     function klaroInitFontSizeControls() {
         const increaseBtn = document.getElementById('klaro-increase-font');
         const decreaseBtn = document.getElementById('klaro-decrease-font');
         const resetBtn = document.getElementById('klaro-reset-font');
-        const html = document.documentElement;
-
-        // Font size levels: normal (18px) → medium (20px) → large (22px) → extra-large (26px) → maximum (32px)
-        const fontSizeClasses = ['klaro-medium-text', 'klaro-large-text', 'klaro-extra-large-text', 'klaro-maximum-text'];
-
-        function klaroClearFontClasses() {
-            fontSizeClasses.forEach(cls => html.classList.remove(cls));
-        }
 
         if (!increaseBtn || !decreaseBtn || !resetBtn) return;
 
-        increaseBtn.addEventListener('click', () => {
+        function klaroStep(direction) {
             const settings = klaroGetSettings();
-            klaroClearFontClasses();
+            let index = klaroFontSizeLevels.indexOf(settings.fontSize);
+            if (index === -1) {
+                index = 0;
+            }
+            const next = index + direction;
 
-            if (settings.fontSize === 'normal') {
-                html.classList.add('klaro-medium-text');
-                settings.fontSize = 'medium';
-                klaroAnnounceChange('Text size: medium (20px)');
-            } else if (settings.fontSize === 'medium') {
-                html.classList.add('klaro-large-text');
-                settings.fontSize = 'large';
-                klaroAnnounceChange('Text size: large (22px)');
-            } else if (settings.fontSize === 'large') {
-                html.classList.add('klaro-extra-large-text');
-                settings.fontSize = 'extra-large';
-                klaroAnnounceChange('Text size: extra large (26px)');
-            } else if (settings.fontSize === 'extra-large') {
-                html.classList.add('klaro-maximum-text');
-                settings.fontSize = 'maximum';
-                klaroAnnounceChange('Text size: maximum (32px)');
-            } else {
-                html.classList.add('klaro-maximum-text');
-                klaroAnnounceChange('Text size is already at maximum');
+            if (next >= klaroFontSizeLevels.length) {
+                klaroAnnounceChange(klaroMsg('textSizeMax', 'Text size is already at maximum'));
+                return;
+            }
+            if (next < 0) {
+                klaroAnnounceChange(klaroMsg('textSizeMin', 'Text size is already at minimum'));
                 return;
             }
 
+            settings.fontSize = klaroFontSizeLevels[next];
+            klaroApplyFontSize(settings.fontSize);
             klaroSaveSettings(settings);
-        });
+            klaroAnnounceChange(klaroMsg('textSize', 'Text size: %1$s (%2$spx)',
+                klaroFontSizeName(settings.fontSize), klaroCurrentFontSizePx()));
+        }
 
-        decreaseBtn.addEventListener('click', () => {
-            const settings = klaroGetSettings();
-            klaroClearFontClasses();
-
-            if (settings.fontSize === 'maximum') {
-                html.classList.add('klaro-extra-large-text');
-                settings.fontSize = 'extra-large';
-                klaroAnnounceChange('Text size: extra large (26px)');
-            } else if (settings.fontSize === 'extra-large') {
-                html.classList.add('klaro-large-text');
-                settings.fontSize = 'large';
-                klaroAnnounceChange('Text size: large (22px)');
-            } else if (settings.fontSize === 'large') {
-                html.classList.add('klaro-medium-text');
-                settings.fontSize = 'medium';
-                klaroAnnounceChange('Text size: medium (20px)');
-            } else if (settings.fontSize === 'medium') {
-                settings.fontSize = 'normal';
-                klaroAnnounceChange('Text size: normal (18px)');
-            } else if (settings.fontSize === 'normal' || !settings.fontSize) {
-                klaroAnnounceChange('Text size is already at minimum');
-                return;
-            } else {
-                // Handle any unknown/legacy values - reset to normal
-                settings.fontSize = 'normal';
-                klaroAnnounceChange('Text size: normal (18px)');
-            }
-
-            klaroSaveSettings(settings);
-        });
+        increaseBtn.addEventListener('click', () => klaroStep(1));
+        decreaseBtn.addEventListener('click', () => klaroStep(-1));
 
         resetBtn.addEventListener('click', () => {
             const settings = klaroGetSettings();
-            klaroClearFontClasses();
             settings.fontSize = 'normal';
+            klaroApplyFontSize('normal');
             klaroSaveSettings(settings);
-            klaroAnnounceChange('Text size reset to normal (18px)');
+            klaroAnnounceChange(klaroMsg('textSizeReset', 'Text size reset to %1$s (%2$spx)',
+                klaroFontSizeName('normal'), klaroCurrentFontSizePx()));
         });
     }
 
@@ -356,11 +367,11 @@
                     // the visitor picked just drops the preference.
                     settings.contrast = (klaroSiteContrast === mode) ? 'standard' : 'normal';
                     klaroApplyContrast(settings);
-                    klaroAnnounceChange(config.label + ' disabled');
+                    klaroAnnounceChange(klaroMsg('disabled', '%s disabled', klaroName(mode, config.label)));
                 } else {
                     settings.contrast = mode;
                     klaroApplyContrast(settings);
-                    klaroAnnounceChange(config.label + ' enabled');
+                    klaroAnnounceChange(klaroMsg('enabled', '%s enabled', klaroName(mode, config.label)));
                 }
 
                 klaroSaveSettings(settings);
@@ -392,12 +403,12 @@
                     body.classList.remove(config.className);
                     settings.colorFilter = 'none';
                     klaroUpdateButtonState(config.buttonId, false);
-                    klaroAnnounceChange(config.label + ' disabled');
+                    klaroAnnounceChange(klaroMsg('disabled', '%s disabled', klaroName(filter, config.label)));
                 } else {
                     body.classList.add(config.className);
                     settings.colorFilter = filter;
                     klaroUpdateButtonState(config.buttonId, true);
-                    klaroAnnounceChange(config.label + ' enabled');
+                    klaroAnnounceChange(klaroMsg('enabled', '%s enabled', klaroName(filter, config.label)));
                 }
 
                 klaroSaveSettings(settings);
@@ -419,12 +430,12 @@
                 html.classList.remove('klaro-reduce-motion');
                 settings.animations = 'enabled';
                 klaroUpdateButtonState('klaro-toggle-animations', false);
-                klaroAnnounceChange('Animations enabled');
+                klaroAnnounceChange(klaroMsg('enabled', '%s enabled', klaroName('animations', 'Animations')));
             } else {
                 html.classList.add('klaro-reduce-motion');
                 settings.animations = 'disabled';
                 klaroUpdateButtonState('klaro-toggle-animations', true);
-                klaroAnnounceChange('Animations disabled');
+                klaroAnnounceChange(klaroMsg('disabled', '%s disabled', klaroName('animations', 'Animations')));
             }
 
             klaroSaveSettings(settings);
@@ -445,12 +456,12 @@
                 body.classList.remove('klaro-dyslexia-font');
                 settings.dyslexiaFont = 'disabled';
                 klaroUpdateButtonState('klaro-toggle-dyslexia', false);
-                klaroAnnounceChange('Dyslexia-friendly font disabled');
+                klaroAnnounceChange(klaroMsg('disabled', '%s disabled', klaroName('dyslexiaFont', 'Dyslexia-friendly font')));
             } else {
                 body.classList.add('klaro-dyslexia-font');
                 settings.dyslexiaFont = 'enabled';
                 klaroUpdateButtonState('klaro-toggle-dyslexia', true);
-                klaroAnnounceChange('Dyslexia-friendly font enabled');
+                klaroAnnounceChange(klaroMsg('enabled', '%s enabled', klaroName('dyslexiaFont', 'Dyslexia-friendly font')));
             }
 
             klaroSaveSettings(settings);
@@ -472,12 +483,12 @@
                     body.classList.remove(aid.className);
                     settings[aid.key] = 'disabled';
                     klaroUpdateButtonState(aid.buttonId, false);
-                    klaroAnnounceChange(aid.label + ' disabled');
+                    klaroAnnounceChange(klaroMsg('disabled', '%s disabled', klaroName(aid.key, aid.label)));
                 } else {
                     body.classList.add(aid.className);
                     settings[aid.key] = 'enabled';
                     klaroUpdateButtonState(aid.buttonId, true);
-                    klaroAnnounceChange(aid.label + ' enabled');
+                    klaroAnnounceChange(klaroMsg('enabled', '%s enabled', klaroName(aid.key, aid.label)));
                 }
 
                 klaroSaveSettings(settings);

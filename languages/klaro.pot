@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-09-23T06:14:43+00:00\n"
+"POT-Creation-Date: 2026-09-23T11:06:17+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: klaro\n"
@@ -152,7 +152,7 @@ msgid "https://wordpress.org/"
 msgstr ""
 
 #: footer.php:58
-#: functions.php:664
+#: functions.php:776
 msgid "Accessibility Statement"
 msgstr ""
 
@@ -207,325 +207,428 @@ msgstr ""
 msgid "Add widgets here to appear in your footer."
 msgstr ""
 
-#: functions.php:270
+#: functions.php:324
 msgid "Show submenu"
 msgstr ""
 
-#: functions.php:271
+#: functions.php:325
 msgid "Hide submenu"
 msgstr ""
 
-#: functions.php:285
+#: functions.php:339
 #: header.php:75
 msgid "Text Size"
 msgstr ""
 
-#: functions.php:286
-#: functions.php:579
+#: functions.php:340
+#: functions.php:691
 msgid "Contrast Mode"
 msgstr ""
 
-#: functions.php:287
+#: functions.php:341
 msgid "Settings saved"
 msgstr ""
 
-#: functions.php:288
+#: functions.php:342
 msgid "(opens in new window)"
 msgstr ""
 
-#: functions.php:306
+#. translators: 1: size name (normal, medium, large, extra large, maximum), 2: resulting size in pixels
+#: functions.php:346
+#, php-format
+msgid "Text size: %1$s (%2$spx)"
+msgstr ""
+
+#. translators: 1: size name, 2: resulting size in pixels
+#: functions.php:348
+#, php-format
+msgid "Text size reset to %1$s (%2$spx)"
+msgstr ""
+
+#: functions.php:349
+msgid "Text size is already at maximum"
+msgstr ""
+
+#: functions.php:350
+msgid "Text size is already at minimum"
+msgstr ""
+
+#. translators: %s: name of the option, for example "Dark mode"
+#: functions.php:352
+#, php-format
+msgid "%s enabled"
+msgstr ""
+
+#. translators: %s: name of the option, for example "Dark mode"
+#: functions.php:354
+#, php-format
+msgid "%s disabled"
+msgstr ""
+
+#: functions.php:356
+msgctxt "text size"
+msgid "normal"
+msgstr ""
+
+#: functions.php:357
+msgctxt "text size"
+msgid "medium"
+msgstr ""
+
+#: functions.php:358
+msgctxt "text size"
+msgid "large"
+msgstr ""
+
+#: functions.php:359
+msgctxt "text size"
+msgid "extra large"
+msgstr ""
+
+#: functions.php:360
+msgctxt "text size"
+msgid "maximum"
+msgstr ""
+
+#: functions.php:363
+#: header.php:92
+msgid "High contrast mode"
+msgstr ""
+
+#: functions.php:364
+#: header.php:95
+msgid "Monochrome mode"
+msgstr ""
+
+#: functions.php:365
+#: header.php:98
+msgid "Dark mode"
+msgstr ""
+
+#: functions.php:366
+msgid "Red-blind color filter"
+msgstr ""
+
+#: functions.php:367
+msgid "Green-blind color filter"
+msgstr ""
+
+#: functions.php:368
+msgid "Blue-blind color filter"
+msgstr ""
+
+#: functions.php:369
+#: header.php:122
+msgid "Dyslexia-friendly font"
+msgstr ""
+
+#: functions.php:370
+msgid "Increased text spacing"
+msgstr ""
+
+#: functions.php:371
+msgid "Link highlighting"
+msgstr ""
+
+#: functions.php:372
+msgid "Large cursor"
+msgstr ""
+
+#: functions.php:373
+msgid "Animations"
+msgstr ""
+
+#: functions.php:415
 msgid "Skip links"
 msgstr ""
 
-#: functions.php:308
+#: functions.php:417
 msgid "Skip to main content"
 msgstr ""
 
-#: functions.php:309
+#: functions.php:418
 msgid "Skip to navigation"
 msgstr ""
 
-#: functions.php:311
+#: functions.php:423
 msgid "Skip to sidebar"
 msgstr ""
 
-#: functions.php:313
+#: functions.php:425
 msgid "Skip to footer"
 msgstr ""
 
 #. translators: %s: Post title
-#: functions.php:339
+#: functions.php:451
 #, php-format
 msgid "Continue reading %s"
 msgstr ""
 
-#: functions.php:340
+#: functions.php:452
 msgid "Continue reading"
 msgstr ""
 
-#: functions.php:355
+#: functions.php:467
 #: header.php:70
 msgid "Accessibility"
 msgstr ""
 
-#: functions.php:376
+#: functions.php:488
 msgid "Breadcrumb"
 msgstr ""
 
-#: functions.php:382
+#: functions.php:494
 msgid "Home"
 msgstr ""
 
 #. translators: %s: search query
-#: functions.php:462
+#: functions.php:574
 #: search.php:25
 #, php-format
 msgid "Search Results for: %s"
 msgstr ""
 
-#: functions.php:467
+#: functions.php:579
 msgid "Page Not Found"
 msgstr ""
 
-#: functions.php:493
+#: functions.php:605
 msgid "Accessibility Options"
 msgstr ""
 
-#: functions.php:494
+#: functions.php:606
 msgid "Customize accessibility features for your site."
 msgstr ""
 
-#: functions.php:503
+#: functions.php:615
 msgid "Typography"
 msgstr ""
 
-#: functions.php:522
+#: functions.php:634
 msgid "Base Font Size (px)"
 msgstr ""
 
-#: functions.php:546
+#: functions.php:658
 msgid "Line Height"
 msgstr ""
 
-#: functions.php:561
+#: functions.php:673
 msgid "Contrast & Colors"
 msgstr ""
 
-#: functions.php:583
+#: functions.php:695
 msgid "Standard (AAA)"
 msgstr ""
 
-#: functions.php:584
+#: functions.php:696
 msgid "High Contrast"
 msgstr ""
 
-#: functions.php:585
+#: functions.php:697
 msgid "Monochrome"
 msgstr ""
 
-#: functions.php:586
+#: functions.php:698
 #: header.php:99
 msgid "Dark"
 msgstr ""
 
-#: functions.php:595
+#: functions.php:707
 msgid "Footer Options"
 msgstr ""
 
-#: functions.php:612
+#: functions.php:724
 msgid "Footer Credit Text"
 msgstr ""
 
-#: functions.php:613
+#: functions.php:725
 msgid "Customize the footer credit text. HTML links are allowed. Leave empty for the default: \"Powered by Klaro and WordPress\"."
 msgstr ""
 
-#: functions.php:631
+#: functions.php:743
 msgid "Show Accessibility Statement Link"
 msgstr ""
 
-#: functions.php:632
+#: functions.php:744
 msgid "Display a link to your Accessibility Statement page in the footer."
 msgstr ""
 
-#: functions.php:650
+#: functions.php:762
 msgid "Accessibility Statement URL"
 msgstr ""
 
-#: functions.php:651
+#: functions.php:763
 msgid "Enter the full URL of your Accessibility Statement page."
 msgstr ""
 
-#: functions.php:655
+#: functions.php:767
 msgid "https://example.com/accessibility-statement/"
 msgstr ""
 
-#: functions.php:672
+#: functions.php:784
 msgid "Accessibility Statement Link Text"
 msgstr ""
 
-#: functions.php:748
+#: functions.php:865
 msgid "Comment"
 msgstr ""
 
-#: functions.php:748
-#: functions.php:750
-#: functions.php:752
+#: functions.php:865
+#: functions.php:867
+#: functions.php:869
 msgid "required"
 msgstr ""
 
-#: functions.php:748
+#: functions.php:865
 msgid "Your comment will be posted publicly on this page."
 msgstr ""
 
-#: functions.php:750
+#: functions.php:867
 msgid "Name"
 msgstr ""
 
-#: functions.php:752
+#: functions.php:869
 msgid "Email"
 msgstr ""
 
-#: functions.php:752
+#: functions.php:869
 msgid "Your email address will not be published."
 msgstr ""
 
-#: functions.php:754
+#: functions.php:871
 msgid "Website"
 msgstr ""
 
-#: functions.php:815
+#: functions.php:932
 msgid "Shop Sidebar"
 msgstr ""
 
-#: functions.php:817
+#: functions.php:934
 msgid "Add widgets here to appear in shop pages sidebar."
 msgstr ""
 
-#: functions.php:855
+#: functions.php:972
 msgid "Cart updated"
 msgstr ""
 
-#: functions.php:856
+#: functions.php:973
 msgid "Product added to cart"
 msgstr ""
 
-#: functions.php:857
+#: functions.php:974
 msgid "Product removed from cart"
 msgstr ""
 
-#: functions.php:858
+#: functions.php:975
 msgid "Quantity updated to"
 msgstr ""
 
-#: functions.php:859
+#: functions.php:976
 msgid "Decrease quantity"
 msgstr ""
 
-#: functions.php:860
+#: functions.php:977
 msgid "Increase quantity"
 msgstr ""
 
-#: functions.php:861
+#: functions.php:978
 msgid "Product information"
 msgstr ""
 
 #. translators: %s: product name
 #. translators: %s: Product name
-#: functions.php:863
+#: functions.php:980
 #: woocommerce/cart/cart.php:57
 #, php-format
 msgid "Remove %s from cart"
 msgstr ""
 
 #. translators: %s: number of validation errors
-#: functions.php:865
+#: functions.php:982
 #, php-format
 msgid "%s validation errors. Please review the form."
 msgstr ""
 
 #. translators: %s: image number
-#: functions.php:867
+#: functions.php:984
 #, php-format
 msgid "View image %s"
 msgstr ""
 
-#: functions.php:868
+#: functions.php:985
 msgid "Product image updated"
 msgstr ""
 
 #. translators: used between a variation label and the selected option, e.g. "Color changed to Blue"
-#: functions.php:870
+#: functions.php:987
 msgid "changed to"
 msgstr ""
 
-#: functions.php:871
+#: functions.php:988
 #: woocommerce/cart/cart.php:28
 #: woocommerce/cart/cart.php:78
 msgid "Product"
 msgstr ""
 
-#: functions.php:989
+#: functions.php:1106
 msgid "On Sale"
 msgstr ""
 
-#: functions.php:1003
+#: functions.php:1120
 msgid "Sale!"
 msgstr ""
 
-#: functions.php:1003
+#: functions.php:1120
 msgid "This product is on sale"
 msgstr ""
 
-#. translators: %s: Product name
-#: functions.php:1013
-#, php-format
-msgid "Add %s to cart"
-msgstr ""
-
-#: functions.php:1032
+#: functions.php:1146
 msgid "Skip to products"
 msgstr ""
 
-#: functions.php:1036
+#: functions.php:1153
 msgid "Skip to product details"
 msgstr ""
 
-#: functions.php:1037
+#: functions.php:1159
 msgid "Skip to add to cart"
 msgstr ""
 
-#: functions.php:1041
+#: functions.php:1169
 msgid "Skip to cart contents"
 msgstr ""
 
-#: functions.php:1042
+#: functions.php:1173
 msgid "Skip to cart totals"
 msgstr ""
 
-#: functions.php:1046
+#: functions.php:1180
 msgid "Skip to billing details"
 msgstr ""
 
-#: functions.php:1047
+#: functions.php:1184
 msgid "Skip to order review"
 msgstr ""
 
-#: functions.php:1051
-msgid "Shop"
+#: functions.php:1218
+msgid "Product details"
+msgstr ""
+
+#: functions.php:1227
+msgid "Add to cart"
 msgstr ""
 
 #. translators: 1: Comment date, 2: Comment time
-#: functions.php:1103
+#: functions.php:1276
 #, php-format
 msgid "%1$s at %2$s"
 msgstr ""
 
-#: functions.php:1108
+#: functions.php:1281
 msgid "Edit"
 msgstr ""
 
-#: functions.php:1113
+#: functions.php:1286
 msgid "Your comment is awaiting moderation."
 msgstr ""
 
@@ -553,24 +656,12 @@ msgstr ""
 msgid "Contrast"
 msgstr ""
 
-#: header.php:92
-msgid "High contrast mode"
-msgstr ""
-
 #: header.php:93
 msgid "High"
 msgstr ""
 
-#: header.php:95
-msgid "Monochrome mode"
-msgstr ""
-
 #: header.php:96
 msgid "Mono"
-msgstr ""
-
-#: header.php:98
-msgid "Dark mode"
 msgstr ""
 
 #: header.php:105
@@ -603,10 +694,6 @@ msgstr ""
 
 #: header.php:120
 msgid "Font"
-msgstr ""
-
-#: header.php:122
-msgid "Dyslexia-friendly font"
 msgstr ""
 
 #: header.php:123

@@ -340,6 +340,39 @@ function klaro_scripts() {
 			'contrastLabel' => esc_html__( 'Contrast Mode', 'klaro' ),
 			'saved'         => esc_html__( 'Settings saved', 'klaro' ),
 			'newWindow'     => esc_html__( '(opens in new window)', 'klaro' ),
+			// Screen reader announcements made by the toolbar.
+			'messages'      => array(
+				/* translators: 1: size name (normal, medium, large, extra large, maximum), 2: resulting size in pixels */
+				'textSize'      => __( 'Text size: %1$s (%2$spx)', 'klaro' ),
+				/* translators: 1: size name, 2: resulting size in pixels */
+				'textSizeReset' => __( 'Text size reset to %1$s (%2$spx)', 'klaro' ),
+				'textSizeMax'   => __( 'Text size is already at maximum', 'klaro' ),
+				'textSizeMin'   => __( 'Text size is already at minimum', 'klaro' ),
+				/* translators: %s: name of the option, for example "Dark mode" */
+				'enabled'       => __( '%s enabled', 'klaro' ),
+				/* translators: %s: name of the option, for example "Dark mode" */
+				'disabled'      => __( '%s disabled', 'klaro' ),
+				'sizes'         => array(
+					'normal'      => _x( 'normal', 'text size', 'klaro' ),
+					'medium'      => _x( 'medium', 'text size', 'klaro' ),
+					'large'       => _x( 'large', 'text size', 'klaro' ),
+					'extra-large' => _x( 'extra large', 'text size', 'klaro' ),
+					'maximum'     => _x( 'maximum', 'text size', 'klaro' ),
+				),
+				'names'         => array(
+					'high'           => __( 'High contrast mode', 'klaro' ),
+					'monochrome'     => __( 'Monochrome mode', 'klaro' ),
+					'dark'           => __( 'Dark mode', 'klaro' ),
+					'protanopia'     => __( 'Red-blind color filter', 'klaro' ),
+					'deuteranopia'   => __( 'Green-blind color filter', 'klaro' ),
+					'tritanopia'     => __( 'Blue-blind color filter', 'klaro' ),
+					'dyslexiaFont'   => __( 'Dyslexia-friendly font', 'klaro' ),
+					'readingSpacing' => __( 'Increased text spacing', 'klaro' ),
+					'highlightLinks' => __( 'Link highlighting', 'klaro' ),
+					'bigCursor'      => __( 'Large cursor', 'klaro' ),
+					'animations'     => __( 'Animations', 'klaro' ),
+				),
+			),
 		)
 	);
 }
