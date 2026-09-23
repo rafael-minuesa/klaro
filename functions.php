@@ -908,9 +908,12 @@ function klaro_woocommerce_setup() {
 add_action( 'after_setup_theme', 'klaro_woocommerce_setup' );
 
 /**
- * Remove default WooCommerce product link wrappers.
- * The theme provides its own accessible link structure in content-product.php
- * to avoid duplicate anchor tags.
+ * Adjust the WooCommerce product-loop hooks for the theme's card.
+ *
+ * content-product.php prints its own link wrapper, heading (with the ID the
+ * card's aria-labelledby needs) and price wrapper, so WooCommerce's
+ * callbacks for those are removed. The standard hooks themselves still fire
+ * in the template, so extensions attached to them keep working.
  */
 function klaro_remove_woocommerce_product_link_wrappers() {
 	if ( function_exists( 'woocommerce_template_loop_product_link_open' ) ) {
@@ -919,6 +922,14 @@ function klaro_remove_woocommerce_product_link_wrappers() {
 
 	if ( function_exists( 'woocommerce_template_loop_product_link_close' ) ) {
 		remove_action( 'woocommerce_after_shop_loop_item', 'woocommerce_template_loop_product_link_close', 5 );
+	}
+
+	if ( function_exists( 'woocommerce_template_loop_product_title' ) ) {
+		remove_action( 'woocommerce_shop_loop_item_title', 'woocommerce_template_loop_product_title', 10 );
+	}
+
+	if ( function_exists( 'woocommerce_template_loop_price' ) ) {
+		remove_action( 'woocommerce_after_shop_loop_item_title', 'woocommerce_template_loop_price', 10 );
 	}
 }
 add_action( 'init', 'klaro_remove_woocommerce_product_link_wrappers' );

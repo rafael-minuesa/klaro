@@ -3,8 +3,11 @@
  * The template for displaying product content within loops
  * Klaro Accessibility Enhanced Version
  *
+ * Overrides woocommerce/templates/content-product.php.
+ *
  * @package Klaro
  * @since 1.4.0
+ * @version 9.4.0
  */
 
 defined( 'ABSPATH' ) || exit;
@@ -38,11 +41,20 @@ $product_price = $product->get_price_html();
 			<?php echo esc_html( $product_name ); ?>
 		</h2>
 
+		<?php
+		// Standard title hook. WooCommerce's own title callback is removed in
+		// functions.php (the heading above carries the ID the card's
+		// aria-labelledby needs), so only extensions attached here run.
+		do_action( 'woocommerce_shop_loop_item_title' );
+		?>
+
 	</a>
 
 	<?php
-	// Rating only (price handled separately below)
-	woocommerce_template_loop_rating();
+	// Rating (WooCommerce's callback at priority 5) and any extension output.
+	// WooCommerce's price callback is removed in functions.php; the theme
+	// prints the price once, below, with its on-sale text.
+	do_action( 'woocommerce_after_shop_loop_item_title' );
 	?>
 
 	<div class="product-price-wrapper">
