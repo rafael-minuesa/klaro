@@ -7,7 +7,7 @@ Tags: accessibility-ready, one-column, two-columns, custom-colors, custom-menu, 
 Requires at least: 6.6
 Tested up to: 7.0
 Requires PHP: 7.4
-Stable tag: 2.8.0
+Stable tag: 2.8.1
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -120,6 +120,10 @@ Klaro meets WCAG 2.2 AA standards and includes features that often exceed AA req
 * Tested with NVDA, JAWS, VoiceOver, ORCA
 
 == Changelog ==
+
+= 2.8.1 =
+* Removed the empty space and stray border below the footer; the article spacing rule also matched the page body
+* The search form keeps its field usable in narrow sidebars; the button wraps under the field instead of squeezing it
 
 = 2.8.0 =
 * Fixed the Call to Action pattern heading rendering black on black in the standard and monochrome modes; headings inside a block with its own text color now inherit it

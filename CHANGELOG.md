@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.8.1] - 2026-09-24
+
+### Fixed
+- The article spacing rule (`.post, .page`) also matched `<body>`, which carries the `page` class on every page, so the document had 54px of bottom padding, 54px of bottom margin and a stray border below the footer. Scoped to `article.post, article.page`.
+- The search form squeezed its field to about 100px in the 300px sidebar. The button uses 1rem type and lighter padding (still 44px tall), the field keeps a 10em minimum, and the form wraps in narrow containers.
+
 ## [2.8.0] - 2026-09-24
 
 Fixes from the September 2026 review, tracked in https://github.com/rafael-minuesa/klaro/issues/26.
