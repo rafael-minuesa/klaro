@@ -15,7 +15,7 @@ if ( ! $notices ) {
 
 ?>
 <div role="alert" aria-live="assertive" aria-atomic="true">
-	<ul class="woocommerce-error" role="list">
+	<ul class="woocommerce-error" role="list" tabindex="-1">
 		<?php foreach ( $notices as $notice ) : ?>
 			<?php // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- WooCommerce escaping functions ?>
 			<li<?php echo wc_get_notice_data_attr( $notice ); ?>>
