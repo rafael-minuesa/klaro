@@ -1443,10 +1443,30 @@ article.page {
   white-space: nowrap;
 }
 
-/* WordPress block search button - prevent wrapping */
+/* Search block. Same treatment as the classic form: the field keeps at
+   least 10em and the button wraps under it in a narrow sidebar. Only the
+   button-outside layout wraps; the button-inside layout keeps the button
+   in the bordered wrapper as core draws it. */
+.wp-block-search__button-outside .wp-block-search__inside-wrapper {
+  flex-wrap: wrap;
+  gap: var(--spacing-xs);
+}
+
+.wp-block-search__button-outside .wp-block-search__input {
+  flex: 1 1 10em;
+  min-width: 0;
+}
+
 .wp-block-search__button {
-  white-space: nowrap !important;
-  flex-shrink: 0 !important;
+  flex: 0 0 auto;
+  white-space: nowrap;
+  min-height: var(--touch-target-min);
+}
+
+.wp-block-search__button-outside .wp-block-search__button {
+  margin-left: 0;
+  padding: var(--spacing-xs) var(--spacing-sm);
+  font-size: 1rem;
 }
 
 @media (max-width: 600px) {
