@@ -973,6 +973,8 @@ function klaro_woocommerce_scripts() {
 				'addedToCartMessage'     => esc_html__( 'Product added to cart', 'klaro' ),
 				'removedFromCartMessage' => esc_html__( 'Product removed from cart', 'klaro' ),
 				'quantityUpdated'        => esc_html__( 'Quantity updated to', 'klaro' ),
+				'quantityMinimum'        => esc_html__( 'Minimum quantity reached', 'klaro' ),
+				'quantityMaximum'        => esc_html__( 'Maximum quantity reached', 'klaro' ),
 				'decreaseQuantity'       => esc_html__( 'Decrease quantity', 'klaro' ),
 				'increaseQuantity'       => esc_html__( 'Increase quantity', 'klaro' ),
 				'productTabs'            => esc_html__( 'Product information', 'klaro' ),
