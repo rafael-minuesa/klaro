@@ -346,16 +346,38 @@ function klaro_scripts() {
 add_action( 'wp_enqueue_scripts', 'klaro_scripts' );
 
 /**
+ * Whether the current page shows the primary sidebar.
+ *
+ * One condition shared by the body class (layout), sidebar.php (markup) and
+ * the skip links, so the three can never disagree. The widget area has to
+ * hold widgets, and WooCommerce pages (shop, product, taxonomy, cart,
+ * checkout, account) keep their single-column layout.
+ *
+ * @return bool
+ */
+function klaro_has_sidebar() {
+	if ( ! is_active_sidebar( 'klaro-sidebar-1' ) ) {
+		return false;
+	}
+
+	if ( class_exists( 'WooCommerce' ) && ( is_woocommerce() || is_cart() || is_checkout() || is_account_page() ) ) {
+		return false;
+	}
+
+	/**
+	 * Filters whether the primary sidebar is shown on the current page.
+	 *
+	 * @param bool $has_sidebar True when the sidebar is populated and the page is not a WooCommerce page.
+	 */
+	return (bool) apply_filters( 'klaro_has_sidebar', true );
+}
+
+/**
  * Add skip links
  */
 function klaro_skip_links() {
 	// Only offer the sidebar skip link when the current page renders #sidebar.
-	// sidebar.php returns early when the widget area is empty, and WooCommerce
-	// templates (shop, product, taxonomy) render without a sidebar.
-	$klaro_has_sidebar = is_active_sidebar( 'klaro-sidebar-1' );
-	if ( $klaro_has_sidebar && class_exists( 'WooCommerce' ) && is_woocommerce() ) {
-		$klaro_has_sidebar = false;
-	}
+	$klaro_has_sidebar = klaro_has_sidebar();
 	?>
 	<nav class="skip-links" aria-label="<?php esc_attr_e( 'Skip links', 'klaro' ); ?>">
 		<ul>
@@ -769,6 +791,11 @@ function klaro_body_classes( $classes ) {
 
 	if ( isset( $klaro_contrast_classes[ $contrast_mode ] ) ) {
 		$classes[] = $klaro_contrast_classes[ $contrast_mode ];
+	}
+
+	// Two-column layout when the primary sidebar is shown (see klaro_has_sidebar()).
+	if ( klaro_has_sidebar() ) {
+		$classes[] = 'has-sidebar';
 	}
 
 	return $classes;

@@ -562,33 +562,48 @@ a:not([href]) {
   margin-bottom: var(--spacing-xl);
 }
 
-/* Sidebar Layout - Hidden by default, only shown if explicitly enabled */
+/* Sidebar layout. body.has-sidebar is added by klaro_has_sidebar() when the
+   primary widget area holds widgets and the page is not a WooCommerce page;
+   the same condition controls the sidebar markup and its skip link. */
 .sidebar {
   display: none;
 }
 
-/* Enable sidebar layout when sidebar has content */
 .has-sidebar .site-main {
   display: grid;
-  grid-template-columns: 1fr 300px;
-  gap: var(--spacing-xl);
+  grid-template-columns: minmax(0, 1fr) 300px;
+  column-gap: var(--spacing-xl);
   align-items: start;
   max-width: 1400px;
 }
 
-.has-sidebar .sidebar {
-  display: block;
-  position: sticky;
-  top: var(--spacing-lg);
+/* .site-main holds three direct children: breadcrumbs, content, sidebar.
+   Breadcrumbs span both columns, content and sidebar sit side by side. */
+.has-sidebar .site-main > .breadcrumbs {
+  grid-column: 1 / -1;
 }
 
+.has-sidebar .content-area {
+  grid-column: 1;
+  min-width: 0;
+}
+
+.has-sidebar .sidebar {
+  display: block;
+  grid-column: 2;
+  min-width: 0;
+}
+
+/* Narrow viewports and 200%+ zoom: one column, sidebar after the content. */
 @media (max-width: 900px) {
   .has-sidebar .site-main {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
 
+  .has-sidebar .site-main > .breadcrumbs,
+  .has-sidebar .content-area,
   .has-sidebar .sidebar {
-    position: static;
+    grid-column: 1;
   }
 }
 
