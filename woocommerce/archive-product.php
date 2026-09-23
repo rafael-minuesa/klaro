@@ -30,7 +30,7 @@ get_header( 'shop' );
 		<?php do_action( 'woocommerce_before_shop_loop' ); ?>
 	</nav>
 
-	<section id="products-list" aria-label="<?php esc_attr_e( 'Products', 'klaro' ); ?>">
+	<section id="products-list" tabindex="-1" aria-label="<?php esc_attr_e( 'Products', 'klaro' ); ?>">
 		<h2 class="screen-reader-text"><?php esc_html_e( 'Products list', 'klaro' ); ?></h2>
 
 		<?php

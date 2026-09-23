@@ -323,10 +323,25 @@
 	}
 
 	/**
+	 * Make the classic checkout skip-link targets focusable. The IDs come from
+	 * WooCommerce's form-checkout.php, which the theme does not override, so
+	 * the tabindex is added here. Re-run after updated_checkout is not needed:
+	 * WooCommerce replaces the contents of #order_review, not the element.
+	 */
+	function initSkipTargets() {
+		$('#customer_details, #order_review').each(function() {
+			if (!$(this).attr('tabindex')) {
+				$(this).attr('tabindex', '-1');
+			}
+		});
+	}
+
+	/**
 	 * Initialize all enhancements
 	 */
 	function init() {
 		createStatusRegion();
+		initSkipTargets();
 		initQuantityControls();
 		initAccessibleTabs();
 		initCartAccessibility();
