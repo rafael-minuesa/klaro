@@ -7,7 +7,7 @@ Tags: accessibility-ready, one-column, two-columns, custom-colors, custom-menu, 
 Requires at least: 6.6
 Tested up to: 7.0
 Requires PHP: 7.4
-Stable tag: 2.7.3
+Stable tag: 2.8.0
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -120,6 +120,22 @@ Klaro meets WCAG 2.2 AA standards and includes features that often exceed AA req
 * Tested with NVDA, JAWS, VoiceOver, ORCA
 
 == Changelog ==
+
+= 2.8.0 =
+* Fixed the Call to Action pattern heading rendering black on black in the standard and monochrome modes; headings inside a block with its own text color now inherit it
+* Block buttons use the theme's mode colors in every state; hovering no longer dropped the text to about 1.1:1
+* The Accessible High Contrast block styles now have front-end rules and match the editor; editor styles load in the block editor
+* Keyboard focus ring gets a background-color halo, so it stays visible on any surface, including the monochrome mode's black outline on black blocks
+* A populated Primary Sidebar is shown again in a two-column layout, and the Shop Sidebar is rendered on shop, product and product category pages
+* WooCommerce loop buttons keep WooCommerce's per-type accessible names (Select options, Read more, Buy)
+* Toolbar accessible names start with their visible labels; toolbar announcements are translated, announced once, and report the real text size
+* Contrast, reduced-motion and text-size preferences resolve against the Customizer and system defaults, and the toolbar keeps working when browser storage is blocked
+* Widget headings get real unique IDs; comment form fields follow the Discussion setting
+* WooCommerce skip links sit after the main-content link and only where their targets exist; quantity buttons respect the current minimum, maximum and step; checkout errors are announced once and receive focus
+* Customizer typography settings preview live and stay within their ranges; toolbar text sizes scale the site's base size
+* Category breadcrumbs show the category hierarchy; submenus stay in step with their toggle, flow in place on narrow screens, and work without JavaScript
+* Product cards fire the standard WooCommerce loop hooks again; the admin bar Accessibility item opens the toolbar
+* Removed the custom header support, which was never rendered
 
 = 2.7.3 =
 * Corrected the capitalization of WordPress in a stylesheet comment and three old changelog lines, which the updated WordPress.org theme check rejects. No functional changes.

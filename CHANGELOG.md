@@ -7,6 +7,44 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.8.0] - 2026-09-24
+
+Fixes from the September 2026 review, tracked in https://github.com/rafael-minuesa/klaro/issues/26.
+
+### Added
+- Front-end rules for the "Accessible High Contrast" quote and button block styles, matching the editor, and `editor-styles` support so `editor-style.css` loads in the block editor (#16).
+- A background-color halo around the keyboard focus ring, so it is visible on any surface in every mode (#34).
+- The Shop Sidebar widget area is rendered on shop, product and product taxonomy pages, inside the same grid, with the same skip link as the primary sidebar (#17).
+- Focusable targets for the product-page skip links, printed by WooCommerce hooks; the classic cart and checkout targets are focusable too (#5).
+- Customizer live preview for the base font size and line height (#9).
+- Translated toolbar announcements passed from PHP (#8).
+- Keyboard access to submenus without JavaScript through `html.no-js` and `:focus-within` (#18).
+- The admin bar Accessibility item opens the toolbar and moves focus into it (#17).
+
+### Changed
+- Headings inside a block that sets its own text color inherit that color; the CTA pattern heading was black on black in the standard and monochrome modes (#16).
+- Block buttons take the theme's mode colors at rest, hover, focus, active and visited; the generic link hover color had dropped button text to about 1.1:1 (#16).
+- The primary sidebar shows when it holds widgets, in a two-column grid that collapses under 900px; one condition drives the body class, the markup and the skip link (#1).
+- Visitor contrast and reduced-motion choices are resolved against the Customizer and operating-system defaults, with every button reflecting the effective state (#3, #20).
+- Toolbar settings live in memory and storage reads and writes are guarded, so the toolbar keeps working with blocked, malformed or read-only storage (#2).
+- Each toolbar action announces its result once, the previous clearing timer is cancelled, and text-size messages report the rendered size (#8).
+- Toolbar text sizes scale the Customizer base size instead of forcing fixed pixels; the Customizer typography sanitizers enforce the ranges the controls show (#9).
+- The six toolbar names added in 2.5 to 2.7 start with their visible labels (#25).
+- WooCommerce loop buttons keep WooCommerce's per-type accessible names (#10).
+- Widget headings get unique IDs and wrappers reference them only when a heading renders (#4).
+- WooCommerce skip links join the main skip-link list after "Skip to main content" and are printed only where their targets exist, never for the Cart and Checkout blocks (#5).
+- Quantity buttons read the input's bounds at click time, clamp, keep decimal steps, skip hidden, read-only and disabled inputs, and announce their limits (#6).
+- The checkout error handler is bound once and focuses the error list (#7).
+- Comment name and email fields follow the "require name and email" setting; the comments section is always named by an existing heading (#12).
+- Category archive and single-post breadcrumbs are built from the queried term and its ancestors (#19).
+- A submenu closed by script stays closed under the pointer until it leaves; submenus flow in place under 900px (#18).
+- The product card fires `woocommerce_shop_loop_item_title` and `woocommerce_after_shop_loop_item_title`; every WooCommerce override states the upstream template version (#14).
+- The POT includes every string added since 2.4.
+
+### Removed
+- `custom-header` theme support, which was declared but never rendered (#17).
+- The theme's own "will not be published" note in the comment form, which duplicated core's (#12).
+
 ## [2.7.3] - 2026-09-23
 
 ### Changed
