@@ -507,17 +507,44 @@ function klaro_breadcrumbs() {
 
 	$position = 2;
 
-	if ( is_category() || is_single() ) {
+	if ( is_category() ) {
+		// Category archive: the queried term's ancestors, top-most first. The
+		// term itself is printed as the current item below.
+		$klaro_term = get_queried_object();
+		if ( $klaro_term instanceof WP_Term ) {
+			foreach ( array_reverse( get_ancestors( $klaro_term->term_id, 'category', 'taxonomy' ) ) as $klaro_ancestor_id ) {
+				$klaro_ancestor = get_term( $klaro_ancestor_id, 'category' );
+				if ( ! $klaro_ancestor instanceof WP_Term ) {
+					continue;
+				}
+				echo '<li property="itemListElement" typeof="ListItem">';
+				echo '<a property="item" typeof="WebPage" href="' . esc_url( get_category_link( $klaro_ancestor ) ) . '">';
+				echo '<span property="name">' . esc_html( $klaro_ancestor->name ) . '</span>';
+				echo '</a>';
+				echo '<meta property="position" content="' . esc_attr( $position ) . '">';
+				echo '</li>';
+				++$position;
+			}
+		}
+	} elseif ( is_single() ) {
+		// Single post: the post's first category with its ancestors, all linked.
 		$categories = get_the_category();
 		if ( $categories ) {
-			$category = $categories[0];
-			echo '<li property="itemListElement" typeof="ListItem">';
-			echo '<a property="item" typeof="WebPage" href="' . esc_url( get_category_link( $category->term_id ) ) . '">';
-			echo '<span property="name">' . esc_html( $category->name ) . '</span>';
-			echo '</a>';
-			echo '<meta property="position" content="' . esc_attr( $position ) . '">';
-			echo '</li>';
-			++$position;
+			$klaro_trail = array_reverse( get_ancestors( $categories[0]->term_id, 'category', 'taxonomy' ) );
+			$klaro_trail[] = $categories[0]->term_id;
+			foreach ( $klaro_trail as $klaro_trail_id ) {
+				$klaro_trail_term = get_term( $klaro_trail_id, 'category' );
+				if ( ! $klaro_trail_term instanceof WP_Term ) {
+					continue;
+				}
+				echo '<li property="itemListElement" typeof="ListItem">';
+				echo '<a property="item" typeof="WebPage" href="' . esc_url( get_category_link( $klaro_trail_term ) ) . '">';
+				echo '<span property="name">' . esc_html( $klaro_trail_term->name ) . '</span>';
+				echo '</a>';
+				echo '<meta property="position" content="' . esc_attr( $position ) . '">';
+				echo '</li>';
+				++$position;
+			}
 		}
 	} elseif ( is_page() ) {
 		$parent_id   = wp_get_post_parent_id( get_the_ID() );
