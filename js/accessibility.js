@@ -11,26 +11,66 @@
     // Settings storage
     const STORAGE_KEY = 'klaro_accessibility_settings';
 
-    // Get accessibility settings from localStorage.
-    // Defaults are merged in so settings stored by older theme versions
-    // (without newer keys like colorFilter) keep working.
+    // Accepted values per setting. Anything else in storage (an older or
+    // hand-edited object, a value from a future version) falls back to the
+    // default for that key instead of leaking into class names or logic.
+    // contrast: 'normal' means no visitor choice, follow the Customizer mode
+    // (also what older stored settings contain); 'standard' means the
+    // visitor switched the site's mode off; 'high', 'monochrome' and 'dark'
+    // are visitor-selected modes.
+    const klaroAllowedValues = {
+        fontSize: ['normal', 'medium', 'large', 'extra-large', 'maximum'],
+        contrast: ['normal', 'standard', 'high', 'monochrome', 'dark'],
+        animations: ['enabled', 'disabled'],
+        colorFilter: ['none', 'protanopia', 'deuteranopia', 'tritanopia'],
+        dyslexiaFont: ['disabled', 'enabled'],
+        readingSpacing: ['disabled', 'enabled'],
+        highlightLinks: ['disabled', 'enabled'],
+        bigCursor: ['disabled', 'enabled']
+    };
+
+    // The active settings live here. Storage is only a way to remember them
+    // between visits: when reading or writing it fails (private mode, blocked
+    // site data, a malformed value), the toolbar keeps working from memory.
+    let klaroSettingsCache = null;
+
+    function klaroDefaultSettings() {
+        const defaults = {};
+        Object.keys(klaroAllowedValues).forEach(key => {
+            defaults[key] = klaroAllowedValues[key][0];
+        });
+        return defaults;
+    }
+
+    function klaroSanitizeSettings(raw) {
+        const settings = klaroDefaultSettings();
+        if (raw && typeof raw === 'object') {
+            Object.keys(klaroAllowedValues).forEach(key => {
+                if (klaroAllowedValues[key].indexOf(raw[key]) !== -1) {
+                    settings[key] = raw[key];
+                }
+            });
+        }
+        return settings;
+    }
+
+    // Read the stored settings once, validated; afterwards return the live
+    // in-memory object so every control sees the same state.
     function klaroGetSettings() {
-        // contrast: 'normal' means no visitor choice, follow the Customizer
-        // mode (also what older stored settings contain); 'standard' means
-        // the visitor switched the site's mode off; 'high', 'monochrome' and
-        // 'dark' are visitor-selected modes.
-        const defaults = {
-            fontSize: 'normal',
-            contrast: 'normal',
-            animations: 'enabled',
-            colorFilter: 'none',
-            dyslexiaFont: 'disabled',
-            readingSpacing: 'disabled',
-            highlightLinks: 'disabled',
-            bigCursor: 'disabled'
-        };
-        const stored = localStorage.getItem(STORAGE_KEY);
-        return stored ? Object.assign(defaults, JSON.parse(stored)) : defaults;
+        if (klaroSettingsCache) {
+            return klaroSettingsCache;
+        }
+
+        let raw = null;
+        try {
+            const stored = window.localStorage.getItem(STORAGE_KEY);
+            raw = stored ? JSON.parse(stored) : null;
+        } catch (error) {
+            raw = null;
+        }
+
+        klaroSettingsCache = klaroSanitizeSettings(raw);
+        return klaroSettingsCache;
     }
 
     // Reading aids: independent on/off toggles
@@ -132,9 +172,15 @@
         }
     };
 
-    // Save settings to localStorage
+    // Remember the settings for the next visit. Persistence is optional:
+    // a failed write leaves the in-memory settings, and the page, as they are.
     function klaroSaveSettings(settings) {
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(settings));
+        klaroSettingsCache = settings;
+        try {
+            window.localStorage.setItem(STORAGE_KEY, JSON.stringify(settings));
+        } catch (error) {
+            // Storage unavailable or full; the choice still applies to this page.
+        }
         klaroAnnounceChange((typeof klaroSettings !== 'undefined' && klaroSettings.saved) ?
             klaroSettings.saved : 'Settings saved');
     }
