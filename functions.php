@@ -223,9 +223,9 @@ function klaro_widgets_init() {
 			'name'          => esc_html__( 'Primary Sidebar', 'klaro' ),
 			'id'            => 'klaro-sidebar-1',
 			'description'   => esc_html__( 'Add widgets here to appear in your sidebar.', 'klaro' ),
-			'before_widget' => '<section id="%1$s" class="widget %2$s" aria-labelledby="%1$s-title">',
+			'before_widget' => '<section id="%1$s" class="widget %2$s">',
 			'after_widget'  => '</section>',
-			'before_title'  => '<h2 id="%1$s-title" class="widget-title">',
+			'before_title'  => '<h2 class="widget-title">',
 			'after_title'   => '</h2>',
 		)
 	);
@@ -235,14 +235,68 @@ function klaro_widgets_init() {
 			'name'          => esc_html__( 'Footer Widgets', 'klaro' ),
 			'id'            => 'klaro-footer-1',
 			'description'   => esc_html__( 'Add widgets here to appear in your footer.', 'klaro' ),
-			'before_widget' => '<section id="%1$s" class="footer-widget widget %2$s" aria-labelledby="%1$s-title">',
+			'before_widget' => '<section id="%1$s" class="footer-widget widget %2$s">',
 			'after_widget'  => '</section>',
-			'before_title'  => '<h2 id="%1$s-title" class="widget-title">',
+			'before_title'  => '<h2 class="widget-title">',
 			'after_title'   => '</h2>',
 		)
 	);
 }
 add_action( 'widgets_init', 'klaro_widgets_init' );
+
+/**
+ * Give each widget heading a unique ID and name the widget wrapper by it.
+ *
+ * WordPress substitutes %1$s only in before_widget, never in before_title,
+ * so the ID has to be built here per widget. The wrapper gets
+ * aria-labelledby only when a heading will actually render: classic widgets
+ * print before_title when the instance has a title, block widgets never
+ * print it. That way no reference points at a missing heading.
+ *
+ * @param array $params Sidebar and widget arguments from dynamic_sidebar().
+ * @return array
+ */
+function klaro_widget_heading_ids( $params ) {
+	global $wp_registered_widgets;
+
+	$theme_sidebars = array( 'klaro-sidebar-1', 'klaro-footer-1', 'sidebar-shop' );
+	if ( empty( $params[0]['id'] ) || ! in_array( $params[0]['id'], $theme_sidebars, true ) || empty( $params[0]['widget_id'] ) ) {
+		return $params;
+	}
+
+	$widget_id  = $params[0]['widget_id'];
+	$heading_id = $widget_id . '-title';
+
+	$params[0]['before_title'] = '<h2 id="' . esc_attr( $heading_id ) . '" class="widget-title">';
+
+	$has_title = false;
+	$callback  = isset( $wp_registered_widgets[ $widget_id ]['callback'] ) ? $wp_registered_widgets[ $widget_id ]['callback'] : null;
+
+	if ( is_array( $callback ) && isset( $callback[0] ) && $callback[0] instanceof WP_Widget && ! $callback[0] instanceof WP_Widget_Block ) {
+		$widget   = $callback[0];
+		$settings = $widget->get_settings();
+		$number   = isset( $params[1]['number'] ) ? $params[1]['number'] : null;
+
+		if ( null !== $number && isset( $settings[ $number ] ) ) {
+			$instance = $settings[ $number ];
+			$title    = isset( $instance['title'] ) ? $instance['title'] : '';
+			/** This filter is documented in wp-includes/widgets/class-wp-widget-pages.php */
+			$title     = apply_filters( 'widget_title', $title, $instance, $widget->id_base );
+			$has_title = '' !== trim( (string) $title );
+		}
+	}
+
+	if ( $has_title ) {
+		$params[0]['before_widget'] = str_replace(
+			'<section ',
+			'<section aria-labelledby="' . esc_attr( $heading_id ) . '" ',
+			$params[0]['before_widget']
+		);
+	}
+
+	return $params;
+}
+add_filter( 'dynamic_sidebar_params', 'klaro_widget_heading_ids' );
 
 /**
  * Enqueue Scripts and Styles
@@ -815,9 +869,9 @@ function klaro_woocommerce_widgets_init() {
 			'name'          => esc_html__( 'Shop Sidebar', 'klaro' ),
 			'id'            => 'sidebar-shop',
 			'description'   => esc_html__( 'Add widgets here to appear in shop pages sidebar.', 'klaro' ),
-			'before_widget' => '<section id="%1$s" class="widget %2$s" aria-labelledby="%1$s-title">',
+			'before_widget' => '<section id="%1$s" class="widget %2$s">',
 			'after_widget'  => '</section>',
-			'before_title'  => '<h2 id="%1$s-title" class="widget-title">',
+			'before_title'  => '<h2 class="widget-title">',
 			'after_title'   => '</h2>',
 		)
 	);
