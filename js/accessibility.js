@@ -15,6 +15,10 @@
     // Defaults are merged in so settings stored by older theme versions
     // (without newer keys like colorFilter) keep working.
     function klaroGetSettings() {
+        // contrast: 'normal' means no visitor choice, follow the Customizer
+        // mode (also what older stored settings contain); 'standard' means
+        // the visitor switched the site's mode off; 'high', 'monochrome' and
+        // 'dark' are visitor-selected modes.
         const defaults = {
             fontSize: 'normal',
             contrast: 'normal',
@@ -69,6 +73,45 @@
             label: 'Dark mode'
         }
     };
+
+    // The contrast mode the Customizer put on <body> before any visitor
+    // preference is applied, or null for the standard palette. Read once at
+    // start-up, before the classes are touched.
+    let klaroSiteContrast = null;
+
+    function klaroDetectSiteContrast() {
+        const body = document.body;
+        return Object.keys(klaroContrastModes).find(mode =>
+            body.classList.contains(klaroContrastModes[mode].className)) || null;
+    }
+
+    // Resolve the one mode that should be active: the visitor's own choice,
+    // or the site default when the visitor has not chosen, or none when the
+    // visitor switched the site's mode off. Returns a mode key or null.
+    function klaroEffectiveContrast(settings) {
+        if (klaroContrastModes[settings.contrast]) {
+            return settings.contrast;
+        }
+        if (settings.contrast === 'standard') {
+            return null;
+        }
+        return klaroSiteContrast;
+    }
+
+    // Put exactly the effective mode class on <body> and mark its button as
+    // pressed, so the announced state always matches what is shown.
+    function klaroApplyContrast(settings) {
+        const body = document.body;
+        const effective = klaroEffectiveContrast(settings);
+
+        Object.keys(klaroContrastModes).forEach(mode => {
+            const config = klaroContrastModes[mode];
+            body.classList.toggle(config.className, mode === effective);
+            klaroUpdateButtonState(config.buttonId, mode === effective);
+        });
+
+        return effective;
+    }
 
     // Color vision filters: setting value -> body class, toolbar button, announcement name
     const klaroColorFilters = {
@@ -125,11 +168,10 @@
             html.classList.add('klaro-maximum-text');
         }
 
-        // Apply contrast to body
-        if (klaroContrastModes[settings.contrast]) {
-            body.classList.add(klaroContrastModes[settings.contrast].className);
-            klaroUpdateButtonState(klaroContrastModes[settings.contrast].buttonId, true);
-        }
+        // Apply contrast to body: resolve the visitor preference against the
+        // Customizer default instead of stacking a second mode class on it.
+        klaroSiteContrast = klaroDetectSiteContrast();
+        klaroApplyContrast(settings);
 
         // Apply color vision filter to body
         if (klaroColorFilters[settings.colorFilter]) {
@@ -253,8 +295,6 @@
 
     // Contrast modes (high contrast, monochrome, dark) - mutually exclusive toggles
     function klaroInitContrastControls() {
-        const body = document.body;
-
         Object.keys(klaroContrastModes).forEach(mode => {
             const config = klaroContrastModes[mode];
             const button = document.getElementById(config.buttonId);
@@ -263,23 +303,17 @@
             button.addEventListener('click', () => {
                 const settings = klaroGetSettings();
 
-                // Remove the other contrast modes
-                Object.keys(klaroContrastModes).forEach(other => {
-                    if (other !== mode) {
-                        body.classList.remove(klaroContrastModes[other].className);
-                        klaroUpdateButtonState(klaroContrastModes[other].buttonId, false);
-                    }
-                });
-
-                if (settings.contrast === mode) {
-                    body.classList.remove(config.className);
-                    settings.contrast = 'normal';
-                    klaroUpdateButtonState(config.buttonId, false);
+                if (klaroEffectiveContrast(settings) === mode) {
+                    // Switching off the site's own default has to be stored
+                    // as an explicit choice, otherwise the next page load
+                    // would follow the default again. Switching off a mode
+                    // the visitor picked just drops the preference.
+                    settings.contrast = (klaroSiteContrast === mode) ? 'standard' : 'normal';
+                    klaroApplyContrast(settings);
                     klaroAnnounceChange(config.label + ' disabled');
                 } else {
-                    body.classList.add(config.className);
                     settings.contrast = mode;
-                    klaroUpdateButtonState(config.buttonId, true);
+                    klaroApplyContrast(settings);
                     klaroAnnounceChange(config.label + ' enabled');
                 }
 
