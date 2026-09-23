@@ -403,6 +403,18 @@ h1, h2, h3, h4, h5, h6 {
   letter-spacing: 0.01em;
 }
 
+/* Inside a block with its own text color (a Group with a dark background,
+   the theme's CTA pattern) headings take that color instead of the global
+   heading color, which otherwise renders black on black. */
+.has-text-color h1,
+.has-text-color h2,
+.has-text-color h3,
+.has-text-color h4,
+.has-text-color h5,
+.has-text-color h6 {
+  color: inherit;
+}
+
 h1 {
   font-size: 2.5rem;
   margin-top: 0;
@@ -1225,6 +1237,56 @@ li {
 
 .reply {
   margin-top: var(--spacing-sm);
+}
+
+/* ==========================================================================
+   BLOCKS
+   ========================================================================== */
+
+/* Block buttons use the theme's mode colors. The explicit hover, focus,
+   active and visited rules keep the generic link colors from applying to
+   the button text, which otherwise drops to about 1.1:1 on hover. Preset
+   colors chosen in the editor still win through their !important rules. */
+.wp-block-button__link {
+  background-color: var(--color-text);
+  color: var(--color-background);
+  border: 3px solid var(--color-text);
+  text-decoration: none;
+}
+
+.wp-block-button__link:visited {
+  color: var(--color-background);
+}
+
+.wp-block-button__link:hover,
+.wp-block-button__link:focus,
+.wp-block-button__link:active {
+  background-color: var(--color-background);
+  color: var(--color-text);
+}
+
+/* "Accessible High Contrast" block styles registered in functions.php.
+   The style class sits on the quote itself and on the button's wrapper. */
+.wp-block-quote.is-style-klaro-accessible {
+  border: 3px solid var(--color-text);
+  padding: 1.5em;
+  background: var(--color-bg-secondary);
+  color: var(--color-text);
+}
+
+.wp-block-button.is-style-klaro-accessible .wp-block-button__link {
+  background-color: var(--color-text);
+  color: var(--color-background);
+  border: 3px solid var(--color-text);
+  font-size: 1.125em;
+  padding: 0.75em 1.5em;
+}
+
+.wp-block-button.is-style-klaro-accessible .wp-block-button__link:hover,
+.wp-block-button.is-style-klaro-accessible .wp-block-button__link:focus,
+.wp-block-button.is-style-klaro-accessible .wp-block-button__link:active {
+  background-color: var(--color-background);
+  color: var(--color-text);
 }
 
 /* ==========================================================================

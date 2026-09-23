@@ -106,7 +106,9 @@ function klaro_setup() {
 		)
 	);
 
-	// Add editor styles
+	// Add editor styles. The block editor only loads add_editor_style()
+	// stylesheets when the theme declares editor-styles support.
+	add_theme_support( 'editor-styles' );
 	add_editor_style( 'editor-style.css' );
 
 	// Add theme starter content
