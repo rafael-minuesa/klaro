@@ -5,6 +5,7 @@
  *
  * @package Klaro
  * @since 1.4.0
+ * @version 10.4.0
  */
 
 defined( 'ABSPATH' ) || exit;
