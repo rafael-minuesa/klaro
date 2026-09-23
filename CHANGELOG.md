@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.7.3] - 2026-09-23
+
+### Changed
+- Corrected the capitalization of WordPress in a style.css section comment and three historical changelog lines. The WordPress.org theme check updated on 1 September 2026 treats these as REQUIRED failures and rejected the 2.7.2 import. No functional changes.
+
 ## [2.7.2] - 2026-09-23
 
 ### Changed
@@ -484,7 +489,7 @@ Updated to meet the 2026 WordPress.org accessibility-ready requirements (Trac #2
   - Included complete code examples for style.css and functions.php
   - Added best practices section
   - Clarified that child themes are not bundled with parent
-- **WORDPRESS-ORG-CHECKLIST.md** - Updated packaging instructions
+- **WordPress.org checklist document** - Updated packaging instructions
   - Added explicit exclusion of child theme folder
   - Updated file removal list
   - Added verification steps to ensure child theme not included
@@ -530,13 +535,13 @@ Updated to meet the 2026 WordPress.org accessibility-ready requirements (Trac #2
   - Multiple methods (browser tools, WordPress Customizer, online tools)
   - Requirements and best practices
   - What to show and what to avoid
-- **WORDPRESS-ORG-CHECKLIST.md** - Complete submission preparation guide
+- **WordPress.org checklist document** - Complete submission preparation guide
   - Required files checklist
   - Step-by-step testing procedures
   - Theme Check plugin instructions
   - Packaging guidelines
   - Common rejection reasons to avoid
-- **WORDPRESS-ORG-GUIDELINES.md** - Detailed explanation of WordPress.org compliance
+- **WordPress.org guidelines document** - Detailed explanation of WordPress.org compliance
   - Starter content implementation details
   - Plugin recommendation best practices
   - What themes can and cannot do
