@@ -46,6 +46,42 @@
 	}
 
 	/**
+	 * Read the quantity constraints from the input as they are right now.
+	 * Variation changes rewrite min, max and step on the input, so nothing
+	 * is captured at set-up time. A missing or invalid minimum means 0, a
+	 * missing maximum means no maximum, and a missing or non-numeric step
+	 * (WooCommerce's "any") means 1.
+	 */
+	function readQuantityBounds($input) {
+		var min = parseFloat($input.attr('min'));
+		var max = parseFloat($input.attr('max'));
+		var step = parseFloat($input.attr('step'));
+		var stepAttr = String($input.attr('step') || '');
+		var decimals = stepAttr.indexOf('.') !== -1 ? stepAttr.split('.')[1].length : 0;
+
+		return {
+			min: isNaN(min) ? 0 : min,
+			max: isNaN(max) ? Infinity : max,
+			step: isNaN(step) || step <= 0 ? 1 : step,
+			decimals: decimals
+		};
+	}
+
+	/**
+	 * Reflect the current value against the bounds on the two buttons, so a
+	 * button at a limit is announced as unavailable but stays focusable.
+	 */
+	function updateQuantityButtonState($input, $minus, $plus) {
+		var bounds = readQuantityBounds($input);
+		var current = parseFloat($input.val());
+		if (isNaN(current)) {
+			current = bounds.min;
+		}
+		$minus.attr('aria-disabled', current <= bounds.min ? 'true' : 'false');
+		$plus.attr('aria-disabled', current >= bounds.max ? 'true' : 'false');
+	}
+
+	/**
 	 * Enhance quantity controls with +/- buttons
 	 */
 	function initQuantityControls() {
@@ -53,14 +89,14 @@
 			var $wrapper = $(this);
 			var $input = $wrapper.find('.qty');
 
-			// Skip if already enhanced
-			if ($wrapper.find('.klaro-qty-btn').length) {
+			// Skip if already enhanced, or if there is nothing a visitor can
+			// change: hidden inputs (sold individually), read-only or disabled.
+			if (!$input.length || $wrapper.find('.klaro-qty-btn').length) {
 				return;
 			}
-
-			var min = parseInt($input.attr('min')) || 1;
-			var max = parseInt($input.attr('max')) || 9999;
-			var step = parseInt($input.attr('step')) || 1;
+			if ($input.attr('type') === 'hidden' || $input.prop('readOnly') || $input.prop('disabled')) {
+				return;
+			}
 
 			// Create buttons
 			var $minus = $('<button>')
@@ -82,26 +118,48 @@
 			// Insert buttons
 			$input.before($minus).after($plus);
 
-			// Event handlers
+			function change(direction) {
+				var bounds = readQuantityBounds($input);
+				var current = parseFloat($input.val());
+				if (isNaN(current)) {
+					current = bounds.min;
+				}
+
+				// Step, then clamp into the allowed range, so a step that
+				// would overshoot lands exactly on the limit.
+				var next = Math.min(bounds.max, Math.max(bounds.min, current + direction * bounds.step));
+				next = parseFloat(next.toFixed(bounds.decimals));
+
+				if (next === current) {
+					announce(direction < 0 ? klaroWcSettings.quantityMinimum : klaroWcSettings.quantityMaximum);
+					updateQuantityButtonState($input, $minus, $plus);
+					return;
+				}
+
+				$input.val(next).trigger('change');
+				announce(klaroWcSettings.quantityUpdated + ' ' + next);
+				updateQuantityButtonState($input, $minus, $plus);
+			}
+
 			$minus.on('click', function(e) {
 				e.preventDefault();
-				var currentVal = parseInt($input.val()) || min;
-				if (currentVal > min) {
-					var newVal = currentVal - step;
-					$input.val(newVal).trigger('change');
-					announce(klaroWcSettings.quantityUpdated + ' ' + newVal);
-				}
+				change(-1);
 			});
 
 			$plus.on('click', function(e) {
 				e.preventDefault();
-				var currentVal = parseInt($input.val()) || min;
-				if (currentVal < max) {
-					var newVal = currentVal + step;
-					$input.val(newVal).trigger('change');
-					announce(klaroWcSettings.quantityUpdated + ' ' + newVal);
-				}
+				change(1);
 			});
+
+			// Typed values and variation changes move the bounds or the value.
+			$input.on('change input', function() {
+				updateQuantityButtonState($input, $minus, $plus);
+			});
+			$input.closest('form').on('found_variation reset_data', function() {
+				updateQuantityButtonState($input, $minus, $plus);
+			});
+
+			updateQuantityButtonState($input, $minus, $plus);
 		});
 	}
 
