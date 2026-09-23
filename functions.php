@@ -383,6 +383,9 @@ function klaro_skip_links() {
 		<ul>
 			<li><a href="#main-content" class="skip-link"><?php esc_html_e( 'Skip to main content', 'klaro' ); ?></a></li>
 			<li><a href="#primary-navigation" class="skip-link"><?php esc_html_e( 'Skip to navigation', 'klaro' ); ?></a></li>
+			<?php foreach ( klaro_woocommerce_skip_link_items() as $klaro_skip_item ) : ?>
+				<li><a href="#<?php echo esc_attr( $klaro_skip_item['target'] ); ?>" class="skip-link"><?php echo esc_html( $klaro_skip_item['label'] ); ?></a></li>
+			<?php endforeach; ?>
 			<?php if ( $klaro_has_sidebar ) : ?>
 				<li><a href="#sidebar" class="skip-link"><?php esc_html_e( 'Skip to sidebar', 'klaro' ); ?></a></li>
 			<?php endif; ?>
@@ -1086,41 +1089,111 @@ function klaro_woocommerce_sale_flash( $html, $post, $product ) {
 add_filter( 'woocommerce_sale_flash', 'klaro_woocommerce_sale_flash', 10, 3 );
 
 /**
- * Add skip links for WooCommerce pages
+ * Extra skip links for WooCommerce pages.
+ *
+ * Returned as items so klaro_skip_links() can print them inside the one skip
+ * link list, after "Skip to main content". Each link is only offered when
+ * its target will exist on the page: the products section only renders when
+ * the archive has products, the two product targets are printed by the hooks
+ * below, and the cart and checkout IDs exist only in the classic templates,
+ * not in the Cart and Checkout blocks, and only with items in the cart.
+ *
+ * @return array[] Items with 'target' (element ID) and 'label'.
  */
-function klaro_woocommerce_skip_links() {
+function klaro_woocommerce_skip_link_items() {
+	$items = array();
+
 	if ( ! class_exists( 'WooCommerce' ) || ! function_exists( 'is_shop' ) ) {
-		return;
+		return $items;
 	}
 
-	$additional_links = array();
-
-	if ( is_shop() || is_product_category() || is_product_tag() ) {
-		$additional_links[] = '<li><a href="#products-list" class="skip-link">' . esc_html__( 'Skip to products', 'klaro' ) . '</a></li>';
+	if ( ( is_shop() || is_product_category() || is_product_tag() ) && function_exists( 'woocommerce_product_loop' ) && woocommerce_product_loop() ) {
+		$items[] = array(
+			'target' => 'products-list',
+			'label'  => __( 'Skip to products', 'klaro' ),
+		);
 	}
 
 	if ( is_product() ) {
-		$additional_links[] = '<li><a href="#product-details" class="skip-link">' . esc_html__( 'Skip to product details', 'klaro' ) . '</a></li>';
-		$additional_links[] = '<li><a href="#add-to-cart-form" class="skip-link">' . esc_html__( 'Skip to add to cart', 'klaro' ) . '</a></li>';
+		$items[] = array(
+			'target' => 'product-details',
+			'label'  => __( 'Skip to product details', 'klaro' ),
+		);
+
+		if ( klaro_woocommerce_product_has_cart_form() ) {
+			$items[] = array(
+				'target' => 'add-to-cart-form',
+				'label'  => __( 'Skip to add to cart', 'klaro' ),
+			);
+		}
 	}
 
-	if ( is_cart() ) {
-		$additional_links[] = '<li><a href="#cart-contents" class="skip-link">' . esc_html__( 'Skip to cart contents', 'klaro' ) . '</a></li>';
-		$additional_links[] = '<li><a href="#cart-totals" class="skip-link">' . esc_html__( 'Skip to cart totals', 'klaro' ) . '</a></li>';
+	$cart_has_items = function_exists( 'WC' ) && WC()->cart && ! WC()->cart->is_empty();
+
+	if ( is_cart() && $cart_has_items && ! has_block( 'woocommerce/cart' ) ) {
+		$items[] = array(
+			'target' => 'cart-contents',
+			'label'  => __( 'Skip to cart contents', 'klaro' ),
+		);
+		$items[] = array(
+			'target' => 'cart-totals',
+			'label'  => __( 'Skip to cart totals', 'klaro' ),
+		);
 	}
 
-	if ( is_checkout() && ! is_order_received_page() ) {
-		$additional_links[] = '<li><a href="#customer_details" class="skip-link">' . esc_html__( 'Skip to billing details', 'klaro' ) . '</a></li>';
-		$additional_links[] = '<li><a href="#order_review" class="skip-link">' . esc_html__( 'Skip to order review', 'klaro' ) . '</a></li>';
+	if ( is_checkout() && ! is_order_received_page() && ! is_checkout_pay_page() && $cart_has_items && ! has_block( 'woocommerce/checkout' ) ) {
+		$items[] = array(
+			'target' => 'customer_details',
+			'label'  => __( 'Skip to billing details', 'klaro' ),
+		);
+		$items[] = array(
+			'target' => 'order_review',
+			'label'  => __( 'Skip to order review', 'klaro' ),
+		);
 	}
 
-	if ( ! empty( $additional_links ) ) {
-		echo '<nav class="skip-links woocommerce-skip-links" aria-label="' . esc_attr__( 'Shop', 'klaro' ) . '">';
-		echo '<ul>' . wp_kses_post( implode( '', $additional_links ) ) . '</ul>';
-		echo '</nav>';
-	}
+	return $items;
 }
-add_action( 'wp_body_open', 'klaro_woocommerce_skip_links', 6 );
+
+/**
+ * Whether the current single product prints an add-to-cart form, mirroring
+ * the WooCommerce add-to-cart templates: simple products need to be
+ * purchasable and in stock; variable, grouped and external products always
+ * print the form. Other product types are not assumed.
+ *
+ * @return bool
+ */
+function klaro_woocommerce_product_has_cart_form() {
+	$product = function_exists( 'wc_get_product' ) ? wc_get_product( get_the_ID() ) : null;
+	if ( ! $product ) {
+		return false;
+	}
+
+	if ( $product->is_type( 'simple' ) ) {
+		return $product->is_purchasable() && $product->is_in_stock();
+	}
+
+	return $product->is_type( array( 'variable', 'grouped', 'external' ) );
+}
+
+/**
+ * Print the target for "Skip to product details" at the top of the product
+ * summary. Focusable, with screen-reader text that the theme reveals on
+ * focus like a skip link, so the landing point is announced.
+ */
+function klaro_woocommerce_product_details_target() {
+	echo '<span id="product-details" class="screen-reader-text" tabindex="-1">' . esc_html__( 'Product details', 'klaro' ) . '</span>';
+}
+add_action( 'woocommerce_single_product_summary', 'klaro_woocommerce_product_details_target', 1 );
+
+/**
+ * Print the target for "Skip to add to cart" right before the add-to-cart
+ * form. The hook fires only when a form is printed.
+ */
+function klaro_woocommerce_add_to_cart_target() {
+	echo '<span id="add-to-cart-form" class="screen-reader-text" tabindex="-1">' . esc_html__( 'Add to cart', 'klaro' ) . '</span>';
+}
+add_action( 'woocommerce_before_add_to_cart_form', 'klaro_woocommerce_add_to_cart_target' );
 
 /**
  * Add ARIA live region for cart updates
