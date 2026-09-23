@@ -829,11 +829,20 @@ add_filter( 'oembed_result', 'klaro_disable_autoplay', 10, 2 );
 function klaro_comment_form_defaults( $defaults ) {
 	$commenter = wp_get_current_commenter();
 
+	// Name and email are required only when Settings > Discussion says so,
+	// the same option core's own fields follow.
+	$require_name_email = (bool) get_option( 'require_name_email' );
+	$required_attrs     = $require_name_email ? ' required aria-required="true"' : '';
+	$required_mark      = $require_name_email ? ' <span class="required" aria-label="' . esc_attr__( 'required', 'klaro' ) . '">*</span>' : '';
+
 	$defaults['comment_field'] = '<p class="comment-form-comment"><label for="comment">' . esc_html__( 'Comment', 'klaro' ) . ' <span class="required" aria-label="' . esc_attr__( 'required', 'klaro' ) . '">*</span></label><textarea id="comment" name="comment" cols="45" rows="8" maxlength="65525" required aria-required="true" aria-describedby="comment-description"></textarea><span id="comment-description" class="screen-reader-text">' . esc_html__( 'Your comment will be posted publicly on this page.', 'klaro' ) . '</span></p>';
 
-	$defaults['fields']['author'] = '<p class="comment-form-author"><label for="author">' . esc_html__( 'Name', 'klaro' ) . ' <span class="required" aria-label="' . esc_attr__( 'required', 'klaro' ) . '">*</span></label><input id="author" name="author" type="text" value="' . esc_attr( $commenter['comment_author'] ) . '" size="30" maxlength="245" required aria-required="true" /></p>';
+	$defaults['fields']['author'] = '<p class="comment-form-author"><label for="author">' . esc_html__( 'Name', 'klaro' ) . $required_mark . '</label><input id="author" name="author" type="text" value="' . esc_attr( $commenter['comment_author'] ) . '" size="30" maxlength="245" autocomplete="name"' . $required_attrs . ' /></p>';
 
-	$defaults['fields']['email'] = '<p class="comment-form-email"><label for="email">' . esc_html__( 'Email', 'klaro' ) . ' <span class="required" aria-label="' . esc_attr__( 'required', 'klaro' ) . '">*</span></label><input id="email" name="email" type="email" value="' . esc_attr( $commenter['comment_author_email'] ) . '" size="30" maxlength="100" aria-describedby="email-notes" required aria-required="true" /><span id="email-notes" class="screen-reader-text">' . esc_html__( 'Your email address will not be published.', 'klaro' ) . '</span></p>';
+	// The "Your email address will not be published" note is printed by core
+	// in comment_notes_before with id="email-notes"; the field only refers to
+	// it. Core drops the reference itself when that note is removed.
+	$defaults['fields']['email'] = '<p class="comment-form-email"><label for="email">' . esc_html__( 'Email', 'klaro' ) . $required_mark . '</label><input id="email" name="email" type="email" value="' . esc_attr( $commenter['comment_author_email'] ) . '" size="30" maxlength="100" aria-describedby="email-notes" autocomplete="email"' . $required_attrs . ' /></p>';
 
 	$defaults['fields']['url'] = '<p class="comment-form-url"><label for="url">' . esc_html__( 'Website', 'klaro' ) . '</label><input id="url" name="url" type="url" value="' . esc_attr( $commenter['comment_author_url'] ) . '" size="30" maxlength="200" /></p>';
 
