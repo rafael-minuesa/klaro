@@ -104,13 +104,13 @@
 						<div class="klaro-accessibility-section">
 							<span class="klaro-accessibility-section-label"><?php esc_html_e( 'Color Vision', 'klaro' ); ?></span>
 							<div class="klaro-accessibility-buttons">
-								<button type="button" id="klaro-filter-protanopia" class="klaro-accessibility-button" aria-label="<?php esc_attr_e( 'Color filter for red-blindness (protanopia)', 'klaro' ); ?>" aria-pressed="false">
+								<button type="button" id="klaro-filter-protanopia" class="klaro-accessibility-button" aria-label="<?php esc_attr_e( 'Red-blind color filter (protanopia)', 'klaro' ); ?>" aria-pressed="false">
 									<span aria-hidden="true"><?php esc_html_e( 'Red-blind', 'klaro' ); ?></span>
 								</button>
-								<button type="button" id="klaro-filter-deuteranopia" class="klaro-accessibility-button" aria-label="<?php esc_attr_e( 'Color filter for green-blindness (deuteranopia)', 'klaro' ); ?>" aria-pressed="false">
+								<button type="button" id="klaro-filter-deuteranopia" class="klaro-accessibility-button" aria-label="<?php esc_attr_e( 'Green-blind color filter (deuteranopia)', 'klaro' ); ?>" aria-pressed="false">
 									<span aria-hidden="true"><?php esc_html_e( 'Green-blind', 'klaro' ); ?></span>
 								</button>
-								<button type="button" id="klaro-filter-tritanopia" class="klaro-accessibility-button" aria-label="<?php esc_attr_e( 'Color filter for blue-blindness (tritanopia)', 'klaro' ); ?>" aria-pressed="false">
+								<button type="button" id="klaro-filter-tritanopia" class="klaro-accessibility-button" aria-label="<?php esc_attr_e( 'Blue-blind color filter (tritanopia)', 'klaro' ); ?>" aria-pressed="false">
 									<span aria-hidden="true"><?php esc_html_e( 'Blue-blind', 'klaro' ); ?></span>
 								</button>
 							</div>
@@ -128,13 +128,13 @@
 						<div class="klaro-accessibility-section">
 							<span class="klaro-accessibility-section-label"><?php esc_html_e( 'Reading', 'klaro' ); ?></span>
 							<div class="klaro-accessibility-buttons">
-								<button type="button" id="klaro-toggle-spacing" class="klaro-accessibility-button" aria-label="<?php esc_attr_e( 'Increase text spacing', 'klaro' ); ?>" aria-pressed="false">
+								<button type="button" id="klaro-toggle-spacing" class="klaro-accessibility-button" aria-label="<?php esc_attr_e( 'Spacing, increase text spacing', 'klaro' ); ?>" aria-pressed="false">
 									<span aria-hidden="true"><?php esc_html_e( 'Spacing', 'klaro' ); ?></span>
 								</button>
-								<button type="button" id="klaro-toggle-links" class="klaro-accessibility-button" aria-label="<?php esc_attr_e( 'Highlight links', 'klaro' ); ?>" aria-pressed="false">
+								<button type="button" id="klaro-toggle-links" class="klaro-accessibility-button" aria-label="<?php esc_attr_e( 'Links, highlight links', 'klaro' ); ?>" aria-pressed="false">
 									<span aria-hidden="true"><?php esc_html_e( 'Links', 'klaro' ); ?></span>
 								</button>
-								<button type="button" id="klaro-toggle-cursor" class="klaro-accessibility-button" aria-label="<?php esc_attr_e( 'Large mouse cursor', 'klaro' ); ?>" aria-pressed="false">
+								<button type="button" id="klaro-toggle-cursor" class="klaro-accessibility-button" aria-label="<?php esc_attr_e( 'Cursor, large mouse cursor', 'klaro' ); ?>" aria-pressed="false">
 									<span aria-hidden="true"><?php esc_html_e( 'Cursor', 'klaro' ); ?></span>
 								</button>
 							</div>
