@@ -1005,20 +1005,6 @@ function klaro_woocommerce_sale_flash( $html, $post, $product ) {
 add_filter( 'woocommerce_sale_flash', 'klaro_woocommerce_sale_flash', 10, 3 );
 
 /**
- * Enhance add to cart button accessibility
- */
-function klaro_woocommerce_loop_add_to_cart_args( $args, $product ) {
-	$args['attributes']['aria-label'] = sprintf(
-		/* translators: %s: Product name */
-		esc_attr__( 'Add %s to cart', 'klaro' ),
-		$product->get_name()
-	);
-
-	return $args;
-}
-add_filter( 'woocommerce_loop_add_to_cart_args', 'klaro_woocommerce_loop_add_to_cart_args', 10, 2 );
-
-/**
  * Add skip links for WooCommerce pages
  */
 function klaro_woocommerce_skip_links() {
