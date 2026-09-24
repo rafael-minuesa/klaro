@@ -1,0 +1,135 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  php-lint:
+    name: PHP lint (${{ matrix.php }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        # Requires PHP 7.4 (style.css, readme.txt) up to the current release.
+        php: ['7.4', '8.0', '8.1', '8.2', '8.3', '8.4']
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          coverage: none
+          tools: none
+
+      - name: php -l
+        run: |
+          status=0
+          while IFS= read -r -d '' file; do
+            php -l "$file" > /dev/null || status=1
+          done < <(find . -name '*.php' -not -path './vendor/*' -not -path './.git/*' -print0)
+          exit $status
+
+  phpcs:
+    name: PHPCS (WordPress)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+          coverage: none
+          tools: composer, cs2pr
+
+      - name: Install coding standards
+        run: composer install --no-interaction --no-progress --prefer-dist
+
+      - name: Run PHPCS
+        run: ./vendor/bin/phpcs -q --report-full --report-checkstyle=./phpcs-report.xml
+
+      - name: Annotate PR
+        if: ${{ always() && hashFiles('phpcs-report.xml') != '' }}
+        run: cs2pr --graceful-warnings ./phpcs-report.xml
+
+  js-syntax:
+    name: JS syntax (node --check)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: node --check
+        run: |
+          status=0
+          while IFS= read -r -d '' file; do
+            node --check "$file" || status=1
+          done < <(find . -name '*.js' -not -path './node_modules/*' -not -path './vendor/*' -not -path './.git/*' -print0)
+          exit $status
+
+  package:
+    name: Release zip
+    runs-on: ubuntu-latest
+    needs: [php-lint, phpcs, js-syntax]
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build klaro.zip from .distignore
+        run: |
+          mkdir -p build/klaro
+          rsync -a --exclude-from=.distignore --exclude=/build ./ build/klaro/
+          # Theme files at the zip root, not inside a folder (WP-ORG-SUBMISSION.md).
+          (cd build/klaro && zip -rqX ../klaro.zip .)
+          unzip -Z1 build/klaro.zip | sort > build/manifest.txt
+          echo "Packaged $(grep -vc '/$' build/manifest.txt) files"
+
+      - name: Verify package contents
+        working-directory: build
+        run: |
+          status=0
+          fail() { echo "::error::$1"; status=1; }
+
+          # Required and runtime files.
+          for f in style.css functions.php index.php readme.txt screenshot.png \
+                   accessibility.txt theme.json editor-style.css woocommerce.css \
+                   fonts/OFL.txt languages/klaro.pot; do
+            grep -qx "$f" manifest.txt || fail "Missing required file: $f"
+          done
+          for f in ../js/*.js ../fonts/*.woff2; do
+            grep -qx "${f#../}" manifest.txt || fail "Missing runtime asset: ${f#../}"
+          done
+
+          # Dev files and files Theme Check rejects.
+          if grep -E '(^|/)\.[^/]+' manifest.txt; then fail "Hidden files in package (listed above)"; fi
+          if grep -E '^(vendor|node_modules|banners|\.wordpress-org)/' manifest.txt; then fail "Dev folders in package (listed above)"; fi
+          if grep -E '^(CLAUDE\.md|README\.md|LICENSE|WP-ORG-SUBMISSION\.md|composer\.(json|lock)|phpcs\.xml(\.dist)?)$' manifest.txt; then fail "Dev files in package (listed above)"; fi
+          if grep -E '\.(sh|bat|zip|tar|gz|rar|phar|code-workspace)$' manifest.txt; then fail "Prohibited file types in package (listed above)"; fi
+
+          # Theme Check (20260901+) rejects the all-caps product name in shipped text.
+          if grep -rIn 'WORDPRESS' klaro; then fail "All-caps WORDPRESS in shipped text (listed above)"; fi
+
+          # Version must match between style.css and readme.txt.
+          style_version=$(sed -n 's/^Version:[[:space:]]*//p' klaro/style.css | tr -d '\r')
+          readme_version=$(sed -n 's/^Stable tag:[[:space:]]*//p' klaro/readme.txt | tr -d '\r')
+          [ "$style_version" = "$readme_version" ] || fail "Version mismatch: style.css $style_version, readme.txt $readme_version"
+          echo "Version $style_version"
+
+          exit $status
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: klaro-zip
+          path: build/klaro.zip
+          if-no-files-found: error

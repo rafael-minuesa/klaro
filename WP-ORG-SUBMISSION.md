@@ -4,33 +4,15 @@ This guide explains how to prepare the Klaro theme for submission to the WordPre
 
 ## Quick Start
 
-### Linux/macOS:
+Every push and pull request runs the CI workflow (`.github/workflows/ci.yml`), which builds `klaro.zip` and uploads it as the `klaro-zip` artifact. Download it from the workflow run, or build it locally:
+
 ```bash
-./build-wp-org-zip.sh
+rm -rf ../klaro-build && mkdir -p ../klaro-build
+rsync -a --exclude-from=.distignore ./ ../klaro-build/
+(cd ../klaro-build && zip -rqX ../klaro.zip .)
 ```
 
-### Windows:
-```cmd
-build-wp-org-zip.bat
-```
-
-The script will create `klaro.zip` in the parent directory, ready for submission.
-
-## Manual Method
-
-If you prefer to create the ZIP manually:
-
-1. Navigate to the theme directory (`klaro/`)
-2. Create a ZIP file excluding:
-   - `.gitignore`
-   - `CLAUDE.md`
-   - `README.md`
-   - `CHANGELOG.md`
-   - `banners/` folder (entire folder)
-   - `woocommerce/single-product/` folder (if empty)
-   - `build-wp-org-zip.sh` and `build-wp-org-zip.bat`
-   - Any `.DS_Store` files
-   - Any IDE files (`.vscode/`, `.idea/`, etc.)
+`.distignore` is the single list of excluded files. Add new dev-only files there.
 
 ## Files Included in ZIP
 
@@ -71,7 +53,7 @@ Before submitting, verify:
 
 - [ ] ZIP file is named `klaro.zip`
 - [ ] ZIP contains only the `klaro/` folder contents (not the folder itself)
-- [ ] `style.css` has correct theme header with version 2.0.2
+- [ ] `Version:` in `style.css` matches `Stable tag:` in `readme.txt` (CI checks this)
 - [ ] `readme.txt` is up to date
 - [ ] `screenshot.png` is 1200x900px and under 1MB
 - [ ] No development files included
