@@ -341,7 +341,7 @@ skip-link-focus-fix.js is based on code from Underscores (_s) theme by Automatti
 https://github.com/Automattic/_s
 
 = Icons =
-The accessibility icon uses the Unicode universal access symbol.
+The inline accessibility SVG in header.php is an original Klaro drawing, copyright 2026 Rafael Minuesa, licensed under GPL-2.0-or-later (the theme license). It uses currentColor and is decorative. The admin bar uses the Dashicons bundled with WordPress.
 
 = External Links =
 * Theme documentation: https://github.com/rafael-minuesa/klaro

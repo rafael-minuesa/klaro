@@ -832,8 +832,6 @@ a:not([href]) {
   outline-offset: var(--focus-outline-offset);
 }
 
-/* Legacy dashicons reference removed - now using emoji */
-
 /* Remove default marker */
 .klaro-accessibility-toggle::marker,
 .klaro-accessibility-toggle::-webkit-details-marker {

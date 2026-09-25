@@ -299,9 +299,6 @@ add_filter( 'dynamic_sidebar_params', 'klaro_widget_heading_ids' );
 function klaro_scripts() {
 	$theme_version = wp_get_theme()->get( 'Version' );
 
-	// Dashicons for accessibility icon
-	wp_enqueue_style( 'dashicons' );
-
 	// Main stylesheet
 	wp_enqueue_style( 'klaro-style', get_stylesheet_uri(), array(), $theme_version );
 
@@ -1028,7 +1025,7 @@ add_action( 'widgets_init', 'klaro_woocommerce_widgets_init' );
  * Enqueue WooCommerce accessibility scripts and styles
  */
 function klaro_woocommerce_scripts() {
-	if ( class_exists( 'WooCommerce' ) ) {
+	if ( class_exists( 'WooCommerce' ) && ! wp_script_is( 'klaro-woocommerce-accessibility', 'enqueued' ) ) {
 		$theme_version = wp_get_theme()->get( 'Version' );
 
 		// WooCommerce accessibility styles
@@ -1075,7 +1072,7 @@ function klaro_woocommerce_scripts() {
 		);
 	}
 }
-add_action( 'wp_enqueue_scripts', 'klaro_woocommerce_scripts' );
+require get_template_directory() . '/inc/woocommerce-assets.php';
 
 /**
  * WooCommerce wrapper start
@@ -1324,7 +1321,7 @@ add_action( 'woocommerce_before_add_to_cart_form', 'klaro_woocommerce_add_to_car
  * Add ARIA live region for cart updates
  */
 function klaro_woocommerce_cart_live_region() {
-	if ( class_exists( 'WooCommerce' ) ) {
+	if ( wp_script_is( 'klaro-woocommerce-accessibility', 'enqueued' ) ) {
 		echo '<div id="klaro-wc-cart-announcer" class="screen-reader-text" role="status" aria-live="polite" aria-atomic="true"></div>';
 	}
 }
