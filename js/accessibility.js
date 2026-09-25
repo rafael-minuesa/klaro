@@ -253,42 +253,66 @@
         return reduced;
     }
 
-    // Apply saved settings on page load
-    function klaroApplySavedSettings() {
-        const settings = klaroGetSettings();
-        const html = document.documentElement;
+    // Make the page match a settings object completely: every class set or
+    // removed and every button's pressed state updated, so the result does
+    // not depend on what was applied before.
+    function klaroApplySettings(settings) {
         const body = document.body;
 
-        // Apply font size to html element (root for rem units)
+        // Font size on the html element (root for rem units)
         klaroApplyFontSize(settings.fontSize);
 
-        // Apply contrast to body: resolve the visitor preference against the
+        // Contrast on body: the visitor preference resolved against the
         // Customizer default instead of stacking a second mode class on it.
-        klaroSiteContrast = klaroDetectSiteContrast();
         klaroApplyContrast(settings);
 
-        // Apply color vision filter to body
-        if (klaroColorFilters[settings.colorFilter]) {
-            body.classList.add(klaroColorFilters[settings.colorFilter].className);
-            klaroUpdateButtonState(klaroColorFilters[settings.colorFilter].buttonId, true);
-        }
-
-        // Apply dyslexia-friendly font to body
-        if (settings.dyslexiaFont === 'enabled') {
-            body.classList.add('klaro-dyslexia-font');
-            klaroUpdateButtonState('klaro-toggle-dyslexia', true);
-        }
-
-        // Apply reading aids to body
-        klaroReadingAids.forEach(aid => {
-            if (settings[aid.key] === 'enabled') {
-                body.classList.add(aid.className);
-                klaroUpdateButtonState(aid.buttonId, true);
-            }
+        // Color vision filter on body
+        Object.keys(klaroColorFilters).forEach(filter => {
+            const config = klaroColorFilters[filter];
+            const active = settings.colorFilter === filter;
+            body.classList.toggle(config.className, active);
+            klaroUpdateButtonState(config.buttonId, active);
         });
 
-        // Apply the motion preference, resolved against the system setting
+        // Dyslexia-friendly font on body
+        const dyslexia = settings.dyslexiaFont === 'enabled';
+        body.classList.toggle('klaro-dyslexia-font', dyslexia);
+        klaroUpdateButtonState('klaro-toggle-dyslexia', dyslexia);
+
+        // Reading aids on body
+        klaroReadingAids.forEach(aid => {
+            const active = settings[aid.key] === 'enabled';
+            body.classList.toggle(aid.className, active);
+            klaroUpdateButtonState(aid.buttonId, active);
+        });
+
+        // The motion preference, resolved against the system setting
         klaroApplyReducedMotion(settings);
+    }
+
+    // Apply saved settings on page load
+    function klaroApplySavedSettings() {
+        klaroSiteContrast = klaroDetectSiteContrast();
+        klaroApplySettings(klaroGetSettings());
+    }
+
+    // Reset all: back to the defaults, which follow the Customizer contrast
+    // mode and the operating system's motion preference. Stored settings are
+    // removed rather than overwritten, so nothing from this visitor remains.
+    function klaroInitResetAll() {
+        const resetAllBtn = document.getElementById('klaro-reset-all');
+        if (!resetAllBtn) return;
+
+        resetAllBtn.addEventListener('click', () => {
+            klaroSettingsCache = klaroDefaultSettings();
+            try {
+                window.localStorage.removeItem(STORAGE_KEY);
+            } catch (error) {
+                // Storage unavailable; the defaults still apply to this page.
+            }
+            klaroApplySettings(klaroSettingsCache);
+            klaroAnnounceChange(klaroMsg('resetAll', 'All accessibility settings reset to the site defaults'));
+        });
     }
 
     // Update button pressed state
@@ -659,6 +683,7 @@
         klaroInitDyslexiaControls();
         klaroInitReadingAidControls();
         klaroInitAnimationControls();
+        klaroInitResetAll();
         klaroInitReducedMotion();
         klaroInitFocusManagement();
         klaroInitExternalLinks();

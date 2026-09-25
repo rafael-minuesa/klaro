@@ -53,6 +53,7 @@ A front-end toolbar on every page, with each visitor's choices remembered:
 - ✅ **Dyslexia-Friendly Font**: bundled OpenDyslexic typeface
 - ✅ **Reading Aids**: increased text spacing, link highlighting, large cursor
 - ✅ **Reduce Motion**: turns off animations and transitions
+- ✅ **Reset All**: one button returns every setting to the site and system defaults
 
 ### Visual Accessibility
 - ✅ **WCAG AAA Contrast Ratios** (7:1 minimum for all text)
