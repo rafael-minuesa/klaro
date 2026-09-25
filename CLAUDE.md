@@ -99,7 +99,7 @@ The theme declares `accessibility-ready` and must comply with all WordPress.org 
 
 ```bash
 cd /mnt/data/WebDev/WordPress/Themes/Klaro/klaro
-rm -rf ../klaro-build && mkdir -p ../klaro-build
+rm -rf ../klaro-build ../klaro.zip && mkdir -p ../klaro-build
 rsync -a --exclude-from=.distignore ./ ../klaro-build/
 (cd ../klaro-build && zip -rqX ../klaro.zip .)
 ```

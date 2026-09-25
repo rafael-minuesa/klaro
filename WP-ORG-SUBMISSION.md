@@ -7,7 +7,7 @@ This guide explains how to prepare the Klaro theme for submission to the WordPre
 Every push and pull request runs the CI workflow (`.github/workflows/ci.yml`), which builds `klaro.zip` and uploads it as the `klaro-zip` artifact. Download it from the workflow run, or build it locally:
 
 ```bash
-rm -rf ../klaro-build && mkdir -p ../klaro-build
+rm -rf ../klaro-build ../klaro.zip && mkdir -p ../klaro-build
 rsync -a --exclude-from=.distignore ./ ../klaro-build/
 (cd ../klaro-build && zip -rqX ../klaro.zip .)
 ```
