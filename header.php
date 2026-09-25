@@ -66,7 +66,11 @@
 			<div id="klaro-accessibility-toolbar" class="klaro-accessibility-toolbar" role="region" aria-label="<?php esc_attr_e( 'Accessibility settings', 'klaro' ); ?>">
 				<details class="klaro-accessibility-menu">
 					<summary class="klaro-accessibility-toggle" aria-expanded="false" aria-label="<?php esc_attr_e( 'Accessibility options', 'klaro' ); ?>">
-						<span class="dashicons dashicons-universal-access-alt klaro-accessibility-icon" aria-hidden="true"></span>
+						<svg class="klaro-accessibility-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" focusable="false">
+							<circle cx="12" cy="12" r="10" />
+							<circle cx="12" cy="6.5" r="1" fill="currentColor" stroke="none" />
+							<path d="M6 10l6 1 6-1M12 11v4m0 0-3 4m3-4 3 4" />
+						</svg>
 						<span class="klaro-accessibility-label"><?php esc_html_e( 'Accessibility', 'klaro' ); ?></span>
 					</summary>
 
