@@ -1,0 +1,39 @@
+# Files and folders kept out of the WordPress.org release zip.
+# One rsync exclude pattern per line; read by .github/workflows/ci.yml.
+
+# Version control and CI
+.git
+.github
+.gitignore
+.gitattributes
+.distignore
+
+# Editor and assistant settings
+.claude
+CLAUDE.md
+*.code-workspace
+.vscode
+.idea
+
+# Development tooling
+vendor
+node_modules
+composer.json
+composer.lock
+phpcs.xml.dist
+phpcs.xml
+
+# Repository-only docs and assets
+README.md
+LICENSE
+WP-ORG-SUBMISSION.md
+banners
+.wordpress-org
+
+# Build scripts and output
+build-wp-org-zip.*
+*.zip
+
+# OS files
+.DS_Store
+Thumbs.db

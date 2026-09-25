@@ -95,17 +95,25 @@ The theme declares `accessibility-ready` and must comply with all WordPress.org 
 
 ## Packaging for WordPress.org
 
+`.distignore` is the single list of files kept out of the release. CI (`.github/workflows/ci.yml`) builds `klaro.zip` from it on every push/PR, checks required files are present and dev/prohibited files absent, and uploads it as the `klaro-zip` artifact. The same build locally:
+
 ```bash
 cd /mnt/data/WebDev/WordPress/Themes/Klaro/klaro
-zip -r ../klaro.zip . -x ".git/*" ".claude/*" "banners/*" "README.md" "LICENSE" ".gitignore" "CLAUDE.md" "vendor/*" "composer.*" ".wordpress-org/*" "WP-ORG-SUBMISSION.md" "build-wp-org-zip.*" "*.code-workspace"
+rm -rf ../klaro-build ../klaro.zip && mkdir -p ../klaro-build
+rsync -a --exclude-from=.distignore ./ ../klaro-build/
+(cd ../klaro-build && zip -rqX ../klaro.zip .)
 ```
+
+When adding a dev-only file, add it to `.distignore`; when adding a runtime file, check the "Verify package contents" step still lists what must ship.
 
 ## Code Quality
 
-Run PHPCS with WordPress-Core standard:
+CI runs `php -l` on PHP 7.4 to 8.4, PHPCS and `node --check` on `js/*.js`. PHPCS uses `phpcs.xml.dist` (WordPress standard + PHPCompatibilityWP 7.4+, `klaro` text domain and prefix); errors fail the build, warnings don't. Documentation-style sniffs are excluded there on purpose (tracked in issue #23), and `wc_kses_notice` is registered as an escaping function.
+
 ```bash
-./vendor/bin/phpcs --standard=WordPress-Core functions.php
-./vendor/bin/phpcbf --standard=WordPress-Core functions.php  # Auto-fix
+composer install            # dev tooling only, never shipped
+./vendor/bin/phpcs          # reads phpcs.xml.dist
+./vendor/bin/phpcbf         # auto-fix
 ```
 
 ## Version Bumping Checklist
