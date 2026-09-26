@@ -40,7 +40,8 @@ screen-reader-text
   mode, monochrome mode, dark mode, color vision filters (daltonization for
   protanopia, deuteranopia, and tritanopia), a dyslexia-friendly font
   (OpenDyslexic), reading aids (WCAG 1.4.12 text spacing, link highlighting,
-  and a large cursor), and reduced motion. Preferences persist across pages and
+  and a large cursor), and reduced motion. A "Reset all" button returns every
+  setting to the site and system defaults. Preferences persist across pages and
   the toolbar popup closes with the Escape key.
 - Respect for the operating system prefers-reduced-motion setting.
 - Highly visible focus indicators that meet non-text contrast requirements in all

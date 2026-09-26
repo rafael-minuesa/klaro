@@ -152,6 +152,12 @@
 								</button>
 							</div>
 						</div>
+
+						<div class="klaro-accessibility-section klaro-accessibility-reset">
+							<button type="button" id="klaro-reset-all" class="klaro-accessibility-button" aria-label="<?php /* translators: Accessible name of the Reset all button; must start with your translation of its visible text "Reset all". */ esc_attr_e( 'Reset all, return every accessibility setting to the site default', 'klaro' ); ?>">
+								<span aria-hidden="true"><?php esc_html_e( 'Reset all', 'klaro' ); ?></span>
+							</button>
+						</div>
 					</div><!-- .klaro-accessibility-controls -->
 
 					<div id="klaro-accessibility-status" class="screen-reader-text" role="status" aria-live="polite" aria-atomic="true"></div>

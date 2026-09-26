@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+- "Reset all" button at the end of the accessibility toolbar. It returns every setting to the defaults at once: text size to normal, contrast back to the site's Customizer mode, motion back to the operating system preference, and color filter, dyslexia font and reading aids off. Stored preferences are removed, the reset is announced to screen readers, and focus stays on the button. The button's accessible name starts with its visible text (#21).
+
 ## [2.8.2] - 2026-09-23
 
 ### Fixed

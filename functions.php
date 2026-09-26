@@ -340,6 +340,7 @@ function klaro_scripts() {
 				'textSizeReset' => __( 'Text size reset to %1$s (%2$spx)', 'klaro' ),
 				'textSizeMax'   => __( 'Text size is already at maximum', 'klaro' ),
 				'textSizeMin'   => __( 'Text size is already at minimum', 'klaro' ),
+				'resetAll'      => __( 'All accessibility settings reset to the site defaults', 'klaro' ),
 				/* translators: %s: name of the option, for example "Dark mode" */
 				'enabled'       => __( '%s enabled', 'klaro' ),
 				/* translators: %s: name of the option, for example "Dark mode" */
