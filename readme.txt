@@ -7,7 +7,7 @@ Tags: accessibility-ready, one-column, two-columns, custom-colors, custom-menu, 
 Requires at least: 6.6
 Tested up to: 7.0
 Requires PHP: 7.4
-Stable tag: 2.8.2
+Stable tag: 2.9.0
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -120,6 +120,12 @@ Klaro meets WCAG 2.2 AA standards and includes features that often exceed AA req
 * Tested with NVDA, JAWS, VoiceOver, ORCA
 
 == Changelog ==
+
+= 2.9.0 =
+* Added a "Reset all" button to the accessibility toolbar. One press returns every setting to the defaults (text size normal, contrast and motion back to the site and system settings, filters, font and reading aids off) and clears the saved preferences
+* Commerce styles and scripts load only on pages that show commerce content, and the toolbar icon is an inline SVG, so ordinary pages no longer load the WooCommerce styles, the commerce script or the Dashicons font
+* Block widget headings no longer get extra space above them inside the widget
+* Pages no longer end with a large empty gap; single posts followed by navigation or comments keep their separator
 
 = 2.8.2 =
 * The Search block keeps its field usable in narrow sidebars, the same fix 2.8.1 applied to the classic search form

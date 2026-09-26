@@ -7,8 +7,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.9.0] - 2026-09-26
+
 ### Added
 - "Reset all" button at the end of the accessibility toolbar. It returns every setting to the defaults at once: text size to normal, contrast back to the site's Customizer mode, motion back to the operating system preference, and color filter, dyslexia font and reading aids off. Stored preferences are removed, the reset is announced to screen readers, and focus stays on the button. The button's accessible name starts with its visible text (#21).
+
+### Changed
+- Klaro's commerce stylesheet, accessibility script and cart announcer load only on WooCommerce pages and on pages whose content uses WooCommerce blocks or shortcodes, including commerce found later in widgets, mini-carts and nested blocks (#22). Ordinary pages no longer request them.
+- The toolbar icon is an inline SVG drawing instead of the Dashicons font, so visitors no longer download Dashicons (#22). The admin bar keeps the Dashicons WordPress loads for it.
+
+### Fixed
+- Block widgets wrap their heading in a Group block, so the heading kept its 54px top margin inside the widget padding. The first element of a widget now starts at the top.
+- A page ended with about 250px of empty space: the post-list separator (padding, border, margin) plus the last paragraph's margins. An article that is the last thing in the content area now ends with its content; posts followed by navigation or comments keep the separator.
+- languages/klaro.pot regenerated: the new strings plus three from 2.8.x the file was missing.
 
 ## [2.8.2] - 2026-09-23
 
