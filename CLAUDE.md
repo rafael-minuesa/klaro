@@ -89,7 +89,7 @@ The theme declares `accessibility-ready` and must comply with all WordPress.org 
 ## Local Development
 
 - WordPress installation: `/srv/http/wordpress/`
-- Theme COPY at `/srv/http/wordpress/wp-content/themes/klaro` (rsync from this dir excluding .git, .claude, .github, .wordpress-org, vendor, composer.*, *.code-workspace, with `--chown=http:http`); it does not follow git checkouts by itself
+- Theme COPY at `/srv/http/wordpress/wp-content/themes/klaro`; it does not follow git checkouts by itself. Sync the RELEASE file set, so Theme Check sees what ships: `sudo rsync -a --delete --delete-excluded --chown=http:http --exclude-from=.distignore ./ /srv/http/wordpress/wp-content/themes/klaro/`. `--delete-excluded` matters: plain `--delete` leaves excluded files in place, and a copy with CLAUDE.md and phpcs.xml.dist failed Theme Check with two REQUIRED errors (2026-09-26). To test several open PRs together, build a detached worktree of `origin/main`, merge the PR branches into it, sync from there, then remove the worktree.
 - Local URL: `http://localhost/wordpress/` (redirects to /en/); traps (WooCommerce coming-soon mode, wc-multilang hiding shop products, test data IDs) in `.claude/memory/reference_local_test_site.md`
 - Theme Check plugin installed locally: run `sudo -u http wp --path=/srv/http/wordpress theme-check run <slug>` on a copy of the release file set before every SVN commit; Theme Check 20260901 rejects "WORDPRESS" anywhere in shipped text, including CSS comments and old changelog lines (that failed the 2.7.2 import)
 
