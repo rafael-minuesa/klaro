@@ -1214,6 +1214,20 @@ article.page {
   border-bottom: 2px solid var(--color-border);
 }
 
+/* The separator divides entries from what follows them. An article that is
+   the last thing in the content area (a page, or a post with no comments or
+   navigation below it) ends with its content instead. */
+.content-area > article:last-child {
+  margin-bottom: 0;
+  padding-bottom: 0;
+  border-bottom: 0;
+}
+
+.entry-content:last-child,
+.entry-content > :last-child {
+  margin-bottom: 0;
+}
+
 .entry-header {
   margin-bottom: var(--spacing-lg);
 }
@@ -1355,6 +1369,13 @@ article.page {
 .widget-title {
   margin-top: 0;
   font-size: 1.5rem;
+}
+
+/* Block widgets often wrap their heading in a Group block, where the
+   heading's own top margin would add to the widget padding. */
+.widget > :first-child,
+.widget > :first-child > :first-child {
+  margin-top: 0;
 }
 
 .widget ul {
